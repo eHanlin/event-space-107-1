@@ -29,9 +29,9 @@ var determineStatus = function(field, goButton, chestId) {
     $(".book-intro .banner").after(newGoButton);
     newGoButton.removeAttr("style").prop("id", chestId);
   } else if (field.status === "UNLOCKING") {
-    coolDownTime(chestId);
     console.log("status is unlocking");
-  } else {
-    console.log("error");
+    coolDownTime(chestId);
+  } else if (field.status === "READY") {
+    console.log("status is ready");
   }
 };

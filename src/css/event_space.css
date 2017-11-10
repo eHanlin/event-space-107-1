@@ -130,6 +130,13 @@ img.banner {
   right: 0;
 }
 
+.ready {
+  display: inline-block;
+  margin: auto;
+  width: 220px;
+  height: 90px;
+}
+
 .box .box-title {
   display: inline-block;
   position: relative;
