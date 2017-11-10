@@ -1,5 +1,5 @@
 $(function() {
-  ajax("GET", "http://127.0.0.1:8080/chest/retrieve/學生1號", null, function(
+  ajaxGet("http://127.0.0.1:8080/chest/retrieve/學生1號", null, function(
     jsonData
   ) {
     console.log("成功抓取學生寶箱資料！");
@@ -14,26 +14,31 @@ $(function() {
       var chestId = $(this)
         .parents(".goButton")
         .prop("id");
-      alert(chestId);
+      $(this)
+        .remove()
+        .parents(".goButton");
       updateStatus(chestId);
     });
   });
 });
 
-var determineStatus = function(element, goButton) {
+var determineStatus = function(element, goButton, chestId) {
   if (element.status === "LOCKED") {
     var newGoButton = goButton.clone();
     $(".book-intro .banner").after(newGoButton);
     newGoButton.removeAttr("style").prop("id", element.id);
+  } else if (element.status === "UNLOCKING") {
+    console.log("status is unlocking");
+    ajaxGet(
+      "http://127.0.0.1:8080/chest/coolDownTime/" + chestId,
+      null,
+      function(jsonData) {
+        console.log("成功抓取coolDownTime資料！");
+        console.log(jsonData.content);
+        countDown(jsonData);
+      }
+    );
+  } else {
+    console.log("error");
   }
 };
-
-// $(document).on("click", ".go", this, function(chestId) {
-//   var chestId = $(this)
-//     .parents(".goButton")
-//     .prop("id");
-//   $(this)
-//     .remove()
-//     .parents(".goButton");
-//   updateStatus(chestId);
-// });

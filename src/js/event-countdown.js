@@ -1,6 +1,5 @@
 var updateStatus = function(chestId) {
-  ajax(
-    "GET",
+  ajaxGet(
     "http://127.0.0.1:8080/chest/updateStatus/" + chestId,
     { status: "UNLOCKING" },
     function(jsonData) {
@@ -9,38 +8,15 @@ var updateStatus = function(chestId) {
       coolDownTime(chestId);
     }
   );
-
-  // $.ajax({
-  //   url: `http://127.0.0.1:8080/chest/updateStatus/${chestId}`,
-  //   type: "GET",
-  //   contentType: "application/json",
-  //   dataType: "json",
-  //   data: {
-  //     status: "UNLOCKING"
-  //   },
-  //   cache: false,
-  //   crossDomain: true,
-  //   success: function(jsonData) {
-  //     console.log("成功抓取updateStatus資料！");
-  //     console.log(jsonData);
-  //     coolDownTime(chestId);
-  //   }
-  // });
 };
 
 var coolDownTime = function(chestId) {
-  $.ajax({
-    url: `http://127.0.0.1:8080/chest/coolDownTime/${chestId}`,
-    type: "GET",
-    contentType: "application/json",
-    dataType: "json",
-    cache: false,
-    crossDomain: true,
-    success: function(jsonData) {
-      console.log("成功抓取coolDownTime資料！");
-      console.log(jsonData.content);
-      countDown(jsonData);
-    }
+  ajaxGet("http://127.0.0.1:8080/chest/coolDownTime/" + chestId, null, function(
+    jsonData
+  ) {
+    console.log("成功抓取coolDownTime資料！");
+    console.log(jsonData.content);
+    countDown(jsonData);
   });
 };
 
