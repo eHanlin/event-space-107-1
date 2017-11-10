@@ -5,10 +5,11 @@ $(function() {
     console.log("成功抓取學生寶箱資料！");
 
     var goButton = $(".goButton");
+    var readyButton = $(".readyButton");
     var chestId;
     jsonData.content.forEach(function(field) {
       chestId = field.id;
-      determineStatus(field, goButton, chestId);
+      determineStatus(field, chestId, goButton, readyButton);
     }, this);
 
     $(".go").on("click", function() {
@@ -23,8 +24,9 @@ $(function() {
   });
 });
 
-var determineStatus = function(field, goButton, chestId) {
+var determineStatus = function(field, chestId, goButton, readyButton) {
   if (field.status === "LOCKED") {
+    console.log("status is locked");
     var newGoButton = goButton.clone();
     $(".book-intro .banner").after(newGoButton);
     newGoButton.removeAttr("style").prop("id", chestId);
@@ -33,5 +35,8 @@ var determineStatus = function(field, goButton, chestId) {
     coolDownTime(chestId);
   } else if (field.status === "READY") {
     console.log("status is ready");
+    var newGoReady = readyButton.clone();
+    $(".book-intro .banner").after(newGoReady);
+    newGoReady.removeAttr("style").prop("id", chestId);
   }
 };
