@@ -5,9 +5,10 @@ $(function() {
     console.log("成功抓取學生寶箱資料！");
 
     var goButton = $(".goButton");
-    jsonData.content.forEach(function(element) {
-      console.log(element);
-      determineStatus(element, goButton);
+    var chestId;
+    jsonData.content.forEach(function(field) {
+      chestId = field.id;
+      determineStatus(field, goButton, chestId);
     }, this);
 
     $(".go").on("click", function() {
@@ -22,22 +23,14 @@ $(function() {
   });
 });
 
-var determineStatus = function(element, goButton, chestId) {
-  if (element.status === "LOCKED") {
+var determineStatus = function(field, goButton, chestId) {
+  if (field.status === "LOCKED") {
     var newGoButton = goButton.clone();
     $(".book-intro .banner").after(newGoButton);
-    newGoButton.removeAttr("style").prop("id", element.id);
-  } else if (element.status === "UNLOCKING") {
+    newGoButton.removeAttr("style").prop("id", chestId);
+  } else if (field.status === "UNLOCKING") {
+    coolDownTime(chestId);
     console.log("status is unlocking");
-    ajaxGet(
-      "http://127.0.0.1:8080/chest/coolDownTime/" + chestId,
-      null,
-      function(jsonData) {
-        console.log("成功抓取coolDownTime資料！");
-        console.log(jsonData.content);
-        countDown(jsonData);
-      }
-    );
   } else {
     console.log("error");
   }

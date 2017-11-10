@@ -47,7 +47,8 @@ img.banner {
 .countdown {
   font-size: 20px;
   font-family: "monaco";
-  margin-left: 250px;
+  margin-left: 300px;
+  color: #811c1c;
 }
 
 .box.right {

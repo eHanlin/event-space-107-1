@@ -4,26 +4,27 @@ var updateStatus = function(chestId) {
     { status: "UNLOCKING" },
     function(jsonData) {
       console.log("成功抓取updateStatus資料！");
-      console.log(jsonData);
       coolDownTime(chestId);
     }
   );
 };
 
 var coolDownTime = function(chestId) {
+  console.log(chestId);
+
   ajaxGet("http://127.0.0.1:8080/chest/coolDownTime/" + chestId, null, function(
     jsonData
   ) {
     console.log("成功抓取coolDownTime資料！");
-    console.log(jsonData.content);
     countDown(jsonData);
   });
 };
 
 var countDown = function(jsonData) {
-  console.log(jsonData.content);
+  console.log("計時中...");
+  var seconds = jsonData.content;
   $(".countdown").countDown({
-    timeInSecond: jsonData.content,
+    timeInSecond: seconds,
     displayTpl: "{hour}小時{minute}分{second}秒",
     limit: "hour",
     callback: function() {
