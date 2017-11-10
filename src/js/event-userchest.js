@@ -18,7 +18,7 @@ $(function() {
       $(this)
         .remove()
         .parents(".goButton");
-      updateStatus(chestId);
+      updateStatusIsUnlocking(chestId);
     });
   });
 });

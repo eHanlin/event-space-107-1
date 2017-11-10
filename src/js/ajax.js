@@ -1,61 +1,35 @@
-var ajaxGet = function(url, body, success) {
+/**
+ * Http Get by ajax
+ */
+var ajaxGet = function (url, data, success) {
   return $.ajax({
     type: "GET",
-    contentType: "application/json",
+    url: url,
+    data: data,
+    contentType: "application/json; charset=utf-8",
     dataType: "json",
     cache: false,
     crossDomain: true,
     success: success,
-    url: url,
-    data: body,
     xhrFields: {
       withCredentials: true
     }
   });
 };
 
-var ajaxPost = function(url, body, success) {
+/**
+ * Http Post, Put, Delete by ajax
+ */
+var ajax = function (type, url, data, success) {
   return $.ajax({
-    type: "POST",
+    type: type,
+    url: url,
+    data: JSON.stringify(data),
     contentType: "application/json",
     dataType: "json",
     cache: false,
     crossDomain: true,
     success: success,
-    url: url,
-    data: body,
-    xhrFields: {
-      withCredentials: true
-    }
-  });
-};
-
-var ajaxPut = function(url, body, success) {
-  return $.ajax({
-    type: "PUT",
-    contentType: "application/json",
-    dataType: "json",
-    cache: false,
-    crossDomain: true,
-    success: success,
-    url: url,
-    data: body,
-    xhrFields: {
-      withCredentials: true
-    }
-  });
-};
-
-var ajaxDel = function(url, body, success) {
-  return $.ajax({
-    type: "DELETE",
-    contentType: "application/json",
-    dataType: "json",
-    cache: false,
-    crossDomain: true,
-    success: success,
-    url: url,
-    data: body,
     xhrFields: {
       withCredentials: true
     }
