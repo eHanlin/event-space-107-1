@@ -5,8 +5,8 @@ var updateStatusIsReady = function(chestId) {
     { status: "READY" },
     function(jsonData) {
       console.log("成功抓取updateStatusIsReady資料！");
+      location.reload();
+      determineStatus(field, chestId, goButton, readyButton);
     }
   );
 };
-
-var readyChest = function() {};
