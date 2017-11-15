@@ -23,13 +23,11 @@ $(function() {
     });
 
     $(".upgradeButton").on("click", function() {
-      var chestId = $(this)
-        .parents(".goButton")
-        .prop("id");
-      var chestLevel = $(this)
-        .parents(".goButton")
-        .data("level");
+      var chestId, chestLevel;
+      var findParents = $(this).parents(".goButton");
       if (confirm("確定是否升級寶箱?")) {
+        chestId = findParents.prop("id");
+        chestLevel = findParents.data("level");
         getUpgrade(chestId, chestLevel);
         location.reload();
       }
@@ -40,10 +38,11 @@ $(function() {
 var determineStatus = function(chest, goButton, readyButton) {
   var chestId = chest.id;
   var level = chest.level;
+  var newGoReady, newGoButton;
 
   if (chest.status === "LOCKED") {
     console.log("status is locked");
-    var newGoButton = goButton.clone();
+    newGoButton = goButton.clone();
     $(".book-intro .banner").after(newGoButton);
     newGoButton
       .removeAttr("style")
@@ -54,7 +53,7 @@ var determineStatus = function(chest, goButton, readyButton) {
     coolDownTime(chestId);
   } else if (chest.status === "READY") {
     console.log("status is ready");
-    var newGoReady = readyButton.clone();
+    newGoReady = readyButton.clone();
     $(".book-intro .banner").after(newGoReady);
     newGoReady.removeAttr("style").prop("id", chestId);
   }
