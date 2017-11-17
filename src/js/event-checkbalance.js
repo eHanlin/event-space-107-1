@@ -9,30 +9,17 @@ var getUpgrade = function(chestId, chestLevel) {
     function(jsonData) {
       console.log("成功抓取升級的寶箱資料！");
       console.log(jsonData.content);
+
+      var data = jsonData.content;
+      var finalCoins = data.finalCoins;
+      var finalGems = data.finalGems;
+      if (finalCoins < 0) {
+        alert("金幣不足啦！ 升殺小 還差" + finalCoins * -1 + "元啦");
+      }
+      if (finalGems < 0) {
+        alert("寶石不足啦！ 升殺小 還差" + finalGems * -1 + "個寶石啦");
+      }
+      location.reload();
     }
   );
 };
-
-// var getChest = function(chest) {
-//   var chestId = chest.id;
-//   ajaxGet("http://127.0.0.1:8080/chest/retrieve/one/" + chestId, null, function(
-//     jsonData
-//   ) {
-//     var level = jsonData.content.level;
-//     var user = jsonData.content.user;
-//     console.log("成功抓取學生寶箱資料！ (by id)");
-//     getCondition(level);
-//   });
-// };
-
-// var getCondition = function(chestLevel) {
-//   var upgradeLevel = chestLevel + 1;
-//   ajaxGet(
-//     "http://127.0.0.1:8080/chest/condition/one/level" + upgradeLevel,
-//     null,
-//     function(jsonData) {
-//       console.log("成功抓取寶箱升級條件！");
-//       console.log(jsonData.content);
-//     }
-//   );
-// };

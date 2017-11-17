@@ -9,7 +9,6 @@ $(function() {
     var readyButton = $(".readyButton");
     jsonData.content.forEach(function(chest) {
       determineStatus(chest, goButton, readyButton);
-      // getChest(chest);
     }, this);
 
     $(".go").one("click", function() {
@@ -29,7 +28,6 @@ $(function() {
         chestId = findParents.prop("id");
         chestLevel = findParents.data("level");
         getUpgrade(chestId, chestLevel);
-        location.reload();
       }
     });
   });
