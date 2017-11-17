@@ -30,12 +30,21 @@ $(function() {
         getUpgrade(chestId, chestLevel);
       }
     });
+
+    $(".ready").one("click", function() {
+      var chestId = $(this)
+        .parents(".readyButton")
+        .prop("id");
+      $(this)
+        .remove()
+        .parents(".readyButton");
+      console.log(chestId);
+      updateStatusIsOpen(chestId);
+    });
   });
 });
 
 var determineStatus = function(chest, goButton, readyButton) {
-  var chestId = chest.id;
-  var level = chest.level;
   var newGoReady, newGoButton;
 
   if (chest.status === "LOCKED") {
@@ -44,15 +53,17 @@ var determineStatus = function(chest, goButton, readyButton) {
     $(".book-intro .banner").after(newGoButton);
     newGoButton
       .removeAttr("style")
-      .prop("id", chestId)
-      .attr("data-level", level);
+      .prop("id", chest.id)
+      .attr("data-level", chest.level);
   } else if (chest.status === "UNLOCKING") {
     console.log("status is unlocking");
-    coolDownTime(chestId);
+    coolDownTime(chest.id);
   } else if (chest.status === "READY") {
     console.log("status is ready");
     newGoReady = readyButton.clone();
     $(".book-intro .banner").after(newGoReady);
-    newGoReady.removeAttr("style").prop("id", chestId);
+    newGoReady.removeAttr("style").prop("id", chest.id);
+  } else if (chest.status === "OPEN") {
+    console.log("status is open");
   }
 };

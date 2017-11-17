@@ -6,7 +6,7 @@ var updateStatusIsReady = function(chestId) {
     function(jsonData) {
       console.log("成功抓取updateStatusIsReady資料！");
       location.reload();
-      determineStatus(field, chestId, goButton, readyButton);
+      determineStatus();
     }
   );
 };

@@ -9,6 +9,7 @@ var getUpgrade = function(chestId, chestLevel) {
     function(jsonData) {
       console.log("成功抓取升級的寶箱資料！");
       console.log(jsonData.content);
+      console.log(jsonData);
 
       var data = jsonData.content;
       var finalCoins = data.finalCoins;
