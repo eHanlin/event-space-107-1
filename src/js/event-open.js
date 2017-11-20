@@ -6,8 +6,7 @@ var updateStatusIsOpen = function(chestId) {
     function(jsonData) {
       console.log("成功抓取updateStatusIsOpen資料！(Open)");
       console.log(jsonData);
-      if (confirm("什麼都沒拿到呀 笨蛋！")) {
-      }
+      alert("恭喜你獲得一坨大便！")
     }
   );
 };

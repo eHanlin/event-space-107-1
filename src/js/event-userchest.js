@@ -39,7 +39,11 @@ $(function() {
         .remove()
         .parents(".readyButton");
       console.log(chestId);
-      updateStatusIsOpen(chestId);
+      if (confirm("確定要將寶箱開啟？")) {
+        updateStatusIsOpen(chestId);
+      } else {
+        location.reload();
+      }
     });
   });
 });
