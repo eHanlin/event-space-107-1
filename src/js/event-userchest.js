@@ -29,7 +29,7 @@ $(function() {
       }
     });
 
-    $("#green .readyButton").one("click", function() {
+    $(".readyButton").one("click", function() {
       var chestId = $(this)
         .parents(".greenReadyPlatFrom")
         .prop("id");
@@ -107,30 +107,48 @@ var determineReadyStatus = function(chest) {
     $(".greenReadyPlatFrom").append(
       "<img class='greenReadyChest' src='./img/readyChest1.png'>"
     );
+    $(".greenReadyPlatFrom").append(
+      "<button class='readyButton' type='button'> 開啟 </button>"
+    );
   }
   if (chestStatus === "READY" && chestLevel === 2) {
     $(".greenReadyPlatFrom").append(
       "<img class='greenReadyChest' src='./img/readyChest2.png'>"
+    );
+    $(".greenReadyPlatFrom").append(
+      "<button class='readyButton' type='button'> 開啟 </button>"
     );
   }
   if (chestStatus === "READY" && chestLevel === 3) {
     $(".greenReadyPlatFrom").append(
       "<img class='greenReadyChest' src='./img/readyChest3.png'>"
     );
+    $(".greenReadyPlatFrom").append(
+      "<button class='readyButton' type='button'> 開啟 </button>"
+    );
   }
   if (chestStatus === "READY" && chestLevel === 4) {
     $(".greenReadyPlatFrom").append(
       "<img class='greenReadyChest' src='./img/readyChest4.png'>"
+    );
+    $(".greenReadyPlatFrom").append(
+      "<button class='readyButton' type='button'> 開啟 </button>"
     );
   }
   if (chestStatus === "READY" && chestLevel === 5) {
     $(".greenReadyPlatFrom").append(
       "<img class='greenReadyChest' src='./img/readyChest5.png'>"
     );
+    $(".greenReadyPlatFrom").append(
+      "<button class='readyButton' type='button'> 開啟 </button>"
+    );
   }
   if (chestStatus === "READY" && chestLevel === 6) {
     $(".greenReadyPlatFrom").append(
       "<img class='greenReadyChest' src='./img/readyChest6.png'>"
+    );
+    $(".greenReadyPlatFrom").append(
+      "<button class='readyButton' type='button'> 開啟 </button>"
     );
   }
 };
