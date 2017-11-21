@@ -5,27 +5,23 @@ $(function() {
   ) {
     console.log("成功抓取學生寶箱資料！ (by user)");
 
-    var button = $(".greenButton");
-    var readyBtn = $(".greenReadyButton");
+    var button = $(".greenPlatform");
+    var readyBtn = $(".greenReadyPlatFrom");
     jsonData.content.forEach(function(chest) {
       determineStatus(chest, button, readyBtn);
     }, this);
 
     $(".startButton").one("click", function() {
       var chestId = $(this)
-        .parents(".greenButton")
+        .parents(".greenPlatform")
         .prop("id");
-
-      // $(this)
-      //   .remove()
-      //   .parents(".greenButton");
       location.reload();
       updateStatusIsUnlocking(chestId);
     });
 
     $(".upgradeButton").on("click", function() {
       var chestId, chestLevel;
-      var greenFindParents = $(this).parents(".greenButton");
+      var greenFindParents = $(this).parents(".greenPlatform");
       if (confirm("確定是否升級寶箱?")) {
         chestId = greenFindParents.prop("id");
         chestLevel = greenFindParents.data("level");
@@ -33,13 +29,13 @@ $(function() {
       }
     });
 
-    $(".readyButton").one("click", function() {
+    $("#green .readyButton").one("click", function() {
       var chestId = $(this)
-        .parents(".greenReadyButton")
+        .parents(".greenReadyPlatFrom")
         .prop("id");
       $(this)
         .remove()
-        .parents(".greenReadyButton");
+        .parents(".greenReadyPlatFrom");
       console.log(chestId);
       if (confirm("確定要將寶箱開啟？")) {
         updateStatusIsOpen(chestId);
@@ -56,8 +52,6 @@ var determineStatus = function(chest, button, readyBtn) {
 
   if (chest.status === "LOCKED") {
     console.log("=================================> status is locked");
-    //newGoButton = goButton.clone();
-    //$(".book-intro").after(newGoButton);
     button
       .removeAttr("style")
       .prop("id", chest.id)
@@ -71,11 +65,13 @@ var determineStatus = function(chest, button, readyBtn) {
       .attr("data-level", chest.level);
     $(".upgradeButton").remove();
     $(".startButton").remove();
+    determineLevel(chest);
     coolDownTime(chest.id);
   } else if (chest.status === "READY") {
     console.log("=================================> status is ready");
-    // newGoReady = readyButton.clone();
-    // $(".book-intro").after(newGoReady);
+    $(".upgradeButton").remove();
+    $(".startButton").remove();
+    determineReadyStatus(chest);
     readyBtn.removeAttr("style").prop("id", chest.id);
   } else if (chest.status === "OPEN") {
     console.log("=================================> status is open");
@@ -85,21 +81,56 @@ var determineStatus = function(chest, button, readyBtn) {
 var determineLevel = function(chest) {
   var chestLevel = chest.level;
   if (chestLevel === 1) {
-    $(".greenButton").append("<img class='chest' src='./img/chest1.png'>");
+    $(".greenPlatform").append("<img class='chest' src='./img/chest1.png'>");
   }
   if (chestLevel === 2) {
-    $(".greenButton").append("<img class='chest' src='./img/chest2.png'>");
+    $(".greenPlatform").append("<img class='chest' src='./img/chest2.png'>");
   }
   if (chestLevel === 3) {
-    $(".greenButton").append("<img class='chest' src='./img/chest3.png'>");
+    $(".greenPlatform").append("<img class='chest' src='./img/chest3.png'>");
   }
   if (chestLevel === 4) {
-    $(".greenButton").append("<img class='chest' src='./img/chest4.png'>");
+    $(".greenPlatform").append("<img class='chest' src='./img/chest4.png'>");
   }
   if (chestLevel === 5) {
-    $(".greenButton").append("<img class='chest' src='./img/chest5.png'>");
+    $(".greenPlatform").append("<img class='chest' src='./img/chest5.png'>");
   }
   if (chestLevel === 6) {
-    $(".greenButton").append("<img class='chest' src='./img/chest6.png'>");
+    $(".greenPlatform").append("<img class='chest' src='./img/chest6.png'>");
+  }
+};
+
+var determineReadyStatus = function(chest) {
+  var chestStatus = chest.status;
+  var chestLevel = chest.level;
+  if (chestStatus === "READY" && chestLevel === 1) {
+    $(".greenReadyPlatFrom").append(
+      "<img class='greenReadyChest' src='./img/readyChest1.png'>"
+    );
+  }
+  if (chestStatus === "READY" && chestLevel === 2) {
+    $(".greenReadyPlatFrom").append(
+      "<img class='greenReadyChest' src='./img/readyChest2.png'>"
+    );
+  }
+  if (chestStatus === "READY" && chestLevel === 3) {
+    $(".greenReadyPlatFrom").append(
+      "<img class='greenReadyChest' src='./img/readyChest3.png'>"
+    );
+  }
+  if (chestStatus === "READY" && chestLevel === 4) {
+    $(".greenReadyPlatFrom").append(
+      "<img class='greenReadyChest' src='./img/readyChest4.png'>"
+    );
+  }
+  if (chestStatus === "READY" && chestLevel === 5) {
+    $(".greenReadyPlatFrom").append(
+      "<img class='greenReadyChest' src='./img/readyChest5.png'>"
+    );
+  }
+  if (chestStatus === "READY" && chestLevel === 6) {
+    $(".greenReadyPlatFrom").append(
+      "<img class='greenReadyChest' src='./img/readyChest6.png'>"
+    );
   }
 };
