@@ -62,6 +62,7 @@ var determineStatus = function(chest, button, readyBtn) {
       .removeAttr("style")
       .prop("id", chest.id)
       .attr("data-level", chest.level);
+    determineLevel(chest);
   } else if (chest.status === "UNLOCKING") {
     console.log("=================================> status is unlocking");
     button
@@ -78,5 +79,27 @@ var determineStatus = function(chest, button, readyBtn) {
     readyBtn.removeAttr("style").prop("id", chest.id);
   } else if (chest.status === "OPEN") {
     console.log("=================================> status is open");
+  }
+};
+
+var determineLevel = function(chest) {
+  var chestLevel = chest.level;
+  if (chestLevel === 1) {
+    $(".greenButton").append("<img class='chest' src='./img/chest1.png'>");
+  }
+  if (chestLevel === 2) {
+    $(".greenButton").append("<img class='chest' src='./img/chest2.png'>");
+  }
+  if (chestLevel === 3) {
+    $(".greenButton").append("<img class='chest' src='./img/chest3.png'>");
+  }
+  if (chestLevel === 4) {
+    $(".greenButton").append("<img class='chest' src='./img/chest4.png'>");
+  }
+  if (chestLevel === 5) {
+    $(".greenButton").append("<img class='chest' src='./img/chest5.png'>");
+  }
+  if (chestLevel === 6) {
+    $(".greenButton").append("<img class='chest' src='./img/chest6.png'>");
   }
 };
