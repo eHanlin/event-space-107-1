@@ -59,6 +59,7 @@ var determineStatus = function(chest, button, readyBtn) {
     determineLevel(chest);
   } else if (chest.status === "UNLOCKING") {
     console.log("=================================> status is unlocking");
+    $("#green").append("<div class='countdown'></div>");
     button
       .removeAttr("style")
       .prop("id", chest.id)
