@@ -37,18 +37,51 @@ html {
 img.banner {
   display: block;
   margin: auto;
-  width: 100%
+  width: 100%;
 }
 
 #ehanlin-menu.nav {
   text-align: center;
 }
 
-.countdown {
+.container #green .countdown {
+  position: relative;
   font-size: 20px;
+  top: 620px;
+  left: -215px;
   font-family: "monaco";
   margin-left: 300px;
-  color: #811c1c;
+  color: white;
+}
+
+.container #red .countdown {
+  position: relative;
+  font-size: 20px;
+  top: 620px;
+  left: 70px;
+  font-family: "monaco";
+  margin-left: 300px;
+  color: white;
+}
+
+.container #brown .countdown {
+  position: relative;
+  font-size: 20px;
+  top: 930px;
+  left: -100px;
+  font-family: "monaco";
+  margin-left: 300px;
+  color: white;
+}
+
+.container #pink .countdown {
+  position: relative;
+  font-size: 20px;
+  top: 920px;
+  left: 215px;
+  font-family: "monaco";
+  margin-left: 300px;
+  color: white;
 }
 
 .box.right {
@@ -118,23 +151,6 @@ img.banner {
   content: " ";
   display: table;
   clear: both;
-}
-
-.go {
-  display: inline-block;
-  width: 177px;
-  /* position: absolute; */
-  margin: auto;
-  bottom: 15px;
-  left: 0;
-  right: 0;
-}
-
-.ready {
-  display: inline-block;
-  margin: auto;
-  width: 220px;
-  height: 90px;
 }
 
 .box .box-title {

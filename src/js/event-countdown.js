@@ -23,7 +23,7 @@ var countDown = function(jsonData, chestId) {
   console.log("計時中...");
   var seconds = jsonData.content;
   $(".countdown").countDown({
-    timeInSecond: 3,
+    timeInSecond: 10,
     displayTpl: "剩下{hour}小時{minute}分{second}秒",
     limit: "hour",
     callback: function() {

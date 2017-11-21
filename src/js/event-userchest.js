@@ -5,42 +5,45 @@ $(function() {
   ) {
     console.log("成功抓取學生寶箱資料！ (by user)");
 
-    var goButton = $(".goButton");
-    var readyButton = $(".readyButton");
+    var button = $(".greenButton");
+    var readyBtn = $(".greenReadyButton");
     jsonData.content.forEach(function(chest) {
-      determineStatus(chest, goButton, readyButton);
+      determineStatus(chest, button, readyBtn);
     }, this);
 
-    $(".go").one("click", function() {
+    $(".startButton").one("click", function() {
       var chestId = $(this)
-        .parents(".goButton")
+        .parents(".greenButton")
         .prop("id");
-      $(this)
-        .remove()
-        .parents(".goButton");
+
+      // $(this)
+      //   .remove()
+      //   .parents(".greenButton");
+      location.reload();
       updateStatusIsUnlocking(chestId);
     });
 
     $(".upgradeButton").on("click", function() {
       var chestId, chestLevel;
-      var findParents = $(this).parents(".goButton");
+      var greenFindParents = $(this).parents(".greenButton");
       if (confirm("確定是否升級寶箱?")) {
-        chestId = findParents.prop("id");
-        chestLevel = findParents.data("level");
+        chestId = greenFindParents.prop("id");
+        chestLevel = greenFindParents.data("level");
         getUpgrade(chestId, chestLevel);
       }
     });
 
-    $(".ready").one("click", function() {
+    $(".readyButton").one("click", function() {
       var chestId = $(this)
-        .parents(".readyButton")
+        .parents(".greenReadyButton")
         .prop("id");
       $(this)
         .remove()
-        .parents(".readyButton");
+        .parents(".greenReadyButton");
       console.log(chestId);
       if (confirm("確定要將寶箱開啟？")) {
         updateStatusIsOpen(chestId);
+        readyBtn.remove();
       } else {
         location.reload();
       }
@@ -48,26 +51,32 @@ $(function() {
   });
 });
 
-var determineStatus = function(chest, goButton, readyButton) {
+var determineStatus = function(chest, button, readyBtn) {
   var newGoReady, newGoButton;
 
   if (chest.status === "LOCKED") {
-    console.log("status is locked");
-    newGoButton = goButton.clone();
-    $(".book-intro .banner").after(newGoButton);
-    newGoButton
+    console.log("=================================> status is locked");
+    //newGoButton = goButton.clone();
+    //$(".book-intro").after(newGoButton);
+    button
       .removeAttr("style")
       .prop("id", chest.id)
       .attr("data-level", chest.level);
   } else if (chest.status === "UNLOCKING") {
-    console.log("status is unlocking");
+    console.log("=================================> status is unlocking");
+    button
+      .removeAttr("style")
+      .prop("id", chest.id)
+      .attr("data-level", chest.level);
+    $(".upgradeButton").remove();
+    $(".startButton").remove();
     coolDownTime(chest.id);
   } else if (chest.status === "READY") {
-    console.log("status is ready");
-    newGoReady = readyButton.clone();
-    $(".book-intro .banner").after(newGoReady);
-    newGoReady.removeAttr("style").prop("id", chest.id);
+    console.log("=================================> status is ready");
+    // newGoReady = readyButton.clone();
+    // $(".book-intro").after(newGoReady);
+    readyBtn.removeAttr("style").prop("id", chest.id);
   } else if (chest.status === "OPEN") {
-    console.log("status is open");
+    console.log("=================================> status is open");
   }
 };

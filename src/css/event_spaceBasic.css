@@ -123,3 +123,114 @@
   left: 320px;
   top: 2020px;
 }
+
+/* ===== green button ===== */
+.container #green .chest {
+  position: absolute;
+  top: 380px;
+  left: 85px;
+  z-index: 1;
+}
+
+.container #green .startButton {
+  position: relative;
+  background-color: transparent;
+  top: 335px;
+  left: 95px;
+  font-size: 25px;
+  color: white;
+  border: 2px solid red;
+  z-index: 1;
+}
+
+.container #green .upgradeButton {
+  position: relative;
+  background-color: transparent;
+  top: 335px;
+  left: 135px;
+  font-size: 25px;
+  color: white;
+  border: 2px solid red;
+  z-index: 1;
+}
+
+.container #green .greenReadyButton .greenReady {
+  position: relative;
+  top: 350px;
+  left: 0px;
+  z-index: 1;
+}
+
+.container #green .greenReadyButton .readyButton {
+  position: relative;
+  background-color: transparent;
+  top: 150px;
+  left: 140px;
+  font-size: 25px;
+  color: white;
+  border: 2px solid red;
+  z-index: 1;
+}
+
+/* ===== red button ===== */
+.container #red .chest {
+  position: absolute;
+  top: 380px;
+  left: 370px;
+  z-index: 1;
+}
+
+.container #red .upgradeButton {
+  position: relative;
+  background-color: transparent;
+  top: 330px;
+  left: 460px;
+  font-size: 25px;
+  color: white;
+  border: 2px solid red;
+  z-index: 1;
+}
+
+/* ===== brown button ===== */
+.container #brown .chest {
+  position: absolute;
+  top: 710px;
+  left: 200px;
+  z-index: 1;
+}
+
+.container #brown .upgradeButton {
+  position: relative;
+  background-color: transparent;
+  top: 660px;
+  left: 290px;
+  font-size: 25px;
+  color: white;
+  border: 2px solid red;
+  z-index: 1;
+}
+
+/* ===== pink button ===== */
+.container #pink .chest {
+  position: absolute;
+  top: 680px;
+  left: 515px;
+  z-index: 1;
+}
+
+.container #pink .upgradeButton {
+  position: relative;
+  background-color: transparent;
+  top: 630px;
+  left: 605px;
+  font-size: 25px;
+  color: white;
+  border: 2px solid red;
+  z-index: 1;
+}
+
+.container #green .greenReady {
+  position: relative;
+  top: 630px;
+  left: 605px;
+}
