@@ -49,7 +49,7 @@ var determineStatus = function(chest, platformTarget, chestSatuts) {
   var chestLevel = chest.level;
 
   if (chestSatuts === "LOCKED") {
-    console.log("=================================> status is locked");
+    console.log("===============> status is locked <=================");
     platformTarget
       .removeAttr("style")
       .prop("id", chestId)
@@ -58,7 +58,7 @@ var determineStatus = function(chest, platformTarget, chestSatuts) {
   }
 
   if (chestSatuts === "UNLOCKING") {
-    console.log("=================================> status is unlocking");
+    console.log("=============> status is unlocking <================");
     platformTarget
       .removeAttr("style")
       .prop("id", chestId)
@@ -70,7 +70,7 @@ var determineStatus = function(chest, platformTarget, chestSatuts) {
   }
 
   if (chestSatuts === "READY") {
-    console.log("=================================> status is ready");
+    console.log("=================> status is ready <================");
     var chestImage;
     platformTarget
       .removeAttr("style")
@@ -81,10 +81,6 @@ var determineStatus = function(chest, platformTarget, chestSatuts) {
     platformTarget.find(".readyButton").removeAttr("style");
     chestImage = "readyChest" + chestLevel;
     changeChestImage(chestTarget, chestImage);
-  }
-
-  if (chestSatuts === "OPEN") {
-    console.log("=================================> status is open");
   }
 };
 

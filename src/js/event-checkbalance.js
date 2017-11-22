@@ -10,12 +10,13 @@ var getUpgrade = function(chestId, chestLevel) {
     putData,
     function(jsonData) {
       console.log("成功抓取升級的寶箱資料！");
-      console.log(jsonData.content);
-      console.log(jsonData);
 
       var data = jsonData.content;
       var finalCoins = data.finalCoins;
       var finalGems = data.finalGems;
+      var platformTarget = $("#" + chestId);
+      var dataLevel = putData.level;
+
       if (finalCoins < 0) {
         alert("金幣不足啦！ 升殺小 還差" + finalCoins * -1 + "元啦");
         return;
@@ -25,8 +26,6 @@ var getUpgrade = function(chestId, chestLevel) {
         return;
       }
 
-      var platformTarget = $("#" + chestId);
-      var dataLevel = putData.level;
       platformTarget.data("level", dataLevel);
       determineLevel(platformTarget.find(".chest"), dataLevel);
     }

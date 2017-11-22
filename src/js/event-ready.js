@@ -5,6 +5,7 @@ var updateStatusIsReady = function(chestId) {
     { status: "READY" },
     function(jsonData) {
       console.log("成功抓取updateStatusIsReady資料！");
+      
       var platFromTarget = $("#" + chestId);
       var chestTarget = platFromTarget.find(".chest");
       var level = platFromTarget.data("level");

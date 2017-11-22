@@ -5,7 +5,7 @@ var updateStatusIsOpen = function(chestId) {
     { status: "OPEN" },
     function(jsonData) {
       console.log("成功抓取updateStatusIsOpen資料！(Open)");
-      console.log(jsonData);
+
       var platformTarget = $("#" + chestId);
       platformTarget.find(".chest").hide();
       platformTarget.find(".readyButton").remove();
