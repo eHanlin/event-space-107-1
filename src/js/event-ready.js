@@ -5,8 +5,14 @@ var updateStatusIsReady = function(chestId) {
     { status: "READY" },
     function(jsonData) {
       console.log("成功抓取updateStatusIsReady資料！");
-      location.reload();
-      determineStatus();
+
+      var greenPlatFromTarget = $("#" + chestId);
+      greenPlatFromTarget.find(".readyButton").removeAttr("style");
+
+      var chestTarget = greenPlatFromTarget.find(".chest");
+      var level = greenPlatFromTarget.data("level");
+      var chestImage = "readyChest" + level;
+      changeChestImage(chestTarget, chestImage);
     }
   );
 };

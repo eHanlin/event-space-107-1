@@ -1,11 +1,13 @@
 var getUpgrade = function(chestId, chestLevel) {
+  var putData = {
+    user: "學生1號",
+    level: chestLevel + 1
+  };
+
   ajax(
     "PUT",
     "http://127.0.0.1:8080/chest/upgrade/" + chestId,
-    {
-      user: "學生1號",
-      level: chestLevel + 1
-    },
+    putData,
     function(jsonData) {
       console.log("成功抓取升級的寶箱資料！");
       console.log(jsonData.content);
@@ -20,7 +22,11 @@ var getUpgrade = function(chestId, chestLevel) {
       if (finalGems < 0) {
         alert("寶石不足啦！ 升殺小 還差" + finalGems * -1 + "個寶石啦");
       }
-      location.reload();
+
+      var platformId = $("#" + chestId);
+      var dataLevel = putData.level;
+      platformId.data("level", dataLevel);
+      determineLevel(platformId, dataLevel);
     }
   );
 };
