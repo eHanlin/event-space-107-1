@@ -6,7 +6,10 @@ var updateStatusIsOpen = function(chestId) {
     function(jsonData) {
       console.log("成功抓取updateStatusIsOpen資料！(Open)");
       console.log(jsonData);
-      alert("恭喜你獲得一坨大便！")
+      var platformTarget = $("#" + chestId);
+      platformTarget.find(".chest").hide();
+      platformTarget.find(".readyButton").remove();
+      alert("恭喜你獲得一坨大便！");
     }
   );
 };

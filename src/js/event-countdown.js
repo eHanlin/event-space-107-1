@@ -5,7 +5,6 @@ var updateStatusIsUnlocking = function(chestId) {
     { status: "UNLOCKING" },
     function(jsonData) {
       console.log("成功抓取updateStatusIsUnlocking資料！");
-      determineStatus();
       coolDownTime(chestId);
     }
   );
@@ -25,7 +24,7 @@ var countDown = function(jsonData, chestId) {
   var seconds = jsonData.content;
   var countdownTarget = $("#" + chestId).find(".countdown");
   countdownTarget.countDown({
-    timeInSecond: 10,
+    timeInSecond: 5,
     displayTpl: "剩下{hour}小時{minute}分{second}秒",
     limit: "hour",
     callback: function() {

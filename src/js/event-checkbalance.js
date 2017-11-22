@@ -18,15 +18,17 @@ var getUpgrade = function(chestId, chestLevel) {
       var finalGems = data.finalGems;
       if (finalCoins < 0) {
         alert("金幣不足啦！ 升殺小 還差" + finalCoins * -1 + "元啦");
+        return;
       }
       if (finalGems < 0) {
         alert("寶石不足啦！ 升殺小 還差" + finalGems * -1 + "個寶石啦");
+        return;
       }
 
-      var platformId = $("#" + chestId);
+      var platformTarget = $("#" + chestId);
       var dataLevel = putData.level;
-      platformId.data("level", dataLevel);
-      determineLevel(platformId, dataLevel);
+      platformTarget.data("level", dataLevel);
+      determineLevel(platformTarget.find(".chest"), dataLevel);
     }
   );
 };

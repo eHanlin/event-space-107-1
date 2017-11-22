@@ -5,13 +5,13 @@ var updateStatusIsReady = function(chestId) {
     { status: "READY" },
     function(jsonData) {
       console.log("成功抓取updateStatusIsReady資料！");
-
-      var greenPlatFromTarget = $("#" + chestId);
-      greenPlatFromTarget.find(".readyButton").removeAttr("style");
-
-      var chestTarget = greenPlatFromTarget.find(".chest");
-      var level = greenPlatFromTarget.data("level");
+      var platFromTarget = $("#" + chestId);
+      var chestTarget = platFromTarget.find(".chest");
+      var level = platFromTarget.data("level");
       var chestImage = "readyChest" + level;
+
+      platFromTarget.find(".readyButton").removeAttr("style");
+      platFromTarget.find(".countdown").hide();
       changeChestImage(chestTarget, chestImage);
     }
   );
