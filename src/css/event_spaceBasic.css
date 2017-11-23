@@ -8,13 +8,17 @@
   z-index: 1;
 }
 
-.space {
+.container .space {
   position: relative;
   background-image: url("../img/space.png");
   background-size: contain;
   width: 735px;
   height: 1218px;
   z-index: 2;
+}
+
+.container .space button {
+  cursor: pointer;
 }
 
 .container .displayCoins {
@@ -169,6 +173,7 @@
   color: white;
   border: 2px solid red;
   z-index: 1;
+  outline: none;
 }
 
 .container #green .readyButton {

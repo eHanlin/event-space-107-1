@@ -18,11 +18,17 @@ var getUpgrade = function(chestId, chestLevel) {
       var dataLevel = putData.level;
 
       if (finalCoins < 0) {
-        alert("金幣不足啦！ 升殺小 還差" + finalCoins * -1 + "元啦");
+        $.alert(
+          alertWindow("金幣不足！ 再努力一點，還差" + finalCoins * -1 + "元！")
+        );
         return;
       }
       if (finalGems < 0) {
-        alert("寶石不足啦！ 升殺小 還差" + finalGems * -1 + "個寶石啦");
+        $.alert(
+          alertWindow(
+            "寶石不足！ 再努力一點，還差" + finalGems * -1 + "個寶石！"
+          )
+        );
         return;
       }
 

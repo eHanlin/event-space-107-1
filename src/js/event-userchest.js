@@ -23,11 +23,12 @@ $(function() {
     $(".upgradeButton").on("click", function() {
       var chestId, chestLevel;
       var greenFindParents = $(this).parents(".greenPlatform");
-      if (confirm("確定是否升級寶箱?")) {
+      var confrimFunction = function() {
         chestId = greenFindParents.prop("id");
         chestLevel = greenFindParents.data("level");
         getUpgrade(chestId, chestLevel);
-      }
+      };
+      $.confirm(confirmWindow("確定要升級寶箱嗎？", confrimFunction));
     });
 
     // 開啟按鈕
@@ -36,9 +37,7 @@ $(function() {
         .parents(".greenPlatform")
         .prop("id");
       console.log(chestId);
-      if (confirm("確定要將寶箱開啟？")) {
-        updateStatusIsOpen(chestId);
-      }
+      updateStatusIsOpen(chestId);
     });
   });
 });
