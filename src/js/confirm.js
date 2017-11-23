@@ -22,6 +22,17 @@ var confirmWindow = function(title, confrimFunction) {
   };
 };
 
-var alertWindow = function(title) {
-  return { title: title, content: "", useBootstrap: false, theme: "supervan" };
+var alertWindow = function(title, content) {
+  return {
+    title: title,
+    content: content,
+    useBootstrap: false,
+    theme: "supervan",
+    buttons: {
+      confirmButton: {
+        text: "確認",
+        btnClass: "btn-blue"
+      }
+    }
+  };
 };

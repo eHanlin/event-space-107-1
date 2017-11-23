@@ -9,7 +9,7 @@ var updateStatusIsOpen = function(chestId) {
       var platformTarget = $("#" + chestId);
       platformTarget.find(".chest").hide();
       platformTarget.find(".readyButton").remove();
-      $.alert(alertWindow("恭喜你獲得一台BMW X6M！"));
+      $.alert(alertWindow("恭喜你獲得一台BMW X6M！", ""));
     }
   );
 };
