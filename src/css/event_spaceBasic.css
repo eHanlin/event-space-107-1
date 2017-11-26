@@ -21,18 +21,6 @@
   cursor: pointer;
 }
 
-.container .displayCoins {
-  position: absolute;
-  left: 35px;
-  top: 30px;
-}
-
-.container .displayGems {
-  position: absolute;
-  left: 35px;
-  top: 100px;
-}
-
 .container .activity {
   position: absolute;
   left: 325px;
@@ -126,4 +114,33 @@
   position: absolute;
   left: 320px;
   top: 2020px;
+}
+
+.container .space .coins {
+  position: absolute;
+  background-image: url("../img/displayCoins.png");
+  left: 35px;
+  top: 30px;
+  width: 187px;
+  height: 61px;
+}
+
+.container .space .coins span,
+.container .space .gems span {
+  position: absolute;
+  top: 11.5px;
+  right: 20px;
+  font-size: 26px;
+  font-family: "微軟正黑體";
+  font-weight: bolder;
+  color: rgb(69, 23, 23);
+}
+
+.container .space .gems {
+  position: absolute;
+  background-image: url("../img/displayGems.png");
+  left: 35px;
+  top: 100px;
+  width: 184px;
+  height: 57px;
 }

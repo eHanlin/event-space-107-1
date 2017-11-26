@@ -36,8 +36,15 @@
         <div class="background">
 
           <div class="space">
-            <img class="displayCoins" src="./img/displayCoins.png">
-            <img class="displayGems" src="./img/displayGems.png">
+
+            <div class="coins">
+              <span></span>
+            </div>
+            <div class="gems">
+              <span></span>
+            </div>
+
+
             <img class="activity" src="./img/activity.png">
             <img class="bank" src="./img/bank.png">
             <img class="eventText" src="./img/eventText.png">
@@ -49,7 +56,7 @@
                 <button class="upgradeButton" type="button"> 升級 </button>
                 <button class='readyButton' style="display:none;" type='button'> 開啟 </button>
                 <img class="chest">
-                <div class="countdown"></div>
+                <div class="countdown font"></div>
               </div>
               <img class="greenPosition" src="./img/greenPosition.png">
             </div>
@@ -95,9 +102,7 @@
           <img class="point" src="./img/point.png">
         </div>
 
-        <div class="eventMessage">
-
-        </div>
+        <div class="eventMessage"></div>
 
       </div>
     </div>
@@ -106,12 +111,11 @@
   </div>
   <footer id="ehanlin-footer"></footer>
 </body>
+<script type="text/javascript" src="./js/event-chest.js"></script>
 <script type="text/javascript" src="./js/ajax.js"></script>
+<script type="text/javascript" src="./js/event-totalAssets.js"></script>
 <script type="text/javascript" src="./js/event-countdown.js"></script>
 <script type="text/javascript" src="./js/event-userchest.js"></script>
-<script type="text/javascript" src="./js/event-ready.js"></script>
-<script type="text/javascript" src="./js/event-open.js"></script>
-<script type="text/javascript" src="./js/event-upgrade.js"></script>
 <script type="text/javascript" src="./js/confirm.js"></script>
 <script type="text/javascript" src="./js/package/jquery.countdown.js"></script>
 <script type="text/javascript" src="./js/package/jquery-confirm.js"></script>

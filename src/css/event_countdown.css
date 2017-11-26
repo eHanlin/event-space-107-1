@@ -1,38 +1,26 @@
 .container #green .countdown {
-  position: absolute;
-  font-size: 17px;
-  top: 10px;
-  left: 20px;
-  font-family: "微軟正黑體";
-  color: white;
+  top: 25px;
+  left: 25px;
 }
 
 .container #red .countdown {
-  position: relative;
-  font-size: 20px;
   top: 620px;
   left: 70px;
-  font-family: "monaco";
-  margin-left: 300px;
-  color: white;
 }
 
 .container #brown .countdown {
-  position: relative;
-  font-size: 20px;
   top: 930px;
   left: -100px;
-  font-family: "monaco";
-  margin-left: 300px;
-  color: white;
 }
 
 .container #pink .countdown {
-  position: relative;
-  font-size: 20px;
   top: 920px;
   left: 215px;
-  font-family: "monaco";
-  margin-left: 300px;
+}
+
+.container .countdown.font {
+  position: absolute;
+  font-family: "微軟正黑體";
   color: white;
+  font-size: 20px;
 }

@@ -11,9 +11,9 @@ var ajaxGet = function(url, data, success) {
     cache: false,
     crossDomain: true,
     success: success,
-    xhrFields: {
-      withCredentials: true
-    }
+    // xhrFields: {
+    //   withCredentials: false
+    // }
   });
 };
 

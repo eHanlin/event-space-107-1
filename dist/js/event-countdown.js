@@ -24,11 +24,11 @@ var countDown = function(jsonData, chestId) {
   var seconds = jsonData.content;
   var countdownTarget = $("#" + chestId).find(".countdown");
   countdownTarget.countDown({
-    timeInSecond: 5,
-    displayTpl: "剩下{hour}小時{minute}分{second}秒",
+    timeInSecond: 120,
+    displayTpl: "{hour}小時{minute}分{second}秒",
     limit: "hour",
     callback: function() {
-      updateStatusIsReady(chestId);
+      chest.updateStatusIsReady(chestId);
     }
   });
 };

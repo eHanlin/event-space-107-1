@@ -26,7 +26,7 @@ $(function() {
       var confrimFunction = function() {
         chestId = greenFindParents.prop("id");
         chestLevel = greenFindParents.data("level");
-        getUpgrade(chestId, chestLevel);
+        chest.getUpgrade(chestId, chestLevel, user);
       };
       $.confirm(confirmWindow("確定要升級寶箱嗎？", confrimFunction));
     });
@@ -36,8 +36,7 @@ $(function() {
       var chestId = $(this)
         .parents(".greenPlatform")
         .prop("id");
-      console.log(chestId);
-      updateStatusIsOpen(chestId);
+      chest.updateStatusIsOpen(chestId);
     });
   });
 });
