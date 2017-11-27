@@ -1,19 +1,59 @@
 /* ===== red button ===== */
 
+.container #red {
+  position: fixed;
+  top: 290px;
+  left: 380px;
+  height: 300px;
+  width: 177px;
+}
+
+.container .redPosition {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
 .container #red .chest {
   position: absolute;
-  top: 380px;
-  left: 370px;
+  display: block;
+  top: 19%;
+  left: 5%;
   z-index: 1;
 }
 
-.container #red .upgradeButton {
-  position: relative;
+.container #red .startButton {
+  position: absolute;
   background-color: transparent;
-  top: 330px;
-  left: 460px;
+  top: 0px;
+  left: 0px;
+  font-size: 25px;
+  z-index: 1;
+  outline: none;
+  color: white;
+  border: 2px solid red;
+}
+
+.container #red .upgradeButton {
+  position: absolute;
+  background-color: transparent;
+  top: 0px;
+  right: 0px;
   font-size: 25px;
   color: white;
   border: 2px solid red;
   z-index: 1;
+}
+
+.container #red .readyButton {
+  position: absolute;
+  background-color: transparent;
+  top: 0px;
+  left: 60px;
+  font-size: 25px;
+  z-index: 1;
+  outline: none;
+  color: white;
+  border: 2px solid red;
 }

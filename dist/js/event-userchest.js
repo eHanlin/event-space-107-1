@@ -1,90 +1,85 @@
 $(function() {
-  var user = "學生1號";
+  var user = "5a1b741c9253f2e34a1cfe4e";
   ajaxGet("http://127.0.0.1:8080/chest/retrieve/" + user, null, function(
     jsonData
   ) {
     console.log("成功抓取學生寶箱資料！ (by user)");
 
-    var platformTarget = $(".greenPlatform");
-    jsonData.content.forEach(function(chest) {
-      determineStatus(chest, platformTarget, chest.status);
-    }, this);
+    var indexPlatformTarget;
+    var chest;
+    var chests = jsonData.content;
+    for (let i = 0; i < chests.length; i++) {
+      chest = chests[i];
+      indexPlatformTarget = $(".platform:eq(" + i + ")");
+      determineStatus(chest, indexPlatformTarget, chest.status);
+    }
 
     // 啟動按鈕
     $(".startButton").one("click", function() {
-      var chestId = $(this)
-        .parents(".greenPlatform")
-        .prop("id");
-      removeButton();
+      var findParents = $(this).parents(".platform");
+      var chestId = findParents.prop("id");
+
+      $(".startButton[data-status=LOCKED]").toggle("slow");
+      findParents.find(".upgradeButton").toggle("slow");
       updateStatusIsUnlocking(chestId);
     });
 
     // 升級按鈕
     $(".upgradeButton").on("click", function() {
-      var chestId, chestLevel;
-      var greenFindParents = $(this).parents(".greenPlatform");
-      var confrimFunction = function() {
-        chestId = greenFindParents.prop("id");
-        chestLevel = greenFindParents.data("level");
-        chest.getUpgrade(chestId, chestLevel, user);
+      var findParents = $(this).parents(".platform");
+      var confrimFunction;
+      var chestId = findParents.prop("id");
+      var chestLevel = findParents.data("level");
+
+      confrimFunction = function() {
+        eventChest.getUpgrade(chestId, chestLevel, user);
       };
-      $.confirm(confirmWindow("確定要升級寶箱嗎？", confrimFunction));
+      getCondition(chestLevel + 1, confrimFunction);
     });
 
     // 開啟按鈕
     $(".readyButton").on("click", function() {
       var chestId = $(this)
-        .parents(".greenPlatform")
+        .parents(".platform")
         .prop("id");
-      chest.updateStatusIsOpen(chestId);
+      eventChest.updateStatusIsOpen(chestId);
     });
   });
 });
 
-var determineStatus = function(chest, platformTarget, chestSatuts) {
-  var chestTarget = platformTarget.find("img.chest");
+// 判斷寶箱狀態
+var determineStatus = function(chest, thisPlatformTarget, chestSatuts) {
+  var chestTarget = thisPlatformTarget.find("img.chest");
   var chestId = chest.id;
   var chestLevel = chest.level;
 
+  thisPlatformTarget
+    .removeAttr("style")
+    .prop("id", chestId)
+    .attr("data-level", chestLevel);
+
+  thisPlatformTarget.find(".startButton").attr("data-status", chest.status);
+
   if (chestSatuts === "LOCKED") {
     console.log("===============> status is locked <=================");
-    platformTarget
-      .removeAttr("style")
-      .prop("id", chestId)
-      .attr("data-level", chestLevel);
     determineLevel(chestTarget, chestLevel);
-  }
-
-  if (chestSatuts === "UNLOCKING") {
+  } else if (chestSatuts === "UNLOCKING") {
     console.log("=============> status is unlocking <================");
-    platformTarget
-      .removeAttr("style")
-      .prop("id", chestId)
-      .attr("data-level", chestLevel);
-    removeButton();
+    $(".startButton").toggle();
+    thisPlatformTarget.find(".upgradeButton").toggle();
 
     determineLevel(chestTarget, chestLevel);
     coolDownTime(chestId);
-  }
-
-  if (chestSatuts === "READY") {
+  } else if (chestSatuts === "READY") {
     console.log("=================> status is ready <================");
     var chestImage;
-    platformTarget
-      .removeAttr("style")
-      .prop("id", chestId)
-      .attr("data-level", chestLevel);
-    removeButton();
+    thisPlatformTarget.find(".startButton").toggle();
+    thisPlatformTarget.find(".upgradeButton").toggle();
 
-    platformTarget.find(".readyButton").removeAttr("style");
+    thisPlatformTarget.find(".readyButton").removeAttr("style");
     chestImage = "readyChest" + chestLevel;
     changeChestImage(chestTarget, chestImage);
   }
-};
-
-var removeButton = function() {
-  $(".upgradeButton").remove();
-  $(".startButton").remove();
 };
 
 var determineLevel = function(chestTarget, chestLevel) {

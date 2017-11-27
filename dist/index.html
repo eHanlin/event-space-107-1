@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="./css/event_spaceBasic.css">
   <link rel="stylesheet" href="./css/event_space_confirm.css">
   <link rel="stylesheet" href="./css/event_countdown.css">
+
   <link rel="stylesheet" href="./css/event_greenPlatform.css">
   <link rel="stylesheet" href="./css/event_redPlatform.css">
   <link rel="stylesheet" href="./css/event_brownPlatform.css">
@@ -51,7 +52,7 @@
 
 
             <div id="green">
-              <div class="greenPlatform" style="display:none;">
+              <div class="platform" style="display:none;">
                 <button class="startButton" type="button"> 啟動 </button>
                 <button class="upgradeButton" type="button"> 升級 </button>
                 <button class='readyButton' style="display:none;" type='button'> 開啟 </button>
@@ -62,28 +63,34 @@
             </div>
 
             <div id="red">
-              <div class="redButton" style="display:none;">
+              <div class="platform" style="display:none;">
                 <button class="startButton" type="button"> 啟動 </button>
                 <button class="upgradeButton" type="button"> 升級 </button>
                 <button class='readyButton' style="display:none;" type='button'> 開啟 </button>
+                <img class="chest">
+                <div class="countdown font"></div>
               </div>
               <img class="redPosition" src="./img/redPosition.png">
             </div>
 
             <div id="brown">
-              <div class="brownButton" style="display:none;">
+              <div class="platform" style="display:none;">
                 <button class="startButton" type="button"> 啟動 </button>
                 <button class="upgradeButton" type="button"> 升級 </button>
                 <button class='readyButton' style="display:none;" type='button'> 開啟 </button>
+                <img class="chest">
+                <div class="countdown font"></div>
               </div>
               <img class="brownPosition" src="./img/brownPosition.png">
             </div>
 
             <div id="pink">
-              <div class="pinkButton" style="display:none;">
+              <div class="platform" style="display:none;">
                 <button class="startButton" type="button"> 啟動 </button>
                 <button class="upgradeButton" type="button"> 升級 </button>
                 <button class='readyButton' style="display:none;" type='button'> 開啟 </button>
+                <img class="chest">
+                <div class="countdown font"></div>
               </div>
               <img class="pinkPosition" src="./img/pinkPosition.png">
             </div>
@@ -111,12 +118,15 @@
   </div>
   <footer id="ehanlin-footer"></footer>
 </body>
-<script type="text/javascript" src="./js/event-chest.js"></script>
 <script type="text/javascript" src="./js/ajax.js"></script>
+<script type="text/javascript" src="./js/confirm.js"></script>
+
+<script type="text/javascript" src="./js/event-chest.js"></script>
 <script type="text/javascript" src="./js/event-totalAssets.js"></script>
+<script type="text/javascript" src="./js/event-condition.js"></script>
 <script type="text/javascript" src="./js/event-countdown.js"></script>
 <script type="text/javascript" src="./js/event-userchest.js"></script>
-<script type="text/javascript" src="./js/confirm.js"></script>
+
 <script type="text/javascript" src="./js/package/jquery.countdown.js"></script>
 <script type="text/javascript" src="./js/package/jquery-confirm.js"></script>
 <script type="text/javascript" data-module="ehanlin-header, ehanlin-menu, ehanlin-event-left-side, ehanlin-footer
