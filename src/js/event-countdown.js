@@ -1,10 +1,14 @@
 var updateStatusIsUnlocking = function(chestId) {
+  var body = { status: "UNLOCKING" };
+
   ajax(
     "PUT",
     "http://127.0.0.1:8080/chest/updateStatus/" + chestId,
-    { status: "UNLOCKING" },
+    body,
     function(jsonData) {
       console.log("成功抓取updateStatusIsUnlocking資料！");
+      var startButtonTarget = $("#" + chestId).find(".startButton");
+      startButtonTarget.data("status", body.status);
       coolDownTime(chestId);
     }
   );
@@ -24,11 +28,11 @@ var countDown = function(jsonData, chestId) {
   var seconds = jsonData.content;
   var countdownTarget = $("#" + chestId).find(".countdown");
   countdownTarget.countDown({
-    timeInSecond: 120,
-    displayTpl: "{hour}小時{minute}分{second}秒",
+    timeInSecond: 5,
+    displayTpl: "{hour}時{minute}分{second}秒",
     limit: "hour",
     callback: function() {
-      chest.updateStatusIsReady(chestId);
+      eventChest.updateStatusIsReady(chestId);
     }
   });
 };

@@ -1,16 +1,16 @@
 /**
  * Http Get by ajax
  */
-var ajaxGet = function(url, data, success) {
+var ajaxGet = function(url, param, success) {
   return $.ajax({
     type: "GET",
     url: url,
-    data: data,
-    contentType: "application/json",
+    data: param,
+    contentType: "application/json; charset=UTF-8",
     dataType: "json",
     cache: false,
     crossDomain: true,
-    success: success,
+    success: success
     // xhrFields: {
     //   withCredentials: false
     // }
@@ -20,11 +20,11 @@ var ajaxGet = function(url, data, success) {
 /**
  * Http Post, Put, Delete by ajax
  */
-var ajax = function(type, url, data, success) {
+var ajax = function(type, url, body, success) {
   return $.ajax({
     type: type,
     url: url,
-    data: JSON.stringify(data),
+    data: JSON.stringify(body),
     contentType: "application/json",
     dataType: "json",
     cache: false,
@@ -33,5 +33,17 @@ var ajax = function(type, url, data, success) {
     xhrFields: {
       withCredentials: true
     }
+  });
+};
+
+var ajaxDeferred = function(type, url, body) {
+  return $.ajax({
+    type: type,
+    cache: false,
+    crossDomain: true,
+    url: url,
+    data: JSON.stringify(body),
+    contentType: "application/json; charset=UTF-8",
+    dataType: "json"
   });
 };

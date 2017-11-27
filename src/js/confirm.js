@@ -5,23 +5,23 @@ var confirmWindow = function(title, content, confrimFunction) {
     useBootstrap: false,
     theme: "supervan",
     buttons: {
-      confirmButton: {
-        text: "確認",
-        btnClass: "btn-blue",
-        action: confrimFunction
-      },
       cancelButton: {
         text: "再想想",
         btnClass: "btn-blue",
         action: function() {
           return;
         }
+      },
+      confirmButton: {
+        text: "確認",
+        btnClass: "btn-blue",
+        action: confrimFunction
       }
     }
   };
 };
 
-var alertWindow = function(title, content) {
+var alertWindow = function(title, content, alertFunction) {
   return {
     title: title,
     content: content,
@@ -30,7 +30,8 @@ var alertWindow = function(title, content) {
     buttons: {
       confirmButton: {
         text: "確認",
-        btnClass: "btn-blue"
+        btnClass: "btn-blue",
+        action: alertFunction
       }
     }
   };

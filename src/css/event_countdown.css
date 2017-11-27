@@ -4,23 +4,24 @@
 }
 
 .container #red .countdown {
-  top: 620px;
-  left: 70px;
+  top: 20px;
+  left: 20px;
 }
 
 .container #brown .countdown {
-  top: 930px;
-  left: -100px;
+  top: 0px;
+  left: 25px;
 }
 
 .container #pink .countdown {
-  top: 920px;
-  left: 215px;
+  top: 0px;
+  left: 25px;
 }
 
 .container .countdown.font {
   position: absolute;
   font-family: "微軟正黑體";
   color: white;
-  font-size: 20px;
+  font-size: 26px;
+  font-weight: bolder;
 }
