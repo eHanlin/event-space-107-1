@@ -5,7 +5,7 @@ $(function() {
   ) {
     console.log("成功抓取學生寶箱資料！ (by user)");
 
-    var platformTarget = $(".greenPlatform");
+    var platformTarget = $(".platform");
     jsonData.content.forEach(function(chest) {
       determineStatus(chest, platformTarget, chest.status);
     }, this);
@@ -13,7 +13,7 @@ $(function() {
     // 啟動按鈕
     $(".startButton").one("click", function() {
       var chestId = $(this)
-        .parents(".greenPlatform")
+        .parents(".platform")
         .prop("id");
       removeButton();
       updateStatusIsUnlocking(chestId);
@@ -22,10 +22,10 @@ $(function() {
     // 升級按鈕
     $(".upgradeButton").on("click", function() {
       var chestId, chestLevel;
-      var greenFindParents = $(this).parents(".greenPlatform");
+      var findParents = $(this).parents(".platform");
       var confrimFunction = function() {
-        chestId = greenFindParents.prop("id");
-        chestLevel = greenFindParents.data("level");
+        chestId = findParents.prop("id");
+        chestLevel = findParents.data("level");
         chest.getUpgrade(chestId, chestLevel, user);
       };
       $.confirm(confirmWindow("確定要升級寶箱嗎？", confrimFunction));
@@ -34,13 +34,14 @@ $(function() {
     // 開啟按鈕
     $(".readyButton").on("click", function() {
       var chestId = $(this)
-        .parents(".greenPlatform")
+        .parents(".platform")
         .prop("id");
       chest.updateStatusIsOpen(chestId);
     });
   });
 });
 
+// 判斷寶箱狀態
 var determineStatus = function(chest, platformTarget, chestSatuts) {
   var chestTarget = platformTarget.find("img.chest");
   var chestId = chest.id;

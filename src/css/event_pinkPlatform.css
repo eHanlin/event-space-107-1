@@ -1,19 +1,59 @@
 /* ===== pink button ===== */
 
+.container #pink {
+  position: fixed;
+  top: 620px;
+  left: 490px;
+  height: 300px;
+  width: 177px;
+}
+
+.container .pinkPosition {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
 .container #pink .chest {
   position: absolute;
-  top: 680px;
-  left: 515px;
+  display: block;
+  top: 19%;
+  left: 5%;
   z-index: 1;
 }
 
-.container #pink .upgradeButton {
-  position: relative;
+.container #pink .startButton {
+  position: absolute;
   background-color: transparent;
-  top: 630px;
-  left: 605px;
+  top: 0px;
+  left: 0px;
+  font-size: 25px;
+  z-index: 1;
+  outline: none;
+  color: white;
+  border: 2px solid red;
+}
+
+.container #pink .upgradeButton {
+  position: absolute;
+  background-color: transparent;
+  top: 0px;
+  right: 0px;
   font-size: 25px;
   color: white;
   border: 2px solid red;
   z-index: 1;
+}
+
+.container #pink .readyButton {
+  position: absolute;
+  background-color: transparent;
+  top: 0px;
+  left: 60px;
+  font-size: 25px;
+  z-index: 1;
+  outline: none;
+  color: white;
+  border: 2px solid red;
 }
