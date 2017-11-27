@@ -23,12 +23,15 @@ $(function() {
     $(".upgradeButton").on("click", function() {
       var chestId, chestLevel;
       var findParents = $(this).parents(".platform");
+
       var confrimFunction = function() {
-        chestId = findParents.prop("id");
-        chestLevel = findParents.data("level");
         chest.getUpgrade(chestId, chestLevel, user);
       };
-      $.confirm(confirmWindow("確定要升級寶箱嗎？", confrimFunction));
+
+      chestId = findParents.prop("id");
+      chestLevel = findParents.data("level");
+
+      getCondition(chestLevel + 1, confrimFunction);
     });
 
     // 開啟按鈕

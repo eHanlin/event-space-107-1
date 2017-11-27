@@ -1,7 +1,7 @@
-var confirmWindow = function(title, confrimFunction) {
+var confirmWindow = function(title, content, confrimFunction) {
   return {
-    title: "<h2>" + title + "</h2>",
-    content: "",
+    title: "<h4>" + title + "</h4>",
+    content: "<h1>" + content + "</h1>",
     useBootstrap: false,
     theme: "supervan",
     buttons: {
@@ -10,9 +10,8 @@ var confirmWindow = function(title, confrimFunction) {
         btnClass: "btn-blue",
         action: confrimFunction
       },
-
       cancelButton: {
-        text: "取消",
+        text: "再想想",
         btnClass: "btn-blue",
         action: function() {
           return;
