@@ -77,7 +77,7 @@ var chest = {
         if (finalCoins < 0) {
           $.alert(
             alertWindow(
-              "金幣不足！ 再努力一點，還差" + finalCoins * -1 + "元！",
+              "e幣不足！ 再努力一點，還差" + finalCoins * -1 + "元！",
               ""
             )
           );
@@ -88,6 +88,20 @@ var chest = {
           $.alert(
             alertWindow(
               "寶石不足！ 再努力一點，還差" + finalGems * -1 + "個寶石！",
+              ""
+            )
+          );
+          return;
+        }
+
+        if (finalCoins < 0 && finalGems < 0) {
+          $.alert(
+            alertWindow(
+              "e幣和寶石不足！ 再努力一點，還差" +
+                finalCoins * -1 +
+                "e幣和" +
+                finalGems * -1 +
+                "個寶石！",
               ""
             )
           );
