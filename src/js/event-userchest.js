@@ -18,9 +18,7 @@ $(function() {
     $(".startButton").one("click", function() {
       var findParents = $(this).parents(".platform");
       var chestId = findParents.prop("id");
-
-      $(".startButton[data-status=LOCKED]").toggle("slow");
-      findParents.find(".upgradeButton").toggle("slow");
+      
       updateStatusIsUnlocking(chestId);
     });
 
@@ -61,14 +59,19 @@ var determineStatus = function(chest, thisPlatformTarget, chestSatuts) {
 
   thisPlatformTarget.find(".startButton").attr("data-status", chest.status);
 
+  if (chestLevel === 6) {
+    thisPlatformTarget.find(".upgradeButton").hide();
+  }
+
   if (chestSatuts === "LOCKED") {
     console.log("===============> status is locked <=================");
     determineLevel(chestTarget, chestLevel);
   } else if (chestSatuts === "UNLOCKING") {
     console.log("=============> status is unlocking <================");
 
-    $(".startButton").toggle();
-    thisPlatformTarget.find(".upgradeButton").toggle();
+    $(".startButton").hide();
+
+    thisPlatformTarget.find(".upgradeButton").hide();
 
     determineLevel(chestTarget, chestLevel);
     coolDownTime(chestId);
@@ -76,15 +79,15 @@ var determineStatus = function(chest, thisPlatformTarget, chestSatuts) {
     console.log("=================> status is ready <================");
 
     var chestImage;
-    thisPlatformTarget.find(".startButton").toggle();
-    thisPlatformTarget.find(".upgradeButton").toggle();
+    thisPlatformTarget.find(".startButton").hide();
+    thisPlatformTarget.find(".upgradeButton").hide();
     thisPlatformTarget.find(".readyButton").show();
 
     chestImage = "readyChest" + chestLevel;
     changeChestImage(chestTarget, chestImage);
-  } else {
-    thisPlatformTarget.find(".startButton").toggle();
-    thisPlatformTarget.find(".upgradeButton").toggle();
+  } else if (chestSatuts === "OPEN") {
+    thisPlatformTarget.find(".startButton").hide();
+    thisPlatformTarget.find(".upgradeButton").hide();
   }
 };
 

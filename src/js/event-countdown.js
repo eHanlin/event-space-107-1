@@ -9,8 +9,11 @@ var updateStatusIsUnlocking = function(chestId) {
       console.log("成功抓取updateStatusIsUnlocking資料！");
 
       var startButtonTarget = $("#" + chestId).find(".startButton");
-      startButtonTarget.data("status", body.status);
+      var upgradeButtonTarget = $("#" + chestId).find(".upgradeButton");
+      $(".startButton[data-status=LOCKED]").fadeOut("slow");
+      upgradeButtonTarget.fadeOut("slow");
 
+      startButtonTarget.attr("data-status", body.status);
       coolDownTime(chestId);
     }
   );
@@ -30,7 +33,7 @@ var countDown = function(jsonData, chestId) {
   var seconds = jsonData.content;
   var countdownTarget = $("#" + chestId).find(".countdown");
   countdownTarget.countDown({
-    timeInSecond: 5,
+    timeInSecond: 10,
     displayTpl: "{hour}時{minute}分{second}秒",
     limit: "hour",
     callback: function() {
