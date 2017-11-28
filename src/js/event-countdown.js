@@ -7,8 +7,10 @@ var updateStatusIsUnlocking = function(chestId) {
     body,
     function(jsonData) {
       console.log("成功抓取updateStatusIsUnlocking資料！");
+
       var startButtonTarget = $("#" + chestId).find(".startButton");
       startButtonTarget.data("status", body.status);
+
       coolDownTime(chestId);
     }
   );

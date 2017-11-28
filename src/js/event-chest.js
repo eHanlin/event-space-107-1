@@ -67,7 +67,8 @@ var eventChest = {
         // -------- 如果餘額不足，會回傳 finalCoins 和 finalGems
         var finalCoins = data.finalCoins;
         var finalGems = data.finalGems;
-        // --------
+        // --------------------------------------------------
+
         var platformTarget = $("#" + chestId);
         var dataLevel = putData.level;
         var upgradeToTransaction;
@@ -129,18 +130,14 @@ var eventChest = {
               upgradeAuditId: upgradeAuditId
             }
           )
-            .then(function() {
-              return ajaxDeferred(
-                "GET",
-                "http://localhost:9090/currencyBank/totalAssets/retrieve/one?userSpecific=" +
-                  "5a1b741c9253f2e34a1cfe4e"
-              );
+            .then(function(jsonData) {
+              return ajaxDeferred("GET", "http://localhost:9090/currencyBank/totalAssets/retrieve/one?userSpecific=" + "5a1b741c9253f2e34a1cfe4e");
             })
             .then(function(jsonData) {
-              console.log(jsonData.content);
+              console.log("=======> current totalAssets" + jsonData.content);
 
-              $(".space .coins span").append(jsonData.content.coins);
-              $(".space .gems span").append(jsonData.content.gems);
+              $(".space .coins span").empty().append(jsonData.content.coins);
+              $(".space .gems span").empty().append(jsonData.content.gems);
             });
         };
 

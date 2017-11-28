@@ -53,6 +53,7 @@ var determineStatus = function(chest, thisPlatformTarget, chestSatuts) {
   var chestId = chest.id;
   var chestLevel = chest.level;
 
+  // 移除style 顯示，放入chestId, chestLevel
   thisPlatformTarget
     .removeAttr("style")
     .prop("id", chestId)
@@ -65,6 +66,7 @@ var determineStatus = function(chest, thisPlatformTarget, chestSatuts) {
     determineLevel(chestTarget, chestLevel);
   } else if (chestSatuts === "UNLOCKING") {
     console.log("=============> status is unlocking <================");
+
     $(".startButton").toggle();
     thisPlatformTarget.find(".upgradeButton").toggle();
 
@@ -72,13 +74,17 @@ var determineStatus = function(chest, thisPlatformTarget, chestSatuts) {
     coolDownTime(chestId);
   } else if (chestSatuts === "READY") {
     console.log("=================> status is ready <================");
+
     var chestImage;
     thisPlatformTarget.find(".startButton").toggle();
     thisPlatformTarget.find(".upgradeButton").toggle();
+    thisPlatformTarget.find(".readyButton").show();
 
-    thisPlatformTarget.find(".readyButton").removeAttr("style");
     chestImage = "readyChest" + chestLevel;
     changeChestImage(chestTarget, chestImage);
+  } else {
+    thisPlatformTarget.find(".startButton").toggle();
+    thisPlatformTarget.find(".upgradeButton").toggle();
   }
 };
 
