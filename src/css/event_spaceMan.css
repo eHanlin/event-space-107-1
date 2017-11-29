@@ -1,7 +1,7 @@
 .container .spaceman {
   position: absolute;
-  left: 190px;
-  top: 1100px;
+  left: 230px;
+  top: 1120px;
 }
 
 .container #award #left-arrow {
@@ -20,9 +20,10 @@
 }
 
 .container #award img {
-  position: absolute;
-  left: 15px;
-  top: 1100px;
+    position: absolute;
+    transform: scale(1.2);
+    left: 30px;
+    top: 1100px;
 }
 
 .container #award .text {

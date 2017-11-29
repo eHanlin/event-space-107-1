@@ -1,6 +1,5 @@
 $(function() {
-  var user = "5a1b741c9253f2e34a1cfe4e";
-  ajaxGet("http://127.0.0.1:8080/chest/retrieve/" + user, null, function(
+  ajaxGet("https://test.ehanlin.com.tw/chest/retrieve/" + user, null, function(
     jsonData
   ) {
     console.log("成功抓取學生寶箱資料！ (by user)");

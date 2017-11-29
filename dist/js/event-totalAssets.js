@@ -1,12 +1,10 @@
 $(function() {
-  var user = "5a1b741c9253f2e34a1cfe4e";
   getTotalAssets(user);
 });
 
 var getTotalAssets = function(user) {
   ajaxGet(
-    "http://localhost:9090/currencyBank/totalAssets/retrieve/one?userSpecific=" +
-      user,
+    "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one"
     null,
     function(jsonData) {
       $(".space .coins span").append(jsonData.content.coins);

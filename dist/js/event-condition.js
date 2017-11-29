@@ -1,6 +1,6 @@
 var getCondition = function(level, confrimFunction) {
   ajaxGet(
-    "http://127.0.0.1:8080/chest/condition/one/level" + level,
+    "https://test.ehanlin.com.tw/chest/condition/one/level" + level,
     null,
     function(jsonData) {
       console.log("成功抓取寶箱升級條件！");

@@ -3,7 +3,7 @@ var eventChest = {
   updateStatusIsOpen: function(chestId) {
     ajax(
       "PUT",
-      "http://127.0.0.1:8080/chest/updateStatus/" + chestId,
+      "https://test.ehanlin.com.tw/chest/updateStatus/" + chestId,
       {
         status: "OPEN"
       },
@@ -24,7 +24,7 @@ var eventChest = {
 
     ajax(
       "PUT",
-      "http://127.0.0.1:8080/chest/updateStatus/" + chestId,
+      "https://test.ehanlin.com.tw/chest/updateStatus/" + chestId,
       body,
       function(jsonData) {
         console.log("成功抓取updateStatusIsReady資料！");
@@ -55,7 +55,7 @@ var eventChest = {
 
     ajax(
       "PUT",
-      "http://127.0.0.1:8080/chest/upgrade/" + chestId,
+      "https://test.ehanlin.com.tw/chest/upgrade/" + chestId,
       putData,
       function(jsonData) {
         console.log("成功抓取升級的寶箱資料！");
@@ -129,7 +129,7 @@ var eventChest = {
         upgradeToTransaction = function() {
           ajaxDeferred(
             "POST",
-            "http://localhost:9090/currencyBank/transaction/upgrade",
+            "https://test.ehanlin.com.tw/currencyBank/transaction/upgrade",
             {
               upgradeAuditId: upgradeAuditId
             }
@@ -137,8 +137,7 @@ var eventChest = {
             .then(function(jsonData) {
               return ajaxDeferred(
                 "GET",
-                "http://localhost:9090/currencyBank/totalAssets/retrieve/one?userSpecific=" +
-                  "5a1b741c9253f2e34a1cfe4e"
+                "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one"
               );
             })
             .then(function(jsonData) {

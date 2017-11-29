@@ -3,7 +3,7 @@ var updateStatusIsUnlocking = function(chestId) {
 
   ajax(
     "PUT",
-    "http://127.0.0.1:8080/chest/updateStatus/" + chestId,
+    "https://test.ehanlin.com.tw/chest/updateStatus/" + chestId,
     body,
     function(jsonData) {
       console.log("成功抓取updateStatusIsUnlocking資料！");
@@ -20,12 +20,14 @@ var updateStatusIsUnlocking = function(chestId) {
 };
 
 var coolDownTime = function(chestId) {
-  ajaxGet("http://127.0.0.1:8080/chest/coolDownTime/" + chestId, null, function(
-    jsonData
-  ) {
-    console.log("成功抓取coolDownTime資料！");
-    countDown(jsonData, chestId);
-  });
+  ajaxGet(
+    "https://test.ehanlin.com.tw/chest/coolDownTime/" + chestId,
+    null,
+    function(jsonData) {
+      console.log("成功抓取coolDownTime資料！");
+      countDown(jsonData, chestId);
+    }
+  );
 };
 
 var countDown = function(jsonData, chestId) {

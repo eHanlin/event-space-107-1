@@ -8,7 +8,7 @@ $("#right-arrow").on("click", function() {
       index +
       ".png"
   );
-  if (index >= 15) {
+  if (index >= 17) {
     index = 0;
   }
 });
@@ -16,7 +16,7 @@ $("#right-arrow").on("click", function() {
 $("#left-arrow").on("click", function() {
   index--;
   if (index === 0) {
-    index = 15;
+    index = 17;
   }
   textMessage(index);
   $("#award img").attr(
@@ -60,19 +60,25 @@ var textMessage = function(index) {
       $("#award .text").text("麥當勞點點卡");
       break;
     case 11:
-      $("#award .text").text("雲端學院$100禮卷");
+      $("#award .text").text("7-11$100元禮卷");
       break;
     case 12:
-      $("#award .text").text("7-11$100元禮卷");
+      $("#award .text").text("雲端學院$100禮卷");
       break;
     case 13:
       $("#award .text").text("Line貼圖點數$60");
       break;
     case 14:
-      $("#award .text").text("夢幻星空筆記本");
+      $("#award .text").text("夢幻星球便條本");
       break;
     case 15:
+      $("#award .text").text("夢幻星空筆記本");
+      break;
+    case 16:
       $("#award .text").text("夢幻星空中性筆");
+      break;
+    case 17:
+      $("#award .text").text("2018雲端學院春聯貼紙組");
       break;
   }
 };
