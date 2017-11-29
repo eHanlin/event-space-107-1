@@ -2,7 +2,12 @@ var index = 1;
 $("#right-arrow").on("click", function() {
   index++;
   textMessage(index);
-  $("#award img").attr("src", "../img/award/award" + index + ".png");
+  $("#award img").attr(
+    "src",
+    "https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/award/award" +
+      index +
+      ".png"
+  );
   if (index >= 15) {
     index = 0;
   }
@@ -14,7 +19,12 @@ $("#left-arrow").on("click", function() {
     index = 15;
   }
   textMessage(index);
-  $("#award img").attr("src", "../img/award/award" + index + ".png");
+  $("#award img").attr(
+    "src",
+    "https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/award/award" +
+      index +
+      ".png"
+  );
 });
 
 var textMessage = function(index) {
