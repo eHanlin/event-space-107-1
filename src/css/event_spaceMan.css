@@ -1,0 +1,36 @@
+.container .spaceman {
+  position: absolute;
+  left: 190px;
+  top: 1100px;
+}
+
+.container #award #left-arrow {
+  position: absolute;
+  cursor: pointer;
+  outline: none;
+  left: 0px;
+  top: 1350px;
+}
+.container #award #right-arrow {
+  position: absolute;
+  cursor: pointer;
+  outline: none;
+  right: 0px;
+  top: 1350px;
+}
+
+.container #award img {
+  position: absolute;
+  left: 15px;
+  top: 1100px;
+}
+
+.container #award .text {
+  position: absolute;
+  right: 100px;
+  top: 1150px;
+  font-size: 20px;
+  font-family: "微軟正黑體";
+  font-weight: bolder;
+  color: rgb(62, 5, 5);
+}

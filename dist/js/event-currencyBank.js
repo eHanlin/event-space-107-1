@@ -1,6 +1,6 @@
 $(function() {
   ajaxGet(
-    "http://localhost:9090/currencyBank/transaction/retrieve?userParam=學生1號",
+    "http://localhost:9090/currencyBank/transaction/retrieve?userSpecific=5a1b741c9253f2e34a1cfe4e",
     null,
     function(jsonData) {
       var transactions = jsonData.content;

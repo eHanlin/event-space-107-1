@@ -9,8 +9,6 @@ var getTotalAssets = function(user) {
       user,
     null,
     function(jsonData) {
-      console.log(jsonData.content);
-
       $(".space .coins span").append(jsonData.content.coins);
       $(".space .gems span").append(jsonData.content.gems);
     }

@@ -11,8 +11,8 @@ var eventChest = {
         console.log("成功抓取updateStatusIsOpen資料！(Open)");
 
         var platformTarget = $("#" + chestId);
-        platformTarget.find(".chest").hide();
-        platformTarget.find(".readyButton").remove();
+        platformTarget.find(".chest").fadeOut("slow");
+        platformTarget.find(".readyButton").fadeOut("slow");
         $.alert(alertWindow("恭喜你獲得一台BMW X6M！", ""));
       }
     );
@@ -35,12 +35,11 @@ var eventChest = {
         var chestImage = "readyChest" + level;
         var startButtonTarget = platFromTarget.find(".startButton");
 
-        platFromTarget.find(".readyButton").removeAttr("style");
-        platFromTarget.find(".countdown").hide();
+        platFromTarget.find(".readyButton").fadeIn("slow");
+        platFromTarget.find(".countdown").fadeOut("slow");
 
-        
         startButtonTarget.attr("data-status", body.status);
-        $(".startButton[data-status=LOCKED]").toggle("slow");
+        $(".startButton[data-status=LOCKED]").fadeIn("slow");
 
         changeChestImage(chestTarget, chestImage);
       }
@@ -67,7 +66,8 @@ var eventChest = {
         // -------- 如果餘額不足，會回傳 finalCoins 和 finalGems
         var finalCoins = data.finalCoins;
         var finalGems = data.finalGems;
-        // --------
+        // --------------------------------------------------
+
         var platformTarget = $("#" + chestId);
         var dataLevel = putData.level;
         var upgradeToTransaction;
@@ -83,6 +83,10 @@ var eventChest = {
             )
           );
           return;
+        }
+
+        if (putData.level === 6) {
+          platformTarget.find(".upgradeButton").toggle();
         }
 
         if (finalCoins && finalCoins < 0) {
@@ -120,6 +124,7 @@ var eventChest = {
         }
 
         // 如果餘額足夠，則直接回傳 upgradeAuditId
+        // 使用ajax deferred 的方式
         upgradeAuditId = data;
         upgradeToTransaction = function() {
           ajaxDeferred(
@@ -129,7 +134,7 @@ var eventChest = {
               upgradeAuditId: upgradeAuditId
             }
           )
-            .then(function() {
+            .then(function(jsonData) {
               return ajaxDeferred(
                 "GET",
                 "http://localhost:9090/currencyBank/totalAssets/retrieve/one?userSpecific=" +
@@ -137,10 +142,14 @@ var eventChest = {
               );
             })
             .then(function(jsonData) {
-              console.log(jsonData.content);
+              console.log("current totalAssets: " + jsonData.content);
 
-              $(".space .coins span").append(jsonData.content.coins);
-              $(".space .gems span").append(jsonData.content.gems);
+              $(".space .coins span")
+                .empty()
+                .append(jsonData.content.coins);
+              $(".space .gems span")
+                .empty()
+                .append(jsonData.content.gems);
             });
         };
 
