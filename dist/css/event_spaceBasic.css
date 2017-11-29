@@ -1,0 +1,170 @@
+.background {
+  position: relative;
+  background-color: #00192d;
+  width: 735px;
+  height: 2500px;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 1;
+}
+
+.container .space {
+  position: relative;
+  background-image: url("../img/space.png");
+  background-size: contain;
+  width: 735px;
+  height: 1218px;
+  z-index: 2;
+}
+
+.container .space button {
+  cursor: pointer;
+}
+
+.container .activity {
+  position: absolute;
+  left: 325px;
+  top: 30px;
+}
+
+.container .bank {
+  position: absolute;
+  left: 540px;
+  top: 80px;
+}
+
+.container .eventText {
+  position: absolute;
+  left: 35px;
+  top: 170px;
+}
+
+.container .greenPosition {
+  position: absolute;
+  left: 80px;
+  top: 490px;
+}
+
+.container .redPosition {
+  position: absolute;
+  left: 360px;
+  top: 490px;
+}
+
+.container .brownPosition {
+  position: absolute;
+  left: 190px;
+  top: 820px;
+}
+
+.container .pinkPosition {
+  position: absolute;
+  left: 505px;
+  top: 790px;
+}
+
+.container .eventUFO {
+  position: absolute;
+  top: 895px;
+  left: 40px;
+}
+
+.container .chestMessage {
+  position: absolute;
+  left: 320px;
+  top: 1530px;
+}
+
+.container .stockRoom {
+  position: absolute;
+  left: 70px;
+  top: 1630px;
+}
+
+.container .returnData {
+  position: absolute;
+  left: 200px;
+  top: 1720px;
+}
+
+.container .border1 {
+  position: absolute;
+  left: 50px;
+  top: 1820px;
+}
+.container .border2 {
+  position: absolute;
+  left: 375px;
+  top: 1820px;
+}
+.container .border3 {
+  position: absolute;
+  left: 50px;
+  top: 1920px;
+}
+.container .border4 {
+  position: absolute;
+  left: 375px;
+  top: 1920px;
+}
+.container .border5 {
+  position: absolute;
+  left: 50px;
+  top: 2020px;
+}
+.container .border6 {
+  position: absolute;
+  left: 375px;
+  top: 2020px;
+}
+.container .border7 {
+  position: absolute;
+  left: 50px;
+  top: 2120px;
+}
+.container .border8 {
+  position: absolute;
+  left: 375px;
+  top: 2120px;
+}
+
+.container .notice {
+  position: absolute;
+  left: 70px;
+  top: 2220px;
+}
+
+.container .point {
+  position: absolute;
+  left: 320px;
+  top: 2320px;
+}
+
+.container .space .coins {
+  position: absolute;
+  background-image: url("../img/displayCoins.png");
+  left: 35px;
+  top: 30px;
+  width: 187px;
+  height: 61px;
+}
+
+.container .space .coins span,
+.container .space .gems span {
+  position: absolute;
+  top: 11.5px;
+  right: 20px;
+  font-size: 26px;
+  font-family: "微軟正黑體";
+  font-weight: bolder;
+  color: rgb(69, 23, 23);
+}
+
+.container .space .gems {
+  position: absolute;
+  background-image: url("../img/displayGems.png");
+  left: 35px;
+  top: 100px;
+  width: 184px;
+  height: 57px;
+}

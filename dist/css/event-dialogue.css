@@ -1,0 +1,28 @@
+.dialogue {
+  width: 200px;
+  padding: 80px 20px;
+  background: #beceeb;
+  -webkit-border-radius: 220px / 100px;
+  -moz-border-radius: 120px / 100px;
+  border-radius: 120px / 100px;
+  position: relative;
+}
+
+.dialogue span {
+  width: 0;
+  height: 0;
+  font-size: 0;
+  background: #beceeb;
+  overflow: hidden;
+  position: absolute;
+}
+
+.dialogue span.bot {
+  width: 30px;
+  height: 30px;
+  -moz-border-radius: 30px;
+  -webkit-border-radius: 30px;
+  border-radius: 30px;
+  left: 10px;
+  bottom: -20px;
+}

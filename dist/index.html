@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>雲端銀河探險隊</title>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://www.ehanlin.com.tw/lesscss/ehanlin-basicss.css" />
+  <link rel="stylesheet" href="./css/package/jquery-confirm.css">
+  <link rel="stylesheet" href="./css/package/style.css">
+
+  <link rel="stylesheet" href="./css/event_space.css" />
+  <link rel="stylesheet" href="./css/event_spaceBasic.css">
+  <link rel="stylesheet" href="./css/event_spaceMan.css">
+  <link rel="stylesheet" href="./css/event_countdown.css">
+
+  <link rel="stylesheet" href="./css/event_greenPlatform.css">
+  <link rel="stylesheet" href="./css/event_redPlatform.css">
+  <link rel="stylesheet" href="./css/event_brownPlatform.css">
+  <link rel="stylesheet" href="./css/event_pinkPlatform.css">
+</head>
+
+<body id="testBasic">
+  <header id="ehanlin-header"></header>
+  <nav id="ehanlin-menu"></nav>
+  <div id="event-left-side"></div>
+
+  <div class="container">
+    <div class="box right">
+      <div class="box-title">
+        <div class="tag blue">
+          <p>Events : </p>
+        </div>
+        <div class="content">雲端銀河探險隊</div>
+      </div>
+
+      <div class="book-intro">
+        <div class="background">
+
+          <div class="space">
+
+            <div class="coins">
+              <span></span>
+            </div>
+            <div class="gems">
+              <span></span>
+            </div>
+
+
+            <img class="activity" src="./img/activity.png">
+            <img class="bank" src="./img/bank.png">
+            <img class="eventText" src="./img/eventText.png">
+
+
+            <div id="green">
+              <div class="platform" style="display:none;">
+                <button class="startButton" type="button"> 啟動 </button>
+                <button class="upgradeButton" type="button"> 升級 </button>
+                <button class='readyButton' style="display:none;" type='button'> 開啟 </button>
+                <img class="chest">
+                <div class="countdown font"></div>
+              </div>
+              <img class="greenPosition" src="./img/greenPosition.png">
+            </div>
+
+            <div id="red">
+              <div class="platform" style="display:none;">
+                <button class="startButton" type="button"> 啟動 </button>
+                <button class="upgradeButton" type="button"> 升級 </button>
+                <button class='readyButton' style="display:none;" type='button'> 開啟 </button>
+                <img class="chest">
+                <div class="countdown font"></div>
+              </div>
+              <img class="redPosition" src="./img/redPosition.png">
+            </div>
+
+            <div id="brown">
+              <div class="platform" style="display:none;">
+                <button class="startButton" type="button"> 啟動 </button>
+                <button class="upgradeButton" type="button"> 升級 </button>
+                <button class='readyButton' style="display:none;" type='button'> 開啟 </button>
+                <img class="chest">
+                <div class="countdown font"></div>
+              </div>
+              <img class="brownPosition" src="./img/brownPosition.png">
+            </div>
+
+            <div id="pink">
+              <div class="platform" style="display:none;">
+                <button class="startButton" type="button"> 啟動 </button>
+                <button class="upgradeButton" type="button"> 升級 </button>
+                <button class='readyButton' style="display:none;" type='button'> 開啟 </button>
+                <img class="chest">
+                <div class="countdown font"></div>
+              </div>
+              <img class="pinkPosition" src="./img/pinkPosition.png">
+            </div>
+
+            <img class="eventUFO" src="./img/eventUFO.png">
+            <img class="spaceman" src="./img/monster.png">
+
+            <div id="award">
+              <img src="./img/award/award1.png">
+
+              <div class="text" style="width:90px">
+                Apple Watch Series 3
+              </div>
+              <input id="left-arrow" type="image" src="./img/left-arrow.png" />
+              <input id="right-arrow" type="image" src="./img/right-arrow.png" />
+            </div>
+
+
+          </div>
+
+          <img class="chestMessage" src="./img/chestMessage.png">
+          <img class="stockRoom" src="./img/stockRoom.png">
+          <img class="returnData" src="./img/returnData.png">
+          <img class="border1" src="./img/border.png">
+          <img class="border2" src="./img/border.png">
+          <img class="border3" src="./img/border.png">
+          <img class="border4" src="./img/border.png">
+          <img class="border5" src="./img/border.png">
+          <img class="border6" src="./img/border.png">
+          <img class="border7" src="./img/border.png">
+          <img class="border8" src="./img/border.png">
+          <img class="notice" src="./img/notice.png">
+          <img class="point" src="./img/point.png">
+        </div>
+
+        <div class="eventMessage"></div>
+
+      </div>
+    </div>
+
+
+  </div>
+  <footer id="ehanlin-footer"></footer>
+</body>
+<script type="text/javascript" src="./js/ajax.js"></script>
+<script type="text/javascript" src="./js/confirm.js"></script>
+
+<script type="text/javascript" src="./js/event-chest.js"></script>
+<script type="text/javascript" src="./js/event-totalAssets.js"></script>
+<script type="text/javascript" src="./js/event-condition.js"></script>
+<script type="text/javascript" src="./js/event-countdown.js"></script>
+<script type="text/javascript" src="./js/event-userchest.js"></script>
+<script type="text/javascript" src="./js/event-award.js"></script>
+
+<script type="text/javascript" src="./js/package/jquery.countdown.js"></script>
+<script type="text/javascript" src="./js/package/jquery-confirm.js"></script>
+<script type="text/javascript" data-module="ehanlin-header, ehanlin-menu, ehanlin-event-left-side, ehanlin-footer
+        " src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/common_webcomponent/current.SNAPSHOT/js/ehanlin-loader.js"></script>
+
+</html>

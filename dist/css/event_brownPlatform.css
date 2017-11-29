@@ -1,0 +1,73 @@
+/* ===== brown button ===== */
+
+.container #brown {
+  position: fixed;
+  top: 650px;
+  left: 200px;
+  height: 300px;
+  width: 177px;
+}
+
+.container .brownPosition {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.container #brown .chest {
+  position: absolute;
+  display: block;
+  top: 10%;
+  left: 50%;
+  z-index: 1;
+  transform: translate(-50%);
+}
+
+.container #brown .startButton {
+  position: absolute;
+  background-color: #008cba;
+  top: 0px;
+  left: 0px;
+  height: 40px;
+  width: 80px;
+  font-size: 25px;
+  z-index: 2;
+  outline: none;
+  color: white;
+  border: 2px solid rgb(2, 49, 91);
+  box-shadow: 2px 2px 2px rgba(20%, 20%, 40%, 0.6),
+    4px 4px 6px rgba(20%, 20%, 40%, 0.4), 6px 6px 12px rgba(20%, 20%, 40%, 0.4);
+}
+
+.container #brown .upgradeButton {
+  position: absolute;
+  background-color: #008cba;
+  top: 0px;
+  right: 0px;
+  height: 40px;
+  width: 80px;
+  font-size: 25px;
+  z-index: 2;
+  outline: none;
+  color: white;
+  border: 2px solid rgb(2, 49, 91);
+  box-shadow: 2px 2px 2px rgba(20%, 20%, 40%, 0.6),
+    4px 4px 6px rgba(20%, 20%, 40%, 0.4), 6px 6px 12px rgba(20%, 20%, 40%, 0.4);
+}
+
+.container #brown .readyButton {
+  position: absolute;
+  background-color: #008cba;
+  top: 0px;
+  left: 45px;
+  height: 40px;
+  width: 80px;
+  font-size: 25px;
+  z-index: 2;
+  outline: none;
+  color: white;
+  border: 2px solid rgb(2, 49, 91);
+  box-shadow: 2px 2px 2px rgba(20%, 20%, 40%, 0.6),
+    4px 4px 6px rgba(20%, 20%, 40%, 0.4), 6px 6px 12px rgba(20%, 20%, 40%, 0.4);
+}
