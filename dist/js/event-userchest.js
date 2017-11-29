@@ -97,5 +97,5 @@ var determineLevel = function(chestTarget, chestLevel) {
 };
 
 var changeChestImage = function(chestTarget, chestImage) {
-  chestTarget.prop("src", "./img/chest/" + chestImage + ".png");
+  chestTarget.prop("src", "../img/chest/" + chestImage + ".png");
 };
