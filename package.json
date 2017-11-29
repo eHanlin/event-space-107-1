@@ -14,10 +14,13 @@
     "event-stream": "^3.3.4",
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.6.1",
     "gulp-template-util": "0.0.2",
+    "lru-cache": "^4.1.1",
     "path": "^0.12.7",
     "pug": "2.0.0-rc.2",
-    "q": "^1.5.0"
+    "q": "^1.5.0",
+    "sigmund": "^1.0.1"
   },
   "dependencies": {
     "block-ui": "2.70.1",

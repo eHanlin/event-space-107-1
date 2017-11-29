@@ -1,5 +1,5 @@
 $(function() {
-  ajaxGet("https://test.ehanlin.com.tw/chest/retrieve/" + user, null, function(
+  ajaxGet("https://test.ehanlin.com.tw/chest/retrieve", null, function(
     jsonData
   ) {
     console.log("成功抓取學生寶箱資料！ (by user)");

@@ -86,7 +86,7 @@ gulp.task("package", function() {
     return Q.all([
       util.logStream(libTask("dist/lib")),
       util.logStream(copyStaticTask("dist")),
-      util.logStream(styleTask("dist/css"))
+      //util.logStream(styleTask("dist/css"))
     ]);
   });
 
