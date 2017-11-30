@@ -1,47 +1,50 @@
 $(function() {
-  ajaxGet("https://test.ehanlin.com.tw/chest/retrieve", null, function(
-    jsonData
-  ) {
-    console.log("成功抓取學生寶箱資料！ (by user)");
+  ajaxGet(
+    "https://test.ehanlin.com.tw/chest/retrieve",
+    null,
+    function(jsonData) {
+      console.log("成功抓取學生寶箱資料！ (by user)");
 
-    var indexPlatformTarget;
-    var chest;
-    var chests = jsonData.content;
-    for (let i = 0; i < chests.length; i++) {
-      chest = chests[i];
-      indexPlatformTarget = $(".platform:eq(" + i + ")");
-      determineStatus(chest, indexPlatformTarget, chest.status);
-    }
+      var indexPlatformTarget;
+      var chest;
+      var chests = jsonData.content;
+      for (let i = 0; i < chests.length; i++) {
+        chest = chests[i];
+        indexPlatformTarget = $(".platform:eq(" + i + ")");
+        determineStatus(chest, indexPlatformTarget, chest.status);
+      }
 
-    // 啟動按鈕
-    $(".startButton").one("click", function() {
-      var findParents = $(this).parents(".platform");
-      var chestId = findParents.prop("id");
+      // 啟動按鈕
+      $(".startButton").one("click", function() {
+        var findParents = $(this).parents(".platform");
+        var chestId = findParents.prop("id");
 
-      updateStatusIsUnlocking(chestId);
-    });
+        updateStatusIsUnlocking(chestId);
+      });
 
-    // 升級按鈕
-    $(".upgradeButton").on("click", function() {
-      var findParents = $(this).parents(".platform");
-      var confrimFunction;
-      var chestId = findParents.prop("id");
-      var chestLevel = findParents.data("level");
+      // 升級按鈕
+      $(".upgradeButton").on("click", function() {
+        var findParents = $(this).parents(".platform");
+        var confrimFunction;
+        var chestId = findParents.prop("id");
+        var chestLevel = findParents.data("level");
 
-      confrimFunction = function() {
-        eventChest.getUpgrade(chestId, chestLevel);
-      };
-      getCondition(chestLevel + 1, confrimFunction);
-    });
+        confrimFunction = function() {
+          eventChest.getUpgrade(chestId, chestLevel);
+        };
+        getCondition(chestLevel + 1, confrimFunction);
+      });
 
-    // 開啟按鈕
-    $(".readyButton").on("click", function() {
-      var chestId = $(this)
-        .parents(".platform")
-        .prop("id");
-      eventChest.updateStatusIsOpen(chestId);
-    });
-  });
+      // 開啟按鈕
+      $(".readyButton").on("click", function() {
+        var chestId = $(this)
+          .parents(".platform")
+          .prop("id");
+        eventChest.updateStatusIsOpen(chestId);
+      });
+    },
+    function() {}
+  );
 });
 
 // 判斷寶箱狀態
