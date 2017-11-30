@@ -64,13 +64,16 @@ var eventChest = {
 
         if ( jsonData.message.indexOf("failure") >= 0 ) {
           console.log("升級失敗");
-          alertWindow(
-            "升級失敗",
-            "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/upgradeStatus/upgradeFail" +
-            putData.level +
-            ".gif'>"
+          $.alert(
+            alertWindow(
+              "升級失敗",
+              "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/upgradeStatus/upgradeFail" +
+              putData.level +
+              ".gif'>"
+            )
           );
         } else {
+          console.log("=================>進入");
           // -------- 如果餘額不足，會回傳 finalCoins 和 finalGems
           let finalCoins = upgradeContent.finalCoins;
           let finalGems = upgradeContent.finalGems;
@@ -89,6 +92,9 @@ var eventChest = {
             // 使用ajax deferred 的方式
             upgradeAuditId = upgradeContent;
             upgradeToTransaction = function () {
+              console.log("GGGG");
+
+
               ajaxDeferred(
                 "POST",
                 "https://test.ehanlin.com.tw/currencyBank/transaction/upgrade",
@@ -96,6 +102,8 @@ var eventChest = {
                   upgradeAuditId: upgradeAuditId
                 }
               ).then(function (jsonData) {
+                console.log("GGG");
+
                 return ajaxDeferred(
                   "GET",
                   "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one"
@@ -103,13 +111,13 @@ var eventChest = {
               }).then(function (jsonData) {
                 console.log("current totalAssets: " + jsonData.content);
 
-                $.alert(
-                  alertWindow(
+                $.alert(alertWindow(
                     "升級成功",
                     "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/upgradeStatus/upgradeSuccess" +
                     putData.level +
                     ".gif'>",
                     function () {
+                      console.log("current totalAssets: " + jsonData.content);
                       $(".space .coins span")
                         .empty()
                         .append(jsonData.content.coins);
