@@ -32,6 +32,7 @@ $(function() {
         tbodyHtml += "<tr>" + tds + "</tr>";
       }
       $(".responstable tbody").append(tbodyHtml);
-    }
+    },
+    function() {}
   );
 });

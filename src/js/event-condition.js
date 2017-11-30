@@ -15,6 +15,7 @@ var getCondition = function(level, confrimFunction) {
           confrimFunction
         )
       );
-    }
+    },
+    function() {}
   );
 };

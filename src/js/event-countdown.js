@@ -26,7 +26,8 @@ var coolDownTime = function(chestId) {
     function(jsonData) {
       console.log("成功抓取coolDownTime資料！");
       countDown(jsonData, chestId);
-    }
+    },
+    function() {}
   );
 };
 

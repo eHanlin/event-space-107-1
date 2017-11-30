@@ -17,7 +17,8 @@ var getAwardMessage = function(index, introduction) {
       );
       $(".dialogue #title").text(desc);
       $(".dialogue #detail").text(introduction);
-    }
+    },
+    function() {}
   );
 };
 
