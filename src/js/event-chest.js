@@ -75,14 +75,16 @@ var eventChest = {
           let alertText = "";
           let isInsufficient = true;
 
-          if ( finalCoins && finalCoins < 0 ) {
-            alertText += "e幣不足！ 再努力一點，還差" + finalCoins * -1 + "元！"
-            isInsufficient = false;
-          }
 
-          if ( finalGems && finalGems < 0 ) {
-            alertText += "寶石不足！ 再努力一點，還差" + finalGems * -1 + "個寶石！"
+          if ( finalCoins && finalCoins < 0 && finalGems >= 0 ) {
+            alertText = "e幣不足！ 再努力一點，還差" + finalCoins * -1 + "元！";
             isInsufficient = false;
+          } else if ( finalGems && finalGems < 0 && finalCoins >= 0 ) {
+            alertText = "寶石不足！ 再努力一點，還差" + finalGems * -1 + "個寶石！";
+            isInsufficient = false;
+          } else if ( finalGems && finalGems ) {
+            alertText = "e幣和寶石不足！ 再努力一點，還差" + finalCoins * -1 + "e幣";
+            alertText += "和" + finalGems * -1 + "個寶石！";
           }
 
           $.alert(
