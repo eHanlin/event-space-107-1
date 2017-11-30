@@ -47,9 +47,9 @@ var eventChest = {
   },
 
   // 將寶箱狀態轉為升級
-  getUpgrade: function (chestId, chestLevel) {
-    var putData = {
-      level: chestLevel + 1
+  getUpgrade: function (chestId, upLevel) {
+    let putData = {
+      level: upLevel
     };
 
     ajax(
@@ -61,15 +61,17 @@ var eventChest = {
         console.log(jsonData);
 
         let data = jsonData.content;
-        if(jsonData.message.indexOf("UPGRADE_FAILURE") >= 0) {
+
+        if ( jsonData.message.indexOf("UPGRADE_FAILURE") >= 0 ) {
           alertWindow(
             "升級失敗",
             "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/upgradeStatus/upgradeFail" +
             putData.level +
             ".gif'>"
-          )
-        }
+          );
 
+          return
+        }
 
         // -------- 如果餘額不足，會回傳 finalCoins 和 finalGems
         let finalCoins = data.finalCoins;
@@ -82,18 +84,17 @@ var eventChest = {
         let upgradeAuditId;
         let determineBalance = function (finalCoins, finalGems) {
           let alertText = "";
-          let isInsufficient = true;
+          let isInsufficient = false;
 
 
-          if ( finalCoins && finalCoins < 0 && finalGems >= 0 ) {
-            alertText = "e幣不足！ 再努力一點，還差" + finalCoins * -1 + "元！";
-            isInsufficient = false;
-          } else if ( finalGems && finalGems < 0 && finalCoins >= 0 ) {
+          if ( finalCoins && finalCoins < 0 ) {
+            alertText = "e幣不足！ 再努力一點，還差" + finalCoins * -1 + "元！\n";
+            isInsufficient = true;
+          }
+
+          if ( finalGems && finalGems < 0 ) {
             alertText = "寶石不足！ 再努力一點，還差" + finalGems * -1 + "個寶石！";
-            isInsufficient = false;
-          } else if ( finalGems && finalGems ) {
-            alertText = "e幣和寶石不足！ 再努力一點，還差" + finalCoins * -1 + "e幣";
-            alertText += "和" + finalGems * -1 + "個寶石！";
+            isInsufficient = true;
           }
 
           $.alert(
@@ -106,7 +107,8 @@ var eventChest = {
           return isInsufficient;
         };
 
-        if ( !determineBalance(finalCoins, finalGems) ) {
+        // 如果餘額不足，直接回傳
+        if ( determineBalance(finalCoins, finalGems) ) {
           return;
         }
 
@@ -128,27 +130,29 @@ var eventChest = {
           }).then(function (jsonData) {
             console.log("current totalAssets: " + jsonData.content);
 
+            $.alert(
+              alertWindow(
+                "升級成功",
+                "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/upgradeStatus/upgradeSuccess" +
+                putData.level +
+                ".gif'>",
+                function () {
+
+                }
+              )
+            );
+
             $(".space .coins span")
               .empty()
               .append(jsonData.content.coins);
             $(".space .gems span")
               .empty()
               .append(jsonData.content.gems);
+
+            platformTarget.data("level", dataLevel);
+            determineLevel(platformTarget.find(".chest"), dataLevel);
           });
         };
-
-        $.alert(
-          alertWindow(
-            "升級成功",
-            "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/upgradeStatus/upgradeSuccess" +
-            putData.level +
-            ".gif'>",
-            upgradeToTransaction
-          )
-        );
-
-        platformTarget.data("level", dataLevel);
-        determineLevel(platformTarget.find(".chest"), dataLevel);
       }
     );
   }
