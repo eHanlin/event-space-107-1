@@ -26,7 +26,7 @@
   <nav id="ehanlin-menu"></nav>
   <div id="event-left-side"></div>
 
-  <div class="container">
+  <main class="container">
     <div class="box right">
       <div class="box-title">
         <div class="tag blue">
@@ -36,7 +36,7 @@
       </div>
 
       <div class="book-intro">
-        <div class="background">
+        <div class="background" style="height:3000px">
 
           <div class="space">
 
@@ -48,8 +48,16 @@
             </div>
 
 
-            <img class="activity" src="./img/activity.png">
-            <img class="bank" src="./img/bank.png">
+            <a href="#attention">
+              <img class="activity" src="./img/activity.png">
+            </a>
+            <a href="">
+              <img class="bankLogout" src="./img/bankLogout.png" style="display:none">
+            </a>
+            <a href="https://test.ehanlin.com.tw/event/space/currencyBank.html">
+              <img class="bank" src="./img/bank.png" style="display:none">
+            </a>
+
             <img class="eventText" src="./img/eventText.png">
 
 
@@ -100,6 +108,12 @@
 
             <div class="dialogue">
               <span class="bot"></span>
+              <span id="title" style="display:none">
+                Apple Watch Series 3
+              </span>
+              <span id="detail" style="display:none">
+                青春、活力、動起來！絕對是身為學生的你的最佳形容詞。不論你喜歡與朋友嘻笑喧鬧；喜歡下課後與朋友抓起籃…日的小習慣就靠Apple Watch Series 3。聰明的隨身教練，讓你的青春生活健康不留白！
+              </span>
             </div>
 
             <img class="eventUFO" src="./img/eventUFO.png">
@@ -120,7 +134,6 @@
 
           <img class="chestMessage" src="./img/chestMessage.png">
           <img class="stockRoom" src="./img/stockRoom.png">
-          <img class="returnData" src="./img/returnData.png">
           <img class="border1" src="./img/border.png">
           <img class="border2" src="./img/border.png">
           <img class="border3" src="./img/border.png">
@@ -129,17 +142,78 @@
           <img class="border6" src="./img/border.png">
           <img class="border7" src="./img/border.png">
           <img class="border8" src="./img/border.png">
-          <img class="notice" src="./img/notice.png">
-          <img class="point" src="./img/point.png">
-        </div>
+          <img id="attention" class="notice" src="./img/notice.png">
 
-        <div class="eventMessage"></div>
+          <section class="message">
+            <span class="textMessage">
+              嘿！星際大戰又開打啦~聽說這次的目標是散落在銀河系的各種寶物呀！即日起，只要你擁有 翰林雲端學院帳號就可以參加銀河探險隊行列，一起尋找超稀有的銀河寶物！
+              <br>
+              <br>※ 活動辦法
+              <br>
+              <br> Step1：活動期間內，透過每日登入做題、練習自我評量、名師派卷、模擬段考、模擬會 考及自我評量等級升等的方式，獲得e幣、寶石及寶箱
+              <br> Step2：獲得寶箱後，回到活動頁，點選寶箱選擇開啟或升級。每一等級的寶箱都有對應 的升級時間，你可以依照你的需求及想要的贈品選擇開啟寶箱或升級寶箱。
+              <br> Step3：若你點選「開啟」時間便開始倒數，當然如果你迫不及待的想要知道你能獲得什 麼銀河寶物，可以使用對應數量的寶石馬上打開它！若你擁有足夠的e幣及寶石 且點選「升級」，你便有機會成功將寶箱升級為更高等的寶箱，藉此獲得更好的
+              寶物！但請注意，寶箱升級是有可能不會成功的，失敗時消耗的ｅ幣及寶石並不 會歸還。
+              <br>Step4：當你耐心地等到倒數結束或立即開啟寶箱，便可知道你所獲得的銀河寶物有哪些 了！此時，於指定時間內回填或相關得獎資訊，翰林雲端學院便會將您所獲得的 獎項寄給您囉！
+              <br/>
+              <span class="fadeMessage" style="display:none">
+                <br>※ 銀河小幫手要提醒你的注意事項及Q&amp;A：
+                <br>
+                <br>1. 為了鼓勵每位會員每日固定養成習慣來翰林雲端學院循序漸進的學習， 於活動期間內每日的00:00~23:59交卷一份40分(含)以上的自我評量，即 可獲得20個e幣獎勵
+                <br>2. 銀河探險隊的裝備有最大量限制，根據總部支援項目設定，每天所能獲 得的e幣數量為200個e幣、20個寶石（由寶箱開啟者不在此限）
+                <br>3. 每一位探險隊員在銀河探索時，同時最多只能攜帶4個寶箱在身上，必須 將既有寶箱開啟後才能繼續獲得新的寶箱
+                <br>4. 每一個等級的寶箱有對應的開啟時間，詳情如下： Lv1寶箱：需1小時；Lv2寶箱：需2小時；Lv3寶箱：需8小時； Lv4寶箱：需20小時；Lv5寶箱：需40小時；Lv6寶箱：需60小時
+                <br>5. 等級越好的禮物只會在越高等的寶箱裡獲得喔！適當的分配資源努力將 寶箱升到最高等才有機會獲得想要的寶藏~寶藏詳情請見寶藏清單
+                <br>
+                <br>※ 領獎辦法
+                <br>
+                <br>1. 翰林雲端學院將於1/19發出提醒E-mail通知得獎者回填訊息
+                <br>2. 請得獎者於1/20-1/29期間至活動頁「我的寶藏收藏室」點選「回傳資料領取贈品」 填妥獎品寄送資料，根據規定，若得獎獎品金額超過$500元，則需將收據以A4方式 列印後親筆填寫完成後郵寄至本公司，以利後續獎品寄送事宜。（收據以1/29郵戳
+                為憑）
+                <br>3. 請於指定期間內完成回填資料，逾期或資料不齊者將視同放棄獎品領取資格，恕無 法補發。
+                <br>
+                <br>※ 其他注意事項
+                <br>
+                <br>1. 參加者於參加本活動之同時，即同意接受本活動之活動辦法與注意事項之規範，如 有違反，得取消其參加或得獎資格。
+                <br>2. 本活動限台灣地區會員參加，寄送地區僅限台灣本島。
+                <br>3. 本活動代幣一經使用，不得要求更換、取消或退還。
+                <br>4. 請獎品總金額超過500元以上得獎者，下載E-mail中的獎品領取收據單並確實填寫， 在指定期限內寄回至雲端學院方能完成領獎流程；如因註冊資料或表格資料填寫不 實、有誤、無法辨識，或逾時未回覆者，將視同放棄，恕不補發。
+                <br>5. 得獎者保證所有填寫或提出之資料均為真實且正確，且未冒用或盜用任何第三人之 資料，如因此致翰林雲端學院無法通知其得獎訊息時， 翰林雲端學院不負任何責任 ，且如有致損害於翰林雲端學院或其他任何第三人，參加者應負一切相關法律責任
+                。
+                <br>6. 填寫收據問題-1 依照中華民國所得稅法及其相關規定，競賽或機會中獎獎項價值超過NT$1,000元以 上者需做所得申報，獎項價值超過 NT$20,000元者(含)，中獎人除所得申報外，尚 須先繳納10%之稅金。稅金扣繳由翰林出版事業股份有限公司代為處理後
+                於年度報 稅時開立扣繳憑單予中獎者。中獎者應先準備身分證正反面影本(如未滿20歲者請繳 交戶口名簿影本及法定代理人 身分證正反面影本)相關文件及稅金繳納證明予翰林雲 端學院，始得領取活動獎項。未提供領獎證明文件者，視同自動放棄權益。
+                <br>7. 填寫收據問題-2 依照中華民國稅法規定，中獎贈品或獎金價值1,000以下者，得免計入申報所得稅， 超過1,001 元者，中獎人於年度報稅時 必須計入個人所得合併申報。應繳所得稅 ＝ ( 全年所得淨額總額【含機會中獎】
+                × 稅率 )－ 累進差額－已扣繳稅額(含機會 中獎) 配合以上稅法規定，因此需要監護人填寫相關資料表示已確認小朋友有獲得此獎項 ，所有資料僅供本公司查核報稅， 不會另作他途使用、請得獎者安心填寫。
+                <br>8. 得獎者應於翰林雲端學院通知之期限內回覆確認領取獎品，並提供翰林雲端學院所 要求之完整領獎文件，逾期視為棄權。得獎者所提供之身分證明文件如與參加本活 動時所填寫之資料不符，翰林雲端學院得要求得獎者提出相關證明文件，否則翰林
+                雲端學院得取消其得獎資格。
+                <br>9. 本活動獎項之領取方式概依翰林雲端學院所寄發或公佈之得獎通知上所載為準。
+                <br>
+                <br>※ 個人資料告知事項
+                <br>
+                <br>1. 依據個人資料保護法(以下簡稱個資法)第八條第一項規定，向參與本活動之會員告知 下列事項，請參與本活動於進行活動資料填寫前務必詳閱。
+                <br>2. 蒐集個人資料公司：翰林教育科技股份有限公司(以下稱本公司)。
+                <br>3. 蒐集目的：翰林雲端學院相關抽獎活動
+                <br>4. 個人資料之類別：學員之姓名、身分證字號、戶籍地址、聯絡電話、獎勵寄送地址 、聯絡Email，及其法定代理人之姓名、身分證字號、戶籍地址、聯絡電話、聯絡 Email。
+                <br>5. 個人資料利用之期間、區域、對象及方式： 期間：個人資料蒐集之特定目的存續期間、依相關法令或契約約定之保存期限，或 本公司因執行業務所需之保存期限 地區：本國 對象：本公司、本公司委託機關及執行本活動時之必要相關人員
+                方式：以自動化機器或其他非自動化之利用方式
+                <br>6. 依據個資法第三條規定，本活動參與者了解，就其所提供之個人資料得行使下列權 利：您可依個人資料保護法的規定，就本公司所保有您的個人資料向本公司行使查 詢或閱覽、製給複製本、補充或更正、停止蒐集處理或利用、刪除之權利，惟依法
+                本公司因執行職務所必須者，得不依本活動參與者請求為之。
+                <br>7. 不提供個人資料所致權益之影響： 台端得自由選擇是否提供相關個人資料，惟台端若拒絕提供相關個人資料，本公司 將無法提供您蒐集目的所包含之完整服務或資訊，例如提供獎品，致使台端權益受 損。
+                <br>8. 茲本人同意提供個人資料(姓名、身分證字號、連絡電話、行動電話、連絡地址、連 絡Email)予本公司，並同意得為活動參與、抽獎相關活動、資料儲存與整理、郵寄 、稅務等用途蒐集、處理及利用本人之個人資料，利用之期間、地區、對象及方式
+                均不受任何限制，並得委託第三人為前述之行為
+                <br>9. 本人了解就所提供之個人資料依法得行使查詢或請求閱覽、請求製給複製本、請求 補充或更正、請求停止蒐集、處理或利用以及請求刪除等權利。
+                <br>
+              </span>
+            </span>
+
+            <input id="down-arrow" type="image" src="./img/down-arrow.png" />
+            <input id="up-arrow" type="image" src="./img/up-arrow.png" style="display:none" />
+          </section>
+        </div>
 
       </div>
     </div>
-
-
-  </div>
+  </main>
   <footer id="ehanlin-footer"></footer>
 </body>
 <script type="text/javascript" src="./js/ajax.js"></script>
@@ -151,6 +225,7 @@
 <script type="text/javascript" src="./js/event-countdown.js"></script>
 <script type="text/javascript" src="./js/event-userchest.js"></script>
 <script type="text/javascript" src="./js/event-award.js"></script>
+<script type="text/javascript" src="./js/event-message.js"></script>
 
 <script type="text/javascript" src="./js/package/jquery.countdown.js"></script>
 <script type="text/javascript" src="./js/package/jquery-confirm.js"></script>

@@ -1,7 +1,7 @@
 /**
  * Http Get by ajax
  */
-var ajaxGet = function(url, param, success) {
+var ajaxGet = function(url, param, success, error) {
   return $.ajax({
     type: "GET",
     url: url,
@@ -10,7 +10,8 @@ var ajaxGet = function(url, param, success) {
     dataType: "json",
     cache: false,
     crossDomain: true,
-    success: success
+    success: success,
+    error: error
     // xhrFields: {
     //   withCredentials: false
     // }

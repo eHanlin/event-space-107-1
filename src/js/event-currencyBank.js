@@ -12,11 +12,22 @@ $(function() {
         singleTransaction = transactions[i];
         currencyQuantity = singleTransaction["currencyQuantity"];
 
-        tds = "<td>" + singleTransaction["action"] + "</td>";
+        if (singleTransaction.action == "REDUCE") {
+          tds = "<td>" + "花費" + "</td>";
+        } else {
+          tds = "<td>" + singleTransaction["action"] + "</td>";
+        }
+
         tds += "<td>" + currencyQuantity["coins"] + "</td>";
         tds += "<td>" + currencyQuantity["gems"] + "</td>";
         tds += "<td>" + singleTransaction["detail"] + "</td>";
-        tds += "<td>" + singleTransaction["source"] + "</td>";
+
+        if (singleTransaction.source.match("Chest")) {
+          tds += "<td>" + "寶箱" + "</td>";
+        } else {
+          tds += "<td>" + singleTransaction["source"] + "</td>";
+        }
+
         tds += "<td>" + singleTransaction["updateTime"] + "</td>";
         tbodyHtml += "<tr>" + tds + "</tr>";
       }
