@@ -1,32 +1,28 @@
 {
-  "_args": [
-    [
-      "moment@2.19.1",
-      "/Users/infinity2015/ehanlin/event-space"
-    ]
-  ],
-  "_from": "moment@2.19.1",
+  "_from": "moment",
   "_id": "moment@2.19.1",
   "_inBundle": false,
   "_integrity": "sha1-VtoaLRy/AdOLfhr8McELz6GSkWc=",
   "_location": "/moment",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "tag",
     "registry": true,
-    "raw": "moment@2.19.1",
+    "raw": "moment",
     "name": "moment",
     "escapedName": "moment",
-    "rawSpec": "2.19.1",
+    "rawSpec": "",
     "saveSpec": null,
-    "fetchSpec": "2.19.1"
+    "fetchSpec": "latest"
   },
   "_requiredBy": [
+    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/moment/-/moment-2.19.1.tgz",
-  "_spec": "2.19.1",
-  "_where": "/Users/infinity2015/ehanlin/event-space",
+  "_shasum": "56da1a2d1cbf01d38b7e1afc31c10bcfa1929167",
+  "_spec": "moment",
+  "_where": "/Users/hl/Applications/event-space",
   "author": {
     "name": "Iskren Ivov Chernev",
     "email": "iskren.chernev@gmail.com",
@@ -35,6 +31,7 @@
   "bugs": {
     "url": "https://github.com/moment/moment/issues"
   },
+  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Tim Wood",
@@ -61,6 +58,7 @@
       "url": "https://github.com/oire"
     }
   ],
+  "deprecated": false,
   "description": "Parse, validate, manipulate, and display dates",
   "devDependencies": {
     "benchmark": "latest",

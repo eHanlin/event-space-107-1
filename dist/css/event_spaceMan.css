@@ -20,16 +20,16 @@
 }
 
 .container #award img {
-    position: absolute;
-    transform: scale(1.2);
-    left: 30px;
-    top: 1100px;
+  position: absolute;
+  transform: scale(1.2);
+  left: 30px;
+  top: 1100px;
 }
 
 .container #award .text {
   position: absolute;
   right: 100px;
-  top: 1150px;
+  top: 1120px;
   font-size: 20px;
   font-family: "微軟正黑體";
   font-weight: bolder;
