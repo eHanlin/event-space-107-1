@@ -69,88 +69,79 @@ var eventChest = {
             putData.level +
             ".gif'>"
           );
+        } else {
+          // -------- 如果餘額不足，會回傳 finalCoins 和 finalGems
+          let finalCoins = upgradeContent.finalCoins;
+          let finalGems = upgradeContent.finalGems;
+          // --------------------------------------------------
 
-          return
-        }
+          let platformTarget = $("#" + chestId);
+          let dataLevel = putData.level;
+          let upgradeToTransaction;
+          let upgradeAuditId;
 
-        // -------- 如果餘額不足，會回傳 finalCoins 和 finalGems
-        let finalCoins = upgradeContent.finalCoins;
-        let finalGems = upgradeContent.finalGems;
-        // --------------------------------------------------
+          if ( finalCoins && finalGems && finalCoins >= 0 && finalGems >= 0 ) {
+            // 如果餘額足夠，則直接回傳 upgradeAuditId
+            // 使用ajax deferred 的方式
+            upgradeAuditId = upgradeContent;
+            upgradeToTransaction = function () {
+              ajaxDeferred(
+                "POST",
+                "https://test.ehanlin.com.tw/currencyBank/transaction/upgrade",
+                {
+                  upgradeAuditId: upgradeAuditId
+                }
+              ).then(function (jsonData) {
+                return ajaxDeferred(
+                  "GET",
+                  "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one"
+                );
+              }).then(function (jsonData) {
+                console.log("current totalAssets: " + jsonData.content);
 
-        let platformTarget = $("#" + chestId);
-        let dataLevel = putData.level;
-        let upgradeToTransaction;
-        let upgradeAuditId;
-        let determineBalance = function (finalCoins, finalGems) {
-          let alertText = "";
-          let isInsufficient = false;
+                $.alert(
+                  alertWindow(
+                    "升級成功",
+                    "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/upgradeStatus/upgradeSuccess" +
+                    putData.level +
+                    ".gif'>",
+                    function () {
+                      $(".space .coins span")
+                        .empty()
+                        .append(jsonData.content.coins);
+                      $(".space .gems span")
+                        .empty()
+                        .append(jsonData.content.gems);
 
-          if ( finalCoins && finalCoins < 0 ) {
-            alertText += "e幣不足！ 再努力一點，還差" + finalCoins * -1 + "元！\n";
-            isInsufficient = true;
-          }
+                      platformTarget.data("level", dataLevel);
+                      determineLevel(platformTarget.find(".chest"), dataLevel);
+                    }
+                  )
+                );
+              });
+            };
+            upgradeToTransaction();
+          } else {
+            let alertText = "";
 
-          if ( finalGems && finalGems < 0 ) {
-            alertText += "寶石不足！ 再努力一點，還差" + finalGems * -1 + "個寶石！";
-            isInsufficient = true;
-          }
-
-          $.alert(
-            alertWindow(
-              alertText,
-              ""
-            )
-          );
-
-          return isInsufficient;
-        };
-
-        // 如果餘額不足，直接回傳
-        if ( determineBalance(finalCoins, finalGems) ) {
-          return;
-        }
-
-        // 如果餘額足夠，則直接回傳 upgradeAuditId
-        // 使用ajax deferred 的方式
-        upgradeAuditId = upgradeContent;
-        upgradeToTransaction = function () {
-          ajaxDeferred(
-            "POST",
-            "https://test.ehanlin.com.tw/currencyBank/transaction/upgrade",
-            {
-              upgradeAuditId: upgradeAuditId
+            if ( finalCoins && finalCoins < 0 ) {
+              alertText += "e幣不足！ 再努力一點，還差" + finalCoins * -1 + "元！\n";
+              isInsufficient = true;
             }
-          ).then(function (jsonData) {
-            return ajaxDeferred(
-              "GET",
-              "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one"
-            );
-          }).then(function (jsonData) {
-            console.log("current totalAssets: " + jsonData.content);
+
+            if ( finalGems && finalGems < 0 ) {
+              alertText += "寶石不足！ 再努力一點，還差" + finalGems * -1 + "個寶石！";
+              isInsufficient = true;
+            }
 
             $.alert(
               alertWindow(
-                "升級成功",
-                "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/upgradeStatus/upgradeSuccess" +
-                putData.level +
-                ".gif'>",
-                function () {
-                  $(".space .coins span")
-                    .empty()
-                    .append(jsonData.content.coins);
-                  $(".space .gems span")
-                    .empty()
-                    .append(jsonData.content.gems);
-
-                  platformTarget.data("level", dataLevel);
-                  determineLevel(platformTarget.find(".chest"), dataLevel);
-                }
+                alertText,
+                ""
               )
             );
-          });
-        };
-        upgradeToTransaction();
+          }
+        }
       }
     );
   }
