@@ -24,15 +24,12 @@ $(function() {
 
       // 升級按鈕
       $(".upgradeButton").on("click", function() {
-        var findParents = $(this).parents(".platform");
-        var confrimFunction;
-        var chestId = findParents.prop("id");
-        var chestLevel = findParents.data("level");
+        let findParents = $(this).parents(".platform");
+        let chestId = findParents.prop("id");
+        let chestLevel = findParents.data("level");
 
-        confrimFunction = function() {
-          eventChest.getUpgrade(chestId, chestLevel);
-        };
-        getCondition(chestLevel + 1, confrimFunction);
+        // 預備提升寶箱的等級
+        getCondition(chestId, chestLevel + 1);
       });
 
       // 開啟按鈕

@@ -63,8 +63,8 @@ var eventChest = {
         let data = jsonData.content;
         if(jsonData.message.indexOf("UPGRADE_FAILURE") >= 0) {
           alertWindow(
-            "升級成功",
-            "<img src='./img/upgradeStatus/upgradeFail" +
+            "升級失敗",
+            "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/upgradeStatus/upgradeFail" +
             putData.level +
             ".gif'>"
           )
@@ -140,7 +140,7 @@ var eventChest = {
         $.alert(
           alertWindow(
             "升級成功",
-            "<img src='./img/upgradeStatus/upgradeSuccess" +
+            "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/upgradeStatus/upgradeSuccess" +
             putData.level +
             ".gif'>",
             upgradeToTransaction
