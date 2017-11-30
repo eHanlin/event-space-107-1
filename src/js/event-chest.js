@@ -84,56 +84,7 @@ var eventChest = {
           let upgradeToTransaction;
           let upgradeAuditId;
 
-          if ( finalCoins && finalGems && finalCoins >= 0 && finalGems >= 0 ) {
-            console.log("=================>升級中");
-
-
-            // 如果餘額足夠，則直接回傳 upgradeAuditId
-            // 使用ajax deferred 的方式
-            upgradeAuditId = upgradeContent;
-            upgradeToTransaction = function () {
-              console.log("GGGG");
-
-
-              ajaxDeferred(
-                "POST",
-                "https://test.ehanlin.com.tw/currencyBank/transaction/upgrade",
-                {
-                  upgradeAuditId: upgradeAuditId
-                }
-              ).then(function (jsonData) {
-                console.log("GGG");
-
-                return ajaxDeferred(
-                  "GET",
-                  "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one"
-                );
-              }).then(function (jsonData) {
-                console.log("current totalAssets: " + jsonData.content);
-
-                $.alert(alertWindow(
-                    "升級成功",
-                    "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/upgradeStatus/upgradeSuccess" +
-                    putData.level +
-                    ".gif'>",
-                    function () {
-                      console.log("current totalAssets: " + jsonData.content);
-                      $(".space .coins span")
-                        .empty()
-                        .append(jsonData.content.coins);
-                      $(".space .gems span")
-                        .empty()
-                        .append(jsonData.content.gems);
-
-                      platformTarget.data("level", dataLevel);
-                      determineLevel(platformTarget.find(".chest"), dataLevel);
-                    }
-                  )
-                );
-              });
-            };
-            upgradeToTransaction();
-          } else {
+          if ( finalCoins || finalGems ) {
             let alertText = "";
 
             if ( finalCoins && finalCoins < 0 ) {
@@ -150,6 +101,48 @@ var eventChest = {
                 ""
               )
             );
+          } else {
+            console.log("=================>升級中");
+            // 如果餘額足夠，則直接回傳 upgradeAuditId
+            // 使用ajax deferred 的方式
+            upgradeAuditId = upgradeContent;
+            upgradeToTransaction = function () {
+              ajaxDeferred(
+                "POST",
+                "https://test.ehanlin.com.tw/currencyBank/transaction/upgrade",
+                {
+                  upgradeAuditId: upgradeAuditId
+                }
+              ).then(function (jsonData) {
+                return ajaxDeferred(
+                  "GET",
+                  "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one"
+                );
+              }).then(function (jsonData) {
+                console.log("current totalAssets: " + jsonData.content);
+
+                $.alert(alertWindow(
+                  "升級成功",
+                  "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/upgradeStatus/upgradeSuccess" +
+                  putData.level +
+                  ".gif'>",
+                  function () {
+                    console.log("current totalAssets: " + jsonData.content);
+                    $(".space .coins span")
+                      .empty()
+                      .append(jsonData.content.coins);
+                    $(".space .gems span")
+                      .empty()
+                      .append(jsonData.content.gems);
+
+                    platformTarget.data("level", dataLevel);
+                    determineLevel(platformTarget.find(".chest"), dataLevel);
+                  }
+                  )
+                );
+              });
+            };
+            upgradeToTransaction();
           }
         }
       }
