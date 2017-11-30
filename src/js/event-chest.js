@@ -1,13 +1,13 @@
 var eventChest = {
   // 將寶箱狀態轉為開啟
-  updateStatusIsOpen: function(chestId) {
+  updateStatusIsOpen: function (chestId) {
     ajax(
       "PUT",
       "https://test.ehanlin.com.tw/chest/updateStatus/" + chestId,
       {
         status: "OPEN"
       },
-      function(jsonData) {
+      function (jsonData) {
         console.log("成功抓取updateStatusIsOpen資料！(Open)");
 
         var platformTarget = $("#" + chestId);
@@ -19,14 +19,14 @@ var eventChest = {
   },
 
   // 將寶箱狀態轉為準備開啟
-  updateStatusIsReady: function(chestId) {
+  updateStatusIsReady: function (chestId) {
     var body = { status: "READY" };
 
     ajax(
       "PUT",
       "https://test.ehanlin.com.tw/chest/updateStatus/" + chestId,
       body,
-      function(jsonData) {
+      function (jsonData) {
         console.log("成功抓取updateStatusIsReady資料！");
 
         var platFromTarget = $("#" + chestId);
@@ -47,9 +47,8 @@ var eventChest = {
   },
 
   // 將寶箱狀態轉為升級
-  getUpgrade: function(chestId, chestLevel, user) {
+  getUpgrade: function (chestId, chestLevel) {
     var putData = {
-      user: user,
       level: chestLevel + 1
     };
 
@@ -57,107 +56,82 @@ var eventChest = {
       "PUT",
       "https://test.ehanlin.com.tw/chest/upgrade/" + chestId,
       putData,
-      function(jsonData) {
+      function (jsonData) {
         console.log("成功抓取升級的寶箱資料！");
         console.log(jsonData);
 
-        var data = jsonData.content;
+        let data = jsonData.content;
 
         // -------- 如果餘額不足，會回傳 finalCoins 和 finalGems
-        var finalCoins = data.finalCoins;
-        var finalGems = data.finalGems;
+        let finalCoins = data.finalCoins;
+        let finalGems = data.finalGems;
         // --------------------------------------------------
 
-        var platformTarget = $("#" + chestId);
-        var dataLevel = putData.level;
-        var upgradeToTransaction;
-        var upgradeAuditId;
+        let platformTarget = $("#" + chestId);
+        let dataLevel = putData.level;
+        let upgradeToTransaction;
+        let upgradeAuditId;
+        let determineBalance = function (finalCoins, finalGems) {
+          let alertText = "";
+          let isInsufficient = true;
 
-        if (jsonData.message.indexOf("failure") > 0) {
+          if ( finalCoins && finalCoins < 0 ) {
+            alertText += "e幣不足！ 再努力一點，還差" + finalCoins * -1 + "元！"
+            isInsufficient = false;
+          }
+
+          if ( finalGems && finalGems < 0 ) {
+            alertText += "寶石不足！ 再努力一點，還差" + finalGems * -1 + "個寶石！"
+            isInsufficient = false;
+          }
+
           $.alert(
             alertWindow(
-              "升級失敗",
-              "<img src='./img/upgradeStatus/upgradeFail" +
-                chestLevel +
-                ".gif'>"
-            )
-          );
-          return;
-        }
-
-        if (putData.level === 6) {
-          platformTarget.find(".upgradeButton").toggle();
-        }
-
-        if (finalCoins && finalCoins < 0) {
-          $.alert(
-            alertWindow(
-              "e幣不足！ 再努力一點，還差" + finalCoins * -1 + "元！",
+              alertText,
               ""
             )
           );
-          return;
-        }
 
-        if (finalGems && finalGems < 0) {
-          $.alert(
-            alertWindow(
-              "寶石不足！ 再努力一點，還差" + finalGems * -1 + "個寶石！",
-              ""
-            )
-          );
-          return;
-        }
+          return isInsufficient;
+        };
 
-        if (finalCoins < 0 && finalGems < 0) {
-          $.alert(
-            alertWindow(
-              "e幣和寶石不足！ 再努力一點，還差" +
-                finalCoins * -1 +
-                "e幣和" +
-                finalGems * -1 +
-                "個寶石！",
-              ""
-            )
-          );
+        if ( !determineBalance(finalCoins, finalGems) ) {
           return;
         }
 
         // 如果餘額足夠，則直接回傳 upgradeAuditId
         // 使用ajax deferred 的方式
         upgradeAuditId = data;
-        upgradeToTransaction = function() {
+        upgradeToTransaction = function () {
           ajaxDeferred(
             "POST",
             "https://test.ehanlin.com.tw/currencyBank/transaction/upgrade",
             {
               upgradeAuditId: upgradeAuditId
             }
-          )
-            .then(function(jsonData) {
-              return ajaxDeferred(
-                "GET",
-                "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one"
-              );
-            })
-            .then(function(jsonData) {
-              console.log("current totalAssets: " + jsonData.content);
+          ).then(function (jsonData) {
+            return ajaxDeferred(
+              "GET",
+              "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one"
+            );
+          }).then(function (jsonData) {
+            console.log("current totalAssets: " + jsonData.content);
 
-              $(".space .coins span")
-                .empty()
-                .append(jsonData.content.coins);
-              $(".space .gems span")
-                .empty()
-                .append(jsonData.content.gems);
-            });
+            $(".space .coins span")
+              .empty()
+              .append(jsonData.content.coins);
+            $(".space .gems span")
+              .empty()
+              .append(jsonData.content.gems);
+          });
         };
 
         $.alert(
           alertWindow(
             "升級成功",
             "<img src='./img/upgradeStatus/upgradeSuccess" +
-              putData.level +
-              ".gif'>",
+            putData.level +
+            ".gif'>",
             upgradeToTransaction
           )
         );

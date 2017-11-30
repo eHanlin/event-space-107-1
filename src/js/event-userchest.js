@@ -29,7 +29,7 @@ $(function() {
       var chestLevel = findParents.data("level");
 
       confrimFunction = function() {
-        eventChest.getUpgrade(chestId, chestLevel, user);
+        eventChest.getUpgrade(chestId, chestLevel);
       };
       getCondition(chestLevel + 1, confrimFunction);
     });
