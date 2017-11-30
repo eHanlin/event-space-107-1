@@ -1,14 +1,10 @@
-$(function() {
-  getTotalAssets(user);
-});
-
-var getTotalAssets = function(user) {
+$(function () {
   ajaxGet(
-    "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one",
-    null,
-    function(jsonData) {
-      $(".space .coins span").append(jsonData.content.coins);
-      $(".space .gems span").append(jsonData.content.gems);
-    }
+      "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one",
+      null,
+      function (jsonData) {
+        $(".space .coins span").append(jsonData.content.coins);
+        $(".space .gems span").append(jsonData.content.gems);
+      }
   );
-};
+});

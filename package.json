@@ -14,7 +14,7 @@
     "event-stream": "^3.3.4",
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
-    "gulp-replace": "^0.6.1",
+    "gulp-replace-pro": "^1.0.1",
     "gulp-template-util": "0.0.2",
     "lru-cache": "^4.1.1",
     "path": "^0.12.7",
