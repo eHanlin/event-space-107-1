@@ -63,6 +63,7 @@ var eventChest = {
         let upgradeContent = jsonData.content;
 
         if ( jsonData.message.indexOf("failure") >= 0 ) {
+          console.log("升級失敗");
           alertWindow(
             "升級失敗",
             "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/upgradeStatus/upgradeFail" +
@@ -126,12 +127,10 @@ var eventChest = {
 
             if ( finalCoins && finalCoins < 0 ) {
               alertText += "e幣不足！ 再努力一點，還差" + finalCoins * -1 + "元！\n";
-              isInsufficient = true;
             }
 
             if ( finalGems && finalGems < 0 ) {
               alertText += "寶石不足！ 再努力一點，還差" + finalGems * -1 + "個寶石！";
-              isInsufficient = true;
             }
 
             $.alert(

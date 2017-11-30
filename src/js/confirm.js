@@ -22,7 +22,10 @@ var confirmWindow = function (title, content, confrimFunction) {
 };
 
 var alertWindow = function (title, content, alertFunction) {
+
+  console.log("GGGGGG");
   if ( !alertFunction ) {
+    console.log(alertFunction);
     alertFunction = function () {
     }
   }
