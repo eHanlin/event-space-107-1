@@ -9,7 +9,12 @@ var getAwardMessage = function(index, introduction) {
       var desc = data.desc;
       var introduction = data.content.introduction;
       $("#award .text").text(desc);
-      $("#award img").attr("src", "./img/award/award" + index + ".png");
+      $("#award img").attr(
+        "src",
+        "https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/award/award" +
+          index +
+          ".png"
+      );
       $(".dialogue #title").text(desc);
       $(".dialogue #detail").text(introduction);
     }
