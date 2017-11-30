@@ -61,6 +61,15 @@ var eventChest = {
         console.log(jsonData);
 
         let data = jsonData.content;
+        if(jsonData.message.indexOf("UPGRADE_FAILURE") >= 0) {
+          alertWindow(
+            "升級成功",
+            "<img src='./img/upgradeStatus/upgradeFail" +
+            putData.level +
+            ".gif'>"
+          )
+        }
+
 
         // -------- 如果餘額不足，會回傳 finalCoins 和 finalGems
         let finalCoins = data.finalCoins;
