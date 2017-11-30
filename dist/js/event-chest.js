@@ -60,9 +60,9 @@ var eventChest = {
         console.log("成功抓取升級的寶箱資料！");
         console.log(jsonData);
 
-        let data = jsonData.content;
+        let upgradeContent = jsonData.content;
 
-        if ( jsonData.message.indexOf("UPGRADE_FAILURE") >= 0 ) {
+        if ( jsonData.message.indexOf("failure") >= 0 ) {
           alertWindow(
             "升級失敗",
             "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/upgradeStatus/upgradeFail" +
@@ -74,8 +74,8 @@ var eventChest = {
         }
 
         // -------- 如果餘額不足，會回傳 finalCoins 和 finalGems
-        let finalCoins = data.finalCoins;
-        let finalGems = data.finalGems;
+        let finalCoins = upgradeContent.finalCoins;
+        let finalGems = upgradeContent.finalGems;
         // --------------------------------------------------
 
         let platformTarget = $("#" + chestId);
@@ -86,14 +86,13 @@ var eventChest = {
           let alertText = "";
           let isInsufficient = false;
 
-
           if ( finalCoins && finalCoins < 0 ) {
-            alertText = "e幣不足！ 再努力一點，還差" + finalCoins * -1 + "元！\n";
+            alertText += "e幣不足！ 再努力一點，還差" + finalCoins * -1 + "元！\n";
             isInsufficient = true;
           }
 
           if ( finalGems && finalGems < 0 ) {
-            alertText = "寶石不足！ 再努力一點，還差" + finalGems * -1 + "個寶石！";
+            alertText += "寶石不足！ 再努力一點，還差" + finalGems * -1 + "個寶石！";
             isInsufficient = true;
           }
 
@@ -114,7 +113,7 @@ var eventChest = {
 
         // 如果餘額足夠，則直接回傳 upgradeAuditId
         // 使用ajax deferred 的方式
-        upgradeAuditId = data;
+        upgradeAuditId = upgradeContent;
         upgradeToTransaction = function () {
           ajaxDeferred(
             "POST",
@@ -137,22 +136,21 @@ var eventChest = {
                 putData.level +
                 ".gif'>",
                 function () {
+                  $(".space .coins span")
+                    .empty()
+                    .append(jsonData.content.coins);
+                  $(".space .gems span")
+                    .empty()
+                    .append(jsonData.content.gems);
 
+                  platformTarget.data("level", dataLevel);
+                  determineLevel(platformTarget.find(".chest"), dataLevel);
                 }
               )
             );
-
-            $(".space .coins span")
-              .empty()
-              .append(jsonData.content.coins);
-            $(".space .gems span")
-              .empty()
-              .append(jsonData.content.gems);
-
-            platformTarget.data("level", dataLevel);
-            determineLevel(platformTarget.find(".chest"), dataLevel);
           });
         };
+        upgradeToTransaction();
       }
     );
   }
