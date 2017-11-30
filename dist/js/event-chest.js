@@ -82,6 +82,9 @@ var eventChest = {
           let upgradeAuditId;
 
           if ( finalCoins && finalGems && finalCoins >= 0 && finalGems >= 0 ) {
+            console.log("=================>升級中");
+
+
             // 如果餘額足夠，則直接回傳 upgradeAuditId
             // 使用ajax deferred 的方式
             upgradeAuditId = upgradeContent;
