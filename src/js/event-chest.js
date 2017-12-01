@@ -1,6 +1,7 @@
 var eventChest = {
   // 將寶箱狀態轉為開啟
   updateStatusIsOpen: function(chestId) {
+    console.log("----------updateStatusIsOpen-----------");
     ajax(
       "PUT",
       "https://test.ehanlin.com.tw/chest/open/" + chestId,
@@ -9,6 +10,8 @@ var eventChest = {
       },
       function(jsonData) {
         console.log("成功抓取updateStatusIsOpen資料！(Open)");
+        console.log(chestId);
+        console.log(jsonData);
 
         var platformTarget = $("#" + chestId);
         platformTarget.find(".chest").fadeOut("slow");

@@ -3,6 +3,7 @@ $(function() {
     "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one",
     null,
     function(jsonData) {
+      console.log("totalAssets:" + jsonData);
       $(".bank").removeAttr("style");
       $(".space .coins span").append(jsonData.content.coins);
       $(".space .gems span").append(jsonData.content.gems);
