@@ -19,7 +19,7 @@ var eventChest = {
         platformTarget.find(".chest").fadeOut("slow");
         platformTarget.find(".readyButton").fadeOut("slow");
 
-        console.log("寶石：" + totalGems);
+        console.log("寶石：" + gainGems);
 
         $.alert(
           alertWindow(
