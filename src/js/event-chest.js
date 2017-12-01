@@ -21,6 +21,10 @@ var eventChest = {
 
         console.log("寶石：" + gainGems);
 
+        if (gainGems === null) {
+          gainGems = 0;
+        }
+        
         $.alert(
           alertWindow(
             "",
