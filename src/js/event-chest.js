@@ -1,6 +1,6 @@
 var eventChest = {
   // 將寶箱狀態轉為開啟
-  letupdateStatusIsOpen: function(chestId) {
+  updateStatusIsOpen: function(chestId) {
     ajax(
       "PUT",
       "https://test.ehanlin.com.tw/chest/updateStatus/" + chestId,
@@ -97,6 +97,15 @@ var eventChest = {
             if (finalGems && finalGems < 0) {
               alertText +=
                 "寶石不足！ 再努力一點，還差" + finalGems * -1 + "個寶石！";
+            }
+
+            if (finalCoins < 0 && finalGems < 0) {
+              alertText +=
+                "e幣和寶石不足！ 再努力一點，還差" +
+                finalCoins * -1 +
+                "元！\n" +
+                finalGems * -1 +
+                "個寶石！";
             }
 
             $.alert(alertWindow("", alertText));
