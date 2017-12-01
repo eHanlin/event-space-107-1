@@ -3,7 +3,7 @@ var eventChest = {
   updateStatusIsOpen: function(chestId) {
     ajax(
       "PUT",
-      "https://test.ehanlin.com.tw/chest/updateStatus/" + chestId,
+      "https://test.ehanlin.com.tw/chest/open/" + chestId,
       {
         status: "OPEN"
       },
