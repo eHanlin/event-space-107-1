@@ -6,7 +6,12 @@ var getAwardMessage = function(index, introduction) {
     function(jsonData) {
       console.log("成功抓取獎品的資料描述！");
       var data = jsonData.content;
+
+      var notice = data.content.notice;
+      var needChestLv = data.content.needChestLv;
+      var rank = data.content.rank;
       var desc = data.desc;
+      var quantity = data.content.quantity;
       var introduction = data.content.introduction;
       $("#award .text").text(desc);
       $("#award img").attr(
@@ -15,8 +20,13 @@ var getAwardMessage = function(index, introduction) {
           index +
           ".png"
       );
+
+      $(".dialogue #notice").text(notice);
+      $(".dialogue #needChestLv").text(needChestLv);
+      $(".dialogue #quantity").text(quantity);
+      $(".dialogue #rank").text(rank);
       $(".dialogue #title").text(desc);
-      $(".dialogue #detail").text(introduction);
+      $(".dialogue #introduction").text(introduction);
     },
     function() {}
   );
@@ -38,10 +48,16 @@ $("#left-arrow").on("click", function() {
   getAwardMessage(index);
 });
 
-var alertFunc = function(desc, introduction) {
+var alertFunc = function() {
+  var notice = $(".dialogue #notice").text();
+  var needChestLv = $(".dialogue #needChestLv").text();
+  var rank = $(".dialogue #rank").text();
+  var quantity = $(".dialogue #quantity").text();
   var desc = $(".dialogue #title").text();
-  var introduction = $(".dialogue #detail").text();
-  $.alert(alertWindow(desc, introduction, ""));
+  var introduction = $(".dialogue #introduction").text();
+  $.alert(
+    alertForAward(desc, rank, quantity, needChestLv, introduction, notice, "")
+  );
 };
 
 $(".dialogue").on("click", function() {

@@ -88,29 +88,28 @@ var eventChest = {
 
           if (finalCoins || finalGems) {
             let alertText = "";
-            let alert = "";
 
-            if (finalCoins && finalCoins < 0) {
+            if (finalCoins && finalCoins < 0 && finalGems > 0) {
               alertText +=
                 "e幣不足！ 再努力一點，還差" + finalCoins * -1 + "元！\n";
+              $.alert(alertWindow("", alertText));
             }
 
-            if (finalGems && finalGems < 0) {
+            if (finalGems && finalGems < 0 && finalCoins > 0) {
               alertText +=
                 "寶石不足！ 再努力一點，還差" + finalGems * -1 + "個寶石！";
+              $.alert(alertWindow("", alertText));
             }
 
             if (finalCoins < 0 && finalGems < 0) {
-              alert +=
+              alertText +=
                 "e幣和寶石不足！ 再努力一點，還差" +
                 finalCoins * -1 +
                 "元！\n" +
                 finalGems * -1 +
                 "個寶石！";
-              $.alert(alertWindow("", alert));
+              $.alert(alertWindow("", alertText));
             }
-
-            $.alert(alertWindow("", alertText));
           } else {
             console.log("=================>升級中");
             // 如果餘額足夠，則直接回傳 upgradeAuditId

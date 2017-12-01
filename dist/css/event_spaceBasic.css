@@ -77,69 +77,69 @@
 .container .chestMessage {
   position: absolute;
   left: 320px;
-  top: 1430px;
+  top: 1530px;
 }
 
 .container .stockRoom {
   position: absolute;
   left: 70px;
-  top: 1530px;
+  top: 1630px;
 }
 
 .container .border1 {
   position: absolute;
   left: 50px;
-  top: 1620px;
+  top: 1720px;
 }
 .container .border2 {
   position: absolute;
   left: 375px;
-  top: 1620px;
+  top: 1720px;
 }
 .container .border3 {
   position: absolute;
   left: 50px;
-  top: 1720px;
+  top: 1820px;
 }
 .container .border4 {
   position: absolute;
   left: 375px;
-  top: 1720px;
+  top: 1820px;
 }
 .container .border5 {
   position: absolute;
   left: 50px;
-  top: 1820px;
+  top: 1920px;
 }
 .container .border6 {
   position: absolute;
   left: 375px;
-  top: 1820px;
+  top: 1920px;
 }
 .container .border7 {
   position: absolute;
   left: 50px;
-  top: 1920px;
+  top: 2020px;
 }
 .container .border8 {
   position: absolute;
   left: 375px;
-  top: 1920px;
+  top: 2020px;
 }
 
 .container .notice {
   position: absolute;
   left: 70px;
-  top: 2020px;
+  top: 2120px;
 }
 
 .container .message .textMessage {
   position: absolute;
-  font-size: 25px;
+  font-size: 23px;
   font-family: "微軟正黑體";
   color: white;
   left: 10px;
-  top: 2140px;
+  top: 2220px;
   z-index: 2;
 }
 
@@ -147,14 +147,14 @@
   position: absolute;
   outline: none;
   left: 330px;
-  top: 2930px;
+  top: 2880px;
 }
 
 .container #up-arrow {
   position: absolute;
   outline: none;
   left: 330px;
-  top: 6490px;
+  top: 5830px;
 }
 
 .container .space .coins {
