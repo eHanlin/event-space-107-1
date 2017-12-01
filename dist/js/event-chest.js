@@ -19,6 +19,8 @@ var eventChest = {
         platformTarget.find(".chest").fadeOut("slow");
         platformTarget.find(".readyButton").fadeOut("slow");
 
+        console.log("寶石：" + totalGems);
+
         $.alert(
           alertWindow(
             "",
@@ -125,7 +127,6 @@ var eventChest = {
                 "寶石不足！ 再努力一點，還差" + finalGems * -1 + "個寶石！";
               $.alert(alertWindow("", alertText));
             }
-            
           } else {
             console.log("=================>升級中");
             // 如果餘額足夠，則直接回傳 upgradeAuditId
