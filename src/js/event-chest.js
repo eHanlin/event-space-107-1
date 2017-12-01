@@ -1,13 +1,13 @@
 var eventChest = {
   // 將寶箱狀態轉為開啟
-  letupdateStatusIsOpen: function (chestId) {
+  letupdateStatusIsOpen: function(chestId) {
     ajax(
       "PUT",
       "https://test.ehanlin.com.tw/chest/updateStatus/" + chestId,
       {
         status: "OPEN"
       },
-      function (jsonData) {
+      function(jsonData) {
         console.log("成功抓取updateStatusIsOpen資料！(Open)");
 
         var platformTarget = $("#" + chestId);
@@ -19,14 +19,14 @@ var eventChest = {
   },
 
   // 將寶箱狀態轉為準備開啟
-  updateStatusIsReady: function (chestId) {
+  updateStatusIsReady: function(chestId) {
     var body = { status: "READY" };
 
     ajax(
       "PUT",
       "https://test.ehanlin.com.tw/chest/updateStatus/" + chestId,
       body,
-      function (jsonData) {
+      function(jsonData) {
         console.log("成功抓取 updateStatusIsReady 資料！");
 
         let platFromTarget = $("#" + chestId);
@@ -47,29 +47,31 @@ var eventChest = {
   },
 
   // 將寶箱狀態轉為升級
-  getUpgrade: function (chestId, upLevel) {
+  getUpgrade: function(chestId, upLevel) {
     let putData = {
       level: upLevel
     };
+
+    let failLevel = putData.level - 1;
 
     ajax(
       "PUT",
       "https://test.ehanlin.com.tw/chest/upgrade/" + chestId,
       putData,
-      function (jsonData) {
+      function(jsonData) {
         console.log("成功抓取升級的寶箱資料！");
         console.log(jsonData);
 
         let upgradeContent = jsonData.content;
 
-        if ( jsonData.message.indexOf("failure") >= 0 ) {
+        if (jsonData.message.indexOf("failure") >= 0) {
           console.log("升級失敗");
           $.alert(
             alertWindow(
               "升級失敗",
               "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/upgradeStatus/upgradeFail" +
-              putData.level +
-              ".gif'>"
+                failLevel +
+                ".gif'>"
             )
           );
         } else {
@@ -84,63 +86,71 @@ var eventChest = {
           let upgradeToTransaction;
           let upgradeAuditId;
 
-          if ( finalCoins || finalGems ) {
+          if (finalCoins || finalGems) {
             let alertText = "";
 
-            if ( finalCoins && finalCoins < 0 ) {
-              alertText += "e幣不足！ 再努力一點，還差" + finalCoins * -1 + "元！\n";
+            if (finalCoins && finalCoins < 0) {
+              alertText +=
+                "e幣不足！ 再努力一點，還差" + finalCoins * -1 + "元！\n";
             }
 
-            if ( finalGems && finalGems < 0 ) {
-              alertText += "寶石不足！ 再努力一點，還差" + finalGems * -1 + "個寶石！";
+            if (finalGems && finalGems < 0) {
+              alertText +=
+                "寶石不足！ 再努力一點，還差" + finalGems * -1 + "個寶石！";
             }
 
-            $.alert(
-              alertWindow(
-                alertText,
-                ""
-              )
-            );
+            $.alert(alertWindow("", alertText));
           } else {
             console.log("=================>升級中");
             // 如果餘額足夠，則直接回傳 upgradeAuditId
             // 使用ajax deferred 的方式
             upgradeAuditId = upgradeContent;
-            upgradeToTransaction = function () {
+            upgradeToTransaction = function() {
               ajaxDeferred(
                 "POST",
                 "https://test.ehanlin.com.tw/currencyBank/transaction/upgrade",
                 {
                   upgradeAuditId: upgradeAuditId
                 }
-              ).then(function (jsonData) {
-                return ajaxDeferred(
-                  "GET",
-                  "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one"
-                );
-              }).then(function (jsonData) {
-                console.log("current totalAssets: " + jsonData.content);
+              )
+                .then(function(jsonData) {
+                  return ajaxDeferred(
+                    "GET",
+                    "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one"
+                  );
+                })
+                .then(function(jsonData) {
+                  console.log("current totalAssets: " + jsonData.content);
 
-                $.alert(alertWindow(
-                  "升級成功",
-                  "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/upgradeStatus/upgradeSuccess" +
-                  putData.level +
-                  ".gif'>",
-                  function () {
-                    console.log("current totalAssets: " + jsonData.content);
-                    $(".space .coins span")
-                      .empty()
-                      .append(jsonData.content.coins);
-                    $(".space .gems span")
-                      .empty()
-                      .append(jsonData.content.gems);
-
-                    platformTarget.data("level", dataLevel);
-                    determineLevel(platformTarget.find(".chest"), dataLevel);
+                  if (dataLevel === 6) {
+                    platformTarget.find(".upgradeButton").hide();
                   }
-                  )
-                );
-              });
+
+                  $.alert(
+                    alertWindow(
+                      "升級成功",
+                      "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/upgradeStatus/upgradeSuccess" +
+                        putData.level +
+                        ".gif'>",
+                      function() {
+                        console.log("current totalAssets: " + jsonData.content);
+
+                        $(".space .coins span")
+                          .empty()
+                          .append(jsonData.content.coins);
+                        $(".space .gems span")
+                          .empty()
+                          .append(jsonData.content.gems);
+
+                        platformTarget.data("level", dataLevel);
+                        determineLevel(
+                          platformTarget.find(".chest"),
+                          dataLevel
+                        );
+                      }
+                    )
+                  );
+                });
             };
             upgradeToTransaction();
           }

@@ -1,4 +1,4 @@
-var confirmWindow = function (title, content, confrimFunction) {
+var confirmWindow = function(title, content, confrimFunction) {
   return {
     title: "<h4>" + title + "</h4>",
     content: "<h1>" + content + "</h1>",
@@ -8,7 +8,7 @@ var confirmWindow = function (title, content, confrimFunction) {
       cancelButton: {
         text: "再想想",
         btnClass: "btn-blue",
-        action: function () {
+        action: function() {
           return;
         }
       },
@@ -21,14 +21,11 @@ var confirmWindow = function (title, content, confrimFunction) {
   };
 };
 
-var alertWindow = function (title, content, alertFunction) {
-
-  console.log(">>>>" + title);
-  console.log(">>>>" + content);
-  if ( !alertFunction ) {
+var alertWindow = function(title, content, alertFunction) {
+  
+  if (!alertFunction) {
     console.log(alertFunction);
-    alertFunction = function () {
-    }
+    alertFunction = function() {};
   }
 
   return {
