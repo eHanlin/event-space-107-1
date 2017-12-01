@@ -1,7 +1,6 @@
 var eventChest = {
   // 將寶箱狀態轉為開啟
   updateStatusIsOpen: function(chestId) {
-    console.log("----------updateStatusIsOpen-----------");
     ajax(
       "PUT",
       "https://test.ehanlin.com.tw/chest/open/" + chestId,
@@ -10,13 +9,24 @@ var eventChest = {
       },
       function(jsonData) {
         console.log("成功抓取updateStatusIsOpen資料！(Open)");
-        console.log(chestId);
-        console.log(jsonData);
+        var data = jsonData.content;
+        var gainCoins = data.coins;
+        var gainGems = data.gems;
+        var totalCoins = data.totalcoins;
+        var totalGems = data.totalgems;
 
         var platformTarget = $("#" + chestId);
         platformTarget.find(".chest").fadeOut("slow");
         platformTarget.find(".readyButton").fadeOut("slow");
-        $.alert(alertWindow("恭喜你獲得一台BMW X6M！", ""));
+
+        $(".space .coins span").append(totalCoins);
+        $(".space .gems span").append(totalGems);
+        $.alert(
+          alertWindow(
+            "",
+            "恭喜你獲得" + gainCoins + "個e幣和" + gainGems + "個寶石!"
+          )
+        );
       }
     );
   },
