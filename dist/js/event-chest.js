@@ -19,12 +19,18 @@ var eventChest = {
         platformTarget.find(".chest").fadeOut("slow");
         platformTarget.find(".readyButton").fadeOut("slow");
 
-        $(".space .coins span").append(totalCoins);
-        $(".space .gems span").append(totalGems);
         $.alert(
           alertWindow(
             "",
-            "恭喜你獲得" + gainCoins + "個e幣和" + gainGems + "個寶石!"
+            "恭喜你獲得" + gainCoins + "個e幣和" + gainGems + "個寶石!",
+            function() {
+              $(".space .coins span")
+                .empty()
+                .append(totalCoins);
+              $(".space .gems span")
+                .empty()
+                .append(totalGems);
+            }
           )
         );
       }
