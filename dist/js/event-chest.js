@@ -88,6 +88,7 @@ var eventChest = {
 
           if (finalCoins || finalGems) {
             let alertText = "";
+            let alert = "";
 
             if (finalCoins && finalCoins < 0) {
               alertText +=
@@ -100,12 +101,13 @@ var eventChest = {
             }
 
             if (finalCoins < 0 && finalGems < 0) {
-              alertText +=
+              alert +=
                 "e幣和寶石不足！ 再努力一點，還差" +
                 finalCoins * -1 +
                 "元！\n" +
                 finalGems * -1 +
                 "個寶石！";
+              $.alert(alertWindow("", alert));
             }
 
             $.alert(alertWindow("", alertText));
