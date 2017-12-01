@@ -1,6 +1,6 @@
 var eventChest = {
   // 將寶箱狀態轉為開啟
-  updateStatusIsOpen: function (chestId) {
+  letupdateStatusIsOpen: function (chestId) {
     ajax(
       "PUT",
       "https://test.ehanlin.com.tw/chest/updateStatus/" + chestId,
@@ -27,13 +27,13 @@ var eventChest = {
       "https://test.ehanlin.com.tw/chest/updateStatus/" + chestId,
       body,
       function (jsonData) {
-        console.log("成功抓取updateStatusIsReady資料！");
+        console.log("成功抓取 updateStatusIsReady 資料！");
 
-        var platFromTarget = $("#" + chestId);
-        var chestTarget = platFromTarget.find(".chest");
-        var level = platFromTarget.data("level");
-        var chestImage = "readyChest" + level;
-        var startButtonTarget = platFromTarget.find(".startButton");
+        let platFromTarget = $("#" + chestId);
+        let chestTarget = platFromTarget.find(".chest");
+        let level = platFromTarget.data("level");
+        let chestImage = "readyChest" + level;
+        let startButtonTarget = platFromTarget.find(".startButton");
 
         platFromTarget.find(".readyButton").fadeIn("slow");
         platFromTarget.find(".countdown").fadeOut("slow");
