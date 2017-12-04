@@ -11,14 +11,9 @@ var getAwards = function() {
       var data = jsonData.content;
       console.log(data);
 
-      data.forEach(function(value, key) {
-        if (value % 2 === 1) {
-          $(".countingAwards .odd .key").append(key);
-          $(".countingAwards .odd .value").append(value);
-        } else {
-          $(".countingAwards .even .key").append(key);
-          $(".countingAwards .even .value").append(value);
-        }
+      data.forEach(function(val, idx) {
+        console.log(val);
+        console.log(idx);
       });
     },
     function() {}
