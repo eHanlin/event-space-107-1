@@ -8,11 +8,7 @@ var getAwards = function() {
     null,
     function(jsonData) {
       console.log("成功抓取使用者獎勵累積！");
-      var data = jsonData.content;
-      console.log("data: " + data);
-      data.forEach(element => {
-        console.log(element);
-      });
+      console.log("data: " + jsonData);
     },
     function() {}
   );
