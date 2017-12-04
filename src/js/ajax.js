@@ -12,9 +12,6 @@ var ajaxGet = function(url, param, success, error) {
     crossDomain: true,
     success: success,
     error: error
-    // xhrFields: {
-    //   withCredentials: false
-    // }
   });
 };
 
