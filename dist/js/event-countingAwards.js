@@ -4,7 +4,7 @@ $(function() {
 
 var getAwards = function() {
   ajaxGet(
-    "http://127.0.0.1:8080/chest/retrieve/award",
+    "https://test.ehanlin.com.tw/chest/retrieve/award",
     null,
     function(jsonData) {
       console.log("成功抓取使用者獎勵累積！");
