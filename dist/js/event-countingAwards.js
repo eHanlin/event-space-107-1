@@ -10,11 +10,7 @@ var getAwards = function() {
       console.log("成功抓取使用者獎勵累積！");
       var data = jsonData.content;
       console.log(data);
-      var countingAwards = data.award1;
-      console.log(countingAwards);
-      $(".countingAwards")
-        .empty()
-        .append(data);
+      $(".countingAwards span").append(data);
     },
     function() {}
   );

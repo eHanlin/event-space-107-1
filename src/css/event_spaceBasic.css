@@ -93,6 +93,7 @@
   color: white;
   left: 50px;
   top: 1720px;
+  z-index: 2;
 }
 
 .container .notice {
