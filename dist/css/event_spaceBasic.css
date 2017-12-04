@@ -86,7 +86,17 @@
   top: 1630px;
 }
 
-.container .countingAwards {
+.container .countingAwards .value {
+  position: absolute;
+  font-family: "微軟正黑體";
+  font-size: 25px;
+  color: white;
+  left: 300px;
+  top: 1720px;
+  z-index: 2;
+}
+
+.container .countingAwards .key {
   position: absolute;
   font-family: "微軟正黑體";
   font-size: 25px;
