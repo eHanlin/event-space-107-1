@@ -86,45 +86,13 @@
   top: 1630px;
 }
 
-.container .border1 {
+.container .countingAwards {
   position: absolute;
+  font-family: "微軟正黑體";
+  font-size: 25px;
+  color: white;
   left: 50px;
   top: 1720px;
-}
-.container .border2 {
-  position: absolute;
-  left: 375px;
-  top: 1720px;
-}
-.container .border3 {
-  position: absolute;
-  left: 50px;
-  top: 1820px;
-}
-.container .border4 {
-  position: absolute;
-  left: 375px;
-  top: 1820px;
-}
-.container .border5 {
-  position: absolute;
-  left: 50px;
-  top: 1920px;
-}
-.container .border6 {
-  position: absolute;
-  left: 375px;
-  top: 1920px;
-}
-.container .border7 {
-  position: absolute;
-  left: 50px;
-  top: 2020px;
-}
-.container .border8 {
-  position: absolute;
-  left: 375px;
-  top: 2020px;
 }
 
 .container .notice {

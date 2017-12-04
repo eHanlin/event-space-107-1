@@ -4,11 +4,17 @@ $(function() {
 
 var getAwards = function() {
   ajaxGet(
-    "https://test.ehanlin.com.tw/chest/retrieve/award",
+    "http://127.0.0.1:8080/chest/retrieve/award",
     null,
     function(jsonData) {
       console.log("成功抓取使用者獎勵累積！");
-      console.log(jsonData);
+      var data = jsonData.content;
+      console.log(data);
+      var countingAwards = data.award1;
+      console.log(countingAwards);
+      $(".countingAwards")
+        .empty()
+        .append(data);
     },
     function() {}
   );
