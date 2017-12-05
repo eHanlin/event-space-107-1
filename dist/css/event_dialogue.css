@@ -9,7 +9,6 @@
   -webkit-border-radius: 220px / 100px;
   -moz-border-radius: 120px / 100px;
   border-radius: 120px / 100px;
-  position: relative;
 }
 
 .dialogue span {
@@ -19,7 +18,6 @@
   font-size: 0;
   background: #a4f5ff;
   overflow: hidden;
-  position: absolute;
 }
 
 .dialogue span.bot {
