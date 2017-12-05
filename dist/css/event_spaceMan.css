@@ -32,7 +32,7 @@
   right: 50px;
   top: 1150px;
   font-size: 20px;
-  font-family: "微軟正黑體";
+  font-family: "微軟正黑體", monospace;
   font-weight: bolder;
   color: rgb(62, 5, 5);
 }

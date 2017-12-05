@@ -18,21 +18,20 @@ var eventChest = {
         let gainAwardId = data["gainAwardId"];
 
         let platformTarget = $("#" + chestId);
-        let text = "恭喜你 <br/>", coinsText, gemsText, awardText;
+        let text = "恭喜你 <br/>", awardText = "", coinsText = "", gemsText = "";
 
         platformTarget.find(".chest").fadeOut("slow");
         platformTarget.find(".readyButton").fadeOut("slow");
 
         if ( gainCoins ) {
-          let coinSvg = "<img" + " style='transform: scale(0.15);'" +
-            " src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/currencyBank/coin.svg'>";
-          coinsText = coinSvg + " 獲得 " + gainCoins + " 金幣<br/>";
+          let openCoins = "<div id='open-coins' class='award-coins'>";
+          coinsText = openCoins + " 獲得 " + gainCoins + " 金幣</div><br/>";
         }
 
         if ( gainGems ) {
-          let gemSvg = "<img" + " style='transform: scale(0.15);'" +
-            " src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/currencyBank/gem.svg'>";
-          gemsText = gemSvg + " 獲得 " + gainGems + " 寶石<br/>";
+          // #open-award.award-coins {
+          let openGems = "<div id='open-gems' class='award-gems'>";
+          gemsText = openGems + " 獲得 " + gainGems + " 寶石 + </div><br/>";
         }
 
         if ( gainAward ) {
@@ -46,12 +45,8 @@ var eventChest = {
             text + coinsText + gemsText,
             awardText,
             function () {
-              $(".space .coins span")
-                .empty()
-                .append(totalCoins);
-              $(".space .gems span")
-                .empty()
-                .append(totalGems);
+              $(".space .coins span").empty().append(totalCoins);
+              $(".space .gems span").empty().append(totalGems);
             }
           )
         );
