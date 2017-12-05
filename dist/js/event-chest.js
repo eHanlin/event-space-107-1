@@ -10,24 +10,28 @@ var eventChest = {
       function (jsonData) {
         console.log("成功抓取updateStatusIsOpen資料！(Open)");
         let data = jsonData.content;
-        let gainCoins = data.coins;
-        let gainGems = data.gems;
-        let totalCoins = data.totalcoins;
-        let totalGems = data.totalgems;
+        let gainCoins = data["coins"];
+        let gainGems = data["gems"];
+        let totalCoins = data["totalCoins"];
+        let totalGems = data["totalGems"];
+        let gainAward = data["gainAward"];
+        let gainAwardId = data["gainAwardId"];
 
         let platformTarget = $("#" + chestId);
-        let text = "恭喜你 <br/>", coinsText, gemsText, awardText, gainAward;
+        let text = "恭喜你 <br/>", coinsText, gemsText, awardText;
 
         platformTarget.find(".chest").fadeOut("slow");
         platformTarget.find(".readyButton").fadeOut("slow");
 
         if ( gainCoins ) {
-          let coinSvg = "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/currencyBank/coin.svg'>";
+          let coinSvg = "<img" + " style='transform: scale(0.15);'" +
+            " src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/currencyBank/coin.svg'>";
           coinsText = coinSvg + " 獲得 " + gainCoins + " 金幣<br/>";
         }
 
         if ( gainGems ) {
-          let gemSvg = "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/currencyBank/gem.svg'>";
+          let gemSvg = "<img" + " style='transform: scale(0.15);'" +
+            " src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/currencyBank/gem.svg'>";
           gemsText = gemSvg + " 獲得 " + gainGems + " 寶石<br/>";
         }
 
