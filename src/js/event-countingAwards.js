@@ -8,10 +8,21 @@ var getAwards = function() {
     null,
     function(jsonData) {
       console.log("成功抓取使用者獎勵累積！");
-      var data = JSON.stringify(jsonData);
-      console.log("data: " + data);
+      var awards = jsonData.content;
 
-      $(".countingAwards ul li").append(data);
+      var index = 0;
+      for (let key in jsonData.content) {
+        var value = awards[key];
+
+        $(".countingAwards .awardBox li:eq(" + index + ")").append(
+          "<span style='width:120px;'>" + key + "</span>"
+        );
+
+        $(".countingAwards .awardBox li:eq(" + index + ")").append(
+          "<h1><span>" + value + "</span></h1>"
+        );
+        index++;
+      }
     },
     function() {}
   );

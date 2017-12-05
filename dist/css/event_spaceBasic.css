@@ -86,25 +86,123 @@
   top: 1630px;
 }
 
-.container .countingAwards .value {
-  position: absolute;
-  font-family: "微軟正黑體";
-  font-size: 25px;
-  color: white;
-  left: 300px;
-  top: 1720px;
-  z-index: 2;
-}
+/* ================== counting1~4 ================== */
 
-.container .countingAwards .key {
+.container .countingAwards .awardBox .box1 {
   position: absolute;
-  font-family: "微軟正黑體";
-  font-size: 25px;
-  color: white;
+  background-image: url("../img/border.png");
+  width: 313px;
+  height: 83px;
   left: 50px;
   top: 1720px;
   z-index: 2;
 }
+
+.container .countingAwards .awardBox .box2 {
+  position: absolute;
+  background-image: url("../img/border.png");
+  width: 313px;
+  height: 83px;
+  left: 50px;
+  top: 1820px;
+  z-index: 2;
+}
+
+.container .countingAwards .awardBox .box3 {
+  position: absolute;
+  background-image: url("../img/border.png");
+  width: 313px;
+  height: 83px;
+  left: 50px;
+  top: 1920px;
+  z-index: 2;
+}
+
+.container .countingAwards .awardBox .box4 {
+  position: absolute;
+  background-image: url("../img/border.png");
+  width: 313px;
+  height: 83px;
+  left: 50px;
+  top: 2020px;
+  z-index: 2;
+}
+
+.container .countingAwards .box1 span,
+.container .countingAwards .box2 span,
+.container .countingAwards .box3 span,
+.container .countingAwards .box4 span,
+.container .countingAwards .box5 span,
+.container .countingAwards .box6 span,
+.container .countingAwards .box7 span,
+.container .countingAwards .box8 span {
+  position: absolute;
+  font-family: "微軟正黑體";
+  font-size: 20px;
+  color: white;
+  top: 15px;
+  right: 70px;
+}
+/* ================== counting1~4 ================== */
+
+/* ================== counting5~8 ================== */
+.container .countingAwards .awardBox .box5 {
+  position: absolute;
+  background-image: url("../img/border.png");
+  width: 313px;
+  height: 83px;
+  left: 380px;
+  top: 1720px;
+  z-index: 2;
+}
+
+.container .countingAwards .awardBox .box6 {
+  position: absolute;
+  background-image: url("../img/border.png");
+  width: 313px;
+  height: 83px;
+  left: 380px;
+  top: 1820px;
+  z-index: 2;
+}
+
+.container .countingAwards .awardBox .box7 {
+  position: absolute;
+  background-image: url("../img/border.png");
+  width: 313px;
+  height: 83px;
+  left: 380px;
+  top: 1920px;
+  z-index: 2;
+}
+
+.container .countingAwards .awardBox .box8 {
+  position: absolute;
+  background-image: url("../img/border.png");
+  width: 313px;
+  height: 83px;
+  left: 380px;
+  top: 2020px;
+  z-index: 2;
+}
+
+.container .countingAwards .box1 h1 span,
+.container .countingAwards .box2 h1 span,
+.container .countingAwards .box3 h1 span,
+.container .countingAwards .box4 h1 span,
+.container .countingAwards .box5 h1 span,
+.container .countingAwards .box6 h1 span,
+.container .countingAwards .box7 h1 span,
+.container .countingAwards .box8 h1 span {
+  position: absolute;
+  font-family: "微軟正黑體";
+  font-size: 32px;
+  color: white;
+  top: 15px;
+  right: 25px;
+}
+
+/* ================== counting5~8 ================== */
 
 .container .notice {
   position: absolute;
