@@ -1,7 +1,7 @@
 var confirmWindow = function(title, content, confrimFunction) {
   return {
-    title: "<h4>" + title + "</h4>",
-    content: "<h1>" + content + "</h1>",
+    title: "<h5>" + title + "</h5>",
+    content: "<h2>" + content + "</h2>",
     useBootstrap: false,
     theme: "supervan",
     buttons: {
