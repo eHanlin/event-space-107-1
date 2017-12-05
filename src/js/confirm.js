@@ -29,7 +29,7 @@ var alertWindow = function(title, content, alertFunction) {
 
   return {
     title: title,
-    content: "<h1>" + content + "</h1>",
+    content: "<h2>" + content + "</h2>",
     useBootstrap: false,
     theme: "supervan",
     buttons: {
