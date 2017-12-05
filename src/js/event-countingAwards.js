@@ -1,26 +1,29 @@
-$(function () {
+$(function() {
   getAwards();
 });
 
-let getAwards = function () {
+var getAwards = function() {
   ajaxGet(
-    "https://test.eahanlin.com.tw/chest/retrieve/award",
+    "https://test.ehanlin.com.tw/chest/retrieve/award",
     null,
-    function (jsonData) {
+    function(jsonData) {
       console.log("成功抓取使用者獎勵累積！");
-      for ( let i = 0; i < jsonData.length; i++ ) {
-        jsonData[i].forEach(function (value, key) {
-          console.log(value);
-          console.log(key);
-        });
+      var awards = jsonData.content;
+
+      var index = 0;
+      for (let key in jsonData.content) {
+        var value = awards[key];
+
+        $(".countingAwards .awardBox li:eq(" + index + ")").append(
+          "<span style='width:120px;'>" + key + "</span>"
+        );
+
+        $(".countingAwards .awardBox li:eq(" + index + ")").append(
+          "<h1><span>" + value + "</span></h1>"
+        );
+        index++;
       }
-
-      var data = JSON.stringify(jsonData);
-      console.log("data: " + data);
-
-      $(".countingAwards ul li").append(data);
     },
-    function () {
-    }
+    function() {}
   );
 };
