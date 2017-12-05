@@ -16,7 +16,7 @@ var eventChest = {
         let totalGems = data.totalgems;
 
         let platformTarget = $("#" + chestId);
-        let text = "恭喜你 <br/>", coinsText, gemsText, awardText;
+        let text = "恭喜你 <br/>", coinsText, gemsText, awardText, gainAward;
 
         platformTarget.find(".chest").fadeOut("slow");
         platformTarget.find(".readyButton").fadeOut("slow");
