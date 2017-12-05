@@ -19,14 +19,14 @@
   top: 1400px;
 }
 
-.container #award img {
+.container #award.cycle-slideshow {
   position: absolute;
   transform: scale(1.1);
   left: 30px;
   top: 1150px;
 }
 
-.container #award .text {
+.container article .text {
   position: absolute;
   cursor: pointer;
   right: 50px;
@@ -35,4 +35,19 @@
   font-family: "微軟正黑體", monospace;
   font-weight: bolder;
   color: rgb(62, 5, 5);
+  z-index: 2;
+}
+
+.container article .seeDetail {
+  position: absolute;
+  background-color: #008cba;
+  top: 1300px;
+  left: 560px;
+  height: 40px;
+  width: 150px;
+  font-size: 25px;
+  z-index: 2;
+  outline: none;
+  color: white;
+  border: 2px solid rgb(2, 49, 91);
 }
