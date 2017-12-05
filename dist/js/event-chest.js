@@ -105,35 +105,33 @@ var eventChest = {
             "POST",
             "https://test.ehanlin.com.tw/currencyBank/transaction/upgrade",
             {
-              upgradeAuditId: upgradeContent
+              upgradeAuditId: upgradeContent["upgradeAuditId"]
             }
-          )
-            .then(function (jsonData) {
-              return ajaxDeferred(
-                "GET",
-                "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one"
-              );
-            })
-            .then(function (jsonData) {
-              console.log("current totalAssets: " + jsonData.content);
+          ).then(function (jsonData) {
+            return ajaxDeferred(
+              "GET",
+              "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one"
+            );
+          }).then(function (jsonData) {
+            console.log("current totalAssets: " + jsonData.content);
 
-              $.alert(
-                alertWindow(
-                  alertTitle,
-                  alertGif,
-                  function () {
-                    console.log("current totalAssets: " + jsonData.content);
+            $.alert(
+              alertWindow(
+                alertTitle,
+                alertGif,
+                function () {
+                  console.log("current totalAssets: " + jsonData.content);
 
-                    $(".space .coins span")
-                      .empty()
-                      .append(jsonData.content.coins);
-                    $(".space .gems span")
-                      .empty()
-                      .append(jsonData.content.gems);
-                  }
-                )
-              );
-            });
+                  $(".space .coins span")
+                    .empty()
+                    .append(jsonData.content["coins"]);
+                  $(".space .gems span")
+                    .empty()
+                    .append(jsonData.content["gems"]);
+                }
+              )
+            );
+          });
         };
 
         if ( jsonData.message.indexOf("failure") >= 0 ) {
@@ -145,23 +143,20 @@ var eventChest = {
           upgradeToTransaction("升級失敗", failureGif);
         } else {
           // -------- 如果餘額不足，會回傳 finalCoins 和 finalGems
-          let finalCoins = upgradeContent.finalCoins;
-          let finalGems = upgradeContent.finalGems;
+          let finalCoins = upgradeContent["finalCoins"];
+          let finalGems = upgradeContent["finalGems"];
           // --------------------------------------------------
           if ( finalCoins || finalGems ) {
             let alertText = "";
 
             if ( finalCoins < 0 && finalGems < 0 ) {
               alertText +=
-                "e幣和寶石不足！ 再努力一點，還差" +
-                finalCoins * -1 +
-                "元！\n" +
-                finalGems * -1 +
-                "個寶石！";
+                "e 幣和寶石不足！ 再努力一點，還差" +
+                finalCoins * -1 + "元！ " + finalGems * -1 + "個寶石！";
               $.alert(alertWindow("", alertText));
             } else if ( finalCoins < 0 ) {
               alertText +=
-                "e幣不足！ 再努力一點，還差" + finalCoins * -1 + "元！\n";
+                "e 幣不足！ 再努力一點，還差" + finalCoins * -1 + "元！";
               $.alert(alertWindow("", alertText));
             } else if ( finalGems < 0 ) {
               alertText +=
