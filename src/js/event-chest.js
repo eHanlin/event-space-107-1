@@ -24,14 +24,14 @@ var eventChest = {
         platformTarget.find(".readyButton").fadeOut("slow");
 
         if ( gainCoins ) {
-          let openCoins = "<div id='open-coins' class='award-coins'>";
-          coinsText = openCoins + " 獲得 " + gainCoins + " 金幣</div><br/>";
+          let openCoins = "<div id='open-coins' class='award-coins'></div>";
+          coinsText = openCoins + " 獲得 " + gainCoins + " 金幣<br/>";
         }
 
         if ( gainGems ) {
           // #open-award.award-coins {
-          let openGems = "<div id='open-gems' class='award-gems'>";
-          gemsText = openGems + " 獲得 " + gainGems + " 寶石 + </div><br/>";
+          let openGems = "<div id='open-gems' class='award-gems'></div>";
+          gemsText = openGems + " 獲得 " + gainGems + " 寶石<br/>";
         }
 
         if ( gainAward ) {
