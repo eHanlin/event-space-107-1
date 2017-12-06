@@ -92,6 +92,7 @@
   top: 2120px;
 }
 
+/* 注意事項 */
 .container .message .textMessage {
   position: absolute;
   font-size: 18px;
@@ -102,20 +103,38 @@
   z-index: 2;
 }
 
-.container #down-arrow {
+.container #down-button {
   position: absolute;
+  background-color: #008cba;
+  color: white;
   outline: none;
-  left: 340px;
-  top: 2620px;
+  cursor: pointer;
+  left: 300px;
+  top: 2610px;
+  height: 30px;
+  width: 140px;
+  font-size: 16px;
+  z-index: 2;
+  border: 2px solid rgb(2, 49, 91);
 }
 
-.container #up-arrow {
+.container #up-button {
   position: absolute;
+  background-color: #008cba;
+  color: white;
   outline: none;
-  left: 340px;
-  top: 4570px;
+  cursor: pointer;
+  left: 300px;
+  top: 4560px;
+  height: 30px;
+  width: 130px;
+  font-size: 16px;
+  z-index: 2;
+  border: 2px solid rgb(2, 49, 91);
 }
+/* 注意事項 */
 
+/* 使用者的e幣跟寶石 */
 .container .space .coins {
   position: absolute;
   background-image: url("../img/displayCoins.png");
@@ -144,3 +163,4 @@
   width: 184px;
   height: 57px;
 }
+/* 使用者的e幣跟寶石 */

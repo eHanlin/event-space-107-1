@@ -55,7 +55,7 @@ $(function() {
   getAwardMessage(1);
   cycleAfter();
 
-  $(".container article .seeDetail").on("click", function() {
+  $(".container article .detailBtn").on("click", function() {
     alertFunc();
   });
 });
