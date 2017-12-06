@@ -6,7 +6,6 @@
 
 .container #award.cycle-slideshow {
   position: absolute;
-  transform: scale(1.1);
   left: 30px;
   top: 1150px;
 }
@@ -26,9 +25,9 @@
   position: absolute;
   background-color: #008cba;
   top: 1230px;
-  left: 560px;
+  left: 570px;
   height: 30px;
-  width: 130px;
+  width: 110px;
   font-size: 18px;
   z-index: 2;
   outline: none;
