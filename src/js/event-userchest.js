@@ -62,6 +62,11 @@ var determineStatus = function(chest, thisPlatformTarget, chestSatuts) {
     thisPlatformTarget.find(".upgradeButton").hide();
   }
 
+  if (chestId === null) {
+    thisPlatformTarget.find(".startButton").hide();
+    thisPlatformTarget.find(".upgradeButton").hide();
+  }
+
   if (chestSatuts === "LOCKED") {
     console.log("===============> status is locked <=================");
     determineLevel(chestTarget, chestLevel);
