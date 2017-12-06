@@ -26,8 +26,8 @@ let coolDownTime = function(chestId) {
     let seconds = jsonData.content;
     let countdownTarget = $("#" + chestId).find(".countdown");
     countdownTarget.countDown({
-      timeInSecond: 10,
-      displayTpl: "{hour}時{minute}分{second}秒",
+      timeInSecond: 5,
+      displayTpl: "{hour}時 {minute}分 {second}秒",
       limit: "hour",
       callback: function() {
         eventChest.updateStatusIsReady(chestId);

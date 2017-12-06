@@ -1,7 +1,7 @@
 let confirmWindow = function(title, content, confrimFunction) {
   return {
     title: "<h5>" + title + "</h5>",
-    content: "<h2>" + content + "</h2>",
+    content: "<span style='font-size: 20px'>" + content + "</span>",
     useBootstrap: false,
     theme: "supervan",
     buttons: {
@@ -29,7 +29,7 @@ let alertWindow = function(title, content, confirmCallBack) {
 
   return {
     title: title,
-    content: "<h2>" + content + "</h2>",
+    content: "<span style='font-size: 20px'>" + content + "</span>",
     useBootstrap: false,
     theme: "supervan",
     buttons: {

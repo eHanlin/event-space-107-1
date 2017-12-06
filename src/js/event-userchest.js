@@ -40,10 +40,6 @@ $(function () {
     }
   };
 
-
-
-  $(".container .space .platform").hide();
-
   ajaxGet(
     "https://test.ehanlin.com.tw/chest/retrieve",
     null,

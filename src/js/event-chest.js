@@ -1,70 +1,81 @@
 let eventChest = {
   // 將寶箱狀態轉為開啟
   updateStatusIsOpen: function (chestId) {
-    ajax(
-      "PUT",
-      "https://test.ehanlin.com.tw/chest/open/" + chestId,
-      {
-        status: "OPEN"
-      },
-      function (jsonData) {
-        console.log("成功抓取updateStatusIsOpen資料！(Open)");
-        let data = jsonData.content;
-        let gainCoins = data["coins"];
-        let gainGems = data["gems"];
-        let totalCoins = data["totalCoins"];
-        let totalGems = data["totalGems"];
-        let gainAward = data["gainAward"];
-        let gainAwardId = data["gainAwardId"];
+    let openSuccess = function (jsonData) {
+      console.log("成功抓取updateStatusIsOpen資料！(Open)");
+      let data = jsonData.content;
+      let gainCoins = data["coins"];
+      let gainGems = data["gems"];
+      let totalCoins = data["totalCoins"];
+      let totalGems = data["totalGems"];
+      let gainAward = data["gainAward"];
+      let gainAwardId = data["gainAwardId"];
 
-        let platformTarget = $("#" + chestId);
-        let text = "恭喜你 <br/>", awardText = "", coinsText = "", gemsText = "";
-        let popup;
+      let platformTarget = $("#" + chestId);
+      let chestLevel = platformTarget.data("level");
+      let openChestGif = "<div style='float: left; width: 250px; height: 250px;"
+        + "background-image: url(https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource"
+        + "/event-space/img/chest/open/openChest"
+        + chestLevel
+        + ".gif);"
+        + "background-size: contain;'></div>";
 
-        platformTarget.find(".chest").fadeOut("slow");
-        platformTarget.find(".readyButton").fadeOut("slow");
+      let text = "<div style='float: right; height: 300px; width: 220px;'>"
+        + "<div style='height: 30px; font-size: 20px;'>恭喜你獲得</div><br/>"
+        + "<table width='100%' style='table-layout:fixed; font-size: 22px;'>";
+      let awardText = "", coinsText = "", gemsText = "";
+      let popup;
 
-        if ( gainCoins ) {
-          let openCoins = "<div id='open-coins' class='award-coins'></div>";
-          coinsText = openCoins + " 獲得 " + gainCoins + " 金幣<br/>";
-        }
+      platformTarget.find(".chest").fadeOut("slow");
+      platformTarget.find(".readyButton").fadeOut("slow");
 
-        if ( gainGems ) {
-          // #open-award.award-coins {
-          let openGems = "<div id='open-gems' class='award-gems'></div>";
-          gemsText = openGems + " 獲得 " + gainGems + " 寶石<br/>";
-        }
-
-        if ( gainAward ) {
-          let awardImage = "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/award/"
-            + gainAwardId + ".png' ><br/>";
-          awardText = awardImage + gainAward;
-        }
-
-        popup = function () {
-          $.alert(
-            alertWindow(
-              text + coinsText + gemsText,
-              awardText,
-              function () {
-                $(".space .coins span").empty().append(totalCoins);
-                $(".space .gems span").empty().append(totalGems);
-              }
-            )
-          );
-        };
-
-        $.confirm({
-          content: '',
-          autoClose: 'confirmGain|5000',
-          buttons: {
-            confirmGain: {
-              text: '',
-              action: popup
-            }
-          }
-        });
+      if ( gainCoins ) {
+        let openCoins = "<tr><td style='height: 30px; transform: translateY(-50%)'>"
+          + "<div id='open-coins' class='award-coins'></div>";
+        coinsText = openCoins + gainCoins + " 金幣 </td></tr>";
       }
+
+      if ( gainGems ) {
+        let openGems = "<tr><td style='height: 30px; transform: translateY(-50%)'>"
+          + "<div id='open-gems' class='award-gems'></div>";
+        gemsText = openGems + gainGems + " 寶石 </td></tr>";
+      }
+
+      if ( gainAward ) {
+        let awardImage = "<img style='width: 200px; height: 200px;'"
+          + " src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/award/"
+          + gainAwardId + ".png' ><br/>";
+        awardText = gainAward + awardImage;
+      }
+
+      $.alert(
+        alertWindow(
+          "",
+          "<div style='width: 500px;'>"
+          + openChestGif + text + coinsText + gemsText
+          + "</table>" + awardText + "</div>"
+          + "</div>",
+          function () {
+            let originalCoins = $(".space .coins #own-coins").text();
+            let originalGems = $(".space .gems #own-gems").text();
+            countTrasition("own-coins", originalCoins, totalCoins);
+            countTrasition("own-coins", originalGems, totalGems);
+          }
+        )
+      );
+    };
+
+    $.confirm(
+      confirmWindow(
+        "確定開啟寶箱嗎！？", "", ajax.bind(this,
+          "PUT",
+          "https://test.ehanlin.com.tw/chest/open/" + chestId,
+          {
+            status: "OPEN"
+          },
+          openSuccess
+        )
+      )
     );
   },
 

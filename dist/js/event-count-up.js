@@ -1,0 +1,1 @@
+let countTrasition=function(id,start,end){new CountUp(id,start,end,0,3).start()};
