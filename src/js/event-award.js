@@ -18,7 +18,7 @@ $(function() {
         $(".space .dialogue #notice").text(notice);
         $(".space .dialogue #needChestLv").text(needChestLv);
         $(".space .dialogue #quantity").text(quantity);
-        $(".space .dialogue #rank").text(rank);
+        // $(".space .dialogue #rank").text(rank);
         $(".space .dialogue #title").text(desc);
         $(".space .dialogue #introduction").text(introduction);
       },
@@ -29,12 +29,12 @@ $(function() {
   var alertFunc = function() {
     var notice = $(".dialogue #notice").text();
     var needChestLv = $(".dialogue #needChestLv").text();
-    var rank = $(".dialogue #rank").text();
+    // var rank = $(".dialogue #rank").text();
     var quantity = $(".dialogue #quantity").text();
     var desc = $(".dialogue #title").text();
     var introduction = $(".dialogue #introduction").text();
     $.alert(
-      alertForAward(desc, rank, quantity, needChestLv, introduction, notice, "")
+      alertForAward(desc, null, quantity, needChestLv, introduction, notice, "")
     );
     cycleAfter();
   };

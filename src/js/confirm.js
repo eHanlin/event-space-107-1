@@ -58,11 +58,9 @@ let alertForAward = function(
   return {
     title: title,
     content:
-      "<h1>寶箱等級：" +
-      rank +
-      "<br>中獎名額：" +
+      "<h1><br>中獎名額：" +
       quantity +
-      "名<br>可獲取的寶箱：" +
+      "名<br>可獲取的寶箱：Lv. " +
       needChestLv +
       "<br>" +
       introduction +
