@@ -24,6 +24,7 @@ $(function () {
 
       $(".container .space .startButton[data-status=LOCKED]").fadeOut("slow");
 
+      thisPlatformTarget.find(".startButton").hide();
       thisPlatformTarget.find(".upgradeButton").hide();
 
       determineLevel(chestTarget, chestLevel);

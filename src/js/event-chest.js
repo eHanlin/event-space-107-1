@@ -59,7 +59,8 @@ let eventChest = {
             let originalCoins = $(".space .coins #own-coins").text();
             let originalGems = $(".space .gems #own-gems").text();
             countTrasition("own-coins", originalCoins, totalCoins);
-            countTrasition("own-coins", originalGems, totalGems);
+            countTrasition("own-gems", originalGems, totalGems);
+            getAwards();
           }
         )
       );
