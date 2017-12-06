@@ -11,6 +11,7 @@ $(function() {
       for (let i = 0; i < chests.length; i++) {
         chest = chests[i];
         indexPlatformTarget = $(".platform:eq(" + i + ")");
+        indexPlatformTarget.show();
         determineStatus(chest, indexPlatformTarget, chest.status);
       }
 
