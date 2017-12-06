@@ -1,1 +1,150 @@
+<<<<<<< HEAD
 .background{position:relative;background-color:#00192d;width:735px;left:50%;transform:translate(-50%);z-index:1}.container .space{position:relative;background-image:url(../img/space.png);background-size:contain;width:735px;height:1218px;z-index:2}.container .space button{cursor:pointer}.container .activity{position:absolute;left:325px;top:30px}.container .bank{position:absolute;left:540px;top:80px}.container .bankLogout{position:absolute;left:540px;top:80px}.container .eventText{position:absolute;left:35px;top:170px}.container .greenPosition{position:absolute;left:80px;top:490px}.container .redPosition{position:absolute;left:360px;top:490px}.container .brownPosition{position:absolute;left:190px;top:820px}.container .pinkPosition{position:absolute;left:505px;top:790px}.container .eventUFO{position:absolute;top:895px;left:40px}.container .chestMessage{position:absolute;left:320px;top:1530px}.container .stockRoom{position:absolute;left:70px;top:1630px}.container .countingAwards .awardBox .box1{position:absolute;background-image:url(../img/border.png);width:313px;height:83px;left:50px;top:1720px;z-index:2}.container .countingAwards .awardBox .box2{position:absolute;background-image:url(../img/border.png);width:313px;height:83px;left:50px;top:1820px;z-index:2}.container .countingAwards .awardBox .box3{position:absolute;background-image:url(../img/border.png);width:313px;height:83px;left:50px;top:1920px;z-index:2}.container .countingAwards .awardBox .box4{position:absolute;background-image:url(../img/border.png);width:313px;height:83px;left:50px;top:2020px;z-index:2}.container .countingAwards .box1 span,.container .countingAwards .box2 span,.container .countingAwards .box3 span,.container .countingAwards .box4 span,.container .countingAwards .box5 span,.container .countingAwards .box6 span,.container .countingAwards .box7 span,.container .countingAwards .box8 span{position:absolute;font-family:"微軟正黑體";font-size:20px;color:#fff;top:15px;right:70px}.container .countingAwards .awardBox .box5{position:absolute;background-image:url(../img/border.png);width:313px;height:83px;left:380px;top:1720px;z-index:2}.container .countingAwards .awardBox .box6{position:absolute;background-image:url(../img/border.png);width:313px;height:83px;left:380px;top:1820px;z-index:2}.container .countingAwards .awardBox .box7{position:absolute;background-image:url(../img/border.png);width:313px;height:83px;left:380px;top:1920px;z-index:2}.container .countingAwards .awardBox .box8{position:absolute;background-image:url(../img/border.png);width:313px;height:83px;left:380px;top:2020px;z-index:2}.container .countingAwards .box1 h1 span,.container .countingAwards .box2 h1 span,.container .countingAwards .box3 h1 span,.container .countingAwards .box4 h1 span,.container .countingAwards .box5 h1 span,.container .countingAwards .box6 h1 span,.container .countingAwards .box7 h1 span,.container .countingAwards .box8 h1 span{position:absolute;font-family:"微軟正黑體";font-size:32px;color:#fff;top:15px;right:25px}.container .notice{position:absolute;left:70px;top:2120px}.container .message .textMessage{position:absolute;font-size:23px;font-family:"微軟正黑體",monospace;color:#fff;left:10px;top:2220px;z-index:2}.container #down-arrow{position:absolute;outline:0;left:330px;top:2880px}.container #up-arrow{position:absolute;outline:0;left:330px;top:5830px}.container .space .coins{position:absolute;background-image:url(../img/displayCoins.png);left:35px;top:30px;width:187px;height:61px}.container .space .coins span,.container .space .gems span{position:absolute;top:11.5px;right:20px;font-size:26px;font-family:"微軟正黑體";font-weight:bolder;color:#451717}.container .space .gems{position:absolute;background-image:url(../img/displayGems.png);left:35px;top:100px;width:184px;height:57px}
+=======
+.background {
+  position: relative;
+  background-color: #00192d;
+  width: 735px;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 1;
+}
+
+.container .space {
+  position: relative;
+  background-image: url("../img/space.png");
+  background-size: contain;
+  width: 735px;
+  height: 1218px;
+  z-index: 2;
+}
+
+.container .space button {
+  cursor: pointer;
+}
+
+.container .activity {
+  position: absolute;
+  left: 325px;
+  top: 30px;
+}
+
+.container .bank {
+  position: absolute;
+  left: 540px;
+  top: 80px;
+}
+
+.container .bankLogout {
+  position: absolute;
+  left: 540px;
+  top: 80px;
+}
+
+.container .eventText {
+  position: absolute;
+  left: 35px;
+  top: 170px;
+}
+
+.container .greenPosition {
+  position: absolute;
+  left: 80px;
+  top: 490px;
+}
+
+.container .redPosition {
+  position: absolute;
+  left: 360px;
+  top: 490px;
+}
+
+.container .brownPosition {
+  position: absolute;
+  left: 190px;
+  top: 820px;
+}
+
+.container .pinkPosition {
+  position: absolute;
+  left: 505px;
+  top: 790px;
+}
+
+.container .eventUFO {
+  position: absolute;
+  top: 895px;
+  left: 40px;
+}
+
+.container .chestMessage {
+  position: absolute;
+  left: 320px;
+  top: 1530px;
+}
+
+.container .stockRoom {
+  position: absolute;
+  left: 70px;
+  top: 1630px;
+}
+
+.container .notice {
+  position: absolute;
+  left: 70px;
+  top: 2120px;
+}
+
+.container .message .textMessage {
+  position: absolute;
+  font-size: 18px;
+  font-family: "微軟正黑體", monospace;
+  color: white;
+  left: 10px;
+  top: 2220px;
+  z-index: 2;
+}
+
+.container #down-arrow {
+  position: absolute;
+  outline: none;
+  left: 340px;
+  top: 2620px;
+}
+
+.container #up-arrow {
+  position: absolute;
+  outline: none;
+  left: 340px;
+  top: 4570px;
+}
+
+.container .space .coins {
+  position: absolute;
+  background-image: url("../img/displayCoins.png");
+  left: 35px;
+  top: 30px;
+  width: 187px;
+  height: 61px;
+}
+
+.container .space .coins span,
+.container .space .gems span {
+  position: absolute;
+  top: 11.5px;
+  right: 20px;
+  font-size: 26px;
+  font-family: "微軟正黑體";
+  font-weight: bolder;
+  color: rgb(69, 23, 23);
+}
+
+.container .space .gems {
+  position: absolute;
+  background-image: url("../img/displayGems.png");
+  left: 35px;
+  top: 100px;
+  width: 184px;
+  height: 57px;
+}
+>>>>>>> 92e43870c198e70026ba332c4f3fbcb2ae3beed6

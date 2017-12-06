@@ -7,7 +7,6 @@
   <script type="text/javascript" src="./js/package/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="./js/package/jquery.countdown.min.js"></script>
   <script type="text/javascript" src="./js/package/jquery-confirm.min.js"></script>
-
   <link rel="stylesheet" href="https://www.ehanlin.com.tw/lesscss/ehanlin-basicss.css" />
   <link rel="stylesheet" href="./css/package/jquery-confirm.css">
   <link rel="stylesheet" href="./css/package/style.css">
@@ -17,6 +16,7 @@
   <link rel="stylesheet" href="./css/event_spaceMan.css">
   <link rel="stylesheet" href="./css/event_countdown.css">
   <link rel="stylesheet" href="./css/event_dialogue.css">
+  <link rel="stylesheet" href="./css/event_countingAwards.css">
 
   <link rel="stylesheet" href="./css/event_greenPlatform.css">
   <link rel="stylesheet" href="./css/event_redPlatform.css">
@@ -39,17 +39,15 @@
       </div>
 
       <div class="book-intro">
-        <div class="background" style="height:2950px">
+        <div class="background" style="height:2650px">
 
           <div class="space">
-
             <div class="coins">
               <span></span>
             </div>
             <div class="gems">
               <span></span>
             </div>
-
 
             <a href="#attention">
               <img class="activity" src="./img/activity.png">
@@ -63,103 +61,123 @@
 
             <img class="eventText" src="./img/eventText.png">
 
-
-            <div id="green">
-              <div class="platform" style="display:none;">
-                <button class="startButton" type="button"> 啟動 </button>
-                <button class="upgradeButton" type="button"> 升級 </button>
-                <button class='readyButton' style="display:none;" type='button'> 開啟 </button>
-                <img class="chest">
-                <div class="countdown font"></div>
+            <article class="chestArticle">
+              <div id="green">
+                <div class="platform" style="display:none;">
+                  <button class="startButton" type="button"> 啟動 </button>
+                  <button class="upgradeButton" type="button"> 升級 </button>
+                  <button class='readyButton' style="display:none;" type='button'> 開啟 </button>
+                  <img class="chest">
+                  <div class="countdown font"></div>
+                </div>
+                <img class="greenPosition" src="./img/greenPosition.png">
               </div>
-              <img class="greenPosition" src="./img/greenPosition.png">
-            </div>
 
-            <div id="red">
-              <div class="platform" style="display:none;">
-                <button class="startButton" type="button"> 啟動 </button>
-                <button class="upgradeButton" type="button"> 升級 </button>
-                <button class='readyButton' style="display:none;" type='button'> 開啟 </button>
-                <img class="chest">
-                <div class="countdown font"></div>
+              <div id="red">
+                <div class="platform" style="display:none;">
+                  <button class="startButton" type="button"> 啟動 </button>
+                  <button class="upgradeButton" type="button"> 升級 </button>
+                  <button class='readyButton' style="display:none;" type='button'> 開啟 </button>
+                  <img class="chest">
+                  <div class="countdown font"></div>
+                </div>
+                <img class="redPosition" src="./img/redPosition.png">
               </div>
-              <img class="redPosition" src="./img/redPosition.png">
-            </div>
 
-            <div id="brown">
-              <div class="platform" style="display:none;">
-                <button class="startButton" type="button"> 啟動 </button>
-                <button class="upgradeButton" type="button"> 升級 </button>
-                <button class='readyButton' style="display:none;" type='button'> 開啟 </button>
-                <img class="chest">
-                <div class="countdown font"></div>
+              <div id="brown">
+                <div class="platform" style="display:none;">
+                  <button class="startButton" type="button"> 啟動 </button>
+                  <button class="upgradeButton" type="button"> 升級 </button>
+                  <button class='readyButton' style="display:none;" type='button'> 開啟 </button>
+                  <img class="chest">
+                  <div class="countdown font"></div>
+                </div>
+                <img class="brownPosition" src="./img/brownPosition.png">
               </div>
-              <img class="brownPosition" src="./img/brownPosition.png">
-            </div>
 
-            <div id="pink">
-              <div class="platform" style="display:none;">
-                <button class="startButton" type="button"> 啟動 </button>
-                <button class="upgradeButton" type="button"> 升級 </button>
-                <button class='readyButton' style="display:none;" type='button'> 開啟 </button>
-                <img class="chest">
-                <div class="countdown font"></div>
+              <div id="pink">
+                <div class="platform" style="display:none;">
+                  <button class="startButton" type="button"> 啟動 </button>
+                  <button class="upgradeButton" type="button"> 升級 </button>
+                  <button class='readyButton' style="display:none;" type='button'> 開啟 </button>
+                  <img class="chest">
+                  <div class="countdown font"></div>
+                </div>
+                <img class="pinkPosition" src="./img/pinkPosition.png">
               </div>
-              <img class="pinkPosition" src="./img/pinkPosition.png">
-            </div>
-
-
-            <div class="dialogue">
-              <span class="bot"></span>
-              <span id="title" style="display:none">
-                Apple Watch Series 3
-              </span>
-              <span id="rank" style="display:none">
-                A
-              </span>
-              <span id="quantity" style="display:none">
-                1
-              </span>
-              <span id="needChestLv" style="display:none">
-                Lv6
-              </span>
-              <span id="introduction" style="display:none">
-                青春、活力、動起來！絕對是身為學生的你的最佳形容詞。不論你喜歡與朋友嘻笑喧鬧；喜歡下課後與朋友抓起籃…日的小習慣就靠Apple Watch Series 3。聰明的隨身教練，讓你的青春生活健康不留白！
-              </span>
-              <span id="notice" style="display:none">
-                Apple Watch Series 3有2種規格，為符合您最需要使用的規格，翰林雲端學院將於您回傳收據後方開始採購贈品，以確保您努力得來的獎勵有最符合您的需求喔！
-              </span>
-            </div>
+            </article>
 
             <img class="eventUFO" src="./img/eventUFO.png">
-            <img class="spaceman" src="./img/monster.png">
 
-            <div id="award">
-              <img src="./img/award/award1.png">
+            <article class="monsterArticle">
+              <img class="spaceman" src="./img/monster.png">
+
+              <div class="dialogue">
+                <span class="bot"></span>
+                <span id="title" style="display:none">
+                  Apple Watch Series 3
+                </span>
+                <span id="rank" style="display:none">
+                  A
+                </span>
+                <span id="quantity" style="display:none">
+                  1
+                </span>
+                <span id="needChestLv" style="display:none">
+                  Lv6
+                </span>
+                <span id="introduction" style="display:none">
+                  青春、活力、動起來！絕對是身為學生的你的最佳形容詞。不論你喜歡與朋友嘻笑喧鬧；喜歡下課後與朋友抓起籃…日的小習慣就靠Apple Watch Series 3。聰明的隨身教練，讓你的青春生活健康不留白！
+                </span>
+                <span id="notice" style="display:none">
+                  Apple Watch Series 3有2種規格，為符合您最需要使用的規格，翰林雲端學院將於您回傳收據後方開始採購贈品，以確保您努力得來的獎勵有最符合您的需求喔！
+                </span>
+              </div>
 
               <div class="text" style="width:100px">
                 Apple Watch Series 3
               </div>
-              <input id="left-arrow" type="image" src="./img/left-arrow.png" />
-              <input id="right-arrow" type="image" src="./img/right-arrow.png" />
-            </div>
+              <button class="seeDetail">查看獎勵</button>
+
+              <div id="award" class="cycle-slideshow" data-cycle-timeout="3000">
+                <img class="award1" data-index="1" src="./img/award/award1.png">
+                <img class="award2" data-index="2" src="./img/award/award2.png">
+                <img class="award3" data-index="3" src="./img/award/award3.png">
+                <img class="award4" data-index="4" src="./img/award/award4.png">
+                <img class="award5" data-index="5" src="./img/award/award5.png">
+                <img class="award6" data-index="6" src="./img/award/award6.png">
+                <img class="award7" data-index="7" src="./img/award/award7.png">
+                <img class="award8" data-index="8" src="./img/award/award8.png">
+                <img class="award9" data-index="9" src="./img/award/award9.png">
+                <img class="award10" data-index="10" src="./img/award/award10.png">
+                <img class="award11" data-index="11" src="./img/award/award11.png">
+                <img class="award12" data-index="12" src="./img/award/award12.png">
+                <img class="award13" data-index="13" src="./img/award/award13.png">
+                <img class="award14" data-index="14" src="./img/award/award14.png">
+                <img class="award15" data-index="15" src="./img/award/award15.png">
+                <img class="award16" data-index="16" src="./img/award/award16.png">
+                <img class="award17" data-index="17" src="./img/award/award17.png">
+              </div>
+            </article>
           </div>
 
           <img class="chestMessage" src="./img/chestMessage.png">
           <img class="stockRoom" src="./img/stockRoom.png">
 
-          <div class="countingAwards">
-            <ul class="awardBox">
-              <li class="box1"></li>
-              <li class="box2"></li>
-              <li class="box3"></li>
-              <li class="box4"></li>
-              <li class="box5"></li>
-              <li class="box6"></li>
-              <li class="box7"></li>
-              <li class="box8"></li>
-            </ul>
-          </div>
+          <article class="countingAwardsArticle">
+            <div class="countingAwards">
+              <ul class="awardBox">
+                <li class="box1"></li>
+                <li class="box2"></li>
+                <li class="box3"></li>
+                <li class="box4"></li>
+                <li class="box5"></li>
+                <li class="box6"></li>
+                <li class="box7"></li>
+                <li class="box8"></li>
+              </ul>
+            </div>
+          </article>
 
           <img id="attention" class="notice" src="./img/notice.png">
 
@@ -224,7 +242,6 @@
                 <br>
               </span>
             </span>
-
             <input id="down-arrow" type="image" src="./img/down-arrow.png" />
             <input id="up-arrow" type="image" src="./img/up-arrow.png" style="display:none" />
           </section>
@@ -237,6 +254,7 @@
 </body>
 <script type="text/javascript" src="./js/ajax.js"></script>
 <script type="text/javascript" src="./js/confirm.js"></script>
+<script type="text/javascript" src="./js/jquery-image-cycle.js"></script>
 
 <script type="text/javascript" src="./js/event-chest.js"></script>
 <script type="text/javascript" src="./js/event-totalAssets.js"></script>

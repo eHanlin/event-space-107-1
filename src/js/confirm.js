@@ -52,7 +52,6 @@ let alertForAward = function(
   alertFunction
 ) {
   if (!alertFunction) {
-    console.log(alertFunction);
     alertFunction = function() {};
   }
 
