@@ -1,4 +1,6 @@
 $(function() {
+  $(".container .space .platform").hide();
+
   ajaxGet(
     "https://test.ehanlin.com.tw/chest/retrieve",
     null,
@@ -7,8 +9,6 @@ $(function() {
       var indexPlatformTarget;
       var chest;
       var chests = jsonData.content;
-
-      $(".container .space .platform").hide();
 
       for (let i = 0; i < chests.length; i++) {
         chest = chests[i];
