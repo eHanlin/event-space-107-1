@@ -19,6 +19,7 @@ var eventChest = {
 
         let platformTarget = $("#" + chestId);
         let text = "恭喜你 <br/>", awardText = "", coinsText = "", gemsText = "";
+        let popup;
 
         platformTarget.find(".chest").fadeOut("slow");
         platformTarget.find(".readyButton").fadeOut("slow");
@@ -40,16 +41,29 @@ var eventChest = {
           awardText = awardImage + gainAward;
         }
 
-        $.alert(
-          alertWindow(
-            text + coinsText + gemsText,
-            awardText,
-            function () {
-              $(".space .coins span").empty().append(totalCoins);
-              $(".space .gems span").empty().append(totalGems);
+        popup = function () {
+          $.alert(
+            alertWindow(
+              text + coinsText + gemsText,
+              awardText,
+              function () {
+                $(".space .coins span").empty().append(totalCoins);
+                $(".space .gems span").empty().append(totalGems);
+              }
+            )
+          );
+        };
+
+        $.confirm({
+          content: '',
+          autoClose: 'confirmGain|5000',
+          buttons: {
+            confirmGain: {
+              text: '',
+              action: popup
             }
-          )
-        );
+          }
+        });
       }
     );
   },
@@ -136,7 +150,8 @@ var eventChest = {
         if ( jsonData.message.indexOf("failure") >= 0 ) {
           console.log("升級失敗");
           let failLevel = upLevel - 1;
-          let failureGif = "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/upgradeStatus/upgradeFail" +
+          let failureGif = "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource" +
+            "/event-space/img/chest/upgradeStatus/upgradeFail" +
             failLevel +
             ".gif'>";
           upgradeToTransaction("升級失敗", failureGif);
@@ -152,22 +167,22 @@ var eventChest = {
               alertText +=
                 "e 幣和寶石不足！ 再努力一點，還差" +
                 finalCoins * -1 + "元！ " + finalGems * -1 + "個寶石！";
-              $.alert(alertWindow("", alertText));
             } else if ( finalCoins < 0 ) {
               alertText +=
                 "e 幣不足！ 再努力一點，還差" + finalCoins * -1 + "元！";
-              $.alert(alertWindow("", alertText));
             } else if ( finalGems < 0 ) {
               alertText +=
                 "寶石不足！ 再努力一點，還差" + finalGems * -1 + "個寶石！";
-              $.alert(alertWindow("", alertText));
             }
+
+            $.alert(alertWindow("", alertText));
           } else {
             // 寶箱升級成功
             let platformTarget = $("#" + chestId);
             let dataLevel = putData.level;
 
-            let successGif = "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/upgradeStatus/upgradeSuccess" +
+            let successGif = "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource" +
+              "/event-space/img/chest/upgradeStatus/upgradeSuccess" +
               dataLevel +
               ".gif'>";
 

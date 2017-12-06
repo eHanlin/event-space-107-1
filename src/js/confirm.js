@@ -1,4 +1,4 @@
-var confirmWindow = function(title, content, confrimFunction) {
+let confirmWindow = function(title, content, confrimFunction) {
   return {
     title: "<h5>" + title + "</h5>",
     content: "<h2>" + content + "</h2>",
@@ -21,10 +21,10 @@ var confirmWindow = function(title, content, confrimFunction) {
   };
 };
 
-var alertWindow = function(title, content, alertFunction) {
-  if (!alertFunction) {
-    console.log(alertFunction);
-    alertFunction = function() {};
+let alertWindow = function(title, content, confirmCallBack) {
+  if (!confirmCallBack) {
+    console.log(confirmCallBack);
+    confirmCallBack = function() {};
   }
 
   return {
@@ -36,13 +36,13 @@ var alertWindow = function(title, content, alertFunction) {
       confirmButton: {
         text: "確認",
         btnClass: "btn-blue",
-        action: alertFunction
+        action: confirmCallBack
       }
     }
   };
 };
 
-var alertForAward = function(
+let alertForAward = function(
   title,
   rank,
   quantity,

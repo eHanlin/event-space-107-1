@@ -126,6 +126,7 @@ img.banner {
 }
 
 #open-coins.award-coins {
+  float:left;
   height: 50px;
   width: 50px;
   background-image: url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/currencyBank/coin.svg");
@@ -133,6 +134,7 @@ img.banner {
 }
 
 #open-gems.award-gems {
+  float:left;
   height: 50px;
   width: 50px;
   background-image: url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/currencyBank/gem.svg");

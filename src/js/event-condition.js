@@ -5,8 +5,8 @@ var getCondition = function(chestId, upLevel) {
     function(jsonData) {
       console.log("成功抓取寶箱升級條件！");
       let data = jsonData.content.content;
-      let needCoins = data.coins;
-      let needGems = data.gems;
+      let needCoins = data["coins"];
+      let needGems = data["gems"];
 
       $.confirm(
         confirmWindow(
