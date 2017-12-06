@@ -1,14 +1,14 @@
-let gulp = require("gulp");
-let fs = require("fs");
-let del = require("del");
-let Q = require("q");
-let util = require("gulp-template-util");
-let replace = require('gulp-replace-pro');
-let babel = require("gulp-babel");
-let imagemin = require("gulp-imagemin");
-let pngquant = require("imagemin-pngquant");
-let cleanCSS = require("gulp-clean-css");
-let uglify = require('gulp-uglify-es').default;
+const gulp = require("gulp");
+const fs = require("fs");
+const del = require("del");
+const Q = require("q");
+const util = require("gulp-template-util");
+const replace = require('gulp-replace-pro');
+const babel = require("gulp-babel");
+const imagemin = require("gulp-imagemin");
+const pngquant = require("imagemin-pngquant");
+const cleanCSS = require("gulp-clean-css");
+const uglify = require('gulp-uglify-es').default;
 
 let basePath = { base: "src" };
 var dist = "dist";

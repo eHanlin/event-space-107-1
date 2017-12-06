@@ -1,5 +1,5 @@
 var updateStatusIsUnlocking = function(chestId) {
-  var body = { status: "UNLOCKING" };
+  let body = { status: "UNLOCKING" };
 
   ajax(
     "PUT",
@@ -8,9 +8,10 @@ var updateStatusIsUnlocking = function(chestId) {
     function(jsonData) {
       console.log("成功抓取updateStatusIsUnlocking資料！");
 
-      var startButtonTarget = $("#" + chestId).find(".startButton");
-      var upgradeButtonTarget = $("#" + chestId).find(".upgradeButton");
-      $(".startButton[data-status=LOCKED]").fadeOut("slow");
+      let chestIdTarget = $("#" + chestId);
+      let startButtonTarget = chestIdTarget.find(".startButton");
+      let upgradeButtonTarget = chestIdTarget.find(".upgradeButton");
+      $(".container .space .startButton[data-status=LOCKED]").fadeOut("slow");
       upgradeButtonTarget.fadeOut("slow");
 
       startButtonTarget.attr("data-status", body.status);
@@ -19,7 +20,21 @@ var updateStatusIsUnlocking = function(chestId) {
   );
 };
 
-var coolDownTime = function(chestId) {
+let coolDownTime = function(chestId) {
+  let countDown = function(jsonData, chestId) {
+    console.log("計時中...");
+    let seconds = jsonData.content;
+    let countdownTarget = $("#" + chestId).find(".countdown");
+    countdownTarget.countDown({
+      timeInSecond: 10,
+      displayTpl: "{hour}時{minute}分{second}秒",
+      limit: "hour",
+      callback: function() {
+        eventChest.updateStatusIsReady(chestId);
+      }
+    });
+  };
+
   ajaxGet(
     "https://test.ehanlin.com.tw/chest/coolDownTime/" + chestId,
     null,
@@ -29,18 +44,4 @@ var coolDownTime = function(chestId) {
     },
     function() {}
   );
-};
-
-var countDown = function(jsonData, chestId) {
-  console.log("計時中...");
-  var seconds = jsonData.content;
-  var countdownTarget = $("#" + chestId).find(".countdown");
-  countdownTarget.countDown({
-    timeInSecond: 10,
-    displayTpl: "{hour}時{minute}分{second}秒",
-    limit: "hour",
-    callback: function() {
-      eventChest.updateStatusIsReady(chestId);
-    }
-  });
 };

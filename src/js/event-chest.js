@@ -1,4 +1,4 @@
-var eventChest = {
+let eventChest = {
   // 將寶箱狀態轉為開啟
   updateStatusIsOpen: function (chestId) {
     ajax(
@@ -91,7 +91,7 @@ var eventChest = {
         platFromTarget.find(".countdown").fadeOut("slow");
 
         startButtonTarget.attr("data-status", body.status);
-        $(".startButton[data-status=LOCKED]").fadeIn("slow");
+        $(".container .space .startButton[data-status=LOCKED]").fadeIn("slow");
 
         changeChestImage(chestTarget, chestImage);
       }
