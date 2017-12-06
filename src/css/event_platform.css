@@ -31,13 +31,6 @@
   width: 177px;
 }
 
-.container #red .platform,
-.container #brown .platform,
-.container #pink .platform,
-.container #green .platform {
-  display: none;
-}
-
 .container #red .redPosition,
 .container #brown .brownPosition,
 .container #pink .pinkPosition,

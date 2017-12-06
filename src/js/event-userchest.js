@@ -4,13 +4,15 @@ $(function() {
     null,
     function(jsonData) {
       console.log("成功抓取學生寶箱資料！ (by user)");
-
       var indexPlatformTarget;
       var chest;
       var chests = jsonData.content;
+
+      $(".container .space .platform").hide();
+
       for (let i = 0; i < chests.length; i++) {
         chest = chests[i];
-        indexPlatformTarget = $(".platform:eq(" + i + ")");
+        indexPlatformTarget = $(".container .space .platform:eq(" + i + ")");
         indexPlatformTarget.show();
         determineStatus(chest, indexPlatformTarget, chest.status);
       }
