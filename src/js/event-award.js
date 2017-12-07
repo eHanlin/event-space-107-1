@@ -14,25 +14,25 @@ $(function() {
         var quantity = data.content.quantity;
         var introduction = data.content.introduction;
 
-        $(".space article .text").text(desc);
-        $(".space .dialogue #notice").text(notice);
-        $(".space .dialogue #needChestLv").text(needChestLv);
-        $(".space .dialogue #quantity").text(quantity);
+        $(".space article .text").append(desc);
+        $(".space .dialogue #notice").append(notice);
+        $(".space .dialogue #needChestLv").append(needChestLv);
+        $(".space .dialogue #quantity").append(quantity);
         // $(".space .dialogue #rank").text(rank);
-        $(".space .dialogue #title").text(desc);
-        $(".space .dialogue #introduction").text(introduction);
+        $(".space .dialogue #title").append(desc);
+        $(".space .dialogue #introduction").append(introduction);
       },
       function() {}
     );
   };
 
   var alertFunc = function() {
-    var notice = $(".dialogue #notice").text();
-    var needChestLv = $(".dialogue #needChestLv").text();
+    var notice = $(".dialogue #notice").append();
+    var needChestLv = $(".dialogue #needChestLv").append();
     // var rank = $(".dialogue #rank").text();
-    var quantity = $(".dialogue #quantity").text();
-    var desc = $(".dialogue #title").text();
-    var introduction = $(".dialogue #introduction").text();
+    var quantity = $(".dialogue #quantity").append();
+    var desc = $(".dialogue #title").append();
+    var introduction = $(".dialogue #introduction").append();
     $.alert(
       alertForAward(desc, null, quantity, needChestLv, introduction, notice, "")
     );

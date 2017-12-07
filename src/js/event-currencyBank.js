@@ -13,13 +13,19 @@ $(function() {
         currencyQuantity = singleTransaction["currencyQuantity"];
 
         if (singleTransaction.action == "REDUCE") {
-          tds = "<td>" + "花費" + "</td>";
+          tds = "<td>" + "消耗" + "</td>";
         } else {
           tds = "<td>" + singleTransaction["action"] + "</td>";
         }
 
-        tds += "<td>" + currencyQuantity["coins"] + "</td>";
-        tds += "<td>" + currencyQuantity["gems"] + "</td>";
+        tds +=
+          "<td>" +
+          (currencyQuantity["coins"] ? currencyQuantity["coins"] : 0) +
+          "</td>";
+        tds +=
+          "<td>" +
+          (currencyQuantity["gems"] ? currencyQuantity["gems"] : 0) +
+          "</td>";
         tds += "<td>" + singleTransaction["detail"] + "</td>";
 
         if (singleTransaction.source.match("Chest")) {
