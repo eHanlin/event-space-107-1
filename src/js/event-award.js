@@ -14,25 +14,47 @@ $(function() {
         var quantity = data.content.quantity;
         var introduction = data.content.introduction;
 
-        $(".space article .text").append(desc);
-        $(".space .dialogue #notice").append(notice);
-        $(".space .dialogue #needChestLv").append(needChestLv);
-        $(".space .dialogue #quantity").append(quantity);
+        $(".space article .text")
+          .empty()
+          .append(desc);
+        $(".space .dialogue #notice")
+          .empty()
+          .append(notice);
+        $(".space .dialogue #needChestLv")
+          .empty()
+          .append(needChestLv);
+        $(".space .dialogue #quantity")
+          .empty()
+          .append(quantity);
         // $(".space .dialogue #rank").text(rank);
-        $(".space .dialogue #title").append(desc);
-        $(".space .dialogue #introduction").append(introduction);
+        $(".space .dialogue #title")
+          .empty()
+          .append(desc);
+        $(".space .dialogue #introduction")
+          .empty()
+          .append(introduction);
       },
       function() {}
     );
   };
 
   var alertFunc = function() {
-    var notice = $(".dialogue #notice").append();
-    var needChestLv = $(".dialogue #needChestLv").append();
+    var notice = $(".dialogue #notice")
+      .empty()
+      .append();
+    var needChestLv = $(".dialogue #needChestLv")
+      .empty()
+      .append();
     // var rank = $(".dialogue #rank").text();
-    var quantity = $(".dialogue #quantity").append();
-    var desc = $(".dialogue #title").append();
-    var introduction = $(".dialogue #introduction").append();
+    var quantity = $(".dialogue #quantity")
+      .empty()
+      .append();
+    var desc = $(".dialogue #title")
+      .empty()
+      .append();
+    var introduction = $(".dialogue #introduction")
+      .empty()
+      .append();
     $.alert(
       alertForAward(desc, null, quantity, needChestLv, introduction, notice, "")
     );
