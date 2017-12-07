@@ -24,13 +24,18 @@ let coolDownTime = function(chestId) {
   let countDown = function(jsonData, chestId) {
     console.log("計時中...");
     let seconds = jsonData.content;
-    let countdownTarget = $("#" + chestId).find(".countdown");
+    let platformTarget = $("#" + chestId);
+    let imgChestTarget = platformTarget.find(".chest");
+    let countdownTarget = platformTarget.find(".countdown");
+
+    imgChestTarget.addClass("unlockingGray");
     countdownTarget.countDown({
-      timeInSecond: 5,
+      timeInSecond: 10,
       displayTpl: "{hour}時 {minute}分 {second}秒",
       limit: "hour",
       callback: function() {
         eventChest.updateStatusIsReady(chestId);
+        imgChestTarget.removeClass("unlockingGray");
       }
     });
   };
