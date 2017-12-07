@@ -57,6 +57,10 @@ $(function() {
         determineStatus(chest, indexPlatformTarget, chest.status);
       }
 
+      $(".space .bank").on("click", function() {
+        $(".space .bank").load("/event/space/currencyBank.html");
+      });
+
       // 啟動按鈕
       $(".container .space .startButton").one("click", function() {
         let findParents = $(this).parents(".platform");

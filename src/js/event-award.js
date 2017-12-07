@@ -11,52 +11,41 @@ $(function() {
         var needChestLv = data.content.needChestLv;
         var rank = data.content.rank;
         var desc = data.desc;
+        var title = data.title;
         var quantity = data.content.quantity;
         var introduction = data.content.introduction;
 
         $(".space article .text")
           .empty()
           .append(desc);
-        $(".space .dialogue #notice")
-          .empty()
-          .append(notice);
-        $(".space .dialogue #needChestLv")
-          .empty()
-          .append(needChestLv);
-        $(".space .dialogue #quantity")
-          .empty()
-          .append(quantity);
+        $(".space .dialogue #notice").text(notice);
+        $(".space .dialogue #needChestLv").text(needChestLv);
+        $(".space .dialogue #quantity").text(quantity);
         // $(".space .dialogue #rank").text(rank);
-        $(".space .dialogue #title")
-          .empty()
-          .append(desc);
-        $(".space .dialogue #introduction")
-          .empty()
-          .append(introduction);
+        $(".space .dialogue #title").text(title);
+        $(".space .dialogue #introduction").text(introduction);
       },
       function() {}
     );
   };
 
   var alertFunc = function() {
-    var notice = $(".dialogue #notice")
-      .empty()
-      .append();
-    var needChestLv = $(".dialogue #needChestLv")
-      .empty()
-      .append();
+    var notice = $(".dialogue #notice").text();
+    var needChestLv = $(".dialogue #needChestLv").text();
     // var rank = $(".dialogue #rank").text();
-    var quantity = $(".dialogue #quantity")
-      .empty()
-      .append();
-    var desc = $(".dialogue #title")
-      .empty()
-      .append();
-    var introduction = $(".dialogue #introduction")
-      .empty()
-      .append();
+    var quantity = $(".dialogue #quantity").text();
+    var title = $(".dialogue #title").text();
+    var introduction = $(".dialogue #introduction").text();
     $.alert(
-      alertForAward(desc, null, quantity, needChestLv, introduction, notice, "")
+      alertForAward(
+        title,
+        null,
+        quantity,
+        needChestLv,
+        introduction,
+        notice,
+        ""
+      )
     );
     cycleAfter();
   };
