@@ -1,31 +1,31 @@
 .container #green .countdown {
-  top: 25px;
-  left: 25px;
+  top: 0px;
+  left: 16px;
   z-index: 2;
 }
 
 .container #red .countdown {
-  top: 20px;
-  left: 20px;
+  top: 0px;
+  left: 16px;
   z-index: 2;
 }
 
 .container #brown .countdown {
   top: 0px;
-  left: 25px;
+  left: 16px;
   z-index: 2;
 }
 
 .container #pink .countdown {
   top: 0px;
-  left: 25px;
+  left: 16px;
   z-index: 2;
 }
 
 .container .countdown.font {
   position: absolute;
   font-family: "微軟正黑體";
-  color: white;
-  font-size: 26px;
+  color: orange;
+  font-size: 24px;
   font-weight: bolder;
 }
