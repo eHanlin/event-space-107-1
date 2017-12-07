@@ -69,9 +69,9 @@ function replaceToDev() {
   gulp.src(["src/js/event-totalAssets.js", "src/js/event-userchest.js"], { base: "./" })
     .pipe(replace({
       "https://test.ehanlin.com.tw/chest/retrieve":
-        "http://localhost:8080/chest/retrieve?userSpecific=5959dd69e4b06d582a2981bb",
+        "http://localhost:8080/chest/retrieve?userSpecific=5950a1e077c81e5ef884dfd5",
       "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one":
-        "http://localhost:9090/currencyBank/totalAssets/retrieve/one?userSpecific=5959dd69e4b06d582a2981bb"
+        "http://localhost:9090/currencyBank/totalAssets/retrieve/one?userSpecific=5950a1e077c81e5ef884dfd5"
     }))
     .pipe(gulp.dest(''))
 }
@@ -79,9 +79,9 @@ function replaceToDev() {
 function replaceToTest() {
   gulp.src(["src/js/event-totalAssets.js", "src/js/event-userchest.js"], { base: "./" })
     .pipe(replace({
-      "http://localhost:8080/chest/retrieve\\?userSpecific=5959dd69e4b06d582a2981bb":
+      "http://localhost:8080/chest/retrieve\\?userSpecific=5950a1e077c81e5ef884dfd5":
         "https://test.ehanlin.com.tw/chest/retrieve",
-      "http://localhost:9090/currencyBank/totalAssets/retrieve/one\\?userSpecific=5959dd69e4b06d582a2981bb":
+      "http://localhost:9090/currencyBank/totalAssets/retrieve/one\\?userSpecific=5950a1e077c81e5ef884dfd5":
         "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one"
     }))
     .pipe(gulp.dest(''))
