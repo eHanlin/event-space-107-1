@@ -127,16 +127,16 @@ img.banner {
 
 #open-coins.award-coins {
   float:left;
-  height: 32px;
-  width: 32px;
+  height: 36px;
+  width: 36px;
   background-image: url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/currencyBank/coin.svg");
   background-size: contain;
 }
 
 #open-gems.award-gems {
   float:left;
-  height: 32px;
-  width: 32px;
+  height: 36px;
+  width: 36px;
   background-image: url("https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/currencyBank/gem.svg");
   background-size: contain;
 }

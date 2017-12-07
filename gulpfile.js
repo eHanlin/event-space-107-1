@@ -68,8 +68,10 @@ function clean(sourceDir) {
 function replaceToDev() {
   gulp.src(["src/js/event-totalAssets.js", "src/js/event-userchest.js"], { base: "./" })
     .pipe(replace({
-      "https://test.ehanlin.com.tw/chest": "http://localhost:8080/chest",
-      "https://test.ehanlin.com.tw/currencyBank": "http://localhost:9090/currencyBank"
+      "https://test.ehanlin.com.tw/chest/retrieve":
+        "http://localhost:8080/chest/retrieve?userSpecific=5959dd69e4b06d582a2981bb",
+      "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one":
+        "http://localhost:9090/currencyBank/totalAssets/retrieve/one?userSpecific=5959dd69e4b06d582a2981bb"
     }))
     .pipe(gulp.dest(''))
 }
@@ -77,8 +79,10 @@ function replaceToDev() {
 function replaceToTest() {
   gulp.src(["src/js/event-totalAssets.js", "src/js/event-userchest.js"], { base: "./" })
     .pipe(replace({
-      "http://localhost:8080/chest": "https://test.ehanlin.com.tw/chest",
-      "http://localhost:9090/currencyBank": "https://test.ehanlin.com.tw/currencyBank"
+      "http://localhost:8080/chest/retrieve\\?userSpecific=5959dd69e4b06d582a2981bb":
+        "https://test.ehanlin.com.tw/chest/retrieve",
+      "http://localhost:9090/currencyBank/totalAssets/retrieve/one\\?userSpecific=5959dd69e4b06d582a2981bb":
+        "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one"
     }))
     .pipe(gulp.dest(''))
 }
@@ -167,7 +171,7 @@ gulp.task("package", function () {
       util.logStream(copyStaticTask("dist")),
       //util.logStream(styleTask("dist/css"))
     ]);
-  }).then(function() {
+  }).then(function () {
     return Q.all([
       util.logStream(minifyImage("src/img/**/*.png")),
       util.logStream(minifyCSS("src/css/**/*.css")),

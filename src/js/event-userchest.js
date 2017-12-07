@@ -58,8 +58,8 @@ $(function () {
 
       // 啟動按鈕
       $(".container .space .startButton").one("click", function () {
-        var findParents = $(this).parents(".platform");
-        var chestId = findParents.prop("id");
+        let findParents = $(this).parents(".platform");
+        let chestId = findParents.prop("id");
 
         updateStatusIsUnlocking(chestId);
       });
@@ -76,7 +76,7 @@ $(function () {
 
       // 開啟按鈕
       $(".readyButton").on("click", function () {
-        var chestId = $(this)
+        let chestId = $(this)
           .parents(".platform")
           .prop("id");
         eventChest.updateStatusIsOpen(chestId);

@@ -13,38 +13,36 @@ let eventChest = {
 
       let platformTarget = $("#" + chestId);
       let chestLevel = platformTarget.data("level");
-      let openChestGif = "<div style='float: left; width: 250px; height: 250px;"
-        + "background-image: url(https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource"
-        + "/event-space/img/chest/open/openChest"
-        + chestLevel
-        + ".gif);"
-        + "background-size: contain;'></div>";
+      let openChestGif = "<div style='float: left; width: 240px; height:210px;" +
+        "background-image: url(https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource" +
+        "/event-space/img/chest/open/openChest" + chestLevel + ".gif);" +
+        "background-size: contain;'></div>";
 
-      let text = "<div style='float: right; height: 300px; width: 220px;'>"
-        + "<div style='height: 30px; font-size: 20px;'>恭喜你獲得</div><br/>"
-        + "<table width='100%' style='table-layout:fixed; font-size: 22px;'>";
+      let text = "<div style='float: right; height: 300px; width: 220px;'>" +
+        "<div style='height: 30px; font-size: 22px;'>恭喜你獲得</div><br/>" +
+        "<table width='100%' style='table-layout:fixed; font-size: 25px;'>";
       let awardText = "", coinsText = "", gemsText = "";
-      let popup;
 
       platformTarget.find(".chest").fadeOut("slow");
       platformTarget.find(".readyButton").fadeOut("slow");
 
       if ( gainCoins ) {
-        let openCoins = "<tr><td style='height: 30px; transform: translateY(-50%)'>"
-          + "<div id='open-coins' class='award-coins'></div>";
+        let openCoins = "<tr><td style='height: 36px; transform: translateY(-50%)'>" +
+          "<div id='open-coins' class='award-coins'></div>";
         coinsText = openCoins + gainCoins + " 金幣 </td></tr>";
       }
 
       if ( gainGems ) {
-        let openGems = "<tr><td style='height: 30px; transform: translateY(-50%)'>"
-          + "<div id='open-gems' class='award-gems'></div>";
+        let openGems = "<tr><td style='height: 36px; transform: translateY(-50%)'>" +
+          "<div id='open-gems' class='award-gems'></div>";
         gemsText = openGems + gainGems + " 寶石 </td></tr>";
       }
 
       if ( gainAward ) {
-        let awardImage = "<img style='width: 200px; height: 200px;'"
-          + " src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/award/"
-          + gainAwardId + ".png' ><br/>";
+        let awardImage = "<img style='width: 220px; height: 220px;' " +
+          "src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/award/" +
+          gainAwardId + ".png' >" +
+          "<br/>";
         awardText = gainAward + awardImage;
       }
 
@@ -58,6 +56,7 @@ let eventChest = {
           function () {
             let originalCoins = $(".space .coins #own-coins").text();
             let originalGems = $(".space .gems #own-gems").text();
+
             countTrasition("own-coins", originalCoins, totalCoins);
             countTrasition("own-gems", originalGems, totalGems);
             getAwards();
@@ -82,7 +81,8 @@ let eventChest = {
 
   // 將寶箱狀態轉為準備開啟
   updateStatusIsReady: function (chestId) {
-    var body = {
+    let body;
+    body = {
       status: "READY"
     };
 
@@ -90,7 +90,7 @@ let eventChest = {
       "PUT",
       "https://test.ehanlin.com.tw/chest/updateStatus/" + chestId,
       body,
-      function (jsonData) {
+      function () {
         console.log("成功抓取 updateStatusIsReady 資料！");
 
         let platFromTarget = $("#" + chestId);
