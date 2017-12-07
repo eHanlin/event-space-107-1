@@ -24,9 +24,9 @@ $(function() {
     } else if (chestSatuts === "UNLOCKING") {
       console.log("=============> status is unlocking <================");
       imgChestTarget.addClass("unlockingGray");
-      $(".container .space .startButton[data-status=LOCKED]").fadeOut("slow");
+      $(".container .space .startButton").hide();
 
-      thisPlatformTarget.find(".startButton").hide();
+      //thisPlatformTarget.find(".startButton").hide();
       thisPlatformTarget.find(".upgradeButton").hide();
 
       determineLevel(imgChestTarget, chestLevel);
