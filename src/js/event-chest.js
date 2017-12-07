@@ -10,15 +10,16 @@ let eventChest = {
       let totalGems = data["totalGems"];
       let gainAward = data["gainAward"];
       let gainAwardId = data["gainAwardId"];
+      let rangeRandom = data["rangeRandom"];
 
       let platformTarget = $("#" + chestId);
       let chestLevel = platformTarget.data("level");
-      let openChestGif = "<div style='float: left; width: 240px; height:210px;" +
+      let openChestGif = "<div style='float: left; width: 245px; height:210px;" +
         "background-image: url(https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource" +
         "/event-space/img/chest/open/openChest" + chestLevel + ".gif);" +
         "background-size: contain;'></div>";
 
-      let text = "<div style='float: right; height: 300px; width: 220px;'>" +
+      let text = "<div style='float: right; height: 290px; width: 220px;'>" +
         "<div style='height: 30px; font-size: 22px;'>恭喜你獲得</div><br/>" +
         "<table width='100%' style='table-layout:fixed; font-size: 25px;'>";
       let awardText = "", coinsText = "", gemsText = "";
@@ -43,7 +44,11 @@ let eventChest = {
           "src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/award/" +
           gainAwardId + ".png' >" +
           "<br/>";
+
         awardText = gainAward + awardImage;
+        for ( let key in rangeRandom ) {
+          awardText += ("<br/>" + key + "=" + rangeRandom[key])
+        }
       }
 
       $.alert(
