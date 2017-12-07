@@ -1,31 +1,15 @@
-.container #green .countdown {
-  top: 0px;
-  left: 16px;
-  z-index: 2;
-}
-
-.container #red .countdown {
-  top: 0px;
-  left: 16px;
-  z-index: 2;
-}
-
-.container #brown .countdown {
-  top: 0px;
-  left: 16px;
-  z-index: 2;
-}
-
+.container #brown .countdown,
+.container #green .countdown,
+.container #brown .countdown,
 .container #pink .countdown {
-  top: 0px;
   left: 16px;
   z-index: 2;
 }
 
 .container .countdown.font {
   position: absolute;
-  font-family: "微軟正黑體";
+  font-family: "微軟正黑體", monospace;
   color: orange;
   font-size: 24px;
-  font-weight: bolder;
+  font-weight: 500;
 }

@@ -23,17 +23,9 @@
 
 .container article .detailBtn {
   position: absolute;
-  background-color: #008cba;
-  top: 1230px;
-  left: 570px;
-  height: 30px;
-  width: 110px;
-  font-size: 18px;
+  top: 1220px;
+  left: 550px;
   z-index: 2;
   outline: none;
-  color: white;
   cursor: pointer;
-  border: 2px solid rgb(2, 49, 91);
-  box-shadow: 2px 2px 2px rgba(20%, 20%, 40%, 0.6),
-    4px 4px 6px rgba(20%, 20%, 40%, 0.4), 6px 6px 12px rgba(20%, 20%, 40%, 0.4);
 }

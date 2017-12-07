@@ -36,7 +36,7 @@
 .container #pink .pinkPosition,
 .container #green .greenPosition {
   position: absolute;
-  top: 57%;
+  top: 58%;
   left: 50%;
   transform: translate(-50%);
   z-index: 1;
@@ -63,7 +63,7 @@
 .container #brown .newChest,
 .container #pink .newChest,
 .container #green .newChest {
-  top: -3%;
+  top: -4%;
 }
 
 .container #red .startButton,
