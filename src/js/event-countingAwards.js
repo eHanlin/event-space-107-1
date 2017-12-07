@@ -23,7 +23,7 @@ var getAwards = function () {
           ".png' />";
 
         specificAward.empty().append(awardImage);
-        specificAward.empty().append(
+        specificAward.append(
           "<span style='width:130px;'>" + awardDesc + "</span>"
         );
         specificAward.append("<h1><span>" + value + "</span></h1>");
