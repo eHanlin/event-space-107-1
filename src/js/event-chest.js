@@ -10,7 +10,7 @@ let eventChest = {
       let totalGems = data["totalGems"];
       let gainAward = data["gainAward"];
       let gainAwardId = data["gainAwardId"];
-      let rangeRandom = data["rangeRandom"];
+      let rangeRandom = data["rangeRandomMapping"];
 
       let platformTarget = $("#" + chestId);
       let chestLevel = platformTarget.data("level");
