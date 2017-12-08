@@ -90,6 +90,7 @@
   position: absolute;
   left: 200px;
   top: 2120px;
+  cursor: pointer;
 }
 
 /* 注意事項 */
@@ -116,7 +117,7 @@
   outline: none;
   cursor: pointer;
   left: 300px;
-  top: 2710px;
+  top: 2700px;
   height: 30px;
   width: 140px;
   font-size: 16px;
