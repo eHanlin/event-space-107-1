@@ -27,15 +27,15 @@ let eventChest = {
       platformTarget.find(".readyButton").fadeOut("slow");
 
       if ( gainCoins ) {
-        let openCoins = "<tr><td style='height: 36px; transform: translateY(-50%)'>" +
-          "<div id='open-coins' class='award-coins'></div>";
-        coinsText = openCoins + gainCoins + " 金幣 </td>";
+        let coinsSvg = "<tr><td style='height: 36px; transform: translateY(-50%)'>" +
+          "<div id='svg-coins' class='icon-coins'></div>";
+        coinsText = coinsSvg + gainCoins + "</td>";
       }
 
       if ( gainGems ) {
-        let openGems = "<td style='height: 36px; transform: translateY(-50%)'>" +
-          "<div id='open-gems' class='award-gems'></div>";
-        gemsText = openGems + gainGems + " 寶石 </td>";
+        let gemsSvg = "<td style='height: 36px; transform: translateY(-50%)'>" +
+          "<div id='svg-gems' class='icon-gems'></div>";
+        gemsText = gemsSvg + gainGems + "</td>";
       }
 
       if ( gainAward ) {
@@ -131,7 +131,7 @@ let eventChest = {
             {
               upgradeAuditId: upgradeContent["upgradeAuditId"]
             }
-          ).then(function (jsonData) {
+          ).then(function () {
             return ajaxDeferred(
               "GET",
               "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one"

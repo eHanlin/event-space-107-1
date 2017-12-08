@@ -28,13 +28,13 @@ let eventChest = {
 
       if ( gainCoins ) {
         let openCoins = "<tr><td style='height: 36px; transform: translateY(-50%)'>" +
-          "<div id='open-coins' class='award-coins'></div>";
+          "<div id='svg-coins' class='icon-coins'></div>";
         coinsText = openCoins + gainCoins + " 金幣 </td>";
       }
 
       if ( gainGems ) {
         let openGems = "<td style='height: 36px; transform: translateY(-50%)'>" +
-          "<div id='open-gems' class='award-gems'></div>";
+          "<div id='svg-gems' class='icon-gems'></div>";
         gemsText = openGems + gainGems + " 寶石 </td>";
       }
 
