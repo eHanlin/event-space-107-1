@@ -11,7 +11,6 @@ $(function() {
         var needChestLv = data.content.needChestLv;
         var rank = data.content.rank;
         var desc = data.desc;
-        var title = data["title"];
         var quantity = data.content.quantity;
         var introduction = data.content.introduction;
 
@@ -73,6 +72,6 @@ $(function() {
   });
 
   $(".container .returnAwardBtn").on("click", function() {
-    alertWindow("", "將於12/18前開放回填資料，敬請期待", "");
+    $.alert(alertWindow("", "將於12/18前開放回填資料，敬請期待", ""));
   });
 });
