@@ -49,7 +49,7 @@ $(function() {
         // 時間
         tds +=
           "<td>" +
-          $.format().date(singleTransaction["updateTime"], longDateFormat) +
+          $.formatDate(singleTransaction["updateTime"], longDateFormat) +
           "</td>";
 
         tbodyHtml += "<tr>" + tds + "</tr>";
