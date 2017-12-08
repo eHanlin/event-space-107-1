@@ -18,8 +18,8 @@ let eventChest = {
         "/event-space/img/chest/open/openChest" + chestLevel + ".gif);" +
         "background-size: contain;'></div>";
 
-      let text = "<div style='float: right; height: 120px; width: 220px;'>" +
-        "<div style='height: 30px; font-size: 22px;'>恭喜你獲得</div><br/>" +
+      let text = "<div style='float: right; height: 80px; width: 240px;'>" +
+        "<div style='height: 32px; font-size: 22px;'>恭喜你獲得</div><br/>" +
         "<table width='100%' style='table-layout:fixed; font-size: 25px;'>";
       let awardText = "", coinsText = "", gemsText = "";
 
@@ -39,7 +39,7 @@ let eventChest = {
       }
 
       if ( gainAward ) {
-        let awardImage = "<img style='width: 220px; height: 220px;' " +
+        let awardImage = "<img style='width: 200px; height: 200px;' " +
           "src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/award/" +
           gainAwardId + ".png' >" +
           "<br/>";
