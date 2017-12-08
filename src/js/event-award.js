@@ -11,17 +11,20 @@ $(function() {
         var needChestLv = data.content.needChestLv;
         var rank = data.content.rank;
         var desc = data.desc;
+        var title = data["title"];
         var quantity = data.content.quantity;
         var introduction = data.content.introduction;
 
+        // dialogue顯示
         $(".space article .text")
           .empty()
           .append(desc);
+
         $(".space .dialogue #notice").text(notice);
         $(".space .dialogue #needChestLv").text(needChestLv);
         $(".space .dialogue #quantity").text(quantity);
         // $(".space .dialogue #rank").text(rank);
-        $(".space .dialogue #title").text(desc.replace("<br>", ""));
+        $(".space .dialogue #title").text(title);
         $(".space .dialogue #introduction").text(introduction);
       },
       function() {}
@@ -33,10 +36,18 @@ $(function() {
     var needChestLv = $(".dialogue #needChestLv").text();
     // var rank = $(".dialogue #rank").text();
     var quantity = $(".dialogue #quantity").text();
-    var desc = $(".dialogue #title").text();
+    var title = $(".dialogue #title").text();
     var introduction = $(".dialogue #introduction").text();
     $.alert(
-      alertForAward(desc, null, quantity, needChestLv, introduction, notice, "")
+      alertForAward(
+        title,
+        null,
+        quantity,
+        needChestLv,
+        introduction,
+        notice,
+        ""
+      )
     );
     cycleAfter();
   };
@@ -59,5 +70,9 @@ $(function() {
 
   $(".container article .detailBtn").on("click", function() {
     alertFunc();
+  });
+
+  $(".container .returnAwardBtn").on("click", function() {
+    alertWindow("", "將於12/18前開放回填資料，敬請期待", "");
   });
 });
