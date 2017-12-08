@@ -1,27 +1,25 @@
-$(function() {
+$(function () {
   ajaxGet(
     "https://test.ehanlin.com.tw/currencyBank/transaction/retrieve",
     null,
-    function(jsonData) {
-      var transactions = jsonData.content;
-      var singleTransaction, transactionField;
-      var currencyQuantity;
-      var tbodyHtml, tds;
-      var longDateFormat = "dd/MM/yyyy HH:mm";
+    function (jsonData) {
+      let transactions = jsonData.content;
+      let singleTransaction, transactionField;
+      let tbodyHtml = "", tds;
 
-      for (var i = 0; i < transactions.length; i++) {
+      for ( var i = 0; i < transactions.length; i++ ) {
         singleTransaction = transactions[i];
-        currencyQuantity = singleTransaction["currencyQuantity"];
+        let action = singleTransaction["action"];
+        let transactionTime =
+          moment.utc(singleTransaction["updateTime"]).local().format("YYYY-MM-DD HH:mm");
+
+        let currencyQuantity = singleTransaction["currencyQuantity"];
 
         // 動作
-        if (singleTransaction.action == "REDUCE") {
-          tds = "<td>" + "消耗" + "</td>";
-        } else if (singleTransaction.action == "ADD") {
-          tds = "<td>" + "增加" + "</td>";
-        } else if (singleTransaction.action == "ADD_BY_CHEST") {
+        if ( action.indexOf("ADD") >= 0 ) {
           tds = "<td>" + "增加" + "</td>";
         } else {
-          tds = "<td>" + singleTransaction["action"] + "</td>";
+          tds = "<td>" + "消耗" + "</td>";
         }
 
         // e幣
@@ -40,22 +38,20 @@ $(function() {
         tds += "<td>" + singleTransaction["detail"] + "</td>";
 
         // 事件
-        if (singleTransaction.source.match("Chest")) {
+        if ( singleTransaction.source.match("Chest") ) {
           tds += "<td>" + "寶箱" + "</td>";
         } else {
           tds += "<td>" + singleTransaction["source"] + "</td>";
         }
 
         // 時間
-        tds +=
-          "<td>" +
-          $.formatDate(singleTransaction["updateTime"], longDateFormat) +
-          "</td>";
+        tds += "<td>" + transactionTime + "</td>";
 
         tbodyHtml += "<tr>" + tds + "</tr>";
       }
       $(".responseTable tbody").append(tbodyHtml);
     },
-    function() {}
+    function () {
+    }
   );
 });
