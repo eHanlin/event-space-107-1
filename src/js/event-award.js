@@ -10,7 +10,7 @@ $(function() {
         var notice = data.content.notice;
         var needChestLv = data.content.needChestLv;
         var rank = data.content.rank;
-        var desc = data.desc.replace("<br>", "");
+        var desc = data.desc;
         var quantity = data.content.quantity;
         var introduction = data.content.introduction;
 
@@ -21,7 +21,7 @@ $(function() {
         $(".space .dialogue #needChestLv").text(needChestLv);
         $(".space .dialogue #quantity").text(quantity);
         // $(".space .dialogue #rank").text(rank);
-        $(".space .dialogue #title").text(desc);
+        $(".space .dialogue #title").text(desc.replace("<br>", ""));
         $(".space .dialogue #introduction").text(introduction);
       },
       function() {}
