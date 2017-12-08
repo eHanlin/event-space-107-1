@@ -1,63 +1,63 @@
-.responstable {
+.responseTable {
   overflow: hidden;
   background: #fff;
   color: #04303c;
   border-radius: 10px;
 }
-.responstable tr {
+.responseTable tr {
   border: solid #d9e4e6;
 }
-.responstable tr:nth-child(odd) {
+.responseTable tr:nth-child(odd) {
   background-color: #eaf3f3;
 }
-.responstable th {
+.responseTable th {
   display: none;
   border: solid #fff;
   background-color: #3498db;
   color: #fff;
   padding: 1em;
 }
-.responstable th:first-child {
+.responseTable th:first-child {
   display: table-cell;
   text-align: center;
 }
-.responstable th:nth-child(2) {
+.responseTable th:nth-child(2) {
   display: table-cell;
 }
-.responstable th:nth-child(2) span {
+.responseTable th:nth-child(2) span {
   display: none;
 }
-.responstable th:nth-child(2):after {
+.responseTable th:nth-child(2):after {
   content: attr(data-th);
 }
 
-.responstable td {
+.responseTable td {
   display: block;
   word-wrap: break-word;
   max-width: 4.3em;
 }
-.responstable td:first-child {
+.responseTable td:first-child {
   display: table-cell;
   text-align: center;
   border-right: solid #d9e4e6;
 }
 
 @media (min-width: 100px) {
-  .responstable th:nth-child(2) span {
+  .responseTable th:nth-child(2) span {
     display: block;
   }
-  .responstable th:nth-child(2):after {
+  .responseTable th:nth-child(2):after {
     display: none;
   }
 }
 
 @media (min-width: 100px) {
-  .responstable td {
+  .responseTable td {
     border: solid #d9e4e6;
   }
 }
-.responstable th,
-.responstable td {
+.responseTable th,
+.responseTable td {
   text-align: center;
   font-size: 17.9px;
   font-weight: bolder;
@@ -65,8 +65,8 @@
   margin: 0.5em 1em;
 }
 @media (min-width: 100px) {
-  .responstable th,
-  .responstable td {
+  .responseTable th,
+  .responseTable td {
     display: table-cell;
     padding: 0.5em;
   }

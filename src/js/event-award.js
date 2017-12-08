@@ -10,8 +10,7 @@ $(function() {
         var notice = data.content.notice;
         var needChestLv = data.content.needChestLv;
         var rank = data.content.rank;
-        var desc = data.desc;
-        var title = data.title;
+        var desc = data.desc.replace("<br>");
         var quantity = data.content.quantity;
         var introduction = data.content.introduction;
 
@@ -22,7 +21,7 @@ $(function() {
         $(".space .dialogue #needChestLv").text(needChestLv);
         $(".space .dialogue #quantity").text(quantity);
         // $(".space .dialogue #rank").text(rank);
-        $(".space .dialogue #title").text(title);
+        $(".space .dialogue #title").text(desc);
         $(".space .dialogue #introduction").text(introduction);
       },
       function() {}
@@ -34,18 +33,10 @@ $(function() {
     var needChestLv = $(".dialogue #needChestLv").text();
     // var rank = $(".dialogue #rank").text();
     var quantity = $(".dialogue #quantity").text();
-    var title = $(".dialogue #title").text();
+    var desc = $(".dialogue #title").text();
     var introduction = $(".dialogue #introduction").text();
     $.alert(
-      alertForAward(
-        title,
-        null,
-        quantity,
-        needChestLv,
-        introduction,
-        notice,
-        ""
-      )
+      alertForAward(desc, null, quantity, needChestLv, introduction, notice, "")
     );
     cycleAfter();
   };

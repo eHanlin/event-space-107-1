@@ -14,6 +14,8 @@ $(function() {
 
         if (singleTransaction.action == "REDUCE") {
           tds = "<td>" + "消耗" + "</td>";
+        } else if (singleTransaction.action == "ADD") {
+          tds = "<td>" + "得到" + "</td>";
         } else {
           tds = "<td>" + singleTransaction["action"] + "</td>";
         }
@@ -26,6 +28,7 @@ $(function() {
           "<td>" +
           (currencyQuantity["gems"] ? currencyQuantity["gems"] : 0) +
           "</td>";
+
         tds += "<td>" + singleTransaction["detail"] + "</td>";
 
         if (singleTransaction.source.match("Chest")) {
@@ -37,7 +40,7 @@ $(function() {
         tds += "<td>" + singleTransaction["updateTime"] + "</td>";
         tbodyHtml += "<tr>" + tds + "</tr>";
       }
-      $(".responstable tbody").append(tbodyHtml);
+      $(".responseTable tbody").append(tbodyHtml);
     },
     function() {}
   );
