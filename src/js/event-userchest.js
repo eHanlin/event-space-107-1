@@ -58,7 +58,8 @@ $(function() {
       }
 
       $(".space .bank").on("click", function() {
-        $(".space .bank").load("/event/space/currencyBank.html");
+        window.open("/event/space/currencyBank.html", "雲端銀行");
+        return false;
       });
 
       // 啟動按鈕
@@ -70,7 +71,7 @@ $(function() {
       });
 
       // 升級按鈕
-      $(".container .space .upgradeButton").on("click", function() {
+      $(".container .space .upgradeButton").one("click", function() {
         let findParents = $(this).parents(".platform");
         let chestId = findParents.prop("id");
         let chestLevel = findParents.data("level");
