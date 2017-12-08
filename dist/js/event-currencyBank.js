@@ -35,7 +35,7 @@ $(function () {
           tds += "<td>" + singleTransaction["detail"] + "</td>";
 
           // 事件
-          if ( singleTransaction.source.match("Chest") ) {
+          if ( singleTransaction.source.match("chest") ) {
             tds += "<td>" + "寶箱" + "</td>";
           } else {
             tds += "<td>" + singleTransaction["source"] + "</td>";

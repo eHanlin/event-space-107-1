@@ -29,13 +29,13 @@ let eventChest = {
       if ( gainCoins ) {
         let openCoins = "<tr><td style='height: 36px; transform: translateY(-50%)'>" +
           "<div id='open-coins' class='award-coins'></div>";
-        coinsText = openCoins + gainCoins + " 金幣 </td></tr>";
+        coinsText = openCoins + gainCoins + " 金幣 </td>";
       }
 
       if ( gainGems ) {
-        let openGems = "<tr><td style='height: 36px; transform: translateY(-50%)'>" +
+        let openGems = "<td style='height: 36px; transform: translateY(-50%)'>" +
           "<div id='open-gems' class='award-gems'></div>";
-        gemsText = openGems + gainGems + " 寶石 </td></tr>";
+        gemsText = openGems + gainGems + " 寶石 </td>";
       }
 
       if ( gainAward ) {
@@ -54,7 +54,7 @@ let eventChest = {
         alertWindow(
           "",
           "<div style='width: 500px;'>"
-          + openChestGif + text + coinsText + gemsText
+          + openChestGif + text + coinsText + gemsText + "</tr>"
           + "</table>" + awardText + "</div>"
           + "</div>",
           function () {
