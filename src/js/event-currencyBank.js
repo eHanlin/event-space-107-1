@@ -7,7 +7,7 @@ $(function() {
       var singleTransaction, transactionField;
       var currencyQuantity;
       var tbodyHtml, tds;
-      var longDateFormat = "dd/MM/yyyy HH:mm:ss";
+      var longDateFormat = "dd/MM/yyyy HH:mm";
 
       for (var i = 0; i < transactions.length; i++) {
         singleTransaction = transactions[i];
@@ -49,7 +49,7 @@ $(function() {
         // 時間
         tds +=
           "<td>" +
-          $.format(singleTransaction["updateTime"], longDateFormat) +
+          $.format().date(singleTransaction["updateTime"], longDateFormat) +
           "</td>";
 
         tbodyHtml += "<tr>" + tds + "</tr>";

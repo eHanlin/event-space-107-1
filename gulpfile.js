@@ -113,19 +113,19 @@ function minifyCSS(sourceCss) {
   };
 }
 
-function minifyJS(sourceJS) {
-  console.log("=======> minifyJS <=======");
-  return function () {
-    return gulp
-      .src(sourceJS, basePath)
-      .pipe(
-        uglify({ mangle: false }).on("error", function (error) {
-          console.log(error);
-        })
-      )
-      .pipe(gulp.dest(dist));
-  };
-}
+// function minifyJS(sourceJS) {
+//   console.log("=======> minifyJS <=======");
+//   return function () {
+//     return gulp
+//       .src(sourceJS, basePath)
+//       .pipe(
+//         uglify({ mangle: false }).on("error", function (error) {
+//           console.log(error);
+//         })
+//       )
+//       .pipe(gulp.dest(dist));
+//   };
+// }
 
 function babelJS(sourceJS) {
   return function () {
