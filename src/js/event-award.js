@@ -10,7 +10,7 @@ $(function() {
         var notice = data.content.notice;
         var needChestLv = data.content.needChestLv;
         var rank = data.content.rank;
-        var desc = data.desc.replace("<br>");
+        var desc = data.desc.replace("<br>", "");
         var quantity = data.content.quantity;
         var introduction = data.content.introduction;
 

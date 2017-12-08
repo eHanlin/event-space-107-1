@@ -35,7 +35,7 @@
             $(_$this).closest(".sp_wrapper").find(".sp_navigator .sp_next").show();
 
             (_$this).find("th").each(function () {
-                var width = $(_$this).width() + 48;
+                var width = $(_$this).width() + 50;
                 $(_$this).width(width);
             });
 

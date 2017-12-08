@@ -14,8 +14,10 @@ $(function() {
 
         if (singleTransaction.action == "REDUCE") {
           tds = "<td>" + "消耗" + "</td>";
-        } else if (singleTransaction.action == "ADD") {
-          tds = "<td>" + "得到" + "</td>";
+        } else if (singleTransaction.action.match("ADD")) {
+          tds = "<td>" + "獲得" + "</td>";
+        } else if (singleTransaction.action == "ADD_BY_CHEST") {
+          tds = "<td>" + "獲得(寶箱)" + "</td>";
         } else {
           tds = "<td>" + singleTransaction["action"] + "</td>";
         }
