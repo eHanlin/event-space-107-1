@@ -157,7 +157,7 @@ gulp.task("lib", libTask("src/lib"));
 gulp.task("build", ["style", "lib"]);
 gulp.task("minifyCSS", minifyCSS("src/css/**/*.css"));
 gulp.task("minifyImage", minifyImage("src/img/**/*.png"));
-gulp.task("minifyJS", minifyJS("src/js/**/*.js"));
+// gulp.task("minifyJS", minifyJS("src/js/**/*.js"));
 gulp.task("replaceToDev", replaceToDev);
 gulp.task("replaceToTest", replaceToTest);
 
