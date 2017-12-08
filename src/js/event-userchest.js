@@ -63,7 +63,7 @@ $(function() {
       });
 
       // 啟動按鈕
-      $(".container .space .startButton").one("click", function() {
+      $(".container .space .startButton").on("click", function() {
         let findParents = $(this).parents(".platform");
         let chestId = findParents.prop("id");
 
@@ -71,7 +71,7 @@ $(function() {
       });
 
       // 升級按鈕
-      $(".container .space .upgradeButton").one("click", function() {
+      $(".container .space .upgradeButton").on("click", function() {
         let findParents = $(this).parents(".platform");
         let chestId = findParents.prop("id");
         let chestLevel = findParents.data("level");

@@ -18,8 +18,8 @@ let eventChest = {
         "/event-space/img/chest/open/openChest" + chestLevel + ".gif);" +
         "background-size: contain;'></div>";
 
-      let text = "<div style='float: right; height: 120px; width: 220px;'>" +
-        "<div style='height: 30px; font-size: 22px;'>恭喜你獲得</div><br/>" +
+      let text = "<div style='float: right; height: 80px; width: 240px;'>" +
+        "<div style='height: 32px; font-size: 22px;'>恭喜你獲得</div><br/>" +
         "<table width='100%' style='table-layout:fixed; font-size: 25px;'>";
       let awardText = "", coinsText = "", gemsText = "";
 
@@ -27,19 +27,19 @@ let eventChest = {
       platformTarget.find(".readyButton").fadeOut("slow");
 
       if ( gainCoins ) {
-        let openCoins = "<tr><td style='height: 36px; transform: translateY(-50%)'>" +
+        let coinsSvg = "<tr><td style='height: 36px; transform: translateY(-50%)'>" +
           "<div id='svg-coins' class='icon-coins'></div>";
-        coinsText = openCoins + gainCoins + " 金幣 </td>";
+        coinsText = coinsSvg + gainCoins + "</td>";
       }
 
       if ( gainGems ) {
-        let openGems = "<td style='height: 36px; transform: translateY(-50%)'>" +
+        let gemsSvg = "<td style='height: 36px; transform: translateY(-50%)'>" +
           "<div id='svg-gems' class='icon-gems'></div>";
-        gemsText = openGems + gainGems + " 寶石 </td>";
+        gemsText = gemsSvg + gainGems + "</td>";
       }
 
       if ( gainAward ) {
-        let awardImage = "<img style='width: 220px; height: 220px;' " +
+        let awardImage = "<img style='width: 200px; height: 200px;' " +
           "src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/award/" +
           gainAwardId + ".png' >" +
           "<br/>";
@@ -131,7 +131,7 @@ let eventChest = {
             {
               upgradeAuditId: upgradeContent["upgradeAuditId"]
             }
-          ).then(function (jsonData) {
+          ).then(function () {
             return ajaxDeferred(
               "GET",
               "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one"

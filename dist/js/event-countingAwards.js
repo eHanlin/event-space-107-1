@@ -12,8 +12,8 @@ var getAwards = function () {
 
       let index = 0;
       for ( let award in awards ) {
-        let awardId = award.split("-")[0];
-        let awardDesc = award.split("-")[1];
+        let awardId = award.split("#")[0];
+        let awardDesc = award.split("#")[1];
         let value = awards[award];
         let specificAward = $(".countingAwards li:eq(" + index + ")");
         let awardImage =
