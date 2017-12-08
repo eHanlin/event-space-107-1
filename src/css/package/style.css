@@ -59,9 +59,9 @@
 .responseTable th,
 .responseTable td {
   text-align: center;
-  font-size: 17.9px;
+  font-size: 18px;
   font-weight: bolder;
-  font-family: "微軟正黑體";
+  font-family: "微軟正黑體", monospace;
   margin: 0.5em 1em;
 }
 @media (min-width: 100px) {
@@ -77,5 +77,5 @@
   margin-left: 340px;
   font-size: 20px;
   font-weight: bolder;
-  font-family: "微軟正黑體";
+  font-family: "微軟正黑體", monospace;
 }

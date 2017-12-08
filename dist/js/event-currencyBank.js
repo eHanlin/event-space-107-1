@@ -4,14 +4,14 @@ $(function () {
     null,
     function (jsonData) {
       let transactions = jsonData.content;
-      let singleTransaction, transactionField;
+      let singleTransaction;
       let tbodyHtml = "", tds;
 
       for ( var i = 0; i < transactions.length; i++ ) {
         singleTransaction = transactions[i];
         let action = singleTransaction["action"];
         let transactionTime =
-          moment.utc(singleTransaction["updateTime"]).local().format("YYYY-MM-DD HH:mm");
+          moment.utc(singleTransaction["updateTime"]).format("YYYY-MM-DD HH:mm");
 
         let currencyQuantity = singleTransaction["currencyQuantity"];
 

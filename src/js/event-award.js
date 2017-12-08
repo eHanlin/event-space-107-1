@@ -10,8 +10,9 @@ $(function() {
         var notice = data.content.notice;
         var needChestLv = data.content.needChestLv;
         var rank = data.content.rank;
+        var title = data.content.title;
         var desc = data.desc;
-        var quantity = data.content.quantity;
+        var provide = data.content.provide;
         var introduction = data.content.introduction;
 
         // dialogue顯示
@@ -21,7 +22,7 @@ $(function() {
 
         $(".space .dialogue #notice").text(notice);
         $(".space .dialogue #needChestLv").text(needChestLv);
-        $(".space .dialogue #quantity").text(quantity);
+        $(".space .dialogue #quantity").text(provide);
         // $(".space .dialogue #rank").text(rank);
         $(".space .dialogue #title").text(title);
         $(".space .dialogue #introduction").text(introduction);
@@ -34,19 +35,11 @@ $(function() {
     var notice = $(".dialogue #notice").text();
     var needChestLv = $(".dialogue #needChestLv").text();
     // var rank = $(".dialogue #rank").text();
-    var quantity = $(".dialogue #quantity").text();
+    var provide = $(".dialogue #quantity").text();
     var title = $(".dialogue #title").text();
     var introduction = $(".dialogue #introduction").text();
     $.alert(
-      alertForAward(
-        title,
-        null,
-        quantity,
-        needChestLv,
-        introduction,
-        notice,
-        ""
-      )
+      alertForAward(title, null, provide, needChestLv, introduction, notice, "")
     );
     cycleAfter();
   };
