@@ -1,4 +1,3 @@
-/* ===== green button ===== */
 .container #green {
   position: fixed;
   top: 300px;
@@ -59,11 +58,18 @@
   opacity: 0.6;
 }
 
-.container #red .newChest,
-.container #brown .newChest,
-.container #pink .newChest,
-.container #green .newChest {
-  top: -4%;
+.container #red .lv5-chest,
+.container #brown .lv5-chest,
+.container #pink .lv5-chest,
+.container #green .lv5-chest {
+  top: 0;
+}
+
+.container #red .lv6-chest,
+.container #brown .lv6-chest,
+.container #pink .lv6-chest,
+.container #green .lv6-chest {
+  top: -5%;
 }
 
 .container #red .startButton,

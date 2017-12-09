@@ -18,7 +18,7 @@ let eventChest = {
         "/event-space/img/chest/open/openChest" + chestLevel + ".gif);" +
         "background-size: contain;'></div>";
 
-      let text = "<div style='float: right; height: 80px; width: 240px;'>" +
+      let text = "<div style='position: absolute; top: 0; right: 0; height: 80px; width: 240px;'>" +
         "<div style='height: 32px; font-size: 22px;'>恭喜你獲得</div><br/>" +
         "<table width='100%' style='table-layout:fixed; font-size: 25px;'>";
       let awardText = "", coinsText = "", gemsText = "";
@@ -53,7 +53,7 @@ let eventChest = {
       $.alert(
         alertWindow(
           "",
-          "<div style='width: 500px;'>"
+          "<div style='height: 500px;'>"
           + openChestGif + text + coinsText + gemsText + "</tr>"
           + "</table>" + awardText + "</div>"
           + "</div>",
