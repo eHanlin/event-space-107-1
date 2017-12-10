@@ -15,6 +15,8 @@ var getCondition = function(chestId, upLevel) {
           eventChest.getUpgrade.bind(this, chestId, upLevel)
         )
       );
+
+      upgradeBtnFunc();
     },
     function() {}
   );
