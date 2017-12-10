@@ -81,9 +81,9 @@ $(function() {
 
           // 預備提升寶箱的等級
           getCondition(chestId, chestLevel + 1);
+          upgradeBtnFunc();
         });
       };
-      upgradeBtnFunc();
 
       // 開啟按鈕
       $(".readyButton").on("click", function() {

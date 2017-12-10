@@ -8,6 +8,8 @@ var getCondition = function(chestId, upLevel) {
       let needCoins = data["coins"];
       let needGems = data["gems"];
 
+      upgradeBtnFunc();
+
       $.confirm(
         confirmWindow(
           "升級寶箱需花費 " + needCoins + " e幣與 " + needGems + " 寶石",
@@ -15,8 +17,6 @@ var getCondition = function(chestId, upLevel) {
           eventChest.getUpgrade.bind(this, chestId, upLevel)
         )
       );
-
-      upgradeBtnFunc();
     },
     function() {}
   );
