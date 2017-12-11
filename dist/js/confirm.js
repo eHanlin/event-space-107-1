@@ -1,4 +1,4 @@
-let confirmWindow = function(title, content, confrimFunction) {
+let confirmWindow = function (title, content, confrimFunction) {
   return {
     title: "<h5>" + title + "</h5>",
     content: "<span style='font-size: 20px'>" + content + "</span>",
@@ -8,7 +8,7 @@ let confirmWindow = function(title, content, confrimFunction) {
       cancelButton: {
         text: "再想想",
         btnClass: "btn-blue",
-        action: function() {
+        action: function () {
           return;
         }
       },
@@ -21,10 +21,11 @@ let confirmWindow = function(title, content, confrimFunction) {
   };
 };
 
-let alertWindow = function(title, content, confirmCallBack) {
-  if (!confirmCallBack) {
+let alertWindow = function (title, content, confirmCallBack) {
+  if ( !confirmCallBack ) {
     console.log(confirmCallBack);
-    confirmCallBack = function() {};
+    confirmCallBack = function () {
+    };
   }
 
   return {
@@ -32,7 +33,7 @@ let alertWindow = function(title, content, confirmCallBack) {
     content: "<span style='font-size: 20px'>" + content + "</span>",
     useBootstrap: false,
     theme: "supervan",
-    boxWidth: "65%",
+    boxWidth: "50%",
     buttons: {
       confirmButton: {
         text: "確認",
@@ -43,31 +44,30 @@ let alertWindow = function(title, content, confirmCallBack) {
   };
 };
 
-let alertForAward = function(
-  title,
-  rank,
-  quantity,
-  needChestLv,
-  introduction,
-  notice,
-  alertFunction
-) {
-  if (!alertFunction) {
-    alertFunction = function() {};
+let alertForAward = function (title,
+                              rank,
+                              quantity,
+                              needChestLv,
+                              introduction,
+                              notice,
+                              alertFunction) {
+  if ( !alertFunction ) {
+    alertFunction = function () {
+    };
   }
 
   return {
     title: title,
     content:
-      "<span style='font-size:22px;'><br>贈品數量：" +
-      quantity +
-      "名<br><p style='color:yellow'>可獲取的寶箱：Lv. " +
-      needChestLv +
-      "</p><br>" +
-      introduction +
-      "<br><br></span><h2>小提醒：" +
-      notice +
-      "</h2>",
+    "<span style='font-size:22px;'><br>贈品數量：" +
+    quantity +
+    "名<br><p style='color:yellow'>可獲取的寶箱：Lv. " +
+    needChestLv +
+    "</p><br>" +
+    introduction +
+    "<br><br></span><h2>小提醒：" +
+    notice +
+    "</h2>",
     useBootstrap: false,
     theme: "supervan",
     buttons: {
