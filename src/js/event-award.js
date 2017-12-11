@@ -41,7 +41,6 @@ $(function() {
     $.alert(
       alertForAward(title, null, provide, needChestLv, introduction, notice, "")
     );
-    cycleAfter();
   };
 
   var cycleAfter = function() {

@@ -12,14 +12,7 @@ $(function() {
 
     upgradeBtnFunc();
 
-    if (chestLevel === 6) {
-      thisPlatformTarget.find(".upgradeButton").hide();
-      thisPlatformTarget.find(".chest").addClass("lv6-chest");
-    }
 
-    if (chestLevel === 5 || chestLevel === 6) {
-      thisPlatformTarget.find(".chest").addClass("lv5-chest");
-    }
 
     if (chestSatuts === "LOCKED") {
       console.log("===============> status is locked <=================");
