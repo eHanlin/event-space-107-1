@@ -1,4 +1,4 @@
-let updateStatusIsUnlocking = function(chestId) {
+let updateStatusIsUnlocking = function (chestId, startBtnTarget) {
   let body = { status: "UNLOCKING" };
 
   $.confirm(
@@ -10,7 +10,7 @@ let updateStatusIsUnlocking = function(chestId) {
         "PUT",
         "https://test.ehanlin.com.tw/chest/updateStatus/" + chestId,
         body,
-        function() {
+        function () {
           let chestIdTarget = $("#" + chestId);
           let startButtonTarget = chestIdTarget.find(".startButton");
           let upgradeButtonTarget = chestIdTarget.find(".upgradeButton");
@@ -20,27 +20,29 @@ let updateStatusIsUnlocking = function(chestId) {
           upgradeButtonTarget.fadeOut("slow");
 
           startButtonTarget.attr("data-status", body.status);
-          coolDownTime(chestId);
+          coolDownTime(chestId, startBtnTarget);
         }
       )
     )
   );
 };
 
-let coolDownTime = function(chestId) {
-  let countDown = function(jsonData, chestId) {
+let coolDownTime = function (chestId, startBtnTarget) {
+  let countDown = function (jsonData, chestId) {
     let seconds = jsonData.content;
     let platformTarget = $("#" + chestId);
     let imgChestTarget = platformTarget.find(".chest");
     let countdownTarget = platformTarget.find(".countdown");
 
     imgChestTarget.addClass("unlockingGray");
+    startBtnTarget.attr("data-onlocked", "false");
+
     countdownTarget.countDown({
       timeInSecond: 5,
       displayTpl:
         "<i style='font-size:28px;color:yellow' class='fa'>&#xf254;</i>{hour}時{minute}分{second}秒",
       limit: "hour",
-      callback: function() {
+      callback: function () {
         eventChest.updateStatusIsReady(chestId);
         imgChestTarget.removeClass("unlockingGray");
       }
@@ -50,10 +52,10 @@ let coolDownTime = function(chestId) {
   ajaxGet(
     "https://test.ehanlin.com.tw/chest/coolDownTime/" + chestId,
     null,
-    function(jsonData) {
-      console.log("成功抓取coolDownTime資料！");
+    function (jsonData) {
       countDown(jsonData, chestId);
     },
-    function() {}
+    function () {
+    }
   );
 };

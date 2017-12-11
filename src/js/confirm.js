@@ -23,7 +23,6 @@ let confirmWindow = function (title, content, confrimFunction) {
 
 let alertWindow = function (title, content, confirmCallBack) {
   if ( !confirmCallBack ) {
-    console.log(confirmCallBack);
     confirmCallBack = function () {
     };
   }

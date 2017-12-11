@@ -47,7 +47,6 @@ $(function () {
     "https://test.ehanlin.com.tw/chest/retrieve",
     null,
     function (jsonData) {
-      console.log("成功抓取學生寶箱資料！ (by user)");
       let indexPlatformTarget;
       let chests = jsonData.content;
 
@@ -83,33 +82,35 @@ $(function () {
 
 // 啟動按鈕
 let startBtnFunc = function () {
-  $(".container .space .startButton").on("click", function () {
+  $(".container .space .startButton[data-onlocked=false]").on("click", function () {
     let findParents = $(this).parents(".platform");
     let chestId = findParents.prop("id");
-
-    updateStatusIsUnlocking(chestId);
+    $(this).attr("data-onlocked", "true");
+    updateStatusIsUnlocking(chestId, $(this));
   });
 };
 
 // 開啟按鈕
 let upgradeBtnFunc = function () {
-  $(".container .space .upgradeButton").on("click", function () {
+  $(".container .space .upgradeButton[data-onlocked=false]").on("click", function () {
     let findParents = $(this).parents(".platform");
     let chestId = findParents.prop("id");
     let chestLevel = findParents.data("level");
+    $(this).attr("data-onlocked", "true");
 
     // 預備提升寶箱的等級
-    getCondition(chestId, chestLevel + 1);
+    getCondition(chestId, chestLevel + 1, $(this));
   });
 };
 
 // 開啟按鈕
 let readyBtnFunc = function () {
-  $(".readyButton").on("click", function () {
+  $(".container .space .readyButton[data-onlocked=false]").on("click", function () {
     let chestId = $(this)
       .parents(".platform")
       .prop("id");
-    eventChest.updateStatusIsOpen(chestId);
+    $(this).attr("data-onlocked", "true");
+    eventChest.updateStatusIsOpen(chestId, $(this));
   });
 };
 

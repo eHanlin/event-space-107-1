@@ -1,6 +1,6 @@
 let eventChest = {
   // 將寶箱狀態轉為開啟
-  updateStatusIsOpen: function (chestId) {
+  updateStatusIsOpen: function (chestId, readyBtnTarget) {
     let openSuccess = function (jsonData) {
       let data = jsonData.content;
       let gainCoins = data["coins"];
@@ -22,7 +22,7 @@ let eventChest = {
         "background-size: contain;'></div>";
 
       let text =
-        "<div style='position: absolute; top: 0; right: 0; height: 80px; width: 220px;'>" +
+        "<div style='position: absolute; top: 0; right: 100px; height: 80px; width: 220px;'>" +
         "<div style='height: 32px; font-size: 22px;'>恭喜你獲得</div><br/>" +
         "<table width='100%' style='table-layout:fixed; font-size: 25px;'>";
       let awardText = "",
@@ -60,7 +60,7 @@ let eventChest = {
       $.alert(
         alertWindow(
           "",
-          "<div style='height: 500px;'>" +
+          "<div style='height: 450px;'>" +
           openChestGif +
           text +
           coinsText +
@@ -77,6 +77,8 @@ let eventChest = {
             countTrasition("own-coins", originalCoins, totalCoins);
             countTrasition("own-gems", originalGems, totalGems);
             getAwards();
+
+            readyBtnTarget.attr("data-onlocked", "false");
           }
         )
       );
@@ -104,8 +106,6 @@ let eventChest = {
       "https://test.ehanlin.com.tw/chest/updateStatus/" + chestId,
       body,
       function () {
-        console.log("成功抓取 updateStatusIsReady 資料！");
-
         let platFromTarget = $("#" + chestId);
         let chestTarget = platFromTarget.find(".chest");
         let level = platFromTarget.data("level");
@@ -124,7 +124,7 @@ let eventChest = {
   },
 
   // 將寶箱狀態轉為升級
-  getUpgrade: function (chestId, upLevel) {
+  getUpgrade: function (chestId, upLevel, upgradeBtnTarget) {
     let putData = {
       level: upLevel
     };
@@ -134,9 +134,6 @@ let eventChest = {
       "https://test.ehanlin.com.tw/chest/upgrade/" + chestId,
       putData,
       function (jsonData) {
-        console.log("成功抓取升級的寶箱資料！");
-        console.log(jsonData);
-
         let upgradeContent = jsonData.content;
         let upgradeToTransaction = function (alertTitle, alertGif) {
           ajaxDeferred(
@@ -153,25 +150,23 @@ let eventChest = {
               );
             })
             .then(function (jsonData) {
-              console.log("current totalAssets: " + jsonData.content);
-
               $.alert(
                 alertWindow(alertTitle, alertGif, function () {
-                  console.log("current totalAssets: " + jsonData.content);
+                  let content = jsonData.content;
 
-                  $(".space .coins span")
-                    .empty()
-                    .append(jsonData.content["coins"]);
-                  $(".space .gems span")
-                    .empty()
-                    .append(jsonData.content["gems"]);
+                  let originalCoins = $(".space .coins #own-coins").text();
+                  let originalGems = $(".space .gems #own-gems").text();
+
+                  countTrasition("own-coins", originalCoins, content["coins"]);
+                  countTrasition("own-gems", originalGems, content["gems"]);
+
+                  upgradeBtnTarget.attr("data-onlocked", "false");
                 })
               );
             });
         };
 
         if ( jsonData.message.indexOf("failure") >= 0 ) {
-          console.log("升級失敗");
           let failLevel = upLevel - 1;
           let failureGif =
             "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource" +
@@ -216,7 +211,6 @@ let eventChest = {
               ".gif'>";
 
             upgradeToTransaction("升級成功", successGif);
-
 
             if ( dataLevel === 5 ) {
               platformTarget.find(".chest").addClass("lv5-chest");

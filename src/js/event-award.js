@@ -1,18 +1,18 @@
 $(function() {
-  var getAwardMessage = function(index) {
+  let getAwardMessage = function(index) {
     ajaxGet(
       "https://test.ehanlin.com.tw/chest/condition/one/award" + index,
       null,
       function(jsonData) {
-        var data = jsonData.content;
+        let data = jsonData.content;
 
-        var notice = data.content.notice;
-        var needChestLv = data.content.needChestLv;
-        var rank = data.content.rank;
-        var title = data.content.title;
-        var desc = data.desc;
-        var provide = data.content.provide;
-        var introduction = data.content.introduction;
+        let notice = data.content.notice;
+        let needChestLv = data.content.needChestLv;
+        let rank = data.content.rank;
+        let title = data.content.title;
+        let desc = data.desc;
+        let provide = data.content.provide;
+        let introduction = data.content.introduction;
 
         // dialogue顯示
         $(".space article .text")
@@ -30,19 +30,19 @@ $(function() {
     );
   };
 
-  var alertFunc = function() {
-    var notice = $(".dialogue #notice").text();
-    var needChestLv = $(".dialogue #needChestLv").text();
+  let alertFunc = function() {
+    let notice = $(".dialogue #notice").text();
+    let needChestLv = $(".dialogue #needChestLv").text();
     // var rank = $(".dialogue #rank").text();
-    var provide = $(".dialogue #quantity").text();
-    var title = $(".dialogue #title").text();
-    var introduction = $(".dialogue #introduction").text();
+    let provide = $(".dialogue #quantity").text();
+    let title = $(".dialogue #title").text();
+    let introduction = $(".dialogue #introduction").text();
     $.alert(
       alertForAward(title, null, provide, needChestLv, introduction, notice, "")
     );
   };
 
-  var cycleAfter = function() {
+  let cycleAfter = function() {
     $(".container .space #award").on("cycle-after", function(
       event,
       optionHash,

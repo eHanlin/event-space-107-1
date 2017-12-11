@@ -7,7 +7,6 @@ var getAwards = function () {
     "https://test.ehanlin.com.tw/chest/retrieve/award",
     null,
     function (jsonData) {
-      console.log("成功抓取使用者獎勵累積！");
       let awards = jsonData.content;
 
       let index = 0;

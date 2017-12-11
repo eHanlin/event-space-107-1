@@ -3,7 +3,6 @@ define(["jquery", "ajaxUtil", "popup"], function ($, ajaxUtil, popup) {
     let getAwardMessage = function (index) {
       ajaxUtil("GET", "https://test.ehanlin.com.tw/chest/condition/one/award" + index)
         .done(function (jsonData) {
-          console.log("成功抓取獎品的資料描述！");
           let awardCondition = jsonData.content;
 
           let notice = awardCondition.content.notice;
