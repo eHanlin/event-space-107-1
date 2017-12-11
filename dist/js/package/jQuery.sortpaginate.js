@@ -191,4 +191,4 @@ $(function($, window, document, undefined) {
 
     return this;
   };
-})(jQuery, window, document);
+});
