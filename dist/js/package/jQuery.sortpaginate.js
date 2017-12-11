@@ -25,12 +25,11 @@ $(function($, window, document, undefined) {
       .closest(".sp_wrapper")
       .find(".sp_navigator")
       .append(
-        "<span class='sp_paginate sp_previous' style='display:none;'><a href=''>上一頁<a/></span>"
+        "<span class='sp_paginate sp_previous'><a href=''>上一頁<a/></span>"
       )
       .append("<span class='sp_paginate sp_next'><a href=''>下一頁<a/></span>");
 
     function initTable() {
-      $(".sp_paginate.sp_previous").removeAttr("style");
       $(_$this)
         .find("tbody")
         .attr("data-firstRecord", 0);
@@ -114,7 +113,6 @@ $(function($, window, document, undefined) {
 
     // Handling Sorting
     _$this.find("th").on("click", function() {
-      $(".sp_paginate.sp_previous").removeAttr("style");
       $(_$this)
         .find("th")
         .not($(this))
@@ -175,7 +173,7 @@ $(function($, window, document, undefined) {
         $(_$this)
           .find("tbody")
           .attr("data-firstRecord", tmpRec);
-        paginate(tmpRec, _opts.pageSize);
+        paginate(tmpRec, 10);
       });
 
     initTable();
