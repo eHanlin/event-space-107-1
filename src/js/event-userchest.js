@@ -58,12 +58,6 @@ $(function () {
         determineStatus(chest, indexPlatformTarget, chest.status);
       }
 
-      // 雲端銀行
-      $(".space .bank").on("click", function () {
-        window.open("/event/space/currencyBank.html", "雲端銀行");
-        return false;
-      });
-
       // 啟動按鈕
       $(".container .space .startButton").on("click", function () {
         let findParents = $(this).parents(".platform");
@@ -73,16 +67,7 @@ $(function () {
       });
 
       // 升級按鈕
-      var upgradeBtnFunc = function () {
-        $(".container .space .upgradeButton").one("click", function () {
-          let findParents = $(this).parents(".platform");
-          let chestId = findParents.prop("id");
-          let chestLevel = findParents.data("level");
-
-          // 預備提升寶箱的等級
-          getCondition(chestId, chestLevel + 1);
-        });
-      };
+      upgradeBtnFunc();
 
       // 開啟按鈕
       $(".readyButton").on("click", function () {
@@ -95,9 +80,26 @@ $(function () {
     function () {
     }
   );
+
+  // 雲端銀行按鈕
+  $(".space .bank").on("click", function() {
+    window.open("/event/space/currencyBank.html", "雲端銀行");
+    return false;
+  });
 });
 
-let determineLevel = function (chestTarget, chestLevel) {
+let upgradeBtnFunc = function() {
+  $(".container .space .upgradeButton").one("click", function() {
+    let findParents = $(this).parents(".platform");
+    let chestId = findParents.prop("id");
+    let chestLevel = findParents.data("level");
+
+    // 預備提升寶箱的等級
+    getCondition(chestId, chestLevel + 1);
+  });
+};
+
+let determineLevel = function(chestTarget, chestLevel) {
   let chestImage = "chest" + chestLevel;
   changeChestImage(chestTarget, chestImage);
 };

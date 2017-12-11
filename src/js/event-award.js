@@ -4,7 +4,6 @@ $(function() {
       "https://test.ehanlin.com.tw/chest/condition/one/award" + index,
       null,
       function(jsonData) {
-        console.log("成功抓取獎品的資料描述！");
         var data = jsonData.content;
 
         var notice = data.content.notice;

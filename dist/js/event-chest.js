@@ -187,6 +187,7 @@ let eventChest = {
           let finalCoins = upgradeContent["finalCoins"];
           let finalGems = upgradeContent["finalGems"];
           // --------------------------------------------------
+
           if (finalCoins || finalGems) {
             let alertText = "";
 
@@ -227,6 +228,7 @@ let eventChest = {
             determineLevel(platformTarget.find(".chest"), dataLevel);
           }
         }
+        upgradeBtnFunc();
       }
     );
   }
