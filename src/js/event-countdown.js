@@ -20,14 +20,15 @@ let updateStatusIsUnlocking = function (chestId, startBtnTarget) {
           upgradeButtonTarget.fadeOut("slow");
 
           startButtonTarget.attr("data-status", body.status);
-          coolDownTime(chestId, startBtnTarget);
+          coolDownTime(chestId);
+          startBtnTarget.attr("data-onlocked", "false");
         }
       )
     )
   );
 };
 
-let coolDownTime = function (chestId, startBtnTarget) {
+let coolDownTime = function (chestId) {
   let countDown = function (jsonData, chestId) {
     let seconds = jsonData.content;
     let platformTarget = $("#" + chestId);
@@ -35,7 +36,6 @@ let coolDownTime = function (chestId, startBtnTarget) {
     let countdownTarget = platformTarget.find(".countdown");
 
     imgChestTarget.addClass("unlockingGray");
-    startBtnTarget.attr("data-onlocked", "false");
 
     countdownTarget.countDown({
       timeInSecond: 5,

@@ -22,7 +22,7 @@ let eventChest = {
         "background-size: contain;'></div>";
 
       let text =
-        "<div style='position: absolute; top: 0; right: 120px; height: 80px; width: 220px;'>" +
+        "<div style='position: absolute; top: 0; right: 150px; height: 80px; width: 220px;'>" +
         "<div style='height: 32px; font-size: 22px;'>恭喜你獲得</div><br/>" +
         "<table width='100%' style='table-layout:fixed; font-size: 25px;'>";
       let awardText = "",
