@@ -166,11 +166,7 @@ gulp.task("package", function () {
   Q.fcall(function () {
     return util.logPromise(clean(dist));
   }).then(function () {
-    return Q.all([
-      util.logStream(libTask("dist/lib")),
-      util.logStream(copyStaticTask("dist")),
-      //util.logStream(styleTask("dist/css"))
-    ]);
+    return util.logStream(copyStaticTask("dist"));
   }).then(function () {
     return Q.all([
       util.logStream(minifyImage("src/img/**/*.png")),

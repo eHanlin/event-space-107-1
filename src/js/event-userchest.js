@@ -53,43 +53,47 @@ $(function () {
 
       for ( let i = 0; i < chests.length; i++ ) {
         let chest = chests[i];
-        indexPlatformTarget = $(".container .space .platform:eq(" + i + ")");
+        let colorPlatform = chest["colorPlatform"];
+        indexPlatformTarget = $(".container " + "#" + colorPlatform.toLowerCase()).find(".platform");
+        //indexPlatformTarget = $(".container .space .platform:eq(" + i + ")");
         indexPlatformTarget.show();
+
         determineStatus(chest, indexPlatformTarget, chest.status);
       }
 
       // 啟動按鈕
-      $(".container .space .startButton").on("click", function () {
-        let findParents = $(this).parents(".platform");
-        let chestId = findParents.prop("id");
-
-        updateStatusIsUnlocking(chestId);
-      });
+      startBtnFunc();
 
       // 升級按鈕
       upgradeBtnFunc();
 
       // 開啟按鈕
-      $(".readyButton").on("click", function () {
-        let chestId = $(this)
-          .parents(".platform")
-          .prop("id");
-        eventChest.updateStatusIsOpen(chestId);
-      });
+      readyBtnFunc();
     },
     function () {
     }
   );
 
   // 雲端銀行按鈕
-  $(".space .bank").on("click", function() {
+  $(".space .bank").on("click", function () {
     window.open("/event/space/currencyBank.html", "雲端銀行");
     return false;
   });
 });
 
-let upgradeBtnFunc = function() {
-  $(".container .space .upgradeButton").on("click", function() {
+// 啟動按鈕
+let startBtnFunc = function () {
+  $(".container .space .startButton").on("click", function () {
+    let findParents = $(this).parents(".platform");
+    let chestId = findParents.prop("id");
+
+    updateStatusIsUnlocking(chestId);
+  });
+};
+
+// 開啟按鈕
+let upgradeBtnFunc = function () {
+  $(".container .space .upgradeButton").on("click", function () {
     let findParents = $(this).parents(".platform");
     let chestId = findParents.prop("id");
     let chestLevel = findParents.data("level");
@@ -99,7 +103,17 @@ let upgradeBtnFunc = function() {
   });
 };
 
-let determineLevel = function(chestTarget, chestLevel) {
+// 開啟按鈕
+let readyBtnFunc = function () {
+  $(".readyButton").on("click", function () {
+    let chestId = $(this)
+      .parents(".platform")
+      .prop("id");
+    eventChest.updateStatusIsOpen(chestId);
+  });
+};
+
+let determineLevel = function (chestTarget, chestLevel) {
   let chestImage = "chest" + chestLevel;
   changeChestImage(chestTarget, chestImage);
 };

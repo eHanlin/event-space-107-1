@@ -54,31 +54,21 @@ $(function () {
       for ( let i = 0; i < chests.length; i++ ) {
         let chest = chests[i];
         let colorPlatform = chest["colorPlatform"];
-
         indexPlatformTarget = $(".container " + "#" + colorPlatform.toLowerCase()).find(".platform");
         //indexPlatformTarget = $(".container .space .platform:eq(" + i + ")");
         indexPlatformTarget.show();
+
         determineStatus(chest, indexPlatformTarget, chest.status);
       }
 
       // 啟動按鈕
-      $(".container .space .startButton").on("click", function () {
-        let findParents = $(this).parents(".platform");
-        let chestId = findParents.prop("id");
-
-        updateStatusIsUnlocking(chestId);
-      });
+      startBtnFunc();
 
       // 升級按鈕
       upgradeBtnFunc();
 
       // 開啟按鈕
-      $(".readyButton").on("click", function () {
-        let chestId = $(this)
-          .parents(".platform")
-          .prop("id");
-        eventChest.updateStatusIsOpen(chestId);
-      });
+      readyBtnFunc();
     },
     function () {
     }
@@ -91,6 +81,17 @@ $(function () {
   });
 });
 
+// 啟動按鈕
+let startBtnFunc = function () {
+  $(".container .space .startButton").on("click", function () {
+    let findParents = $(this).parents(".platform");
+    let chestId = findParents.prop("id");
+
+    updateStatusIsUnlocking(chestId);
+  });
+};
+
+// 開啟按鈕
 let upgradeBtnFunc = function () {
   $(".container .space .upgradeButton").on("click", function () {
     let findParents = $(this).parents(".platform");
@@ -99,6 +100,16 @@ let upgradeBtnFunc = function () {
 
     // 預備提升寶箱的等級
     getCondition(chestId, chestLevel + 1);
+  });
+};
+
+// 開啟按鈕
+let readyBtnFunc = function () {
+  $(".readyButton").on("click", function () {
+    let chestId = $(this)
+      .parents(".platform")
+      .prop("id");
+    eventChest.updateStatusIsOpen(chestId);
   });
 };
 
