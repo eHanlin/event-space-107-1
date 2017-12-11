@@ -53,7 +53,10 @@ $(function () {
 
       for ( let i = 0; i < chests.length; i++ ) {
         let chest = chests[i];
-        indexPlatformTarget = $(".container .space .platform:eq(" + i + ")");
+        let colorPlatform = chest["colorPlatform"];
+
+        indexPlatformTarget = $(".container " + "#" + colorPlatform.toLowerCase()).find(".platform");
+        //indexPlatformTarget = $(".container .space .platform:eq(" + i + ")");
         indexPlatformTarget.show();
         determineStatus(chest, indexPlatformTarget, chest.status);
       }
@@ -82,14 +85,14 @@ $(function () {
   );
 
   // 雲端銀行按鈕
-  $(".space .bank").on("click", function() {
+  $(".space .bank").on("click", function () {
     window.open("/event/space/currencyBank.html", "雲端銀行");
     return false;
   });
 });
 
-let upgradeBtnFunc = function() {
-  $(".container .space .upgradeButton").on("click", function() {
+let upgradeBtnFunc = function () {
+  $(".container .space .upgradeButton").on("click", function () {
     let findParents = $(this).parents(".platform");
     let chestId = findParents.prop("id");
     let chestLevel = findParents.data("level");
@@ -99,7 +102,7 @@ let upgradeBtnFunc = function() {
   });
 };
 
-let determineLevel = function(chestTarget, chestLevel) {
+let determineLevel = function (chestTarget, chestLevel) {
   let chestImage = "chest" + chestLevel;
   changeChestImage(chestTarget, chestImage);
 };
