@@ -89,7 +89,7 @@ $(function () {
 });
 
 let upgradeBtnFunc = function() {
-  $(".container .space .upgradeButton").one("click", function() {
+  $(".container .space .upgradeButton").on("click", function() {
     let findParents = $(this).parents(".platform");
     let chestId = findParents.prop("id");
     let chestLevel = findParents.data("level");

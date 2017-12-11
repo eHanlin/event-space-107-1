@@ -228,7 +228,6 @@ let eventChest = {
             determineLevel(platformTarget.find(".chest"), dataLevel);
           }
         }
-        upgradeBtnFunc();
       }
     );
   }
