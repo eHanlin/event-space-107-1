@@ -83,20 +83,25 @@ $(function () {
 // 啟動按鈕
 let startBtnFunc = function () {
   $(".container .space .startButton[data-onlocked=false]").on("click", function () {
-    let findParents = $(this).parents(".platform");
-    let chestId = findParents.prop("id");
+    let findParents, chestId;
     $(this).attr("data-onlocked", "true");
+
+    findParents = $(this).parents(".platform");
+    chestId = findParents.prop("id");
+
     updateStatusIsUnlocking(chestId, $(this));
   });
 };
 
-// 開啟按鈕
+// 升級按鈕
 let upgradeBtnFunc = function () {
   $(".container .space .upgradeButton[data-onlocked=false]").on("click", function () {
-    let findParents = $(this).parents(".platform");
-    let chestId = findParents.prop("id");
-    let chestLevel = findParents.data("level");
+    let findParents, chestId, chestLevel;
     $(this).attr("data-onlocked", "true");
+
+    findParents = $(this).parents(".platform");
+    chestId = findParents.prop("id");
+    chestLevel = findParents.data("level");
 
     // 預備提升寶箱的等級
     getCondition(chestId, chestLevel + 1, $(this));
@@ -106,10 +111,13 @@ let upgradeBtnFunc = function () {
 // 開啟按鈕
 let readyBtnFunc = function () {
   $(".container .space .readyButton[data-onlocked=false]").on("click", function () {
-    let chestId = $(this)
+    let chestId;
+    $(this).attr("data-onlocked", "true");
+
+    chestId = $(this)
       .parents(".platform")
       .prop("id");
-    $(this).attr("data-onlocked", "true");
+
     eventChest.updateStatusIsOpen(chestId, $(this));
   });
 };

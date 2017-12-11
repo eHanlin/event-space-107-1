@@ -32,6 +32,7 @@ let alertWindow = function (title, content, confirmCallBack) {
     content: "<span style='font-size: 20px'>" + content + "</span>",
     useBootstrap: false,
     theme: "supervan",
+    boxWidth: "40%",
     buttons: {
       confirmButton: {
         text: "確認",
