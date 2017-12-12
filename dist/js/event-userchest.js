@@ -44,7 +44,7 @@ $(function() {
   };
 
   ajaxGet(
-    "http://localhost:8080/chest/retrieve?userSpecific=5950a1e077c81e5ef884dfd5",
+    "https://test.ehanlin.com.tw/chest/retrieve",
     null,
     function(jsonData) {
       let indexPlatformTarget;

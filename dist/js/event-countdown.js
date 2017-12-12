@@ -31,7 +31,6 @@ let updateStatusIsUnlocking = function(chestId, startBtnTarget) {
 let coolDownTime = function(chestId) {
   let countDown = function(jsonData, chestId) {
     let seconds = jsonData.content;
-    console.log(seconds);
     let platformTarget = $("#" + chestId);
     let imgChestTarget = platformTarget.find(".chest");
     let countdownTarget = platformTarget.find(".countdown");
