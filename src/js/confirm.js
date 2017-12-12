@@ -64,9 +64,9 @@ let alertForAward = function (title,
     needChestLv +
     "</p><br>" +
     introduction +
-    "<br><br></span><h2>小提醒：" +
+    "<br><br></span><span style='font-size:16px;'>小提醒：" +
     notice +
-    "</h2>",
+    "</span>",
     useBootstrap: false,
     theme: "supervan",
     buttons: {

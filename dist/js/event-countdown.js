@@ -31,6 +31,7 @@ let updateStatusIsUnlocking = function (chestId, startBtnTarget) {
 let coolDownTime = function (chestId) {
   let countDown = function (jsonData, chestId) {
     let seconds = jsonData.content;
+    console.log(seconds);
     let platformTarget = $("#" + chestId);
     let imgChestTarget = platformTarget.find(".chest");
     let countdownTarget = platformTarget.find(".countdown");
@@ -38,7 +39,7 @@ let coolDownTime = function (chestId) {
     imgChestTarget.addClass("unlockingGray");
 
     countdownTarget.countDown({
-      timeInSecond: 5,
+      timeInSecond: seconds,
       displayTpl:
         "<i style='font-size:28px;color:yellow' class='fa'>&#xf254;</i>{hour}時{minute}分{second}秒",
       limit: "hour",
