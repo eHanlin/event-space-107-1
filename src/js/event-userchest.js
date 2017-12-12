@@ -40,7 +40,7 @@ $(function () {
   };
 
   ajaxGet(
-    "https://test.ehanlin.com.tw/chest/retrieve",
+    "https://www.ehanlin.com.tw/chest/retrieve",
     null,
     function (jsonData) {
       let indexPlatformTarget;

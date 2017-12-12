@@ -1,6 +1,6 @@
 var getCondition = function(chestId, upLevel, upgradeBtnTarget) {
   ajaxGet(
-    "https://test.ehanlin.com.tw/chest/condition/one/level" + upLevel,
+    "https://www.ehanlin.com.tw/chest/condition/one/level" + upLevel,
     null,
     function(jsonData) {
       let data = jsonData.content.content;

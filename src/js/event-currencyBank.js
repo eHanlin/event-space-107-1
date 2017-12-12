@@ -1,7 +1,7 @@
 $(function() {
   ajaxDeferred(
     "GET",
-    "https://test.ehanlin.com.tw/currencyBank/transaction/retrieve"
+    "https://www.ehanlin.com.tw/currencyBank/transaction/retrieve"
   )
     .then(function(jsonData) {
       let transactions = jsonData.content;

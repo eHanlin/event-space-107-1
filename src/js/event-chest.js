@@ -86,7 +86,7 @@ let eventChest = {
 
     ajax(
       "PUT",
-      "https://test.ehanlin.com.tw/chest/open/" + chestId,
+      "https://www.ehanlin.com.tw/chest/open/" + chestId,
       {
         status: "OPEN"
       },
@@ -103,7 +103,7 @@ let eventChest = {
 
     ajax(
       "PUT",
-      "https://test.ehanlin.com.tw/chest/updateStatus/" + chestId,
+      "https://www.ehanlin.com.tw/chest/updateStatus/" + chestId,
       body,
       function () {
         let platFromTarget = $("#" + chestId);
@@ -131,14 +131,14 @@ let eventChest = {
 
     ajax(
       "PUT",
-      "https://test.ehanlin.com.tw/chest/upgrade/" + chestId,
+      "https://www.ehanlin.com.tw/chest/upgrade/" + chestId,
       putData,
       function (jsonData) {
         let upgradeContent = jsonData.content;
         let upgradeToTransaction = function (alertTitle, alertGif) {
           ajaxDeferred(
             "POST",
-            "https://test.ehanlin.com.tw/currencyBank/transaction/upgrade",
+            "https://www.ehanlin.com.tw/currencyBank/transaction/upgrade",
             {
               upgradeAuditId: upgradeContent["upgradeAuditId"]
             }
@@ -146,7 +146,7 @@ let eventChest = {
             .then(function () {
               return ajaxDeferred(
                 "GET",
-                "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one"
+                "https://www.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one"
               );
             })
             .then(function (jsonData) {

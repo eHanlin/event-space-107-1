@@ -8,7 +8,7 @@ let updateStatusIsUnlocking = function(chestId, startBtnTarget) {
       ajax.bind(
         this,
         "PUT",
-        "https://test.ehanlin.com.tw/chest/updateStatus/" + chestId,
+        "https://www.ehanlin.com.tw/chest/updateStatus/" + chestId,
         body,
         function() {
           let chestIdTarget = $("#" + chestId);
@@ -50,7 +50,7 @@ let coolDownTime = function(chestId) {
   };
 
   ajaxGet(
-    "https://test.ehanlin.com.tw/chest/coolDownTime/" + chestId,
+    "https://www.ehanlin.com.tw/chest/coolDownTime/" + chestId,
     null,
     function(jsonData) {
       countDown(jsonData, chestId);
