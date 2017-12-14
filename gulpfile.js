@@ -10,12 +10,14 @@ const pngquant = require("imagemin-pngquant");
 const cleanCSS = require("gulp-clean-css");
 const uglify = require("gulp-uglify-es").default;
 
-let basePath = { base: "src" };
+let basePath = {
+  base: "src"
+};
 var dist = "dist";
 
 function libTask(destination) {
   console.log("=======> libTask <=======");
-  return function() {
+  return function () {
     let packageJson = JSON.parse(
       fs.readFileSync("package.json", "utf8").toString()
     );
@@ -30,14 +32,16 @@ function libTask(destination) {
     }
 
     return gulp
-      .src(webLibModules, { base: "node_modules/" })
+      .src(webLibModules, {
+        base: "node_modules/"
+      })
       .pipe(gulp.dest(destination));
   };
 }
 
 function copyStaticTask(destination) {
   console.log("=======> copyStaticTask <=======");
-  return function() {
+  return function () {
     return gulp
       .src(
         [
@@ -48,8 +52,7 @@ function copyStaticTask(destination) {
           "src/lib/**/*",
           "src/js/**/*.js",
           "src/js/package/*.js"
-        ],
-        {
+        ], {
           base: "src"
         }
       )
@@ -60,46 +63,44 @@ function copyStaticTask(destination) {
 function clean(sourceDir) {
   console.log(`=======> clean ${sourceDir} <=======`);
 
-  return function() {
+  return function () {
     return del([sourceDir]);
   };
 }
 
-function replaceToDev() {
+function testReplaceToDev() {
   gulp
     .src(["src/js/event-totalAssets.js", "src/js/event-userchest.js"], {
       base: "./"
     })
     .pipe(
       replace({
-        "https://test.ehanlin.com.tw/chest/retrieve":
-          "http://localhost:8080/chest/retrieve?userSpecific=5950a1e077c81e5ef884dfd5",
-        "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one":
-          "http://localhost:9090/currencyBank/totalAssets/retrieve/one?userSpecific=5950a1e077c81e5ef884dfd5"
+        "https://test.ehanlin.com.tw/chest/retrieve": "http://localhost:8080/chest/retrieve?userSpecific=5950a1e077c81e5ef884dfd5",
+        "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one": "http://localhost:9090/currencyBank/totalAssets/retrieve/one?userSpecific=5950a1e077c81e5ef884dfd5"
       })
     )
     .pipe(gulp.dest(""));
 }
 
-function replaceToTest() {
+function devReplaceToTest() {
   gulp
     .src(["src/js/event-totalAssets.js", "src/js/event-userchest.js"], {
       base: "./"
     })
     .pipe(
       replace({
-        "http://localhost:8080/chest/retrieve\\?userSpecific=5950a1e077c81e5ef884dfd5":
-          "https://test.ehanlin.com.tw/chest/retrieve",
-        "http://localhost:9090/currencyBank/totalAssets/retrieve/one\\?userSpecific=5950a1e077c81e5ef884dfd5":
-          "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one"
+        "http://localhost:8080/chest/retrieve\\?userSpecific=5950a1e077c81e5ef884dfd5": "https://test.ehanlin.com.tw/chest/retrieve",
+        "http://localhost:9090/currencyBank/totalAssets/retrieve/one\\?userSpecific=5950a1e077c81e5ef884dfd5": "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one"
       })
     )
     .pipe(gulp.dest(""));
 }
 
-function replaceToProduction() {
+function testReplaceToProduction() {
   gulp
-    .src(["src/js/**/*.js"], { base: "./" })
+    .src(["src/js/**/*.js"], {
+      base: "./"
+    })
     .pipe(
       replace({
         "https://test.ehanlin.com.tw": "https://www.ehanlin.com.tw"
@@ -108,33 +109,52 @@ function replaceToProduction() {
     .pipe(gulp.dest(""));
 }
 
+function productionReplaceToTest() {
+  gulp
+    .src(["src/js/**/*.js"], {
+      base: "./"
+    })
+    .pipe(
+      replace({
+        "https://www.ehanlin.com.tw": "https://test.ehanlin.com.tw"
+      })
+    )
+    .pipe(gulp.dest(""));
+}
+
 function minifyImage(sourceImage) {
   console.log("=======> minifyImage <=======");
-  return function() {
+  return function () {
     return gulp
       .src(sourceImage, basePath)
-      .pipe(imagemin({ use: [pngquant()] }))
+      .pipe(imagemin({
+        use: [pngquant()]
+      }))
       .pipe(gulp.dest(dist));
   };
 }
 
 function minifyCSS(sourceCss) {
   console.log("=======> minifyCSS <=======");
-  return function() {
+  return function () {
     return gulp
       .src(sourceCss, basePath)
-      .pipe(cleanCSS({ keepBreaks: true }))
+      .pipe(cleanCSS({
+        keepBreaks: true
+      }))
       .pipe(gulp.dest(dist));
   };
 }
 
 function minifyJS(sourceJS) {
   console.log("=======> minifyJS <=======");
-  return function() {
+  return function () {
     return gulp
       .src(sourceJS, basePath)
       .pipe(
-        uglify({ mangle: false }).on("error", function(error) {
+        uglify({
+          mangle: false
+        }).on("error", function (error) {
           console.log(error);
         })
       )
@@ -143,7 +163,7 @@ function minifyJS(sourceJS) {
 }
 
 function babelJS(sourceJS) {
-  return function() {
+  return function () {
     return gulp
       .src(sourceJS, basePath)
       .pipe(babel())
@@ -155,13 +175,13 @@ function buildJS() {
   console.log("=======> buildJS <=======");
   let deferred = Q.defer();
 
-  Q.fcall(function() {
-    return util.logStream(babelJS(["src/js/*.js"]));
-  })
-    .then(function() {
+  Q.fcall(function () {
+      return util.logStream(babelJS(["src/js/*.js"]));
+    })
+    .then(function () {
       return util.logStream(minifyJS("babel-temp/js/**/*.js"));
     })
-    .then(function() {
+    .then(function () {
       return util.logPromise(clean("babel-temp"));
     });
 
@@ -173,19 +193,20 @@ gulp.task("build", ["style", "lib"]);
 gulp.task("minifyCSS", minifyCSS("src/css/**/*.css"));
 gulp.task("minifyImage", minifyImage("src/img/**/*.png"));
 gulp.task("minifyJS", minifyJS("src/js/**/*.js"));
-gulp.task("replaceToDev", replaceToDev);
-gulp.task("replaceToTest", replaceToTest);
-gulp.task("replaceToProduction", replaceToProduction);
+gulp.task("testReplaceToDev", testReplaceToDev);
+gulp.task("devReplaceToTest", devReplaceToTest);
+gulp.task("testReplaceToProduction", testReplaceToProduction);
+gulp.task("productionReplaceToTest", productionReplaceToTest);
 
-gulp.task("package", function() {
+gulp.task("package", function () {
   var deferred = Q.defer();
-  Q.fcall(function() {
-    return util.logPromise(clean(dist));
-  })
-    .then(function() {
+  Q.fcall(function () {
+      return util.logPromise(clean(dist));
+    })
+    .then(function () {
       return util.logStream(copyStaticTask("dist"));
     })
-    .then(function() {
+    .then(function () {
       return Q.all([
         util.logStream(minifyImage("src/img/**/*.png")),
         util.logStream(minifyCSS("src/css/**/*.css")),

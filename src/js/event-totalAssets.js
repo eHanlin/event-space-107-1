@@ -1,6 +1,6 @@
 $(function() {
   ajaxGet(
-    "https://www.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one",
+    "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one",
     null,
     function(jsonData) {
       $(".bank").removeAttr("style");

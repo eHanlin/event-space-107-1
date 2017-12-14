@@ -1,7 +1,7 @@
 define(["jquery", "ajaxUtil", "popup"], function ($, ajaxUtil, popup) {
   return function () {
     let getAwardMessage = function (index) {
-      ajaxUtil("GET", "https://www.ehanlin.com.tw/chest/condition/one/award" + index)
+      ajaxUtil("GET", "https://test.ehanlin.com.tw/chest/condition/one/award" + index)
         .done(function (jsonData) {
           let awardCondition = jsonData.content;
 
