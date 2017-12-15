@@ -1,6 +1,6 @@
 $(function() {
   ajaxGet(
-    "http://localhost:9090/currencyBank/totalAssets/retrieve/one?userSpecific=5a279014e4b0a1c5c9d5a852",
+    "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one",
     null,
     function(jsonData) {
       $(".bank").removeAttr("style");

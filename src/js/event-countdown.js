@@ -79,8 +79,6 @@ let countDown = function(seconds, chestId, platformTarget) {
           .then(function(jsonData) {
             seconds = jsonData.content;
 
-            console.log("ggggggg " + seconds);
-
             return ajaxDeferred(
               "GET",
               "https://test.ehanlin.com.tw/chest/condition/one/openImmediately"
@@ -103,17 +101,32 @@ let countDown = function(seconds, chestId, platformTarget) {
                 function() {
                   ajax(
                     "PUT",
-                    "http://localhost:8080/chest/open/immediately/" + chestId,
+                    "https://test.ehanlin.com.tw/chest/open/immediately/" +
+                      chestId,
                     {
                       deductGems: deductGems
                     },
                     function(jsonData) {
-                      //alert (餘額不夠)
-
-                      console.log("成功抓取 openImmediately !!!");
-                      let deductGems = jsonData.content.gems;
                       let originalGems = $(".space .gems #own-gems").text();
+                      let deductGems = jsonData.content.gems;
                       let finalGems = originalGems - deductGems * -1;
+                      console.log("成功抓取 openImmediately !!!");
+
+                      if (finalGems < 0) {
+                        $.alert(
+                          alertWindow(
+                            "你的寶石不足" + finalGems * -1 + "個",
+                            "",
+                            ""
+                          )
+                        );
+                        return;
+                      }
+
+                      if (finalGems === 0) {
+                        $.alert(alertWindow("你的寶石不足", "", ""));
+                        return;
+                      }
 
                       countTrasition("own-gems", originalGems, finalGems);
                       countDownFunc(0);

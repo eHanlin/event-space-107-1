@@ -12,10 +12,6 @@ define(["jquery"], function ($) {
       data: data,
       contentType: "application/json; charset=UTF-8",
       dataType: "json"
-    }).fail(
-      function () {
-
-      }
-    )
+    })
   };
 });
