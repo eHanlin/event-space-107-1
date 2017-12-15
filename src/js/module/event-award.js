@@ -3,7 +3,6 @@ define(["jquery", "ajaxUtil", "popup"], function ($, ajaxUtil, popup) {
     ajaxUtil("GET", "https://www.ehanlin.com.tw/chest/condition/one/award" + index)
       .then(function (jsonData) {
         let awardCondition = jsonData.content;
-
         let notice = awardCondition.content.notice;
         let needChestLv = awardCondition.content.needChestLv;
         let title = awardCondition.content.title;
