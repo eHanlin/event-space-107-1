@@ -128,23 +128,6 @@ let readyBtnFunc = function() {
   );
 };
 
-// 立即開啟按鈕
-let openNowBtnFunc = function(remainHours) {
-  $(".container .space .openNowButton[data-onlocked=false]").on(
-    "click",
-    function() {
-      let chestId;
-      $(this).attr("data-onlocked", "true");
-
-      chestId = $(this)
-        .parents(".platform")
-        .prop("id");
-
-      getConditionOpenImmediately(remainHours, chestId);
-    }
-  );
-};
-
 let determineLevel = function(chestTarget, chestLevel) {
   let chestImage = "chest" + chestLevel;
   changeChestImage(chestTarget, chestImage);
