@@ -1,138 +1,132 @@
 let updateStatusIsUnlocking = function(chestId, startBtnTarget) {
-  let body = {
-    status: "UNLOCKING"
-  };
+  let platformTarget = $("#" + chestId);
+  let startButtonTarget = platformTarget.find(".startButton");
+  let upgradeButtonTarget = platformTarget.find(".upgradeButton");
 
   $.confirm(
-    confirmWindow(
-      "確定啟動寶箱嗎！？",
-      "",
-      ajax.bind(
-        this,
+    confirmWindow("確定啟動寶箱嗎！？", "", function() {
+      ajaxDeferred(
         "PUT",
         "https://test.ehanlin.com.tw/chest/updateStatus/" + chestId,
-        body,
-        function() {
-          let chestIdTarget = $("#" + chestId);
-          let startButtonTarget = chestIdTarget.find(".startButton");
-          let upgradeButtonTarget = chestIdTarget.find(".upgradeButton");
+        {
+          status: "UNLOCKING"
+        }
+      )
+        .then(function() {
           $(".container .space .startButton[data-status=LOCKED]").fadeOut(
             "slow"
           );
           upgradeButtonTarget.fadeOut("slow");
-
-          startButtonTarget.attr("data-status", body.status);
-          coolDownTime(chestId);
+          startButtonTarget.attr("data-status", "UNLOCKING");
           startBtnTarget.attr("data-onlocked", "false");
-        }
-      )
-    )
+
+          return ajaxDeferred(
+            "GET",
+            "https://test.ehanlin.com.tw/chest/coolDownTime/" + chestId
+          );
+        })
+        .then(function(jsonData) {
+          countDown(jsonData.content, chestId, platformTarget);
+        });
+    })
   );
 };
 
-let coolDownTime = function(chestId) {
-  let countDown = function(jsonData, chestId) {
-    let seconds;
-    let remainHours = Math.ceil(seconds / 3600);
-    let platformTarget = $("#" + chestId);
-    let imgChestTarget = platformTarget.find(".chest");
-    let countdownTarget = platformTarget.find(".countdown");
-    let openNowBtnTarget = platformTarget.find(".openNowButton");
+let countDown = function(seconds, chestId, platformTarget) {
+  let imgChestTarget = platformTarget.find(".chest");
+  let countdownTarget = platformTarget.find(".countdown");
+  let openNowBtnTarget = platformTarget.find(".openNowButton");
 
-    imgChestTarget.addClass("unlockingGray");
-    openNowBtnTarget.removeAttr("style");
+  imgChestTarget.addClass("unlockingGray");
+  openNowBtnTarget.removeAttr("style");
 
-    let countDownFunc = function(seconds) {
-      countdownTarget.countDown({
-        timeInSecond: seconds,
-        displayTpl:
-          "<i style='font-size:28px;color:yellow' class='fa'>&#xf254;</i>{hour}時{minute}分{second}秒",
-        limit: "hour",
-        // 當倒數計時完畢後 callback
-        callback: function() {
-          openNowBtnTarget.fadeOut();
-          eventChest.updateStatusIsReady(chestId);
-          imgChestTarget.removeClass("unlockingGray");
-        }
-      });
-    };
-
-    var getConditionOpenImmediately = function(remainHours, chestId) {
-      ajaxGet(
-        "https://test.ehanlin.com.tw/chest/condition/one/openImmediately",
-        null,
-        function(jsonData) {
-          let data = jsonData.content.content;
-          let everyHourDeductGems = data.everyHourDeductGems;
-          let deductGems = remainHours * everyHourDeductGems;
-          let openNowBtnTarget = $("#" + chestId).find(".openNowButton");
-          let imgChestTarget = $("#" + chestId).find(".chest");
-          console.log("deductGems:" + deductGems);
-
-          $.confirm(
-            confirmWindow(
-              "立即開啟寶箱需要花費 " + deductGems + " 個寶石",
-              "確定立即開啟寶箱嗎？",
-              function() {
-                getOpenChestImmediately(chestId);
-
-                // openNowBtnTarget.fadeOut();
-                // eventChest.updateStatusIsReady(chestId);
-                // imgChestTarget.removeClass("unlockingGray");
-
-                countDownFunc(0);
-              }
-            )
-          );
-        },
-        function() {}
-      );
-    };
-
-    // 立即開啟按鈕
-    let openNowBtnFunc = function(remainHours) {
-      $(".container .space .openNowButton[data-onlocked=false]").on(
-        "click",
-        function() {
-          let chestId;
-          $(this).attr("data-onlocked", "true");
-
-          chestId = $(this)
-            .parents(".platform")
-            .prop("id");
-
-          getConditionOpenImmediately(remainHours, chestId);
-        }
-      );
-    };
-
-    let getOpenChestImmediately = function(chestId) {
-      ajax(
-        "PUT",
-        "https://test.ehanlin.com.tw/chest/open/immediately/" + chestId,
-        {
-          status: "READY"
-        },
-        function(jsonData) {
-          console.log("成功抓取 openImmediately !!!");
-          console.log(jsonData.content);
-        }
-      );
-    };
-
-    // 立即開啟按鈕
-    openNowBtnFunc(remainHours);
-
-    seconds = jsonData.content;
-    countDownFunc(seconds);
+  let countDownFunc = function(seconds) {
+    countdownTarget.countDown({
+      timeInSecond: seconds,
+      displayTpl:
+        "<i style='font-size:28px;color:yellow' class='fa'>&#xf254;</i>{hour}時{minute}分{second}秒",
+      limit: "hour",
+      // 當倒數計時完畢後 callback
+      callback: function() {
+        openNowBtnTarget.fadeOut();
+        eventChest.updateStatusIsReady(chestId);
+        imgChestTarget.removeClass("unlockingGray");
+      }
+    });
   };
 
-  ajaxGet(
-    "https://test.ehanlin.com.tw/chest/coolDownTime/" + chestId,
-    null,
-    function(jsonData) {
-      countDown(jsonData, chestId);
-    },
-    function() {}
-  );
+  // 立即開啟按鈕
+  let openNowBtnFunc = function() {
+    platformTarget.find(".openNowButton[data-onlocked=false]").off("click");
+
+    console.log(platformTarget.find(".openNowButton[data-onlocked=false]"));
+
+    platformTarget
+      .find(".openNowButton[data-onlocked=false]")
+      .on("click", function() {
+        let chestId;
+        let seconds;
+
+        $(this).attr("data-onlocked", "true");
+        chestId = $(this)
+          .parents(".platform")
+          .prop("id");
+
+        ajaxDeferred(
+          "GET",
+          "https://test.ehanlin.com.tw/chest/coolDownTime/" + chestId
+        )
+          .then(function(jsonData) {
+            seconds = jsonData.content;
+
+            console.log("ggggggg " + seconds);
+
+            return ajaxDeferred(
+              "GET",
+              "https://test.ehanlin.com.tw/chest/condition/one/openImmediately"
+            );
+          })
+          .then(function(jsonData) {
+            let openImmediatelyData = jsonData.content;
+            let consume = openImmediatelyData["content"];
+            let everySecondsHour = 3600;
+            let remainHours = Math.ceil(seconds / everySecondsHour);
+            let deductGems = remainHours * consume.everyHourDeductGems;
+
+            let openNowBtnTarget = $("#" + chestId).find(".openNowButton");
+            let imgChestTarget = $("#" + chestId).find(".chest");
+
+            $.confirm(
+              confirmWindow(
+                "立即開啟寶箱需要花費 " + deductGems + " 個寶石",
+                "確定立即開啟寶箱嗎？",
+                function() {
+                  ajax(
+                    "PUT",
+                    "http://localhost:8080/chest/open/immediately/" + chestId,
+                    {
+                      deductGems: deductGems
+                    },
+                    function(jsonData) {
+                      //alert (餘額不夠)
+
+                      console.log("成功抓取 openImmediately !!!");
+                      let deductGems = jsonData.content.gems;
+                      let originalGems = $(".space .gems #own-gems").text();
+                      let finalGems = originalGems - deductGems * -1;
+
+                      countTrasition("own-gems", originalGems, finalGems);
+                      countDownFunc(0);
+                    }
+                  );
+                }
+              )
+            );
+          });
+      });
+  };
+
+  // 立即開啟按鈕
+  openNowBtnFunc();
+  countDownFunc(seconds);
 };

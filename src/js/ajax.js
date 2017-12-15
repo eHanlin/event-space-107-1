@@ -35,12 +35,16 @@ var ajax = function(type, url, body, success) {
 };
 
 var ajaxDeferred = function(type, url, body) {
+  if (type !== "GET") {
+    body = JSON.stringify(body);
+  }
+
   return $.ajax({
     type: type,
     cache: false,
     crossDomain: true,
     url: url,
-    data: JSON.stringify(body),
+    data: body,
     contentType: "application/json; charset=UTF-8",
     dataType: "json"
   });

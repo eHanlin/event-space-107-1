@@ -28,7 +28,15 @@ $(function() {
       thisPlatformTarget.find(".upgradeButton").hide();
 
       determineLevel(imgChestTarget, chestLevel);
-      coolDownTime(chestId);
+
+      ajaxGet(
+        "https://test.ehanlin.com.tw/chest/coolDownTime/" + chestId,
+        null,
+        function(jsonData) {
+          let seconds = jsonData.content;
+          countDown(seconds, chestId, thisPlatformTarget);
+        }
+      );
     } else if (chestSatuts === "READY") {
       let chestImage = "readyChest" + chestLevel;
       thisPlatformTarget.find(".startButton").hide();
@@ -40,7 +48,7 @@ $(function() {
   };
 
   ajaxGet(
-    "https://test.ehanlin.com.tw/chest/retrieve",
+    "http://localhost:8080/chest/retrieve?userSpecific=5a279014e4b0a1c5c9d5a852",
     null,
     function(jsonData) {
       let indexPlatformTarget;
