@@ -1,10 +1,10 @@
-let updateStatusIsUnlocking = function(chestId) {
+let updateStatusIsUnlocking = function (chestId) {
   let platformTarget = $("#" + chestId);
   let startButtonTarget = platformTarget.find(".startButton");
   let upgradeButtonTarget = platformTarget.find(".upgradeButton");
 
   $.confirm(
-    confirmWindow("確定啟動寶箱嗎！？", "", function() {
+    confirmWindow("確定啟動寶箱嗎！？", "", function () {
       ajaxDeferred(
         "PUT",
         "/chest/updateStatus/" + chestId,
@@ -12,7 +12,7 @@ let updateStatusIsUnlocking = function(chestId) {
           status: "UNLOCKING"
         }
       )
-        .then(function() {
+        .then(function () {
           $(".container .space .startButton[data-status=LOCKED]").fadeOut(
             "slow"
           );
@@ -24,14 +24,14 @@ let updateStatusIsUnlocking = function(chestId) {
             "/chest/coolDownTime/" + chestId
           );
         })
-        .then(function(jsonData) {
+        .then(function (jsonData) {
           countDown(jsonData.content, chestId, platformTarget);
         });
     })
   );
 };
 
-let countDown = function(seconds, chestId, platformTarget) {
+let countDown = function (seconds, chestId, platformTarget) {
   let imgChestTarget = platformTarget.find(".chest");
   let countdownTarget = platformTarget.find(".countdown");
   let openNowBtnTarget = platformTarget.find(".openNowButton");
@@ -39,14 +39,14 @@ let countDown = function(seconds, chestId, platformTarget) {
   imgChestTarget.addClass("unlockingGray");
   openNowBtnTarget.removeAttr("style");
 
-  let countDownFunc = function(seconds) {
+  let countDownFunc = function (seconds) {
     countdownTarget.countDown({
       timeInSecond: seconds,
       displayTpl:
         "<i style='font-size:28px;color:yellow' class='fa'>&#xf254;</i>{hour}時{minute}分{second}秒",
       limit: "hour",
       // 當倒數計時完畢後 callback
-      callback: function() {
+      callback: function () {
         openNowBtnTarget.fadeOut();
         eventChest.updateStatusIsReady(chestId);
         imgChestTarget.removeClass("unlockingGray");
@@ -55,11 +55,13 @@ let countDown = function(seconds, chestId, platformTarget) {
   };
 
   // 立即開啟按鈕
-  let openNowBtnFunc = function() {
-    platformTarget.find(".openNowButton").off("click");
-    platformTarget
-      .find(".openNowButton")
-      .on("click", function() {
+  let openNowBtnFunc = function () {
+
+    platformTarget.find(".openNowButton").on("click", function (event) {
+      let openNowButtonTarget = $(this);
+      event.preventDefault();
+
+      if ( !openNowButtonTarget.data("lockedAt") || +new Date() - openNowButtonTarget.data("lockedAt") > 300 ) {
         let chestId;
         let seconds;
 
@@ -71,7 +73,7 @@ let countDown = function(seconds, chestId, platformTarget) {
           "GET",
           "/chest/coolDownTime/" + chestId
         )
-          .then(function(jsonData) {
+          .then(function (jsonData) {
             seconds = jsonData.content;
 
             return ajaxDeferred(
@@ -79,7 +81,7 @@ let countDown = function(seconds, chestId, platformTarget) {
               "/chest/condition/one/openImmediately"
             );
           })
-          .then(function(jsonData) {
+          .then(function (jsonData) {
             let openImmediatelyData = jsonData.content;
             let consume = openImmediatelyData["content"];
             let everySecondsHour = 3600;
@@ -93,21 +95,21 @@ let countDown = function(seconds, chestId, platformTarget) {
               confirmWindow(
                 "立即開啟寶箱需要花費 " + deductGems + " 個寶石",
                 "確定立即開啟寶箱嗎？",
-                function() {
+                function () {
                   ajax(
                     "PUT",
                     "/chest/open/immediately/" +
-                      chestId,
+                    chestId,
                     {
                       deductGems: deductGems
                     },
-                    function(jsonData) {
+                    function (jsonData) {
                       let originalGems = $(".space .gems #own-gems").text();
                       let deductGems = jsonData.content.gems;
                       let finalGems = originalGems - deductGems * -1;
                       console.log("成功抓取 openImmediately !!!");
 
-                      if (finalGems < 0) {
+                      if ( finalGems < 0 ) {
                         $.alert(
                           alertWindow(
                             "你的寶石不足" + finalGems * -1 + "個",
@@ -118,7 +120,7 @@ let countDown = function(seconds, chestId, platformTarget) {
                         return;
                       }
 
-                      if (finalGems === 0) {
+                      if ( finalGems === 0 ) {
                         $.alert(alertWindow("你的寶石不足", "", ""));
                         return;
                       }
@@ -131,7 +133,10 @@ let countDown = function(seconds, chestId, platformTarget) {
               )
             );
           });
-      });
+      }
+
+      openNowButtonTarget.data("lockedAt", new Date().getTime());
+    });
   };
 
   // 立即開啟按鈕

@@ -25,26 +25,29 @@ let eventChest = {
         "<div style='height: 32px; font-size: 22px;'>恭喜你獲得</div><br/>" +
         "<table width='100%' style='table-layout:fixed; font-size: 25px;'>";
 
-      let awardText = "", coinsText = "", gemsText = "", content;
+      let awardText = "",
+        coinsText = "",
+        gemsText = "",
+        content = "";
 
       platformTarget.find(".chest").fadeOut("slow");
       platformTarget.find(".readyButton").fadeOut("slow");
 
-      if ( gainCoins ) {
+      if (gainCoins) {
         let coinsSvg =
           "<tr><td style='height: 36px; transform: translateY(-50%)'>" +
           "<div id='svg-coins' class='icon-coins'></div>";
         coinsText = coinsSvg + gainCoins + "</td>";
       }
 
-      if ( gainGems ) {
+      if (gainGems) {
         let gemsSvg =
           "<td style='height: 36px; transform: translateY(-50%)'>" +
           "<div id='svg-gems' class='icon-gems'></div>";
         gemsText = gemsSvg + gainGems + "</td>";
       }
 
-      if ( gainAward ) {
+      if (gainAward) {
         let awardImage =
           "<img style='width: 200px; height: 200px;' " +
           "src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/award/" +
@@ -66,9 +69,7 @@ let eventChest = {
         "</div>" +
         "</div>";
 
-      $.confirm(
-        writeAcceptanceInfo(content, totalCoins, totalGems)
-      );
+      $.confirm(writeAcceptanceInfo(content, totalCoins, totalGems));
     };
 
     ajax(
@@ -82,7 +83,7 @@ let eventChest = {
   },
 
   // 將寶箱狀態轉為準備開啟
-  updateStatusIsReady: function (chestId) {
+  updateStatusIsReady: function(chestId) {
     let body;
     body = {
       status: "READY"
@@ -92,7 +93,7 @@ let eventChest = {
       "PUT",
       "https://test.ehanlin.com.tw/chest/updateStatus/" + chestId,
       body,
-      function () {
+      function() {
         let platFromTarget = $("#" + chestId);
         let chestTarget = platFromTarget.find(".chest");
         let level = platFromTarget.data("level");
@@ -120,9 +121,9 @@ let eventChest = {
       "PUT",
       "/chest/upgrade/" + chestId,
       putData,
-      function (jsonData) {
+      function(jsonData) {
         let upgradeContent = jsonData.content;
-        let upgradeToTransaction = function (alertTitle, alertGif) {
+        let upgradeToTransaction = function(alertTitle, alertGif) {
           ajaxDeferred(
             "POST",
             "/currencyBank/transaction/upgrade",
@@ -130,15 +131,15 @@ let eventChest = {
               upgradeAuditId: upgradeContent["upgradeAuditId"]
             }
           )
-            .then(function () {
+            .then(function() {
               return ajaxDeferred(
                 "GET",
                 "/currencyBank/totalAssets/retrieve/one"
               );
             })
-            .then(function (jsonData) {
+            .then(function(jsonData) {
               $.alert(
-                alertWindow(alertTitle, alertGif, function () {
+                alertWindow(alertTitle, alertGif, function() {
                   let content = jsonData.content;
 
                   let originalCoins = $(".space .coins #own-coins").text();
@@ -151,7 +152,7 @@ let eventChest = {
             });
         };
 
-        if ( jsonData.message.indexOf("failure") >= 0 ) {
+        if (jsonData.message.indexOf("failure") >= 0) {
           let failLevel = upLevel - 1;
           let failureGif =
             "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource" +
@@ -164,22 +165,21 @@ let eventChest = {
           let finalCoins = upgradeContent["finalCoins"];
           let finalGems = upgradeContent["finalGems"];
           // --------------------------------------------------
-
           // 餘額不足
           if ( finalCoins || finalGems ) {
             let alertText = "";
 
-            if ( finalCoins < 0 && finalGems < 0 ) {
+            if (finalCoins < 0 && finalGems < 0) {
               alertText +=
                 "e 幣和寶石不足！ 再努力一點，還差" +
                 finalCoins * -1 +
                 "元！ " +
                 finalGems * -1 +
                 "個寶石！";
-            } else if ( finalCoins < 0 ) {
+            } else if (finalCoins < 0) {
               alertText +=
                 "e 幣不足！ 再努力一點，還差" + finalCoins * -1 + "元！";
-            } else if ( finalGems < 0 ) {
+            } else if (finalGems < 0) {
               alertText +=
                 "寶石不足！ 再努力一點，還差" + finalGems * -1 + "個寶石！";
             }
@@ -198,9 +198,9 @@ let eventChest = {
 
             upgradeToTransaction("升級成功", successGif);
 
-            if ( dataLevel === 5 ) {
+            if (dataLevel === 5) {
               platformTarget.find(".chest").addClass("lv5-chest");
-            } else if ( dataLevel === 6 ) {
+            } else if (dataLevel === 6) {
               platformTarget.find(".chest").addClass("lv6-chest");
               platformTarget.find(".upgradeButton").hide();
             }
