@@ -1,7 +1,7 @@
 $(function() {
   let getAwardMessage = function(index) {
     ajaxGet(
-      "https://test.ehanlin.com.tw/chest/condition/one/award" + index,
+      "/chest/condition/one/award" + index,
       null,
       function(jsonData) {
         let data = jsonData.content;

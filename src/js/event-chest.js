@@ -1,6 +1,6 @@
 let eventChest = {
   // 將寶箱狀態轉為開啟
-  updateStatusIsOpen: function (chestId, readyBtnTarget) {
+  updateStatusIsOpen: function (chestId) {
     let openSuccess = function (jsonData) {
       let data = jsonData.content;
       let gainCoins = data["coins"];
@@ -9,12 +9,11 @@ let eventChest = {
       let totalGems = data["totalGems"];
       let gainAward = data["gainAward"];
       let gainAwardId = data["gainAwardId"];
-      let RangeRandomMapping = data["rangeRandomMapping"];
 
       let platformTarget = $("#" + chestId);
       let chestLevel = platformTarget.data("level");
       let openChestGif =
-        "<div style='float: left; width: 245px; height:223px;" +
+        "<div style='position: absolute; top: 0; left: 0; width: 245px; height:223px;" +
         "background-image: url(https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource" +
         "/event-space/img/chest/open/openChest" +
         chestLevel +
@@ -22,11 +21,11 @@ let eventChest = {
         "background-size: contain;'></div>";
 
       let text =
-        "<div style='position: absolute; top: 0; right: 140px; height: 80px; width: 210px;'>" +
+        "<div style='position: absolute; top: 0; right: 0; height: 80px; width: 210px;'>" +
         "<div style='height: 32px; font-size: 22px;'>恭喜你獲得</div><br/>" +
         "<table width='100%' style='table-layout:fixed; font-size: 25px;'>";
 
-      let awardText = "", coinsText = "", gemsText = "", content = "";
+      let awardText = "", coinsText = "", gemsText = "", content;
 
       platformTarget.find(".chest").fadeOut("slow");
       platformTarget.find(".readyButton").fadeOut("slow");
@@ -53,10 +52,10 @@ let eventChest = {
           ".png' >" +
           "<br/>";
 
-        awardText = gainAward + awardImage;
+        awardText = "<h2>" + gainAward + "</h2>" + awardImage;
       }
 
-      content = "<div style='height: 450px;'>" +
+      content = "<div style='height: 300px;'>" +
         openChestGif +
         text +
         coinsText +
@@ -74,7 +73,7 @@ let eventChest = {
 
     ajax(
       "PUT",
-      "https://test.ehanlin.com.tw/chest/open/" + chestId,
+      "/chest/open/" + chestId,
       {
         status: "OPEN"
       },
@@ -112,21 +111,21 @@ let eventChest = {
   },
 
   // 將寶箱狀態轉為升級
-  getUpgrade: function (chestId, upLevel, upgradeBtnTarget) {
+  getUpgrade: function (chestId, upLevel) {
     let putData = {
       level: upLevel
     };
 
     ajax(
       "PUT",
-      "https://test.ehanlin.com.tw/chest/upgrade/" + chestId,
+      "/chest/upgrade/" + chestId,
       putData,
       function (jsonData) {
         let upgradeContent = jsonData.content;
         let upgradeToTransaction = function (alertTitle, alertGif) {
           ajaxDeferred(
             "POST",
-            "https://test.ehanlin.com.tw/currencyBank/transaction/upgrade",
+            "/currencyBank/transaction/upgrade",
             {
               upgradeAuditId: upgradeContent["upgradeAuditId"]
             }
@@ -134,7 +133,7 @@ let eventChest = {
             .then(function () {
               return ajaxDeferred(
                 "GET",
-                "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one"
+                "/currencyBank/totalAssets/retrieve/one"
               );
             })
             .then(function (jsonData) {
@@ -147,8 +146,6 @@ let eventChest = {
 
                   countTrasition("own-coins", originalCoins, content["coins"]);
                   countTrasition("own-gems", originalGems, content["gems"]);
-
-                  upgradeBtnTarget.attr("data-onlocked", "false");
                 })
               );
             });
@@ -168,6 +165,7 @@ let eventChest = {
           let finalGems = upgradeContent["finalGems"];
           // --------------------------------------------------
 
+          // 餘額不足
           if ( finalCoins || finalGems ) {
             let alertText = "";
 

@@ -4,7 +4,7 @@ $(function () {
 
 var getAwards = function () {
   ajaxGet(
-    "https://test.ehanlin.com.tw/chest/retrieve/award",
+    "/chest/retrieve/award",
     null,
     function (jsonData) {
       let awards = jsonData.content;

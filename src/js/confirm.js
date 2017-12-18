@@ -32,7 +32,6 @@ let alertWindow = function (title, content, confirmCallBack) {
     content: "<span style='font-size: 20px'>" + content + "</span>",
     useBootstrap: false,
     theme: "supervan",
-    boxWidth: "40%",
     buttons: {
       confirmButton: {
         text: "確認",
@@ -92,7 +91,7 @@ let writeAcceptanceInfo = function (content, totalCoins, totalGems) {
   return {
     title: "",
     content: content,
-    boxWidth: "42%",
+    boxWidth: "450px",
     useBootstrap: false,
     theme: "supervan",
     buttons: {

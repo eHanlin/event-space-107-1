@@ -1,6 +1,6 @@
-var getConditionChestLevel = function(chestId, upLevel, upgradeBtnTarget) {
+var getConditionChestLevel = function(chestId, upLevel) {
   ajaxGet(
-    "https://test.ehanlin.com.tw/chest/condition/one/level" + upLevel,
+    "/chest/condition/one/level" + upLevel,
     null,
     function(jsonData) {
       let data = jsonData.content.content;
@@ -11,7 +11,7 @@ var getConditionChestLevel = function(chestId, upLevel, upgradeBtnTarget) {
         confirmWindow(
           "升級寶箱需花費 " + needCoins + " e幣與 " + needGems + " 寶石",
           "你確定要升級嗎？",
-          eventChest.getUpgrade.bind(this, chestId, upLevel, upgradeBtnTarget)
+          eventChest.getUpgrade.bind(this, chestId, upLevel)
         )
       );
     },

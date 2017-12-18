@@ -1,4 +1,4 @@
-let updateStatusIsUnlocking = function(chestId, startBtnTarget) {
+let updateStatusIsUnlocking = function(chestId) {
   let platformTarget = $("#" + chestId);
   let startButtonTarget = platformTarget.find(".startButton");
   let upgradeButtonTarget = platformTarget.find(".upgradeButton");
@@ -7,7 +7,7 @@ let updateStatusIsUnlocking = function(chestId, startBtnTarget) {
     confirmWindow("確定啟動寶箱嗎！？", "", function() {
       ajaxDeferred(
         "PUT",
-        "https://test.ehanlin.com.tw/chest/updateStatus/" + chestId,
+        "/chest/updateStatus/" + chestId,
         {
           status: "UNLOCKING"
         }
@@ -18,11 +18,10 @@ let updateStatusIsUnlocking = function(chestId, startBtnTarget) {
           );
           upgradeButtonTarget.fadeOut("slow");
           startButtonTarget.attr("data-status", "UNLOCKING");
-          startBtnTarget.attr("data-onlocked", "false");
 
           return ajaxDeferred(
             "GET",
-            "https://test.ehanlin.com.tw/chest/coolDownTime/" + chestId
+            "/chest/coolDownTime/" + chestId
           );
         })
         .then(function(jsonData) {
@@ -57,31 +56,27 @@ let countDown = function(seconds, chestId, platformTarget) {
 
   // 立即開啟按鈕
   let openNowBtnFunc = function() {
-    platformTarget.find(".openNowButton[data-onlocked=false]").off("click");
-
-    console.log(platformTarget.find(".openNowButton[data-onlocked=false]"));
-
+    platformTarget.find(".openNowButton").off("click");
     platformTarget
-      .find(".openNowButton[data-onlocked=false]")
+      .find(".openNowButton")
       .on("click", function() {
         let chestId;
         let seconds;
 
-        $(this).attr("data-onlocked", "true");
         chestId = $(this)
           .parents(".platform")
           .prop("id");
 
         ajaxDeferred(
           "GET",
-          "https://test.ehanlin.com.tw/chest/coolDownTime/" + chestId
+          "/chest/coolDownTime/" + chestId
         )
           .then(function(jsonData) {
             seconds = jsonData.content;
 
             return ajaxDeferred(
               "GET",
-              "https://test.ehanlin.com.tw/chest/condition/one/openImmediately"
+              "/chest/condition/one/openImmediately"
             );
           })
           .then(function(jsonData) {
@@ -101,7 +96,7 @@ let countDown = function(seconds, chestId, platformTarget) {
                 function() {
                   ajax(
                     "PUT",
-                    "https://test.ehanlin.com.tw/chest/open/immediately/" +
+                    "/chest/open/immediately/" +
                       chestId,
                     {
                       deductGems: deductGems

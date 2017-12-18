@@ -3,7 +3,7 @@ const fs = require("fs");
 const del = require("del");
 const Q = require("q");
 const util = require("gulp-template-util");
-const replace = require("gulp-replace-pro");
+const replace = require("gulp-replace");
 const babel = require("gulp-babel");
 const imagemin = require("gulp-imagemin");
 const pngquant = require("imagemin-pngquant");
@@ -22,12 +22,12 @@ function libTask(destination) {
       fs.readFileSync("package.json", "utf8").toString()
     );
 
-    if (!packageJson.dependencies) {
+    if ( !packageJson.dependencies ) {
       packageJson.dependencies = {};
     }
 
     let webLibModules = [];
-    for (let module in packageJson.dependencies) {
+    for ( let module in packageJson.dependencies ) {
       webLibModules.push("node_modules/" + module + "/**/*");
     }
 
@@ -70,14 +70,20 @@ function clean(sourceDir) {
 
 function testReplaceToDev() {
   gulp
-    .src(["src/js/event-totalAssets.js", "src/js/event-userchest.js"], {
+    .src(["src/js/*.js"], {
       base: "./"
     })
     .pipe(
-      replace({
-        "https://test.ehanlin.com.tw/chest/retrieve": "http://localhost:8080/chest/retrieve?userSpecific=5950a1e077c81e5ef884dfd5",
-        "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one": "http://localhost:9090/currencyBank/totalAssets/retrieve/one?userSpecific=5950a1e077c81e5ef884dfd5"
-      })
+      replace(
+        /\/(chest|totalAssets)\/([\w\/]+)/g, function (match, p1, p2) {
+          let dev = "http://localhost:8080/" + p1 + "/" + p2 + "?userSpecific=" + gulp.env.user;
+          console.log(match + " replace to " + dev);
+          return dev;
+        }
+
+        // "https://test.ehanlin.com.tw/chest/retrieve": "http://localhost:8080/chest/retrieve?userSpecific=5950a1e077c81e5ef884dfd5",
+        // "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one": "http://localhost:9090/currencyBank/totalAssets/retrieve/one?userSpecific=5950a1e077c81e5ef884dfd5"
+      )
     )
     .pipe(gulp.dest(""));
 }
@@ -176,8 +182,8 @@ function buildJS() {
   let deferred = Q.defer();
 
   Q.fcall(function () {
-      return util.logStream(babelJS(["src/js/*.js"]));
-    })
+    return util.logStream(babelJS(["src/js/*.js"]));
+  })
     .then(function () {
       return util.logStream(minifyJS("babel-temp/js/**/*.js"));
     })
@@ -201,8 +207,8 @@ gulp.task("productionReplaceToTest", productionReplaceToTest);
 gulp.task("package", function () {
   var deferred = Q.defer();
   Q.fcall(function () {
-      return util.logPromise(clean(dist));
-    })
+    return util.logPromise(clean(dist));
+  })
     .then(function () {
       return util.logStream(copyStaticTask("dist"));
     })
