@@ -18,7 +18,6 @@ let updateStatusIsUnlocking = function(chestId, startBtnTarget) {
           );
           upgradeButtonTarget.fadeOut("slow");
           startButtonTarget.attr("data-status", "UNLOCKING");
-          startBtnTarget.attr("data-onlocked", "false");
 
           return ajaxDeferred(
             "GET",
@@ -57,17 +56,16 @@ let countDown = function(seconds, chestId, platformTarget) {
 
   // 立即開啟按鈕
   let openNowBtnFunc = function() {
-    platformTarget.find(".openNowButton[data-onlocked=false]").off("click");
-
-    console.log(platformTarget.find(".openNowButton[data-onlocked=false]"));
-
-    platformTarget
-      .find(".openNowButton[data-onlocked=false]")
-      .on("click", function() {
+    platformTarget.find(".openNowButton").on("click", function(e) {
+      let $link = $(e.target);
+      e.preventDefault();
+      if (
+        !$link.data("lockedAt") ||
+        +new Date() - $link.data("lockedAt") > 300
+      ) {
         let chestId;
         let seconds;
 
-        $(this).attr("data-onlocked", "true");
         chestId = $(this)
           .parents(".platform")
           .prop("id");
@@ -136,7 +134,9 @@ let countDown = function(seconds, chestId, platformTarget) {
               )
             );
           });
-      });
+      }
+      $link.data("lockedAt", +new Date());
+    });
   };
 
   // 立即開啟按鈕

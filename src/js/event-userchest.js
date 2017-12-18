@@ -93,28 +93,23 @@ $(function() {
 
 // 啟動按鈕
 let startBtnFunc = function() {
-  $(".container .space .startButton[data-onlocked=false]").on(
-    "click",
-    function() {
-      let findParents, chestId;
-      $(this).attr("data-onlocked", "true");
+  $(".container .space .startButton").on("click", function() {
+    let findParents, chestId;
 
-      findParents = $(this).parents(".platform");
-      chestId = findParents.prop("id");
+    findParents = $(this).parents(".platform");
+    chestId = findParents.prop("id");
 
-      updateStatusIsUnlocking(chestId, $(this));
-    }
-  );
+    updateStatusIsUnlocking(chestId, $(this));
+  });
 };
 
 // 升級按鈕
 let upgradeBtnFunc = function() {
-  $(".container .space .upgradeButton[data-onlocked=false]").on(
-    "click",
-    function() {
-      let findParents, chestId, chestLevel;
-      $(this).attr("data-onlocked", "true");
-
+  $(".container .space .upgradeButton").on("click", function(e) {
+    let findParents, chestId, chestLevel;
+    let $link = $(e.target);
+    e.preventDefault();
+    if (!$link.data("lockedAt") || +new Date() - $link.data("lockedAt") > 300) {
       findParents = $(this).parents(".platform");
       chestId = findParents.prop("id");
       chestLevel = findParents.data("level");
@@ -122,24 +117,21 @@ let upgradeBtnFunc = function() {
       // 預備提升寶箱的等級
       getConditionChestLevel(chestId, chestLevel + 1, $(this));
     }
-  );
+    $link.data("lockedAt", +new Date());
+  });
 };
 
 // 開啟按鈕
 let readyBtnFunc = function() {
-  $(".container .space .readyButton[data-onlocked=false]").on(
-    "click",
-    function() {
-      let chestId;
-      $(this).attr("data-onlocked", "true");
+  $(".container .space .readyButton").on("click", function() {
+    let chestId;
 
-      chestId = $(this)
-        .parents(".platform")
-        .prop("id");
+    chestId = $(this)
+      .parents(".platform")
+      .prop("id");
 
-      eventChest.updateStatusIsOpen(chestId, $(this));
-    }
-  );
+    eventChest.updateStatusIsOpen(chestId, $(this));
+  });
 };
 
 let determineLevel = function(chestTarget, chestLevel) {

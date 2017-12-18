@@ -1,6 +1,6 @@
-define(["jquery", "popup", "ajaxUtil"], function ($, popup, ajaxUtil) {
-  return function (chestId, readyBtnTarget) {
-    let openSuccess = function (jsonData) {
+define(["jquery", "popup", "ajaxUtil"], function($, popup, ajaxUtil) {
+  return function(chestId, readyBtnTarget) {
+    let openSuccess = function(jsonData) {
       let data = jsonData.content;
       let gainCoins = data["coins"];
       let gainGems = data["gems"];
@@ -31,21 +31,21 @@ define(["jquery", "popup", "ajaxUtil"], function ($, popup, ajaxUtil) {
       platformTarget.find(".chest").fadeOut("slow");
       platformTarget.find(".readyButton").fadeOut("slow");
 
-      if ( gainCoins ) {
+      if (gainCoins) {
         let coinsSvg =
           "<tr><td style='height: 36px; transform: translateY(-50%)'>" +
           "<div id='svg-coins' class='icon-coins'></div>";
         coinsText = coinsSvg + gainCoins + "</td>";
       }
 
-      if ( gainGems ) {
+      if (gainGems) {
         let gemsSvg =
           "<td style='height: 36px; transform: translateY(-50%)'>" +
           "<div id='svg-gems' class='icon-gems'></div>";
         gemsText = gemsSvg + gainGems + "</td>";
       }
 
-      if ( gainAward ) {
+      if (gainAward) {
         let awardImage =
           "<img style='width: 200px; height: 200px;' " +
           "src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/award/" +
@@ -60,33 +60,29 @@ define(["jquery", "popup", "ajaxUtil"], function ($, popup, ajaxUtil) {
         popup.alert(
           "",
           "<div style='height: 450px;'>" +
-          openChestGif +
-          text +
-          coinsText +
-          gemsText +
-          "</tr>" +
-          "</table>" +
-          awardText +
-          "</div>" +
-          "</div>",
-          function () {
+            openChestGif +
+            text +
+            coinsText +
+            gemsText +
+            "</tr>" +
+            "</table>" +
+            awardText +
+            "</div>" +
+            "</div>",
+          function() {
             let originalCoins = $(".space .coins #own-coins").text();
             let originalGems = $(".space .gems #own-gems").text();
 
             countTrasition("own-coins", originalCoins, totalCoins);
             countTrasition("own-gems", originalGems, totalGems);
             getAwards();
-
-            readyBtnTarget.attr("data-onlocked", "false");
           }
         )
       );
     };
 
-    ajaxUtil("PUT",
-      "https://www.ehanlin.com.tw/chest/open/" + chestId,
-      {
-        status: "OPEN"
-      }).then(openSuccess);
+    ajaxUtil("PUT", "https://www.ehanlin.com.tw/chest/open/" + chestId, {
+      status: "OPEN"
+    }).then(openSuccess);
   };
 });
