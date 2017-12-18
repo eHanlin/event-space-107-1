@@ -83,6 +83,12 @@ $(function() {
     window.open("/event/space/currencyBank.html", "雲端銀行");
     return false;
   });
+
+  // 領取贈品按鈕
+  $(".container .returnAwardBtn").on("click", function() {
+    window.open("/Events/winner_info.html?id=space", "回傳資料領取贈品");
+    return false;
+  });
 });
 
 // 啟動按鈕

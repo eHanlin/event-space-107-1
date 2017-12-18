@@ -61,8 +61,4 @@ $(function() {
   $(".container article .detailBtn").on("click", function() {
     alertFunc();
   });
-
-  $(".container .returnAwardBtn").on("click", function() {
-    $.alert(alertWindow("", "將於12/18前開放回填資料，敬請期待", ""));
-  });
 });
