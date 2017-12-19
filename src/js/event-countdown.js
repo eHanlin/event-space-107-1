@@ -88,9 +88,6 @@ let countDown = function (seconds, chestId, platformTarget) {
             let remainHours = Math.ceil(seconds / everySecondsHour);
             let deductGems = remainHours * consume.everyHourDeductGems;
 
-            let openNowBtnTarget = $("#" + chestId).find(".openNowButton");
-            let imgChestTarget = $("#" + chestId).find(".chest");
-
             $.confirm(
               confirmWindow(
                 "立即開啟寶箱需要花費 " + deductGems + " 個寶石",
@@ -118,9 +115,7 @@ let countDown = function (seconds, chestId, platformTarget) {
                           )
                         );
                         return;
-                      }
-
-                      if ( finalGems === 0 ) {
+                      } else if ( finalGems === 0 ) {
                         $.alert(alertWindow("你的寶石不足", "", ""));
                         return;
                       }

@@ -4,6 +4,7 @@ const del = require("del");
 const Q = require("q");
 const util = require("gulp-template-util");
 const replace = require("gulp-replace");
+const replaceMulti = require("gulp-replace-pro");
 const babel = require("gulp-babel");
 const imagemin = require("gulp-imagemin");
 const pngquant = require("imagemin-pngquant");
@@ -68,61 +69,41 @@ function clean(sourceDir) {
   };
 }
 
-function testReplaceToDev() {
+function devToBuildEnv() {
   gulp
     .src(["src/js/*.js"], {
       base: "./"
     })
-    .pipe(
-      replace(
-        /\/(chest|totalAssets)\/([\w\/]+)/g, function (match, p1, p2) {
-          let dev = "http://localhost:8080/" + p1 + "/" + p2 + "?userSpecific=" + gulp.env.user;
-          console.log(match + " replace to " + dev);
-          return dev;
-        }
-
-        // "https://test.ehanlin.com.tw/chest/retrieve": "http://localhost:8080/chest/retrieve?userSpecific=5950a1e077c81e5ef884dfd5",
-        // "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one": "http://localhost:9090/currencyBank/totalAssets/retrieve/one?userSpecific=5950a1e077c81e5ef884dfd5"
-      )
+    .pipe(replace(/[^\w](http:\/\/localhost:8080)\/([\w-\/]+)"/g, function (match, p1, p2) {
+        let buildEnv = `"/${p2}"`;
+        console.log(`chest domain => ${match} to ${buildEnv}`);
+        return buildEnv
+      })
     )
-    .pipe(gulp.dest(""));
-}
-
-function devReplaceToTest() {
-  gulp
-    .src(["src/js/event-totalAssets.js", "src/js/event-userchest.js"], {
-      base: "./"
-    })
-    .pipe(
-      replace({
-        "http://localhost:8080/chest/retrieve\\?userSpecific=5950a1e077c81e5ef884dfd5": "https://test.ehanlin.com.tw/chest/retrieve",
-        "http://localhost:9090/currencyBank/totalAssets/retrieve/one\\?userSpecific=5950a1e077c81e5ef884dfd5": "https://test.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one"
+    .pipe(replace(/[^\w](http:\/\/localhost:9090)\/([\w-\/]+)\?userSpecific=([\w])+"/g, function (match, p1, p2) {
+        let buildEnv = `"/${p2}"`;
+        console.log(`currencyBank domain => ${match} to ${buildEnv}`);
+        return buildEnv
       })
     )
     .pipe(gulp.dest(""));
 }
 
-function testReplaceToProduction() {
+function buildEnvToDev() {
   gulp
-    .src(["src/js/**/*.js"], {
+    .src(["src/js/*.js"], {
       base: "./"
     })
-    .pipe(
-      replace({
-        "https://test.ehanlin.com.tw": "https://www.ehanlin.com.tw"
+    .pipe(replace(/[^\w]\/(chest)\/([\w-\/]+)"/g, function (match, p1, p2) {
+      let dev = `"http://localhost:8080/${p1}/${p2}"`;
+      console.log(`chest domain => ${match} to ${dev}`);
+      return dev
       })
     )
-    .pipe(gulp.dest(""));
-}
-
-function productionReplaceToTest() {
-  gulp
-    .src(["src/js/**/*.js"], {
-      base: "./"
-    })
-    .pipe(
-      replace({
-        "https://www.ehanlin.com.tw": "https://test.ehanlin.com.tw"
+    .pipe(replace(/[^\w]\/(currencyBank)\/([\w-\/]+)"/g, function (match, p1, p2) {
+        let dev = `"http://localhost:9090/${p1}/${p2}?userSpecific=${gulp.env.user}"`;
+        console.log(`currencyBank domain => ${match} to ${dev}`);
+        return dev
       })
     )
     .pipe(gulp.dest(""));
@@ -199,11 +180,8 @@ gulp.task("build", ["style", "lib"]);
 gulp.task("minifyCSS", minifyCSS("src/css/**/*.css"));
 gulp.task("minifyImage", minifyImage("src/img/**/*.png"));
 gulp.task("minifyJS", minifyJS("src/js/**/*.js"));
-gulp.task("testReplaceToDev", testReplaceToDev);
-gulp.task("devReplaceToTest", devReplaceToTest);
-gulp.task("testReplaceToProduction", testReplaceToProduction);
-gulp.task("productionReplaceToTest", productionReplaceToTest);
-
+gulp.task("buildEnvToDev", buildEnvToDev);
+gulp.task("devToBuildEnv", devToBuildEnv);
 gulp.task("package", function () {
   var deferred = Q.defer();
   Q.fcall(function () {

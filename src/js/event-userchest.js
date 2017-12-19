@@ -30,7 +30,7 @@ $(function () {
       determineLevel(imgChestTarget, chestLevel);
 
       ajaxGet(
-        "https://test.ehanlin.com.tw/chest/coolDownTime/" + chestId,
+        "/chest/coolDownTime/" + chestId,
         null,
         function (jsonData) {
           let seconds = jsonData.content;
@@ -48,7 +48,7 @@ $(function () {
   };
 
   ajaxGet(
-    "https://test.ehanlin.com.tw/chest/retrieve",
+    "/chest/retrieve",
     null,
     function (jsonData) {
       let indexPlatformTarget;
@@ -110,6 +110,8 @@ let upgradeBtnFunc = function () {
     let findParents, chestId, chestLevel, thisButtonTarget;
     event.preventDefault();
 
+    console.log(thisButtonTarget.data("lockedAt"));
+
     thisButtonTarget = $(this);
     if ( !thisButtonTarget.data("lockedAt") || +new Date() - thisButtonTarget.data("lockedAt") > 300 ) {
       findParents = $(this).parents(".platform");
@@ -120,7 +122,7 @@ let upgradeBtnFunc = function () {
       getConditionChestLevel(chestId, chestLevel + 1);
     }
 
-    thisButtonTarget.data("lockedAt", new Date().getTime());
+    thisButtonTarget.attr("data-lockedAt", new Date().getTime());
   });
 };
 
@@ -145,7 +147,7 @@ let determineLevel = function (chestTarget, chestLevel) {
 let changeChestImage = function (chestTarget, chestImage) {
   chestTarget.prop(
     "src",
-    "https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/chest/" +
+    "https://d220xxmclrx033.cloudfront.net/event-space/img/chest/" +
     chestImage +
     ".png"
   );

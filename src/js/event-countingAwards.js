@@ -16,7 +16,7 @@ var getAwards = function () {
         let value = awards[award];
         let specificAward = $(".countingAwards li:eq(" + index + ")");
         let awardImage =
-          "<img src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource" +
+          "<img src='https://d220xxmclrx033.cloudfront.net" +
           "/event-space/img/award/" +
           awardId +
           ".png' />";

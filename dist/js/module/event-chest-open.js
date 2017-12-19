@@ -14,7 +14,7 @@ define(["jquery", "popup", "ajaxUtil"], function($, popup, ajaxUtil) {
       let chestLevel = platformTarget.data("level");
       let openChestGif =
         "<div style='float: left; width: 245px; height:223px;" +
-        "background-image: url(https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource" +
+        "background-image: url(https://d220xxmclrx033.cloudfront.net" +
         "/event-space/img/chest/open/openChest" +
         chestLevel +
         ".gif);" +
@@ -48,7 +48,7 @@ define(["jquery", "popup", "ajaxUtil"], function($, popup, ajaxUtil) {
       if (gainAward) {
         let awardImage =
           "<img style='width: 200px; height: 200px;' " +
-          "src='https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/award/" +
+          "src='https://d220xxmclrx033.cloudfront.net/event-space/img/award/" +
           gainAwardId +
           ".png' >" +
           "<br/>";
