@@ -1,4 +1,4 @@
-let confirmWindow = function (title, content, confrimFunction) {
+let confirmWindow = function(title, content, confrimFunction) {
   return {
     title: "<h5>" + title + "</h5>",
     content: "<span style='font-size: 20px'>" + content + "</span>",
@@ -8,7 +8,7 @@ let confirmWindow = function (title, content, confrimFunction) {
       cancelButton: {
         text: "再想想",
         btnClass: "btn-blue",
-        action: function () {
+        action: function() {
           return;
         }
       },
@@ -21,10 +21,9 @@ let confirmWindow = function (title, content, confrimFunction) {
   };
 };
 
-let alertWindow = function (title, content, confirmCallBack) {
-  if ( !confirmCallBack ) {
-    confirmCallBack = function () {
-    };
+let alertWindow = function(title, content, confirmCallBack) {
+  if (!confirmCallBack) {
+    confirmCallBack = function() {};
   }
 
   return {
@@ -42,30 +41,31 @@ let alertWindow = function (title, content, confirmCallBack) {
   };
 };
 
-let alertForAward = function (title,
-                              rank,
-                              quantity,
-                              needChestLv,
-                              introduction,
-                              notice,
-                              alertFunction) {
-  if ( !alertFunction ) {
-    alertFunction = function () {
-    };
+let alertForAward = function(
+  title,
+  rank,
+  quantity,
+  needChestLv,
+  introduction,
+  notice,
+  alertFunction
+) {
+  if (!alertFunction) {
+    alertFunction = function() {};
   }
 
   return {
     title: title,
     content:
-    "<span style='font-size:22px;'><br>贈品數量：" +
-    quantity +
-    "名<br><p style='color:yellow'>可獲取的寶箱：Lv. " +
-    needChestLv +
-    "</p><br>" +
-    introduction +
-    "<br><br></span><span style='font-size:16px;'>小提醒：" +
-    notice +
-    "</span>",
+      "<span style='font-size:22px;'><br>贈品數量：" +
+      quantity +
+      "名<br><p style='color:yellow'>可獲取的寶箱：Lv. " +
+      needChestLv +
+      "</p><br>" +
+      introduction +
+      "<br><br></span><span style='font-size:16px;'>小提醒：" +
+      notice +
+      "</span>",
     useBootstrap: false,
     theme: "supervan",
     buttons: {
@@ -78,8 +78,8 @@ let alertForAward = function (title,
   };
 };
 
-let writeAcceptanceInfo = function (content, totalCoins, totalGems) {
-  let awardAccepted = function () {
+let writeAcceptanceInfo = function(content, totalCoins, totalGems) {
+  let awardAccepted = function() {
     let originalCoins = $(".space .coins #own-coins").text();
     let originalGems = $(".space .gems #own-gems").text();
 
@@ -98,7 +98,7 @@ let writeAcceptanceInfo = function (content, totalCoins, totalGems) {
       cancelButton: {
         text: "下一步",
         btnClass: "btn-blue",
-        action: function () {
+        action: function() {
           awardAccepted();
           window.open("/Events/winner_info.html?id=space", "填寫領獎資訊");
         }
@@ -112,4 +112,3 @@ let writeAcceptanceInfo = function (content, totalCoins, totalGems) {
     }
   };
 };
-
