@@ -8,10 +8,8 @@ define(["jquery", "popup", "ajaxUtil"], function($, popup, ajaxUtil) {
       let totalGems = data["totalGems"];
       let gainAward = data["gainAward"];
       let gainAwardId = data["gainAwardId"];
-      let RangeRandomMapping = data["rangeRandomMapping"];
-
       let platformTarget = $("#" + chestId);
-      let chestLevel = platformTarget.data("level");
+      let chestLevel = platformTarget.attr("data-level");
       let openChestGif =
         "<div style='float: left; width: 245px; height:223px;" +
         "background-image: url(https://d220xxmclrx033.cloudfront.net" +

@@ -1,8 +1,8 @@
-let countTrasition = function (id, start, end) {
+let countTrasition = function(id, start, end) {
   let options = {
     useEasing: true,
     useGrouping: true,
-    separator: '',
+    separator: ""
   };
 
   let decimal = 0;

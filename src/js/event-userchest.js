@@ -7,7 +7,6 @@ $(function () {
 
     // 移除style 顯示，放入chestId, chestLevel
     thisPlatformTarget.prop("id", chestId).attr("data-level", chestLevel);
-
     thisPlatformTarget.find(".startButton").attr("data-status", chest.status);
 
     if ( chestLevel === 6 ) {
@@ -30,7 +29,7 @@ $(function () {
       determineLevel(imgChestTarget, chestLevel);
 
       ajaxGet(
-        "/chest/coolDownTime/" + chestId,
+        "https://test.ehanlin.com.tw/chest/coolDownTime/" + chestId,
         null,
         function (jsonData) {
           let seconds = jsonData.content;
@@ -94,48 +93,59 @@ $(function () {
 
 // 啟動按鈕
 let startBtnFunc = function () {
-  $(".container .space .startButton").on("click", function () {
+  $(".container .space .startButton").on("click", function (event) {
     let findParents, chestId;
+    event.preventDefault();
 
-    findParents = $(this).parents(".platform");
-    chestId = findParents.prop("id");
+    if ( !$(this).attr("data-lockedAt") || +new Date() - $(this).attr("data-lockedAt") > 1000 ) {
+      findParents = $(this).parents(".platform");
+      chestId = findParents.prop("id");
 
-    updateStatusIsUnlocking(chestId, $(this));
+      updateStatusIsUnlocking(chestId);
+    }
+    // +new Date() 等於 new Date().getTime()
+    $(this).attr("data-lockedAt", +new Date());
   });
 };
 
 // 升級按鈕
 let upgradeBtnFunc = function () {
   $(".container .space .upgradeButton").on("click", function (event) {
-    let findParents, chestId, chestLevel, thisButtonTarget;
+    let findParents, chestId, chestLevel;
     event.preventDefault();
 
-    console.log(thisButtonTarget.data("lockedAt"));
-
-    thisButtonTarget = $(this);
-    if ( !thisButtonTarget.data("lockedAt") || +new Date() - thisButtonTarget.data("lockedAt") > 300 ) {
+    if (
+      !$(this).attr("data-lockedAt") || +new Date() - $(this).attr("data-lockedAt") > 1000
+    ) {
       findParents = $(this).parents(".platform");
       chestId = findParents.prop("id");
-      chestLevel = findParents.data("level");
+      chestLevel = +findParents.attr("data-level");
 
       // 預備提升寶箱的等級
       getConditionChestLevel(chestId, chestLevel + 1);
     }
 
-    thisButtonTarget.attr("data-lockedAt", new Date().getTime());
+    // +new Date() 等於 new Date().getTime()
+    $(this).attr("data-lockedAt", new Date().getTime());
   });
 };
 
 // 開啟按鈕
 let readyBtnFunc = function () {
-  $(".container .space .readyButton").on("click", function () {
+  $(".container .space .readyButton").on("click", function (event) {
     let chestId;
+    event.preventDefault();
+    if (
+      !$(this).attr("data-lockedAt") || +new Date() - $(this).attr("data-lockedAt") > 300
+    ) {
+      chestId = $(this)
+        .parents(".platform")
+        .prop("id");
 
-    chestId = $(this)
-      .parents(".platform")
-      .prop("id");
-
-    eventChest.updateStatusIsOpen(chestId, $(this));
+      eventChest.updateStatusIsOpen(chestId, $(this));
+    }
+    // +new Date() 等於 new Date().getTime()
+    $(this).attr("data-lockedAt", +new Date());
   });
 };
 

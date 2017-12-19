@@ -5,13 +5,9 @@ let updateStatusIsUnlocking = function (chestId) {
 
   $.confirm(
     confirmWindow("確定啟動寶箱嗎！？", "", function () {
-      ajaxDeferred(
-        "PUT",
-        "/chest/updateStatus/" + chestId,
-        {
-          status: "UNLOCKING"
-        }
-      )
+      ajaxDeferred("PUT", "/chest/updateStatus/" + chestId, {
+        status: "UNLOCKING"
+      })
         .then(function () {
           $(".container .space .startButton[data-status=LOCKED]").fadeOut(
             "slow"
@@ -19,10 +15,7 @@ let updateStatusIsUnlocking = function (chestId) {
           upgradeButtonTarget.fadeOut("slow");
           startButtonTarget.attr("data-status", "UNLOCKING");
 
-          return ajaxDeferred(
-            "GET",
-            "/chest/coolDownTime/" + chestId
-          );
+          return ajaxDeferred("GET", "/chest/coolDownTime/" + chestId);
         })
         .then(function (jsonData) {
           countDown(jsonData.content, chestId, platformTarget);
@@ -56,30 +49,20 @@ let countDown = function (seconds, chestId, platformTarget) {
 
   // 立即開啟按鈕
   let openNowBtnFunc = function () {
-
     platformTarget.find(".openNowButton").on("click", function (event) {
-      let openNowButtonTarget = $(this);
       event.preventDefault();
-
-      if ( !openNowButtonTarget.data("lockedAt") || +new Date() - openNowButtonTarget.data("lockedAt") > 300 ) {
-        let chestId;
+      // +new Date() 等於 new Date().getTime()
+      if ( !$(this).attr("data-lockedAt") || +new Date() - +$(this).attr("data-lockedAt") > 1000 ) {
         let seconds;
-
-        chestId = $(this)
+        let chestId = $(this)
           .parents(".platform")
           .prop("id");
 
-        ajaxDeferred(
-          "GET",
-          "/chest/coolDownTime/" + chestId
-        )
+        ajaxDeferred("GET", "/chest/coolDownTime/" + chestId)
           .then(function (jsonData) {
             seconds = jsonData.content;
 
-            return ajaxDeferred(
-              "GET",
-              "/chest/condition/one/openImmediately"
-            );
+            return ajaxDeferred("GET", "/chest/condition/one/openImmediately");
           })
           .then(function (jsonData) {
             let openImmediatelyData = jsonData.content;
@@ -95,8 +78,7 @@ let countDown = function (seconds, chestId, platformTarget) {
                 function () {
                   ajax(
                     "PUT",
-                    "/chest/open/immediately/" +
-                    chestId,
+                    "/chest/open/immediately/" + chestId,
                     {
                       deductGems: deductGems
                     },
@@ -104,7 +86,7 @@ let countDown = function (seconds, chestId, platformTarget) {
                       let originalGems = $(".space .gems #own-gems").text();
                       let deductGems = jsonData.content.gems;
                       let finalGems = originalGems - deductGems * -1;
-                      console.log("成功抓取 openImmediately !!!");
+                      let platformId = $(this).parents(".platform").attr("id");
 
                       if ( finalGems < 0 ) {
                         $.alert(
@@ -130,7 +112,8 @@ let countDown = function (seconds, chestId, platformTarget) {
           });
       }
 
-      openNowButtonTarget.data("lockedAt", new Date().getTime());
+      // +new Date() 等於 new Date().getTime()
+      $(this).attr("data-lockedAt", +new Date());
     });
   };
 

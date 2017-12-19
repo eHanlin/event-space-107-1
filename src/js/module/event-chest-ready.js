@@ -9,7 +9,7 @@ define(["jquery", "ajaxUtil", "changeChestImage"], function ($, ajaxUtil, change
     ).then(function () {
       let platFromTarget = $("#" + chestId);
       let chestTarget = platFromTarget.find(".chest");
-      let level = platFromTarget.data("level");
+      let level = platFromTarget.attr("data-level");
       let chestImage = "readyChest" + level;
       let startButtonTarget = platFromTarget.find(".startButton");
 

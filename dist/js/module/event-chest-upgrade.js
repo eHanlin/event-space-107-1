@@ -86,7 +86,7 @@ define(["require", "jquery", "ajaxUtil"], function(require, $, ajaxUtil) {
           upgradeToTransaction("升級成功", successGif);
 
           determineLevel(platformTarget, chestLevel);
-          platformTarget.data("level", chestLevel);
+          platformTarget.attr("data-level", chestLevel);
           determineLevel(platformTarget.find(".chest"), chestLevel);
         }
       }

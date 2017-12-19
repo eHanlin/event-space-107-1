@@ -1,16 +1,16 @@
-$(function () {
+$(function() {
   getAwards();
 });
 
-var getAwards = function () {
+var getAwards = function() {
   ajaxGet(
     "/chest/retrieve/award",
     null,
-    function (jsonData) {
+    function(jsonData) {
       let awards = jsonData.content;
 
       let index = 0;
-      for ( let award in awards ) {
+      for (let award in awards) {
         let awardId = award.split("#")[0];
         let awardDesc = award.split("#")[1];
         let value = awards[award];
@@ -30,21 +30,20 @@ var getAwards = function () {
         index++;
       }
 
-      $(".countingAwardsArticle .fa.fa-mail-forward").on("click", function () {
+      $(".countingAwardsArticle .fa.fa-mail-forward").on("click", function() {
         $(this).hide();
         $(".countingAwards .awardBox").css("display", "none");
         $(".countingAwards .awardBox2").removeAttr("style");
         $(".countingAwardsArticle .fa.fa-mail-reply").show();
       });
 
-      $(".countingAwardsArticle .fa.fa-mail-reply").on("click", function () {
+      $(".countingAwardsArticle .fa.fa-mail-reply").on("click", function() {
         $(this).hide();
         $(".countingAwards .awardBox").removeAttr("style");
         $(".countingAwards .awardBox2").hide();
         $(".countingAwardsArticle .fa.fa-mail-forward").show();
       });
     },
-    function () {
-    }
+    function() {}
   );
 };
