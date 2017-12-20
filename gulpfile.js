@@ -2,7 +2,7 @@ const gulp = require("gulp");
 const fs = require("fs");
 const del = require("del");
 const Q = require("q");
-const util = require("gulp-template-util");
+const templateUtil = require("gulp-template-util");
 const replace = require("gulp-replace");
 const replaceMulti = require("gulp-replace-pro");
 const babel = require("gulp-babel");
@@ -11,10 +11,10 @@ const pngquant = require("imagemin-pngquant");
 const cleanCSS = require("gulp-clean-css");
 const uglify = require("gulp-uglify-es").default;
 
-let basePath = {
+const basePath = {
   base: "src"
 };
-var dist = "dist";
+const dist = "dist";
 
 function libTask(destination) {
   console.log("=======> libTask <=======");
@@ -95,9 +95,9 @@ function buildEnvToDev() {
       base: "./"
     })
     .pipe(replace(/[^\w]\/(chest)\/([\w-\/]+)"/g, function (match, p1, p2) {
-      let dev = `"http://localhost:8080/${p1}/${p2}"`;
-      console.log(`chest domain => ${match} to ${dev}`);
-      return dev
+        let dev = `"http://localhost:8080/${p1}/${p2}"`;
+        console.log(`chest domain => ${match} to ${dev}`);
+        return dev
       })
     )
     .pipe(replace(/[^\w]\/(currencyBank)\/([\w-\/]+)"/g, function (match, p1, p2) {
@@ -137,7 +137,7 @@ function minifyJS(sourceJS) {
   console.log("=======> minifyJS <=======");
   return function () {
     return gulp
-      .src(sourceJS, basePath)
+      .src(sourceJS, { base: "babel-temp" })
       .pipe(
         uglify({
           mangle: false
@@ -163,14 +163,12 @@ function buildJS() {
   let deferred = Q.defer();
 
   Q.fcall(function () {
-    return util.logStream(babelJS(["src/js/*.js"]));
-  })
-    .then(function () {
-      return util.logStream(minifyJS("babel-temp/js/**/*.js"));
-    })
-    .then(function () {
-      return util.logPromise(clean("babel-temp"));
-    });
+    return templateUtil.logStream(babelJS(["src/js/*.js"]));
+  }).then(function () {
+    return templateUtil.logStream(minifyJS("babel-temp/js/**/*.js"));
+  }).then(function () {
+    return templateUtil.logPromise(clean("babel-temp"));
+  });
 
   return deferred.promise;
 }
@@ -185,18 +183,16 @@ gulp.task("devToBuildEnv", devToBuildEnv);
 gulp.task("package", function () {
   var deferred = Q.defer();
   Q.fcall(function () {
-    return util.logPromise(clean(dist));
-  })
-    .then(function () {
-      return util.logStream(copyStaticTask("dist"));
-    })
-    .then(function () {
-      return Q.all([
-        util.logStream(minifyImage("src/img/**/*.png")),
-        util.logStream(minifyCSS("src/css/**/*.css")),
-        util.logStream(minifyJS("src/js/*.js"))
-      ]);
-    });
+    return templateUtil.logPromise(clean(dist));
+  }).then(function () {
+    return templateUtil.logStream(copyStaticTask("dist"));
+  }).then(function () {
+    return Q.all([
+      templateUtil.logStream(minifyImage("src/img/**/*.png")),
+      templateUtil.logStream(minifyCSS("src/css/**/*.css")),
+      templateUtil.logStream(buildJS)
+    ]);
+  });
 
   return deferred.promise;
 });

@@ -1,1 +1,1 @@
-let countTrasition=function(id,start,end){new CountUp(id,start,end,0,3,{useEasing:!0,useGrouping:!0,separator:""}).start()};
+"use strict";var countTrasition=function(id,start,end){new CountUp(id,start,end,0,3,{useEasing:!0,useGrouping:!0,separator:""}).start()};
