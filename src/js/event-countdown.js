@@ -85,7 +85,7 @@ let countDown = function (seconds, chestId, platformTarget) {
                     function (jsonData) {
                       let originalGems = $(".space .gems #own-gems").text();
                       let deductGems = jsonData.content.gems;
-                      let finalGems = originalGems - deductGems * -1;
+                      let finalGems = originalGems - deductGems;
                       let platformId = $(this).parents(".platform").attr("id");
 
                       if ( finalGems < 0 ) {
