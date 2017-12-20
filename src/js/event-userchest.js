@@ -29,7 +29,7 @@ $(function () {
       determineLevel(imgChestTarget, chestLevel);
 
       ajaxGet(
-        "https://test.ehanlin.com.tw/chest/coolDownTime/" + chestId,
+        "https://chest/coolDownTime/" + chestId,
         null,
         function (jsonData) {
           let seconds = jsonData.content;
