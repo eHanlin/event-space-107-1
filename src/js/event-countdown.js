@@ -30,7 +30,7 @@ let countDown = function (seconds, chestId, platformTarget) {
   let openNowBtnTarget = platformTarget.find(".openNowButton");
 
   imgChestTarget.addClass("unlockingGray");
-  openNowBtnTarget.removeAttr("style");
+  //openNowBtnTarget.removeAttr("style");
 
   let countDownFunc = function (seconds) {
     countdownTarget.countDown({
@@ -84,25 +84,22 @@ let countDown = function (seconds, chestId, platformTarget) {
                     },
                     function (jsonData) {
                       let originalGems = $(".space .gems #own-gems").text();
-                      let deductGems = jsonData.content.gems;
-                      let finalGems = originalGems - deductGems;
-                      let platformId = $(this).parents(".platform").attr("id");
+                      let insufficientGems = jsonData.content["insufficientGems"];
+                      let totalGems;
 
-                      if ( finalGems < 0 ) {
+                      if ( insufficientGems > 0 ) {
                         $.alert(
                           alertWindow(
-                            "你的寶石不足" + finalGems * -1 + "個",
+                            "你的寶石不足" + insufficientGems + " 個",
                             "",
                             ""
                           )
                         );
                         return;
-                      } else if ( finalGems === 0 ) {
-                        $.alert(alertWindow("你的寶石不足", "", ""));
-                        return;
                       }
 
-                      countTrasition("own-gems", originalGems, finalGems);
+                      totalGems = jsonData.content["totalGems"];
+                      countTrasition("own-gems", originalGems, totalGems);
                       countDownFunc(0);
                     }
                   );
@@ -118,6 +115,6 @@ let countDown = function (seconds, chestId, platformTarget) {
   };
 
   // 立即開啟按鈕
-  openNowBtnFunc();
+  //openNowBtnFunc();
   countDownFunc(seconds);
 };
