@@ -5,8 +5,8 @@ let eventChest = {
       let data = jsonData.content;
       let gainCoins = data["coins"];
       let gainGems = data["gems"];
-      let totalCoins = data["totalCoins"];
-      let totalGems = data["totalGems"];
+      let finalCoins = data["finalCoins"];
+      let finalGems = data["finalGems"];
       let gainAward = data["gainAward"];
       let gainAwardId = data["gainAwardId"];
 
@@ -70,7 +70,7 @@ let eventChest = {
         "</div>" +
         "</div>";
 
-      $.confirm(writeAcceptanceInfo(content, totalCoins, totalGems));
+      $.confirm(writeAcceptanceInfo(content, finalCoins, finalGems));
     };
 
     ajax(
@@ -155,26 +155,26 @@ let eventChest = {
         upgradeToTransaction("升級失敗", failureGif);
       } else {
         // -------- 如果餘額不足，會回傳 finalCoins 和 finalGems
-        let finalCoins = upgradeContent["finalCoins"];
-        let finalGems = upgradeContent["finalGems"];
+        let insufficientCoins = upgradeContent["insufficientCoins"];
+        let insufficientGems = upgradeContent["insufficientGems"];
         // --------------------------------------------------
         // 餘額不足
-        if (finalCoins || finalGems) {
+        if (insufficientCoins || insufficientGems) {
           let alertText = "";
 
-          if (finalCoins < 0 && finalGems < 0) {
+          if (insufficientCoins < 0 && insufficientGems < 0) {
             alertText +=
               "e 幣和寶石不足！ 再努力一點，還差" +
-              finalCoins * -1 +
+              insufficientCoins * -1 +
               "元！ " +
-              finalGems * -1 +
+              insufficientGems * -1 +
               "個寶石！";
-          } else if (finalCoins < 0) {
+          } else if (insufficientCoins < 0) {
             alertText +=
-              "e 幣不足！ 再努力一點，還差" + finalCoins * -1 + "元！";
-          } else if (finalGems < 0) {
+              "e 幣不足！ 再努力一點，還差" + insufficientCoins * -1 + "元！";
+          } else if (insufficientGems < 0) {
             alertText +=
-              "寶石不足！ 再努力一點，還差" + finalGems * -1 + "個寶石！";
+              "寶石不足！ 再努力一點，還差" + insufficientGems * -1 + "個寶石！";
           }
 
           $.alert(alertWindow("", alertText));

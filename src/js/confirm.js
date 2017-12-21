@@ -1,4 +1,4 @@
-let confirmWindow = function(title, content, confrimFunction) {
+let confirmWindow = function(title, content, confirmFunction) {
   return {
     title: "<h5>" + title + "</h5>",
     content: "<span style='font-size: 20px'>" + content + "</span>",
@@ -15,7 +15,7 @@ let confirmWindow = function(title, content, confrimFunction) {
       confirmButton: {
         text: "確認",
         btnClass: "btn-blue",
-        action: confrimFunction
+        action: confirmFunction
       }
     }
   };
@@ -78,13 +78,13 @@ let alertForAward = function(
   };
 };
 
-let writeAcceptanceInfo = function(content, totalCoins, totalGems) {
+let writeAcceptanceInfo = function(content, finalCoins, finalGems) {
   let awardAccepted = function() {
     let originalCoins = $(".space .coins #own-coins").text();
     let originalGems = $(".space .gems #own-gems").text();
 
-    countTrasition("own-coins", originalCoins, totalCoins);
-    countTrasition("own-gems", originalGems, totalGems);
+    countTrasition("own-coins", originalCoins, finalCoins);
+    countTrasition("own-gems", originalGems, finalGems);
     getAwards();
   };
 
