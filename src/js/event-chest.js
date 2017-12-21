@@ -70,7 +70,7 @@ let eventChest = {
         "</div>" +
         "</div>";
 
-      $.confirm(writeAcceptanceInfo(content, finalCoins, finalGems));
+      $.confirm(writeAcceptanceInfo(content, finalCoins, finalGems, gainAward));
     };
 
     ajax(
