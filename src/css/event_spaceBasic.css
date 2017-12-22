@@ -92,6 +92,13 @@
   top: 2120px;
   cursor: pointer;
   outline: none;
+  opacity: 1;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+.container .returnAwardBtn:hover {
+  opacity: 0.5;
 }
 
 /* 注意事項 */
@@ -126,6 +133,11 @@
   border: 2px solid rgb(2, 49, 91);
 }
 
+.container #down-button:hover {
+  background-color: #0d546b;
+  text-decoration: none;
+}
+
 .container #up-button {
   position: absolute;
   background-color: #008cba;
@@ -139,6 +151,11 @@
   font-size: 16px;
   z-index: 2;
   border: 2px solid rgb(2, 49, 91);
+}
+
+.container #up-button:hover {
+  background-color: #0d546b;
+  text-decoration: none;
 }
 
 /* 注意事項 */

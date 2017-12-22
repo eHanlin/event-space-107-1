@@ -28,4 +28,13 @@
   z-index: 2;
   outline: none;
   cursor: pointer;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+.container article .detailBtn:hover {
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
 }
