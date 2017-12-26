@@ -1,10 +1,8 @@
 define(function () {
-  return function (chestTarget, chestImage) {
-    chestTarget.prop(
+  return function (imgChestTarget, chestImage) {
+    imgChestTarget.prop(
       "src",
-      "https://d220xxmclrx033.cloudfront.net/event-space/img/chest/" +
-      chestImage +
-      ".png"
+      `https://d220xxmclrx033.cloudfront.net/event-space/img/chest/${chestImage}.png`
     );
   };
 });

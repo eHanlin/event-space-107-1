@@ -6,7 +6,7 @@ $(function() {
       let tbodyHtml = "",
         tds;
 
-      for (var i = 0; i < transactions.length; i++) {
+      for (let i = 0; i < transactions.length; i++) {
         singleTransaction = transactions[i];
         let action = singleTransaction["action"];
         let transactionTime = singleTransaction["updateTime"];

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>雲端銀河探險隊</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.ehanlin.com.tw/lesscss/ehanlin-basicss.css"/>
+    <link rel="stylesheet" href="./css/package/jquery-confirm.css">
+    <link rel="stylesheet" href="./css/package/style.css">
+    <link rel="stylesheet" href="./css/event_space.css"/>
+    <link rel="stylesheet" href="./css/event_spaceBasic.css">
+    <link rel="stylesheet" href="./css/event_monster.css">
+    <link rel="stylesheet" href="./css/event_countdown.css">
+    <link rel="stylesheet" href="./css/event_dialogue.css">
+    <link rel="stylesheet" href="./css/event_countingAwards.css">
+    <link rel="stylesheet" href="./css/event_platform.css">
+  </head>
+
+  <body id="testBasic">
+    <header id="ehanlin-header"></header>
+    <nav id="ehanlin-menu"></nav>
+    <div id="event-left-side"></div>
+
+    <main class="container">
+      <div class="box right">
+        <div class="box-title">
+          <div class="tag blue">
+            <p>Events : </p>
+          </div>
+          <div class="content">雲端銀河探險隊</div>
+        </div>
+
+        <div class="book-intro">
+          <div class="background" style="height:3020px">
+            <div class="space">
+              <div class="coins">
+                <span id="own-coins"></span>
+              </div>
+              <div class="gems">
+                <span id="own-gems"></span>
+              </div>
+              <a href="#attention">
+                <img class="activity" src="./img/activity.png">
+              </a>
+              <a href="/Users/login.html">
+                <img class="bankLogout" src="./img/bankLogout.png" style="display:none">
+              </a>
+              <a href="">
+                <img class="bank" src="./img/bank.png" style="display:none">
+              </a>
+
+              <img class="eventText" src="./img/eventText.png">
+
+              <article class="chestArticle">
+                <div id="green">
+                  <div class="platform" style="display: none">
+                    <button class="startButton" type="button"> 啟動</button>
+                    <button class="upgradeButton" type="button"> 升級</button>
+                    <button class='readyButton' style="display:none" type='button'> 開啟</button>
+                    <button class="openNowButton" style="display:none" type='button'>立即開啟</button>
+                    <img class="chest">
+                    <div class="countdown font"></div>
+                  </div>
+                  <img class="greenPosition" src="./img/greenPosition.png">
+                </div>
+
+                <div id="red">
+                  <div class="platform" style="display: none">
+                    <button class="startButton" type="button"> 啟動</button>
+                    <button class="upgradeButton" type="button"> 升級</button>
+                    <button class='readyButton' style="display:none" type='button'> 開啟</button>
+                    <button class="openNowButton" style="display:none" type='button'>立即開啟</button>
+                    <img class="chest">
+                    <div class="countdown font"></div>
+                  </div>
+                  <img class="redPosition" src="./img/redPosition.png">
+                </div>
+                <div id="brown">
+                  <div class="platform" style="display: none">
+                    <button class="startButton" type="button"> 啟動</button>
+                    <button class="upgradeButton" type="button"> 升級</button>
+                    <button class='readyButton' style="display:none" type='button'> 開啟</button>
+                    <button class="openNowButton" style="display:none" type='button'>立即開啟</button>
+                    <img class="chest">
+                    <div class="countdown font"></div>
+                  </div>
+                  <img class="brownPosition" src="./img/brownPosition.png">
+                </div>
+                <div id="pink">
+                  <div class="platform" style="display: none">
+                    <button class="startButton" type="button"> 啟動</button>
+                    <button class="upgradeButton" type="button"> 升級</button>
+                    <button class='readyButton' style="display:none" type='button'> 開啟</button>
+                    <button class="openNowButton" style="display:none" type='button'>立即開啟</button>
+                    <img class="chest">
+                    <div class="countdown font"></div>
+                  </div>
+                  <img class="pinkPosition" src="./img/pinkPosition.png">
+                </div>
+              </article>
+
+              <img class="eventUFO" src="./img/eventUFO.png">
+
+              <article class="monsterArticle">
+                <img class="spaceman" src="./img/monster.png">
+
+                <div class="dialogue">
+                  <span class="bot"></span>
+                  <span id="title" style="display:none">Apple Watch Series 3</span>
+                  <span id="rank" style="display:none">A</span>
+                  <span id="quantity" style="display:none">1</span>
+                  <span id="needChestLv" style="display:none">Lv6</span>
+                  <span id="introduction" style="display:none">
+                    青春、活力、動起來！絕對是身為學生的你的最佳形容詞。不論你喜歡與朋友嘻笑喧鬧；喜歡下課後與朋友抓起籃…日的小習慣就靠Apple Watch Series 3。聰明的隨身教練，讓你的青春生活健康不留白！
+                  </span>
+                  <span id="notice" style="display:none">
+                    Apple Watch Series 3有2種規格，為符合您最需要使用的規格，翰林雲端學院將於您回傳收據後方開始採購贈品，以確保您努力得來的獎勵有最符合您的需求喔！
+                  </span>
+                </div>
+
+                <div class="text" style="width:120px">
+                  Apple Watch Series 3
+                </div>
+                <img class="detailBtn" src="./img/detailBtn.png">
+
+                <div id="award" class="cycle-slideshow" data-cycle-timeout="3000">
+                  <img class="award1" data-index="1" src="./img/award/award1.png" style="display:none">
+                  <img class="award2" data-index="2" src="./img/award/award2.png" style="display:none">
+                  <img class="award3" data-index="3" src="./img/award/award3.png" style="display:none">
+                  <img class="award4" data-index="4" src="./img/award/award4.png" style="display:none">
+                  <img class="award5" data-index="5" src="./img/award/award5.png" style="display:none">
+                  <img class="award6" data-index="6" src="./img/award/award6.png" style="display:none">
+                  <img class="award7" data-index="7" src="./img/award/award7.png" style="display:none">
+                  <img class="award8" data-index="8" src="./img/award/award8.png" style="display:none">
+                  <img class="award9" data-index="9" src="./img/award/award9.png" style="display:none">
+                  <img class="award10" data-index="10" src="./img/award/award10.png" style="display:none">
+                  <img class="award11" data-index="11" src="./img/award/award11.png" style="display:none">
+                  <img class="award12" data-index="12" src="./img/award/award12.png" style="display:none">
+                  <img class="award13" data-index="13" src="./img/award/award13.png" style="display:none">
+                  <img class="award14" data-index="14" src="./img/award/award14.png" style="display:none">
+                  <img class="award15" data-index="15" src="./img/award/award15.png" style="display:none">
+                  <img class="award16" data-index="16" src="./img/award/award16.png" style="display:none">
+                  <img class="award17" data-index="17" src="./img/award/award17.png" style="display:none">
+                </div>
+              </article>
+            </div>
+
+            <img class="chestMessage" src="./img/chestMessage.png">
+            <img class="stockRoom" src="./img/stockRoom.png">
+
+            <article class="countingAwardsArticle">
+              <div class="countingAwards">
+                <ul class="awardBox">
+                  <li class="box1"></li>
+                  <li class="box2"></li>
+                  <li class="box3"></li>
+                  <li class="box4"></li>
+                  <li class="box5"></li>
+                  <li class="box6"></li>
+                  <li class="box7"></li>
+                  <li class="box8"></li>
+                </ul>
+                <ul class="awardBox2" style="display:none">
+                  <li class="box9"></li>
+                  <li class="box10"></li>
+                  <li class="box11"></li>
+                  <li class="box12"></li>
+                  <li class="box13"></li>
+                  <li class="box14"></li>
+                  <li class="box15"></li>
+                  <li class="box16"></li>
+                </ul>
+              </div>
+              <i class="fa fa-mail-forward"></i>
+              <i class="fa fa-mail-reply" style="display:none"></i>
+            </article>
+
+            <img class="returnAwardBtn" type="button" src="./img/returnBtn.png">
+            <img id="attention" class="notice" src="./img/notice.png">
+
+            <section class="message">
+              <article class="textMessage">
+                嘿！星際大戰又開打啦~聽說這次的目標是散落在銀河系的各種寶物呀！即日起，只要你擁有 翰林雲端學院帳號就可以參加銀河探險隊行列，一起尋找超稀有的銀河寶物！
+                <br>
+                <br>
+                <h3>※ 活動時間: 即日起~2018/01/22 23:59</h3>
+                <br>
+                <h3>※ 活動辦法</h3>
+                <br>
+                <br> Step1：
+                <br>活動期間內，透過每日登入答題、練習自我評量、名師派卷的新題，獲得e幣、寶石及寶箱（小提醒：每日登入額外加碼獎勵一天僅限獲得一次，記得每天都回來做考卷喔！）
+                <br>
+                <br> Step2：
+                <br>獲得寶箱後，馬上到活動頁，點選寶箱選擇開啟或升級。每一等級的寶箱都有對應的升級
+                時間，你可以依照你的需求及想要的寶藏選擇開啟寶箱或升級寶箱。（小提醒：你可以到寶藏清單點選觀看詳情確認寶藏內容及可獲得的寶箱）
+                <br>
+                <br> Step3：
+                <br>當你點選「開啟」，時間便開始倒數；而若你擁有足夠的e幣及寶石且點選「升級」，你便有機會成功將寶箱升級為更高等的寶箱，藉此獲得更好的寶藏！但請注意，寶箱升級是有
+                可能不會成功的，失敗時消耗的ｅ幣及寶石並不會歸還。偷偷告訴你，小怪獸聽說只有Lv4以上的寶箱才有獲得實體銀河寶藏喔！
+                <br>
+                <br> Step4：
+                <!--<br>當你耐心地等到倒數結束，便可知道你所獲得的銀河寶藏有哪些了！此時，若你有獲得實體寶藏，點選下一步回填相關資訊，雲端學院小幫手就會在活動結束後 將寶藏寄送給您囉！-->
+                <br>當你耐心地等到倒數結束或立即開啟寶箱，便可知道你所獲得的銀河寶藏有哪些了！但是，小怪獸知道你迫不及待的想知道寶箱裡面的是甚麼贈品對吧！那就努力存取寶石~依照寶箱所需要的開啟時間，就可以用對應的寶石直接開啟喔！開啟後，若你有獲得實體寶藏，
+                點選下一步回填相關資訊，雲端學院小幫手就會在活動結束後將寶藏寄送給您囉！
+                <br>
+                <br>
+                <br>
+                <span class="fadeMessage" style="display:none">
+                  <h3>※ 銀河小幫手要提醒你的注意事項及 Q&amp;A：</h3>
+                  <br>
+                  <br>1. 為了鼓勵每位會員每日固定養成習慣至翰林雲端學院循序漸進的學習， 於活動期間內每日的00:00~23:59交卷一份40分(含)以上的自我評量，即可額外加碼獲得20個e幣獎勵。
+                  <br>
+                  <br>2. 銀河探險隊的裝備有最大量限制，根據總部支援項目設定，每天所能獲 得的e幣數量為200個e幣、20個寶石（由寶箱開啟者不在此限）。
+                  <br>
+                  <br>3. 每一位探險隊員在銀河探索時，練習20題就可以獲得1個寶箱; 同時最多只能攜帶 4 個寶箱在身上，必須將既有寶箱開啟後才能繼續獲得新的寶箱。
+                  <br>
+                  <br>4. 每一個等級的寶箱有對應的開啟時間，詳情如下：Lv1寶箱：需1小時； Lv2寶箱：需2小時； Lv3寶箱：需4小時； Lv4寶箱：需8小時； Lv5寶箱：需16小時； Lv6寶箱：需24小時。
+                  <br>
+                  <br>5. 等級越好的寶藏只會在越高等的寶箱裡獲得喔！適當的分配資源，努力 將寶箱升到最高等才有機會獲得想要的寶藏~寶藏詳情請見寶藏清單。
+                  <br>
+                  <br>
+                  <br>
+                  <h3>※ 領獎辦法</h3>
+                  <br>
+                  <br>1. 請獲得實體獎項者於1/25前完成相關資訊的回填。
+                  <br>
+                  <br>2. 根據規定，若得獎獎品金額超過$500元，則需將收據以A4方式列印後親筆填寫完成 後郵寄至本公司，以利後續獎品寄送事宜，翰林雲端學院將在1/29前以e-mail寄送收 據給您，請於2/5前（以郵戳為憑）將收據列印後依照指示親筆填寫並寄回翰林雲端
+                  學院。
+                  <br>
+                  <br>3. 請於指定期間內完成回填資料，逾期或資料不齊者將視同放棄獎品領取資格，恕無法補發。
+                  <br>
+                  <br>
+                  <br>
+                  <h3>※ 其他注意事項</h3>
+                  <br>
+                  <br>1. 參加者於參加本活動之同時，即同意接受本活動之活動辦法與注意事項之規範，如：有違反，得取消其參加或得獎資格。
+                  <br>
+                  <br>2. 本活動限台灣地區會員參加，寄送地區僅限台灣本島。
+                  <br>
+                  <br>3. 本活動代幣一經使用，不得要求更換、取消或退還。
+                  <br>
+                  <br>4. 請獎品總金額超過500元以上得獎者，下載E-mail中的獎品領取收據單並確實填寫， 在指定期限內寄回至雲端學院方能完成領獎流程；如因註冊資料或表格資料填寫不實、有誤、無法辨識，或逾時未回覆者，將視同放棄，恕不補發。
+                  <br>
+                  <br>5. 得獎者保證所有填寫或提出之資料均為真實且正確，且未冒用或盜用任何第三人之資料，如因此致翰林雲端學院無法通知其得獎訊息時， 翰林雲端學院不負任何責任 ，且如有致損害於翰林雲端學院或其他任何第三人，參加者應負一切相關法律責任。
+                  <br>
+                  <br>6. 填寫收據問題-1 依照中華民國所得稅法及其相關規定，競賽或機會中獎獎項價值超過NT$1,000元以 上者需做所得申報，獎項價值超過 NT$20,000元者(含)，中獎人除所得申報外，尚須先繳納10%之稅金。稅金扣繳由翰林出版事業股份有限公司代為處理後
+                  於年度報稅時開立扣繳憑單予中獎者。中獎者應先準備身分證正反面影本(如未滿20歲者請繳交戶口名簿影本及法定代理人身分證正反面影本)相關文件及稅金繳納證明予翰林雲端學院，始得領取活動獎項。未提供領獎證明文件者，視同自動放棄權益。
+                  <br>
+                  <br>7. 填寫收據問題-2 依照中華民國稅法規定，中獎贈品或獎金價值1,000以下者，得免計入申報所得稅，超過1,001元者，中獎人於年度報稅時必須計入個人所得合併申報。應繳所得稅 ＝ ( 全年所得淨額總額【含機會中獎】
+                  × 稅率 )－ 累進差額－已扣繳稅額(含機會中獎) 配合以上稅法規定，因此需要監護人填寫相關資料表示已確認小朋友有獲得此獎項 ，所有資料僅供本公司查核報稅， 不會另作他途使用、請得獎者安心填寫。
+                  <br>
+                  <br>8. 得獎者應於翰林雲端學院通知之期限內回覆確認領取獎品，並提供翰林雲端學院所 要求之完整領獎文件，逾期視為棄權。得獎者所提供之身分證明文件如與參加本活 動時所填寫之資料不符，翰林雲端學院得要求得獎者提出相關證明文件，否則翰林
+                  雲端學院得取消其得獎資格。
+                  <br>
+                  <br>9. 本活動獎項之領取方式概依翰林雲端學院所寄發或公佈之得獎通知上所載為準。
+                  <br>
+                  <br>
+                  <br>
+                  <h3>※ 個人資料告知事項</h3>
+                  <br>
+                  <br> 1. 依據個人資料保護法(以下簡稱個資法)第八條第一項規定，向參與本活動之會員告知下列事項，請參與本活動於進行活動資料填寫前務必詳閱。
+                  <br>
+                  <br>2. 蒐集個人資料公司：翰林教育科技股份有限公司(以下稱本公司)。
+                  <br>
+                  <br>3. 蒐集目的：翰林雲端學院相關抽獎活動
+                  <br>
+                  <br>4. 個人資料之類別：學員之姓名、身分證字號、戶籍地址、聯絡電話、獎勵寄送地址 、聯絡Email，及其法定代理人之姓名、身分證字號、戶籍地址、聯絡電話、聯絡 Email。
+                  <br>
+                  <br>5. 個人資料利用之期間、區域、對象及方式： 期間：個人資料蒐集之特定目的存續期間、依相關法令或契約約定之保存期限，或 本公司因執行業務所需之保存期限 地區：本國 對象：本公司、本公司委託機關及執行本活動時之必要相關人員
+                  方式：以自動化機器或其他非自動化之利用方式
+                  <br>
+                  <br>6. 依據個資法第三條規定，本活動參與者了解，就其所提供之個人資料得行使下列權 利：您可依個人資料保護法的規定，就本公司所保有您的個人資料向本公司行使查 詢或閱覽、製給複製本、補充或更正、停止蒐集處理或利用、刪除之權利，惟依法
+                  本公司因執行職務所必須者，得不依本活動參與者請求為之。
+                  <br>
+                  <br>7. 不提供個人資料所致權益之影響： 台端得自由選擇是否提供相關個人資料，惟台端若拒絕提供相關個人資料，本公司 將無法提供您蒐集目的所包含之完整服務或資訊，例如提供獎品，致使台端權益受 損。
+                  <br>
+                  <br>8. 茲本人同意提供個人資料(姓名、身分證字號、連絡電話、行動電話、連絡地址、連 絡Email)予本公司，並同意得為活動參與、抽獎相關活動、資料儲存與整理、郵寄 、稅務等用途蒐集、處理及利用本人之個人資料，利用之期間、地區、對象及方式
+                  均不受任何限制，並得委託第三人為前述之行為
+                  <br>
+                  <br>9. 本人了解就所提供之個人資料依法得行使查詢或請求閱覽、請求製給複製本、請求 補充或更正、請求停止蒐集、處理或利用以及請求刪除等權利。
+                  <br>
+                  <br>
+                </span>
+              </article>
+              <button id="down-button" type="button">更多注意事項</button>
+              <button id="up-button" type="button" style="display:none">隱藏注意事項</button>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer id="ehanlin-footer"></footer>
+  </body>
+  <script data-main="./js/main" src="./js/package/require.js"></script>
+</html>

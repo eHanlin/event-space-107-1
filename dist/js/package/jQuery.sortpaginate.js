@@ -53,7 +53,7 @@ $(function($, window, document, undefined) {
         .eq(0)
         .addClass("sp_sorted_asc");
 
-      sortTable($(_$this), 0, "asc");
+      sortTable($(_$this), 5, "desc");
 
       paginate(
         parseInt(

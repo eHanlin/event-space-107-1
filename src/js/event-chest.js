@@ -123,14 +123,12 @@ let eventChest = {
       let upgradeToTransaction = function(alertTitle, alertGif) {
         ajaxDeferred("POST", "/currencyBank/transaction/upgrade", {
           upgradeAuditId: upgradeContent["upgradeAuditId"]
-        })
-          .then(function() {
+        }).then(function() {
             return ajaxDeferred(
               "GET",
               "/currencyBank/totalAssets/retrieve/one"
             );
-          })
-          .then(function(jsonData) {
+          }).then(function(jsonData) {
             $.alert(
               alertWindow(alertTitle, alertGif, function() {
                 let content = jsonData.content;
@@ -154,7 +152,7 @@ let eventChest = {
           ".gif'>";
         upgradeToTransaction("升級失敗", failureGif);
       } else {
-        // -------- 如果餘額不足，會回傳 finalCoins 和 finalGems
+        // -------- 如果餘額不足，會回傳 insufficientCoins 和 insufficientGems
         let insufficientCoins = upgradeContent["insufficientCoins"];
         let insufficientGems = upgradeContent["insufficientGems"];
         // --------------------------------------------------
