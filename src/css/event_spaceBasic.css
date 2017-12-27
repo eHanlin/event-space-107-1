@@ -1,3 +1,19 @@
+#svg-coins.icon-coins {
+  float: left;
+  height: 36px;
+  width: 36px;
+  background-image: url("https://d220xxmclrx033.cloudfront.net/event-space/img/currencyBank/coin.svg");
+  background-size: contain;
+}
+
+#svg-gems.icon-gems {
+  float: left;
+  height: 36px;
+  width: 36px;
+  background-image: url("https://d220xxmclrx033.cloudfront.net/event-space/img/currencyBank/gem.svg");
+  background-size: contain;
+}
+
 .background {
   position: relative;
   background-color: #00192d;
@@ -44,6 +60,7 @@
   top: 170px;
 }
 
+/* 寶箱位置 */
 .container .greenPosition {
   position: absolute;
   left: 80px;
@@ -67,6 +84,7 @@
   left: 505px;
   top: 790px;
 }
+/*************************/
 
 .container .eventUFO {
   position: absolute;
@@ -74,7 +92,8 @@
   left: 40px;
 }
 
-.container .chestMessage {
+/* 寶箱小禮物圖示 */
+.container .chestAwardIcon {
   position: absolute;
   left: 320px;
   top: 1530px;
@@ -157,10 +176,9 @@
   background-color: #0d546b;
   text-decoration: none;
 }
+/*************************/
 
-/* 注意事項 */
-
-/* 使用者的e幣跟寶石 */
+/* 使用者 e 幣與寶石 */
 .container .space .coins {
   position: absolute;
   background-image: url("../img/displayCoins.png");
@@ -168,6 +186,15 @@
   top: 30px;
   width: 187px;
   height: 61px;
+}
+
+.container .space .gems {
+  position: absolute;
+  background-image: url("../img/displayGems.png");
+  left: 35px;
+  top: 100px;
+  width: 184px;
+  height: 57px;
 }
 
 .container .space .coins span,
@@ -181,13 +208,3 @@
   color: rgb(69, 23, 23);
 }
 
-.container .space .gems {
-  position: absolute;
-  background-image: url("../img/displayGems.png");
-  left: 35px;
-  top: 100px;
-  width: 184px;
-  height: 57px;
-}
-
-/* 使用者的e幣跟寶石 */

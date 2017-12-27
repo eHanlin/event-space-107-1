@@ -4,23 +4,19 @@ define(["require", "jquery", "ajaxUtil"], function (require, $, ajaxUtil) {
       level: upLevel
     };
 
-    ajaxUtil("PUT", `/chest/upgrade/${chestId}`, putData)
+    ajaxUtil("PUT", `http://localhost:8080/chest/upgrade/${chestId}`, putData)
       .then(function (jsonData) {
         require("jqueryConfirm");
         let popup = require("popup");
         let upgradeContent = jsonData.content;
         let upgradeToTransaction = function (alertTitle, alertGif) {
           ajaxUtil(
-            "POST",
-            "https://www.ehanlin.com.tw/currencyBank/transaction/upgrade",
+            "POST", `/currencyBank/transaction/upgrade`,
             {
               upgradeAuditId: upgradeContent["upgradeAuditId"]
             }
           ).then(function () {
-            return ajaxUtil(
-              "GET",
-              "https://www.ehanlin.com.tw/currencyBank/totalAssets/retrieve/one"
-            );
+            return ajaxUtil("GET", `/currencyBank/totalAssets/retrieve/one`);
           }).then(function (jsonData) {
             $.alert(popup.alert(alertTitle, alertGif, function () {
                 let countTransition = require("countTransition");

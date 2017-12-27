@@ -1,6 +1,6 @@
 define(["jquery", "ajaxUtil"], function ($, ajaxUtil) {
   return function () {
-    ajaxUtil("GET", "/chest/retrieve/award")
+    ajaxUtil("GET", `http://localhost:8080/chest/retrieve/award`)
       .then(function (jsonData) {
         let awards = jsonData.content;
 

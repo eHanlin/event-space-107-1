@@ -109,6 +109,26 @@ function buildEnvToDev() {
     .pipe(gulp.dest(""));
 }
 
+function buildEnvToDevModule() {
+  gulp
+    .src(["src/js/module/*.js", "src/js/main.js"], {
+      base: "./"
+    })
+    .pipe(replace(/[`]\/(chest)\/([\w-\/${}]+)`/g, function (match, p1, p2) {
+        let dev = `\`http://localhost:8080/${p1}/${p2}\``;
+        console.log(`chest domain => ${match} to ${dev}`);
+        return dev
+      })
+    )
+    .pipe(replace(/[`]\/(currencyBank)\/([\w-\/${}]+)`/g, function (match, p1, p2) {
+        let dev = `\`http://localhost:9090/${p1}/${p2}?userSpecific=${gulp.env.user}\``;
+        console.log(`currencyBank domain => ${match} to ${dev}`);
+        return dev
+      })
+    )
+    .pipe(gulp.dest(""));
+}
+
 function minifyImage(sourceImage) {
   console.log("=======> minifyImage <=======");
   return function () {
@@ -179,6 +199,7 @@ gulp.task("minifyCSS", minifyCSS("src/css/**/*.css"));
 gulp.task("minifyImage", minifyImage("src/img/**/*.png"));
 gulp.task("minifyJS", minifyJS("src/js/**/*.js"));
 gulp.task("buildEnvToDev", buildEnvToDev);
+gulp.task("buildEnvToDevModule", buildEnvToDevModule);
 gulp.task("devToBuildEnv", devToBuildEnv);
 gulp.task("package", function () {
   var deferred = Q.defer();

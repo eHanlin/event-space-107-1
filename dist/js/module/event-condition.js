@@ -4,7 +4,7 @@ define(["require", "jquery"], function (require, $) {
       let ajaxUtil = require("ajax-util");
       let chestUpgrade = require("chestUpgrade");
 
-      ajaxUtil("GET", `/chest/condition/one/level${upLevel}`)
+      ajaxUtil("GET", `http://localhost:8080/chest/condition/one/level${upLevel}`)
         .then(function (jsonData) {
           let data = jsonData.content.content;
           let needCoins = data["coins"];

@@ -7,7 +7,7 @@ define(["jquery", "ajaxUtil", "popup"], function ($, ajaxUtil, popup) {
   let introduction = dialogue.find("#introduction");
 
   let getAwardMessage = function (index) {
-    ajaxUtil("GET", `/chest/condition/one/award${index}`)
+    ajaxUtil("GET", `http://localhost:8080/chest/condition/one/award${index}`)
       .then(function (jsonData) {
         let awardConditionContent = jsonData.content.content;
         let desc = awardCondition.desc;

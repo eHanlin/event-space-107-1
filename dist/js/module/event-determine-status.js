@@ -22,7 +22,7 @@ define(["jquery", "determineLevel", "chestChangeImg"],
         platformTarget.find(".upgradeButton").hide();
         chestChangeImg(imgChestTarget, `chest${chestLevel}`);
 
-        ajaxUtil("GET", `/chest/coolDownTime/${chestId}`)
+        ajaxUtil("GET", `http://localhost:8080/chest/coolDownTime/${chestId}`)
           .then(chestUnlockCountDown.start.bind(this, seconds, chestId, platformTarget));
       } else if ( chestSatuts === "READY" ) {
         platformTarget.find(".startButton").hide();

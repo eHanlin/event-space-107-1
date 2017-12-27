@@ -8,7 +8,7 @@ define(["jquery"], function ($) {
 
       $.confirm(
         confirmWindow("確定啟動寶箱嗎！？", "", function () {
-          ajaxUtil("PUT", `/chest/updateStatus/${chestId}`, {
+          ajaxUtil("PUT", `http://localhost:8080/chest/updateStatus/${chestId}`, {
             status: "UNLOCKING"
           }).then(function () {
             $(".container .space .startButton[data-status=LOCKED]").fadeOut(
@@ -17,7 +17,7 @@ define(["jquery"], function ($) {
             upgradeButtonTarget.fadeOut("slow");
             startButtonTarget.attr("data-status", "UNLOCKING");
 
-            return ajaxUtil("GET", `/chest/coolDownTime/${chestId}`);
+            return ajaxUtil("GET", `http://localhost:8080/chest/coolDownTime/${chestId}`);
           }).then(function (jsonData) {
             this.start(jsonData.content, chestId, platformTarget);
           });
@@ -63,10 +63,10 @@ define(["jquery"], function ($) {
               .parents(".platform")
               .prop("id");
 
-            ajaxUtil("GET", `/chest/coolDownTime/${chestId}`)
+            ajaxUtil("GET", `http://localhost:8080/chest/coolDownTime/${chestId}`)
               .then(function (jsonData) {
                 seconds = jsonData.content;
-                return ajaxUtil("GET", "/chest/condition/one/openImmediately");
+                return ajaxUtil("GET", `http://localhost:8080/chest/condition/one/openImmediately`);
               })
               .then(function (jsonData) {
                 let openImmediatelyData = jsonData.content;
@@ -79,7 +79,7 @@ define(["jquery"], function ($) {
                   `立即開啟寶箱需要花費 ${deductGems} 個寶石`,
                   "確定立即開啟寶箱嗎？",
                   function () {
-                    ajaxUtil("PUT", `/chest/open/immediately/${chestId}`, { deductGems: deductGems })
+                    ajaxUtil("PUT", `http://localhost:8080/chest/open/immediately/${chestId}`, { deductGems: deductGems })
                       .then(function (jsonData) {
                         let countTransition = require("countTransition");
                         let originalGems = $(".space .gems #own-gems").text();
