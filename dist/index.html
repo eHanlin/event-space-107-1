@@ -4,16 +4,12 @@
   <head>
     <meta charset="UTF-8">
     <title>雲端銀河探險隊</title>
-    <script type="text/javascript" src="./js/package/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="./js/package/jquery.countdown.min.js"></script>
-    <script type="text/javascript" src="./js/package/jquery-confirm.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://www.ehanlin.com.tw/lesscss/ehanlin-basicss.css" />
+    <link rel="stylesheet" href="https://www.ehanlin.com.tw/lesscss/ehanlin-basicss.css"/>
     <link rel="stylesheet" href="./css/package/jquery-confirm.css">
     <link rel="stylesheet" href="./css/package/style.css">
-
-    <link rel="stylesheet" href="./css/event_layout.css" />
-    <link rel="stylesheet" href="./css/event_spaceBasic.css">
+    <link rel="stylesheet" href="./css/event_layout.css"/>
+    <link rel="stylesheet" href="./css/event_space.css">
     <link rel="stylesheet" href="./css/event_monster.css">
     <link rel="stylesheet" href="./css/event_countdown.css">
     <link rel="stylesheet" href="./css/event_dialogue.css">
@@ -25,6 +21,12 @@
     <header id="ehanlin-header"></header>
     <nav id="ehanlin-menu"></nav>
     <div id="event-left-side"></div>
+
+    <div class="space-treasure-popup" style="display: none;">
+      <div class="space-treasure">
+        <img class="space-treasure-understand" src="./img/understand.png">
+      </div>
+    </div>
 
     <main class="container">
       <div class="box right">
@@ -196,10 +198,12 @@
                 <br>活動期間內，透過每日登入答題、練習自我評量、名師派卷的新題，獲得e幣、寶石及寶箱（小提醒：每日登入額外加碼獎勵一天僅限獲得一次，記得每天都回來做考卷喔！）
                 <br>
                 <br> Step2：
-                <br>獲得寶箱後，馬上到活動頁，點選寶箱選擇開啟或升級。每一等級的寶箱都有對應的升級 時間，你可以依照你的需求及想要的寶藏選擇開啟寶箱或升級寶箱。（小提醒：你可以到寶藏清單點選觀看詳情確認寶藏內容及可獲得的寶箱）
+                <br>獲得寶箱後，馬上到活動頁，點選寶箱選擇開啟或升級。每一等級的寶箱都有對應的升級
+                時間，你可以依照你的需求及想要的寶藏選擇開啟寶箱或升級寶箱。（小提醒：你可以到寶藏清單點選觀看詳情確認寶藏內容及可獲得的寶箱）
                 <br>
                 <br> Step3：
-                <br>當你點選「開啟」，時間便開始倒數；而若你擁有足夠的e幣及寶石且點選「升級」，你便有機會成功將寶箱升級為更高等的寶箱，藉此獲得更好的寶藏！但請注意，寶箱升級是有 可能不會成功的，失敗時消耗的ｅ幣及寶石並不會歸還。偷偷告訴你，小怪獸聽說只有Lv4以上的寶箱才有獲得實體銀河寶藏喔！
+                <br>當你點選「開啟」，時間便開始倒數；而若你擁有足夠的e幣及寶石且點選「升級」，你便有機會成功將寶箱升級為更高等的寶箱，藉此獲得更好的寶藏！但請注意，寶箱升級是有
+                可能不會成功的，失敗時消耗的ｅ幣及寶石並不會歸還。偷偷告訴你，小怪獸聽說只有Lv4以上的寶箱才有獲得實體銀河寶藏喔！
                 <br>
                 <br> Step4：
                 <!--<br>當你耐心地等到倒數結束，便可知道你所獲得的銀河寶藏有哪些了！此時，若你有獲得實體寶藏，點選下一步回填相關資訊，雲端學院小幫手就會在活動結束後 將寶藏寄送給您囉！-->
@@ -294,11 +298,16 @@
     </main>
     <footer id="ehanlin-footer"></footer>
   </body>
+  <script type="text/javascript" src="./js/package/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="./js/package/jquery-confirm.min.js"></script>
+  <script type="text/javascript" src="./js/package/jquery-time-countdown.min.js"></script>
+  <script type="text/javascript" src="./js/package/jquery-image-cycle.min.js"></script>
+  <script type="text/javascript" src="./js/package/js.cookie.min.js"></script>
+  <script type="text/javascript" src="./js/package/countUp.min.js"></script>
+  <script type="text/javascript" src="./js/package/moment.min.js"></script>
   <script type="text/javascript" src="./js/ajax.js"></script>
   <script type="text/javascript" src="./js/confirm.js"></script>
-  <script type="text/javascript" src="./js/jquery-time-countdown.js"></script>
-  <script type="text/javascript" src="./js/jquery-image-cycle.js"></script>
-  <script type="text/javascript" src="./js/package/countUp.min.js"></script>
+  <script type="text/javascript" src="./js/popup.js"></script>
   <script type="text/javascript" src="./js/event-count-up.js"></script>
   <script type="text/javascript" src="./js/event-chest.js"></script>
   <script type="text/javascript" src="./js/event-totalAssets.js"></script>
@@ -308,7 +317,8 @@
   <script type="text/javascript" src="./js/event-award.js"></script>
   <script type="text/javascript" src="./js/event-message.js"></script>
   <script type="text/javascript" src="./js/event-countingAwards.js"></script>
-  <script type="text/javascript" data-module="ehanlin-header, ehanlin-menu, ehanlin-event-left-side, ehanlin-footer" src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/common_webcomponent/current.SNAPSHOT/js/ehanlin-loader.js">
+  <script type="text/javascript" data-module="ehanlin-header, ehanlin-menu, ehanlin-event-left-side, ehanlin-footer"
+          src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/common_webcomponent/current.SNAPSHOT/js/ehanlin-loader.js">
   </script>
 
 </html>

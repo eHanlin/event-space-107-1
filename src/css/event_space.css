@@ -14,6 +14,43 @@
   background-size: contain;
 }
 
+.space-treasure-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(28, 52, 74, .8);
+  z-index: 12;
+}
+
+.space-treasure {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url(https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/popup-treasure.png) no-repeat center center fixed;
+  background-size: auto 98%;
+  z-index: 13;
+  transition: all .5s linear;
+  visibility: hidden;
+  transform: scale(0);
+}
+
+.space-treasure-understand {
+  display: block;
+  position: absolute;
+  bottom: -1.5%;
+  width: 127px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.space-treasure-show {
+  visibility: visible;
+  transform: scale(1);
+}
+
 .background {
   position: relative;
   background-color: #00192d;
@@ -84,6 +121,7 @@
   left: 505px;
   top: 790px;
 }
+
 /*************************/
 
 .container .eventUFO {
@@ -176,6 +214,7 @@
   background-color: #0d546b;
   text-decoration: none;
 }
+
 /*************************/
 
 /* 使用者 e 幣與寶石 */
@@ -203,8 +242,17 @@
   top: 11.5px;
   right: 20px;
   font-size: 26px;
-  font-family: "微軟正黑體";
+  font-family: "微軟正黑體", monospace;
   font-weight: bolder;
   color: rgb(69, 23, 23);
 }
 
+@media screen and (max-width: 600px) {
+  .space-treasure {
+    background-size: auto 90%;
+  }
+
+  .space-treasure-understand {
+    bottom: 1%;
+  }
+}
