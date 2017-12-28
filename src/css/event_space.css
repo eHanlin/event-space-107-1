@@ -62,7 +62,7 @@
 
 .container .space {
   position: relative;
-  background-image: url("../img/space.png");
+  background-image: url("https://d220xxmclrx033.cloudfront.net/event-space/img/space.png");
   background-size: contain;
   width: 735px;
   height: 1218px;
@@ -220,7 +220,7 @@
 /* 使用者 e 幣與寶石 */
 .container .space .coins {
   position: absolute;
-  background-image: url("../img/displayCoins.png");
+  background-image: url("https://d220xxmclrx033.cloudfront.net/event-space/img/displayCoins.png");
   left: 35px;
   top: 30px;
   width: 187px;
@@ -229,7 +229,7 @@
 
 .container .space .gems {
   position: absolute;
-  background-image: url("../img/displayGems.png");
+  background-image: url("https://d220xxmclrx033.cloudfront.net/event-space/img/displayGems.png");
   left: 35px;
   top: 100px;
   width: 184px;
