@@ -18,14 +18,13 @@
 
 .container .countingAwards .awardBox > li {
   position: absolute;
-  background-image: url("https://d220xxmclrx033.cloudfront.net/event-space/img/border.png");
+  background-image: url("https://g/event-space/img/border.png");
   width: 313px;
   height: 83px;
   z-index: 2;
 }
 
-.container .countingAwards .oddBox span,
-.container .countingAwards .evenBox span {
+.container .countingAwards .awardBox span {
   position: absolute;
   font-family: "微軟正黑體", monospace;
   font-size: 20px;
@@ -34,8 +33,7 @@
   right: 70px;
 }
 
-.container .countingAwards .oddBox h1 span,
-.container .countingAwards .evenBox h1 span {
+.container .countingAwards .awardBox h1 span {
   position: absolute;
   font-family: "微軟正黑體", monospace;
   font-size: 32px;
