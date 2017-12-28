@@ -1,16 +1,16 @@
 $(function () {
-  if ( !Cookies.get('showSpaceTreasure') ) {
+  if ( !Cookies.get("showSpaceTreasure") ) {
     let endOfDay, todayExpiredMilliseconds;
     $(".space-treasure-popup").show();
 
     moment.locale();
-    endOfDay = moment().startOf('day').endOf('day');
+    endOfDay = moment().startOf("day").endOf("day");
     todayExpiredMilliseconds = endOfDay.diff(moment());
     console.log(todayExpiredMilliseconds);
 
-    Cookies.set('showSpaceTreasure', 'true', {
+    Cookies.set("showSpaceTreasure", "true", {
       expires: new Date(new Date().getTime() + todayExpiredMilliseconds),
-      path: ''
+      path: ""
     });
 
     setTimeout(function () {
@@ -19,9 +19,5 @@ $(function () {
         $(".space-treasure-popup").remove();
       });
     }, 500);
-
-    setTimeout(function () {
-      $(".space-treasure-popup").remove();
-    }, 7000);
   }
 });
