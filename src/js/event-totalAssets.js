@@ -3,12 +3,6 @@ $(function () {
     "/currencyBank/totalAssets/retrieve/one",
     null,
     function (jsonData) {
-      $(".bank").removeAttr("style");
-      $(".space .coins span").append(jsonData.content["coins"]);
-      $(".space .gems span").append(jsonData.content["gems"]);
-    },
-
-    function () {
       let popup = function () {
         if ( !Cookies.get("showSpaceTreasure") ) {
           let endOfDay, todayExpiredMilliseconds;
@@ -32,10 +26,14 @@ $(function () {
           }, 500);
         }
       };
-
-      $(".bankLogout").removeAttr("style");
       popup();
+      $(".bank").removeAttr("style");
+      $(".space .coins span").append(jsonData.content["coins"]);
+      $(".space .gems span").append(jsonData.content["gems"]);
+    },
 
+    function () {
+      $(".bankLogout").removeAttr("style");
     }
   );
 });
