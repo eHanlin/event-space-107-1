@@ -47,11 +47,6 @@
   transform: translateX(-50%);
 }
 
-.space-treasure-understand:hover {
-  bottom: 1%;
-  transform: scale(1.2);
-}
-
 .space-treasure-show {
   visibility: visible;
   transform: scale(1);
