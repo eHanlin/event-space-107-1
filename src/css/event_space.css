@@ -48,7 +48,8 @@
 }
 
 .space-treasure-understand:hover {
-  transform: scale(1.1);
+  bottom: 1%;
+  transform: scale(1.2);
 }
 
 .space-treasure-show {
