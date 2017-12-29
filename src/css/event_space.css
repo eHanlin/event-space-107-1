@@ -29,7 +29,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background: url(https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-space/img/popup-treasure.png) no-repeat center center fixed;
+  background: url(https://d220xxmclrx033.cloudfront.net/event-space/img/popup-treasure.png) no-repeat center center fixed;
   background-size: auto 98%;
   z-index: 13;
   transition: all .5s linear;
@@ -38,12 +38,17 @@
 }
 
 .space-treasure-understand {
+  cursor: url(https://d220xxmclrx033.cloudfront.net/event-space/img/hand.png), pointer;
   display: block;
   position: absolute;
   bottom: -1.5%;
   width: 127px;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.space-treasure-understand:hover {
+  transform: scale(1.1);
 }
 
 .space-treasure-show {
