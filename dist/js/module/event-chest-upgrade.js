@@ -11,12 +11,12 @@ define(["require", "jquery", "ajaxUtil"], function (require, $, ajaxUtil) {
         let upgradeContent = jsonData.content;
         let upgradeToTransaction = function (alertTitle, alertGif) {
           ajaxUtil(
-            "POST", `/currencyBank/transaction/upgrade`,
+            "POST", `http://localhost:9090/currencyBank/transaction/upgrade?userSpecific=596f1ce1e4b062375bdec803`,
             {
               upgradeAuditId: upgradeContent["upgradeAuditId"]
             }
           ).then(function () {
-            return ajaxUtil("GET", `/currencyBank/totalAssets/retrieve/one`);
+            return ajaxUtil("GET", `http://localhost:9090/currencyBank/totalAssets/retrieve/one?userSpecific=596f1ce1e4b062375bdec803`);
           }).then(function (jsonData) {
             $.alert(popup.alert(alertTitle, alertGif, function () {
                 let countTransition = require("countTransition");
