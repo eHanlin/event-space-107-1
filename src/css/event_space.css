@@ -98,33 +98,6 @@
   top: 170px;
 }
 
-/* 寶箱位置 */
-.container .greenPosition {
-  position: absolute;
-  left: 80px;
-  top: 490px;
-}
-
-.container .redPosition {
-  position: absolute;
-  left: 360px;
-  top: 490px;
-}
-
-.container .brownPosition {
-  position: absolute;
-  left: 190px;
-  top: 820px;
-}
-
-.container .pinkPosition {
-  position: absolute;
-  left: 505px;
-  top: 790px;
-}
-
-/*************************/
-
 .container .eventUFO {
   position: absolute;
   top: 920px;

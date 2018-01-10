@@ -1,6 +1,6 @@
-define(["jquery"], function ($) {
+define(['jquery'], function ($) {
   return function (type, url, data) {
-    if ( type !== "GET" ) {
+    if (type !== 'GET') {
       data = JSON.stringify(data)
     }
 
@@ -10,8 +10,8 @@ define(["jquery"], function ($) {
       crossDomain: true,
       url: url,
       data: data,
-      contentType: "application/json; charset=UTF-8",
-      dataType: "json"
+      contentType: 'application/json; charset=UTF-8',
+      dataType: 'json'
     })
-  };
-});
+  }
+})
