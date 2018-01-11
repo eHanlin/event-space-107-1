@@ -1,0 +1,81 @@
+.responseTable {
+  overflow: hidden;
+  background: #fff;
+  color: #04303c;
+  border-radius: 10px;
+}
+.responseTable tr {
+  border: solid #d9e4e6;
+}
+.responseTable tr:nth-child(odd) {
+  background-color: #eaf3f3;
+}
+.responseTable th {
+  display: none;
+  border: solid #fff;
+  background-color: #3498db;
+  color: #fff;
+  padding: 1em;
+}
+.responseTable th:first-child {
+  display: table-cell;
+  text-align: center;
+}
+.responseTable th:nth-child(2) {
+  display: table-cell;
+}
+.responseTable th:nth-child(2) span {
+  display: none;
+}
+.responseTable th:nth-child(2):after {
+  content: attr(data-th);
+}
+
+.responseTable td {
+  display: block;
+  word-wrap: break-word;
+  max-width: 4.3em;
+}
+.responseTable td:first-child {
+  display: table-cell;
+  text-align: center;
+  border-right: solid #d9e4e6;
+}
+
+@media (min-width: 100px) {
+  .responseTable th:nth-child(2) span {
+    display: block;
+  }
+  .responseTable th:nth-child(2):after {
+    display: none;
+  }
+}
+
+@media (min-width: 100px) {
+  .responseTable td {
+    border: solid #d9e4e6;
+  }
+}
+.responseTable th,
+.responseTable td {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bolder;
+  font-family: "微軟正黑體", monospace;
+  margin: 0.5em 1em;
+}
+@media (min-width: 100px) {
+  .responseTable th,
+  .responseTable td {
+    display: table-cell;
+    padding: 0.5em;
+  }
+}
+
+.sp_wrapper .sp_navigator .sp_next,
+.sp_wrapper .sp_navigator .sp_previous {
+  margin-left: 340px;
+  font-size: 20px;
+  font-weight: bolder;
+  font-family: "微軟正黑體", monospace;
+}

@@ -1,13 +1,15 @@
 const gulp = require('gulp')
-const del = require('del')
-const Q = require('q')
 const templateUtil = require('gulp-template-util')
 const replace = require('gulp-replace')
+const rename = require('gulp-rename')
 const babel = require('gulp-babel')
-const imagemin = require('gulp-imagemin')
-const pngquant = require('imagemin-pngquant')
+const imageMin = require('gulp-imagemin')
 const cleanCSS = require('gulp-clean-css')
+const concat = require('gulp-concat')
 const uglify = require('gulp-uglify-es').default
+const del = require('del')
+const Q = require('q')
+const pngquant = require('imagemin-pngquant')
 
 const basePath = {
   base: 'src'
@@ -18,7 +20,7 @@ function copyStaticTask (destination) {
   console.log('=======> copyStaticTask <=======')
   return function () {
     return gulp
-      .src(['src/**/*.html', 'src/img/**/*', 'src/css/**/*.css', 'src/js/package/*.css', 'src/lib/**/*', 'src/js/**/*.js', 'src/js/package/*.js'],
+      .src(['src/**/*.html', 'src/img/**/*', 'src/css/package/*.css', 'src/lib/**/*', 'src/js/**/*.js', 'src/js/package/*.js'],
         {base: 'src'}
       )
       .pipe(gulp.dest(destination))
@@ -104,30 +106,17 @@ function minifyImage (sourceImage) {
   return function () {
     return gulp
       .src(sourceImage, basePath)
-      .pipe(imagemin({
+      .pipe(imageMin({
         use: [pngquant()]
       }))
       .pipe(gulp.dest(dist))
   }
 }
 
-function minifyCSS (sourceCss) {
-  console.log('=======> minifyCSS <=======')
-  return function () {
-    return gulp
-      .src(sourceCss, basePath)
-      .pipe(cleanCSS({
-        keepBreaks: true
-      }))
-      .pipe(gulp.dest(dist))
-  }
-}
-
-function minifyJS (sourceJS) {
+function minifyJs (sourceJS) {
   console.log('=======> minifyJS <=======')
   return function () {
-    return gulp
-      .src(sourceJS, {base: 'babel-temp'})
+    return gulp.src(sourceJS, {base: 'babel-temp'})
       .pipe(
         uglify({
           mangle: false
@@ -141,8 +130,7 @@ function minifyJS (sourceJS) {
 
 function babelJS (sourceJS) {
   return function () {
-    return gulp
-      .src(sourceJS, basePath)
+    return gulp.src(sourceJS, basePath)
       .pipe(babel())
       .pipe(gulp.dest('babel-temp'))
   }
@@ -155,7 +143,7 @@ function buildJS () {
   Q.fcall(function () {
     return templateUtil.logStream(babelJS(['src/js/*.js']))
   }).then(function () {
-    return templateUtil.logStream(minifyJS('babel-temp/js/**/*.js'))
+    return templateUtil.logStream(minifyJs('babel-temp/js/**/*.js'))
   }).then(function () {
     return templateUtil.logPromise(clean('babel-temp'))
   })
@@ -163,9 +151,22 @@ function buildJS () {
   return deferred.promise
 }
 
-gulp.task('minifyCSS', minifyCSS('src/css/**/*.css'))
+function concatCss () {
+  return function () {
+    return gulp.src('src/css/*.css')
+      .pipe(concat('ehanlin-space-all.css'))
+      .pipe(cleanCSS())
+      .pipe(rename(function (path) {
+        path.basename += '.min'
+        //path.extname = '.css'
+      }))
+      .pipe(gulp.dest('dist/css'))
+  }
+}
+
+gulp.task('concatCss', concatCss())
 gulp.task('minifyImage', minifyImage('src/img/**/*.png'))
-gulp.task('minifyJS', minifyJS('src/js/**/*.js'))
+gulp.task('minifyJs', minifyJs('src/js/**/*.js'))
 gulp.task('buildEnvToDev', buildEnvToDev)
 gulp.task('module', buildEnvToDevModule)
 gulp.task('devToBuildEnv', devToBuildEnv)
@@ -178,7 +179,7 @@ gulp.task('package', function () {
   }).then(function () {
     return Q.all([
       templateUtil.logStream(minifyImage('src/img/**/*.png')),
-      templateUtil.logStream(minifyCSS('src/css/**/*.css')),
+      templateUtil.logStream(concatCss()),
       templateUtil.logStream(buildJS)
     ])
   })
