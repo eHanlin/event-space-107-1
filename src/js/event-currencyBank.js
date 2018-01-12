@@ -42,9 +42,9 @@ $(function () {
         }
 
         moment.locale()
-
+        transactionTime = new Date(Date.parse(transactionTime))
         // 時間
-        tds += '<td>' + moment(new Date(transactionTime)).format('lll') + '</td>'
+        tds += '<td>' + moment(transactionTime.toISOString()).format('lll') + '</td>'
 
         tbodyHtml += '<tr>' + tds + '</tr>'
       }

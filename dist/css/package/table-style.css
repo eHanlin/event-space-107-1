@@ -79,3 +79,7 @@
   font-weight: bolder;
   font-family: "微軟正黑體", monospace;
 }
+
+.sp_wrapper .sp_navigator .sp_previous {
+  float: left;
+}
