@@ -44,7 +44,7 @@ $(function() {
         moment.locale();
 
         // 時間
-        tds += "<td>" + moment(new Date(transactionTime)).format("lll") + "</td>";
+        tds += "<td>" + moment(transactionTime).format("lll") + "</td>";
 
         tbodyHtml += "<tr>" + tds + "</tr>";
       }
