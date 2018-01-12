@@ -1,5 +1,5 @@
 $(function () {
-  ajaxDeferred('GET', '/currencyBank/transaction/retrieve')
+  ajaxDeferred('GET', "/currencyBank/transaction/retrieve")
     .then(function (jsonData) {
       let transactions = jsonData.content
       let singleTransaction
