@@ -2,25 +2,35 @@ let updateStatusIsUnlocking = function (chestId) {
   let platformTarget = $("#" + chestId);
   let startButtonTarget = platformTarget.find(".startButton");
   let upgradeButtonTarget = platformTarget.find(".upgradeButton");
+  let chestLevel = platformTarget.attr("data-level");
+  let noticeNoAwardText = "";
+
+  if ( chestLevel <= 4 && chestLevel !== 1 ) {
+    noticeNoAwardText = "<span style='font-size: 18px;'>" +
+      "請注意：由於段考週探險潮太熱烈，目前您開啟的寶箱已無法獲得實體獎勵，建議您升級至Lv5、Lv6的寶箱。" +
+      "同時提醒您，" +
+      "<span style='font-size: 18px; color:yellow'>本次活動所獲得之e幣、寶石於結束後皆不會刪除，並可於未來活動繼續使用。</span></span>";
+  }
 
   $.confirm(
-    confirmWindow("確定啟動寶箱嗎！？", "", function () {
-      ajaxDeferred("PUT", "/chest/updateStatus/" + chestId, {
-        status: "UNLOCKING"
-      })
-        .then(function () {
-          $(".container .space .startButton[data-status=LOCKED]").fadeOut(
-            "slow"
-          );
-          upgradeButtonTarget.fadeOut("slow");
-          startButtonTarget.attr("data-status", "UNLOCKING");
-
-          return ajaxDeferred("GET", "/chest/coolDownTime/" + chestId);
+    confirmWindow("確定啟動寶箱嗎！？", noticeNoAwardText,
+      function () {
+        ajaxDeferred("PUT", "/chest/updateStatus/" + chestId, {
+          status: "UNLOCKING"
         })
-        .then(function (jsonData) {
-          countDown(jsonData.content, chestId, platformTarget);
-        });
-    })
+          .then(function () {
+            $(".container .space .startButton[data-status=LOCKED]").fadeOut(
+              "slow"
+            );
+            upgradeButtonTarget.fadeOut("slow");
+            startButtonTarget.attr("data-status", "UNLOCKING");
+
+            return ajaxDeferred("GET", "/chest/coolDownTime/" + chestId);
+          })
+          .then(function (jsonData) {
+            countDown(jsonData.content, chestId, platformTarget);
+          });
+      })
   );
 };
 
