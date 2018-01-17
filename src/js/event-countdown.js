@@ -5,13 +5,11 @@ let updateStatusIsUnlocking = function (chestId) {
   let chestLevel = platformTarget.attr("data-level");
   let noticeNoAwardText = "";
 
-  if ( chestLevel >= 4 ) {
+  if ( chestLevel <= 4 && chestLevel !== 1 ) {
     noticeNoAwardText = "<span style='font-size: 18px;'>" +
-      "由於目前銀河物資短缺，寶箱開啟後皆無法獲得寶藏，探險隊長目前已正在解決短缺問題！" +
-      "<span style='font-size: 18px; color:yellow'>" +
-      "提醒您，本次活動所獲得之e幣、寶石於結束後皆不會刪除，並可於未來活動繼續使用。" +
-      "</span>" +
-      "</span>";
+      "請注意：由於段考週探險潮太熱烈，目前您開啟的寶箱已無法獲得實體獎勵，建議您升級至Lv5、Lv6的寶箱。" +
+      "同時提醒您，" +
+      "<span style='font-size: 18px; color:yellow'>本次活動所獲得之e幣、寶石於結束後皆不會刪除，並可於未來活動繼續使用。</span></span>";
   }
 
   $.confirm(
