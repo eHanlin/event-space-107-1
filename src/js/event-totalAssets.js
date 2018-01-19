@@ -4,6 +4,7 @@ $(function () {
     null,
     function (jsonData) {
       let popupClosing = function () {
+        $(".space-treasure-popup").show();
         setTimeout(function () {
           $(".space-treasure").addClass("space-treasure-show");
           $(".space-treasure .space-treasure-understand").on("click", function () {
