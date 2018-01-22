@@ -10,7 +10,6 @@ $(function () {
     thisPlatformTarget.find(".startButton").attr("data-status", chest.status);
 
     if ( chestLevel === 6 ) {
-      thisPlatformTarget.find(".upgradeButton").hide();
       thisPlatformTarget.find(".chest").addClass("lv6-chest");
     }
 

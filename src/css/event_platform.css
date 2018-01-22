@@ -95,6 +95,7 @@
 .container #brown .upgradeButton,
 .container #pink .upgradeButton,
 .container #green .upgradeButton {
+  display: none;
   position: absolute;
   background-color: #008cba;
   top: 0px;
