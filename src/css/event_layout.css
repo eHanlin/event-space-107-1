@@ -99,10 +99,6 @@ img.banner {
   padding: 8px 0 14px 15px;
 }
 
-.book-intro {
-  position: relative;
-}
-
 .container:after {
   content: " ";
   display: table;
