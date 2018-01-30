@@ -52,11 +52,21 @@
   transform: scale(1);
 }
 
-.background {
+.container .background {
   position: relative;
   background-color: #00192d;
   width: 735px;
   z-index: 1;
+}
+
+.container .background .closeApp {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 735px;
+  height: 3020px;
+  background-color: rgba(0, 25, 45, 0.85);
+  z-index: 10;
 }
 
 .container .space {

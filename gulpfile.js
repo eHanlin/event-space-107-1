@@ -17,26 +17,26 @@ const basePath = {
 }
 const dist = 'dist'
 
-function copyStaticTask (destination) {
+function copyStaticTask(destination) {
   console.log('=======> copyStaticTask <=======')
   return function () {
     return gulp
       .src(['src/**/*.html', 'src/img/**/*', 'src/css/package/*.css', 'src/lib/**/*', 'src/js/**/*.js', 'src/js/package/*.js'],
-        {base: 'src'}
+        { base: 'src' }
       )
       .pipe(gulp.dest(destination))
   }
 }
 
-function clean (sourceDir) {
-  console.log(`=======> clean ${sourceDir} <=======`)
+function clean(source) {
+  console.log(`=======> clean ${source} <=======`)
 
   return function () {
-    return del([sourceDir])
+    return del([source])
   }
 }
 
-function devToBuildEnv () {
+function devToBuildEnv() {
   return gulp
     .src(['src/js/*.js'], {
       base: './'
@@ -58,7 +58,7 @@ function devToBuildEnv () {
     .pipe(gulp.dest(''))
 }
 
-function buildEnvToDev () {
+function buildEnvToDev() {
   return gulp
     .src(['src/js/*.js'], {
       base: './'
@@ -80,7 +80,7 @@ function buildEnvToDev () {
     .pipe(gulp.dest(''))
 }
 
-function buildEnvToDevModule () {
+function buildEnvToDevModule() {
   return gulp.src(['src/js/module/*.js', 'src/js/main.js'], {
     base: './'
   })
@@ -101,22 +101,22 @@ function buildEnvToDevModule () {
     .pipe(gulp.dest(''))
 }
 
-function minifyImage (sourceImage) {
+function minifyImage(sourceImage) {
   console.log('=======> minifyImage <=======')
   return function () {
     return gulp
       .src(sourceImage, basePath)
       .pipe(cache(imageMin({
-        use: [pngquant({speed: 7})]
+        use: [pngquant({ speed: 7 })]
       })))
       .pipe(gulp.dest(dist))
   }
 }
 
-function minifyJs (sourceJS) {
+function minifyJs(sourceJS) {
   console.log('=======> minifyJS <=======')
   return function () {
-    return gulp.src(sourceJS, {base: 'babel-temp'})
+    return gulp.src(sourceJS, { base: 'babel-temp' })
       .pipe(
         uglify({
           mangle: false
@@ -128,7 +128,7 @@ function minifyJs (sourceJS) {
   }
 }
 
-function babelJS (sourceJS) {
+function babelJS(sourceJS) {
   return function () {
     return gulp.src(sourceJS, basePath)
       .pipe(babel())
@@ -136,7 +136,7 @@ function babelJS (sourceJS) {
   }
 }
 
-function buildJS () {
+function buildJS() {
   console.log('=======> buildJS <=======')
   let deferred = Q.defer()
 
@@ -151,19 +151,29 @@ function buildJS () {
   return deferred.promise
 }
 
-function concatCss () {
+function concatCss() {
   return function () {
-    return gulp.src('src/css/*.css')
+    return gulp.src('src/css/*.css', basePath)
       .pipe(concat('ehanlin-space-all.css'))
       .pipe(cleanCSS())
       .pipe(rename(function (path) {
         path.basename += '.min'
       }))
+      .pipe(gulp.dest('src/css'))
       .pipe(gulp.dest('dist/css'))
   }
 }
 
-gulp.task('concatCss', concatCss())
+gulp.task('concatCss', function () {
+  var deferred = Q.defer()
+  Q.fcall(function () {
+    return templateUtil.logPromise(clean('src/css/ehanlin-space-all.min.css'))
+  }).then(function () {
+    return templateUtil.logStream(concatCss())
+  })
+
+  return deferred.promise
+})
 gulp.task('minifyImage', minifyImage('src/img/**/*.png'))
 gulp.task('minifyJs', minifyJs('src/js/**/*.js'))
 gulp.task('buildEnvToDev', buildEnvToDev)
