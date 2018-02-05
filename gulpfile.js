@@ -18,7 +18,6 @@ const basePath = {
 const dist = 'dist'
 
 function copyStaticTask(destination) {
-  console.log('=======> copyStaticTask <=======')
   return function () {
     return gulp
       .src(['src/**/*.html', 'src/img/**/*', 'src/css/package/*.css', 'src/lib/**/*', 'src/js/**/*.js', 'src/js/package/*.js'],
@@ -29,8 +28,6 @@ function copyStaticTask(destination) {
 }
 
 function clean(source) {
-  console.log(`=======> clean ${source} <=======`)
-
   return function () {
     return del([source])
   }
@@ -102,7 +99,6 @@ function buildEnvToDevModule() {
 }
 
 function minifyImage(sourceImage) {
-  console.log('=======> minifyImage <=======')
   return function () {
     return gulp
       .src(sourceImage, basePath)
@@ -114,7 +110,6 @@ function minifyImage(sourceImage) {
 }
 
 function minifyJs(sourceJS) {
-  console.log('=======> minifyJS <=======')
   return function () {
     return gulp.src(sourceJS, { base: 'babel-temp' })
       .pipe(
@@ -137,7 +132,6 @@ function babelJS(sourceJS) {
 }
 
 function buildJS() {
-  console.log('=======> buildJS <=======')
   let deferred = Q.defer()
 
   Q.fcall(function () {
