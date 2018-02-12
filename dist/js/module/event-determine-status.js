@@ -22,11 +22,16 @@ define(function (require) {
       platformTarget.find('.upgradeButton').hide()
       chestChangeImg(imgChestTarget, `chest${chestLevel}`)
 
-      require(['ajaxUtil', 'chestUnlockCountDown'], function (ajaxUtil, chestUnlockCountDown) {
-        ajaxUtil('GET', `http://localhost:8080/chest/coolDownTime/${chestId}`)
-          .then(function (seconds) {
-            chestUnlockCountDown.start(seconds, chestId, platformTarget)
-          })
+      require(['ajaxUtil', 'chestUnlockCountDown'], function (
+        ajaxUtil,
+        chestUnlockCountDown
+      ) {
+        ajaxUtil(
+          'GET',
+          `http://localhost:8080/chest/coolDownTime/${chestId}`
+        ).then(function (seconds) {
+          chestUnlockCountDown.start(seconds, chestId, platformTarget)
+        })
       })
     } else if (chestStatus === 'READY') {
       platformTarget.find('.startButton').hide()
