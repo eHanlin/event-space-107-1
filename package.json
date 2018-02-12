@@ -34,10 +34,13 @@
   },
   "dependencies": {
     "block-ui": "2.70.1",
+    "eslint": "^4.17.0",
     "fs": "0.0.1-security",
     "jquery": "1.7.2",
     "moment": "2.13.0",
+    "nan": "^2.8.0",
     "node-gyp": "^3.6.2",
+    "standard": "^10.0.3",
     "underscore": "1.8.3"
   },
   "scripts": {

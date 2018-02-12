@@ -1,12 +1,12 @@
-let countTrasition = function(id, start, end) {
+let countTrasition = function (id, start, end) {
   let options = {
     useEasing: true,
     useGrouping: true,
-    separator: ""
-  };
+    separator: ''
+  }
 
-  let decimal = 0;
-  let transitionDuration = 3;
+  let decimal = 0
+  let transitionDuration = 3
   let transition = new CountUp(
     id,
     start,
@@ -14,7 +14,7 @@ let countTrasition = function(id, start, end) {
     decimal,
     transitionDuration,
     options
-  );
+  )
 
-  transition.start();
-};
+  transition.start()
+}

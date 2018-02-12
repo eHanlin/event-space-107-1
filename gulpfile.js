@@ -17,45 +17,60 @@ const basePath = {
 }
 const dist = 'dist'
 
-function copyStaticTask(destination) {
+function copyStaticTask (destination) {
   return function () {
     return gulp
-      .src(['src/**/*.html', 'src/img/**/*', 'src/css/package/*.css', 'src/lib/**/*', 'src/js/**/*.js', 'src/js/package/*.js'],
+      .src(
+        [
+          'src/**/*.html',
+          'src/img/**/*',
+          'src/css/package/*.css',
+          'src/lib/**/*',
+          'src/js/**/*.js',
+          'src/js/package/*.js'
+        ],
         { base: 'src' }
       )
       .pipe(gulp.dest(destination))
   }
 }
 
-function clean(source) {
+function clean (source) {
   return function () {
     return del([source])
   }
 }
 
-function devToBuildEnv() {
+function devToBuildEnv () {
   return gulp
     .src(['src/js/*.js'], {
       base: './'
     })
     .pipe(
-      replace(/[^\w](http:\/\/localhost:8080)\/([\w-/]+)"/g, function (match, p1, p2) {
+      replace(/[^\w](http:\/\/localhost:8080)\/([\w-/]+)"/g, function (
+        match,
+        p1,
+        p2
+      ) {
         let buildEnv = `"/${p2}"`
         console.log(`chest domain => ${match} to ${buildEnv}`)
         return buildEnv
       })
     )
     .pipe(
-      replace(/[^\w](http:\/\/localhost:9090)\/([\w-/]+)\?userSpecific=([\w])+"/g, function (match, p1, p2) {
-        let buildEnv = `"/${p2}"`
-        console.log(`currencyBank domain => ${match} to ${buildEnv}`)
-        return buildEnv
-      })
+      replace(
+        /[^\w](http:\/\/localhost:9090)\/([\w-/]+)\?userSpecific=([\w])+"/g,
+        function (match, p1, p2) {
+          let buildEnv = `"/${p2}"`
+          console.log(`currencyBank domain => ${match} to ${buildEnv}`)
+          return buildEnv
+        }
+      )
     )
     .pipe(gulp.dest(''))
 }
 
-function buildEnvToDev() {
+function buildEnvToDev () {
   return gulp
     .src(['src/js/*.js'], {
       base: './'
@@ -69,7 +84,9 @@ function buildEnvToDev() {
     )
     .pipe(
       replace(/[^\w]\/(currencyBank)\/([\w-/]+)"/g, function (match, p1, p2) {
-        let dev = `"http://localhost:9090/${p1}/${p2}?userSpecific=${gulp.env.user}"`
+        let dev = `"http://localhost:9090/${p1}/${p2}?userSpecific=${
+          gulp.env.user
+        }"`
         console.log(`currencyBank domain => ${match} to ${dev}`)
         return dev
       })
@@ -77,10 +94,11 @@ function buildEnvToDev() {
     .pipe(gulp.dest(''))
 }
 
-function buildEnvToDevModule() {
-  return gulp.src(['src/js/module/*.js', 'src/js/main.js'], {
-    base: './'
-  })
+function buildEnvToDevModule () {
+  return gulp
+    .src(['src/js/module/*.js', 'src/js/main.js'], {
+      base: './'
+    })
     .pipe(
       replace(/[`]\/(chest)\/([\w-/${}]+)`/g, function (match, p1, p2) {
         let dev = `\`http://localhost:8080/${p1}/${p2}\``
@@ -90,7 +108,9 @@ function buildEnvToDevModule() {
     )
     .pipe(
       replace(/[`]\/(currencyBank)\/([\w-/${}]+)`/g, function (match, p1, p2) {
-        let dev = `\`http://localhost:9090/${p1}/${p2}?userSpecific=${gulp.env.user}\``
+        let dev = `\`http://localhost:9090/${p1}/${p2}?userSpecific=${
+          gulp.env.user
+        }\``
         console.log(`currencyBank domain => ${match} to ${dev}`)
         return dev
       })
@@ -98,20 +118,25 @@ function buildEnvToDevModule() {
     .pipe(gulp.dest(''))
 }
 
-function minifyImage(sourceImage) {
+function minifyImage (sourceImage) {
   return function () {
     return gulp
       .src(sourceImage, basePath)
-      .pipe(cache(imageMin({
-        use: [pngquant({ speed: 7 })]
-      })))
+      .pipe(
+        cache(
+          imageMin({
+            use: [pngquant({ speed: 7 })]
+          })
+        )
+      )
       .pipe(gulp.dest(dist))
   }
 }
 
-function minifyJs(sourceJS) {
+function minifyJs (sourceJS) {
   return function () {
-    return gulp.src(sourceJS, { base: 'babel-temp' })
+    return gulp
+      .src(sourceJS, { base: 'babel-temp' })
       .pipe(
         uglify({
           mangle: false
@@ -123,36 +148,42 @@ function minifyJs(sourceJS) {
   }
 }
 
-function babelJS(sourceJS) {
+function babelJS (sourceJS) {
   return function () {
-    return gulp.src(sourceJS, basePath)
+    return gulp
+      .src(sourceJS, basePath)
       .pipe(babel())
       .pipe(gulp.dest('babel-temp'))
   }
 }
 
-function buildJS() {
+function buildJS () {
   let deferred = Q.defer()
 
   Q.fcall(function () {
     return templateUtil.logStream(babelJS(['src/js/*.js']))
-  }).then(function () {
-    return templateUtil.logStream(minifyJs('babel-temp/js/**/*.js'))
-  }).then(function () {
-    return templateUtil.logPromise(clean('babel-temp'))
   })
+    .then(function () {
+      return templateUtil.logStream(minifyJs('babel-temp/js/**/*.js'))
+    })
+    .then(function () {
+      return templateUtil.logPromise(clean('babel-temp'))
+    })
 
   return deferred.promise
 }
 
-function concatCss() {
+function concatCss () {
   return function () {
-    return gulp.src('src/css/*.css', basePath)
+    return gulp
+      .src('src/css/*.css', basePath)
       .pipe(concat('ehanlin-space-all.css'))
       .pipe(cleanCSS())
-      .pipe(rename(function (path) {
-        path.basename += '.min'
-      }))
+      .pipe(
+        rename(function (path) {
+          path.basename += '.min'
+        })
+      )
       .pipe(gulp.dest('src/css'))
       .pipe(gulp.dest('dist/css'))
   }
@@ -177,17 +208,20 @@ gulp.task('package', function () {
   var deferred = Q.defer()
   Q.fcall(function () {
     return templateUtil.logPromise(clean(dist))
-  }).then(function () {
-    return templateUtil.logStream(devToBuildEnv)
-  }).then(function () {
-    return templateUtil.logStream(copyStaticTask('dist'))
-  }).then(function () {
-    return Q.all([
-      templateUtil.logStream(minifyImage('src/img/**/*.png')),
-      templateUtil.logStream(concatCss()),
-      templateUtil.logStream(buildJS)
-    ])
   })
+    .then(function () {
+      return templateUtil.logStream(devToBuildEnv)
+    })
+    .then(function () {
+      return templateUtil.logStream(copyStaticTask('dist'))
+    })
+    .then(function () {
+      return Q.all([
+        templateUtil.logStream(minifyImage('src/img/**/*.png')),
+        templateUtil.logStream(concatCss()),
+        templateUtil.logStream(buildJS)
+      ])
+    })
 
   return deferred.promise
 })

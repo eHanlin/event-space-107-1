@@ -1,5 +1,5 @@
 $(function () {
-  ajaxDeferred('GET', "/currencyBank/transaction/retrieve")
+  ajaxDeferred('GET', '/currencyBank/transaction/retrieve')
     .then(function (jsonData) {
       let transactions = jsonData.content
       let singleTransaction
@@ -44,7 +44,10 @@ $(function () {
         moment.locale()
         transactionTime = new Date(Date.parse(transactionTime))
         // 時間
-        tds += '<td>' + moment(transactionTime.toISOString()).format('lll') + '</td>'
+        tds +=
+          '<td>' +
+          moment(transactionTime.toISOString()).format('lll') +
+          '</td>'
 
         tbodyHtml += '<tr>' + tds + '</tr>'
       }
