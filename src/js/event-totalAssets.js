@@ -14,7 +14,7 @@ $(function () {
             }
           )
         }, 500)
-      };
+      }
       popupClosing()
 
       $('.bank').removeAttr('style')

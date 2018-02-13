@@ -19,7 +19,7 @@ let updateStatusIsUnlocking = function (chestId) {
           })
       })
     )
-  };
+  }
 
   let platformTarget = $('#' + chestId)
   let startButtonTarget = platformTarget.find('.startButton')
@@ -29,7 +29,7 @@ let updateStatusIsUnlocking = function (chestId) {
   $.confirm(
     alertWindow('', '<h3>雲端銀河探險活動已結束，無法啟動任何寶箱了囉！<h3>')
   )
-};
+}
 
 let countDown = function (seconds, chestId, platformTarget) {
   let imgChestTarget = platformTarget.find('.chest')
@@ -52,7 +52,7 @@ let countDown = function (seconds, chestId, platformTarget) {
         imgChestTarget.removeClass('unlockingGray')
       }
     })
-  };
+  }
 
   // 立即開啟按鈕
   let openNowBtnFunc = function () {
@@ -106,7 +106,7 @@ let countDown = function (seconds, chestId, platformTarget) {
                             ''
                           )
                         )
-                        return;
+                        return
                       }
 
                       finalGems = jsonData.content['finalGems']
@@ -123,9 +123,9 @@ let countDown = function (seconds, chestId, platformTarget) {
       // +new Date() 等於 new Date().getTime()
       $(this).attr('data-lockedAt', +new Date())
     })
-  };
+  }
 
   // 立即開啟按鈕
   openNowBtnFunc()
   countDownFunc(seconds)
-};
+}
