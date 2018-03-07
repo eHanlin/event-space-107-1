@@ -91,8 +91,7 @@ let startBtnFunc = function () {
     let findParents, chestId
     event.preventDefault()
 
-    if (
-      !$(this).attr('data-lockedAt') ||
+    if (!$(this).attr('data-lockedAt') ||
       +new Date() - $(this).attr('data-lockedAt') > 1000
     ) {
       findParents = $(this).parents('.platform')
@@ -111,8 +110,7 @@ let upgradeBtnFunc = function () {
     let findParents, chestId, chestLevel
     event.preventDefault()
 
-    if (
-      !$(this).attr('data-lockedAt') ||
+    if (!$(this).attr('data-lockedAt') ||
       +new Date() - $(this).attr('data-lockedAt') > 1000
     ) {
       findParents = $(this).parents('.platform')
@@ -133,8 +131,7 @@ let readyBtnFunc = function () {
   $('.container .space .readyButton').on('click', function (event) {
     let chestId
     event.preventDefault()
-    if (
-      !$(this).attr('data-lockedAt') ||
+    if (!$(this).attr('data-lockedAt') ||
       +new Date() - $(this).attr('data-lockedAt') > 300
     ) {
       chestId = $(this)
@@ -157,7 +154,7 @@ let changeChestImage = function (chestTarget, chestImage) {
   chestTarget.prop(
     'src',
     'https://d220xxmclrx033.cloudfront.net/event-space/img/chest/' +
-      chestImage +
-      '.png'
+    chestImage +
+    '.png'
   )
 }

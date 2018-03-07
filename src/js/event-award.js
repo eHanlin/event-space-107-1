@@ -1,4 +1,3 @@
-
 $(function () {
   let getAwardMessage = function (index) {
     ajaxGet(

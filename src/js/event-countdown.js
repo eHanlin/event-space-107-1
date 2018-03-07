@@ -42,8 +42,7 @@ let countDown = function (seconds, chestId, platformTarget) {
   let countDownFunc = function (seconds) {
     countdownTarget.countDown({
       timeInSecond: seconds,
-      displayTpl:
-        "<i style='font-size:28px;color:yellow' class='fa'>&#xf254;</i>{hour}時{minute}分{second}秒",
+      displayTpl: "<i style='font-size:28px;color:yellow' class='fa'>&#xf254;</i>{hour}時{minute}分{second}秒",
       limit: 'hour',
       // 當倒數計時完畢後 callback
       callback: function () {
@@ -59,8 +58,7 @@ let countDown = function (seconds, chestId, platformTarget) {
     platformTarget.find('.openNowButton').on('click', function (event) {
       event.preventDefault()
       // +new Date() 等於 new Date().getTime()
-      if (
-        !$(this).attr('data-lockedAt') ||
+      if (!$(this).attr('data-lockedAt') ||
         +new Date() - +$(this).attr('data-lockedAt') > 1000
       ) {
         let seconds
@@ -88,8 +86,7 @@ let countDown = function (seconds, chestId, platformTarget) {
                 function () {
                   ajax(
                     'PUT',
-                    '/chest/open/immediately/' + chestId,
-                    {
+                    '/chest/open/immediately/' + chestId, {
                       deductGems: deductGems
                     },
                     function (jsonData) {

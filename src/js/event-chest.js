@@ -25,10 +25,10 @@ let eventChest = {
         "<div style='height: 32px; font-size: 22px;'>恭喜你獲得</div><br/>" +
         "<table width='100%' style='table-layout:fixed; font-size: 25px;'>"
 
-      let awardText = '',
-        coinsText = '',
-        gemsText = '',
-        content = ''
+      let awardText = ''
+      let coinsText = ''
+      let gemsText = ''
+      let content = ''
 
       platformTarget.find('.chest').fadeOut('slow')
       platformTarget.find('.readyButton').fadeOut('slow')
@@ -75,8 +75,7 @@ let eventChest = {
 
     ajax(
       'PUT',
-      '/chest/open/' + chestId,
-      {
+      '/chest/open/' + chestId, {
         status: 'OPEN'
       },
       openSuccess

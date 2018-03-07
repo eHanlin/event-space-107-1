@@ -39,8 +39,7 @@ define(['jquery', 'popup', 'jqueryConfirm', 'jqueryCountDown'],
           require(['jqueryCountDown'])
           countdownTarget.countDown({
             timeInSecond: seconds,
-            displayTpl:
-              '<i style="font-size:28px;color:yellow" class="fa">&#xf254;</i>{hour}時{minute}分{second}秒',
+            displayTpl: '<i style="font-size:28px;color:yellow" class="fa">&#xf254;</i>{hour}時{minute}分{second}秒',
             limit: 'hour',
             // 當倒數計時完畢後 callback
             callback: function () {
@@ -83,7 +82,9 @@ define(['jquery', 'popup', 'jqueryConfirm', 'jqueryCountDown'],
                         '確定立即開啟寶箱嗎？',
                         function () {
                           ajaxUtil(
-                            'PUT', `http://localhost:8080/chest/open/immediately/${chestId}`, {deductGems: deductGems})
+                            'PUT', `http://localhost:8080/chest/open/immediately/${chestId}`, {
+                              deductGems: deductGems
+                            })
                             .then(function (jsonData) {
                               let originalGems = $('.space .gems #own-gems').text()
                               let insufficientGems = jsonData.content['insufficientGems']

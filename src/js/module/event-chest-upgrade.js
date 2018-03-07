@@ -11,8 +11,7 @@ define(['require', 'jquery', 'ajaxUtil'], function (require, $, ajaxUtil) {
         let upgradeContent = jsonData.content
         let upgradeToTransaction = function (alertTitle, alertGif) {
           ajaxUtil(
-            'POST', `http://localhost:9090/currencyBank/transaction/upgrade?userSpecific=596f1ce1e4b062375bdec803`,
-            {
+            'POST', `http://localhost:9090/currencyBank/transaction/upgrade?userSpecific=596f1ce1e4b062375bdec803`, {
               upgradeAuditId: upgradeContent['upgradeAuditId']
             }
           ).then(function () {
@@ -26,8 +25,7 @@ define(['require', 'jquery', 'ajaxUtil'], function (require, $, ajaxUtil) {
 
               countTransition('own-coins', originalCoins, content['coins'])
               countTransition('own-gems', originalGems, content['gems'])
-            })
-            )
+            }))
           })
         }
 
